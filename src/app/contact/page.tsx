@@ -181,9 +181,9 @@ export default function Contact() {
         <div className="flex justify-center items-center gap-4 text-slate-500 font-medium">
           <Link href="/" className="hover:underline hover:text-slate-400">Home</Link>
           <span>·</span>
-          <Link href="/terms" className="hover:underline hover:text-slate-400">Terms & Conditions</Link>
+          <Link href="/terms-and-conditions" className="hover:underline hover:text-slate-400">Terms & Conditions</Link>
           <span>·</span>
-          <Link href="/terms" className="hover:underline hover:text-slate-400">House Guidelines</Link>
+          <Link href="/privacy-policy" className="hover:underline hover:text-slate-400">Privacy Policy</Link>
         </div>
       </footer>
 

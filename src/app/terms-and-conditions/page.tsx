@@ -179,7 +179,26 @@ export default function Terms() {
 
       {/* Footer */}
       <footer className="bg-slate-900 border-t border-slate-800 py-8 text-xs text-slate-400 text-center">
-        <p>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
+        <div className="max-w-4xl mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
+          <p>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
+          <div className="flex items-center gap-4 text-slate-400">
+            <Link href="/" className="hover:underline hover:text-white transition-colors">
+              Home
+            </Link>
+            <span>·</span>
+            <Link href="/terms-and-conditions" className="hover:underline hover:text-white transition-colors text-slate-200 font-bold">
+              Terms & Conditions
+            </Link>
+            <span>·</span>
+            <Link href="/privacy-policy" className="hover:underline hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span>·</span>
+            <Link href="/contact" className="hover:underline hover:text-white transition-colors">
+              Contact Host
+            </Link>
+          </div>
+        </div>
       </footer>
 
     </div>

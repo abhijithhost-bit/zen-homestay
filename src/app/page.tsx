@@ -590,7 +590,7 @@ export default function Home() {
             </a>
             <Link
               href="/contact"
-              className="bg-slate-900 hover:bg-orange-600 text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 shadow-md shadow-slate-900/10 hover:shadow-orange-500/25 active:scale-95 flex items-center gap-1.5"
+              className="bg-orange-500 hover:bg-orange-600 text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 shadow-md shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-95 flex items-center gap-1.5"
             >
               <span>Contact Host</span>
             </Link>
@@ -767,7 +767,7 @@ export default function Home() {
                   <span>·</span>
                   <span>2 King beds</span>
                   <span>·</span>
-                  <span>2 Private bathrooms</span>
+                  <span>Attached bathrooms</span>
                 </p>
               </div>
               <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-400 to-sky-600 text-white font-extrabold flex items-center justify-center text-lg shrink-0 shadow-md">
@@ -945,7 +945,7 @@ export default function Home() {
             </div>
 
             {/* MOBILE ONLY: Booking Card displayed directly below Bedroom section */}
-            <div className="lg:hidden my-6">
+            <div id="booking-section" className="lg:hidden my-6 scroll-mt-24">
               {renderBookingCard()}
             </div>
 
@@ -1220,6 +1220,11 @@ export default function Home() {
                     <span className="text-sky-500">•</span> Terms & House Rules
                   </Link>
                 </li>
+                <li>
+                  <Link href="/privacy-policy" className="hover:text-orange-400 transition-colors flex items-center gap-1.5">
+                    <span className="text-sky-500">•</span> Privacy Policy
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -1310,8 +1315,8 @@ export default function Home() {
                 Terms & Conditions
               </Link>
               <span>·</span>
-              <Link href="/terms-and-conditions" className="hover:underline hover:text-white transition-colors">
-                House Guidelines
+              <Link href="/privacy-policy" className="hover:underline hover:text-white transition-colors">
+                Privacy Policy
               </Link>
               <span>·</span>
               <Link href="/contact" className="hover:underline hover:text-white transition-colors">
@@ -1343,13 +1348,18 @@ export default function Home() {
         </button>
 
         <a
-          href={whatsappBookingUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-black text-sm shadow-md shadow-orange-500/20 flex items-center gap-2 active:scale-95"
+          href="#booking-section"
+          onClick={(e) => {
+            const el = document.getElementById('booking-section');
+            if (el) {
+              e.preventDefault();
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }}
+          className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3.5 rounded-xl font-black text-sm shadow-lg shadow-orange-500/25 flex items-center gap-1.5 active:scale-95 transition-all cursor-pointer touch-manipulation"
         >
-          <MessageCircle className="w-4 h-4 fill-current" />
-          WhatsApp Host
+          <span>Book Now</span>
+          <span className="text-xs font-black">↓</span>
         </a>
       </div>
 
