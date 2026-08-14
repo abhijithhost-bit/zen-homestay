@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { 
   Star, 
   MapPin,
+  Calendar,
   ShieldCheck, 
   Wifi, 
   Wind, 
@@ -62,23 +63,156 @@ export default function Home() {
   const [rooms, setRooms] = useState(1);
   const [guests, setGuests] = useState(2);
 
-  const handleRoomChange = (delta: number) => {
-    const nextRooms = Math.min(2, Math.max(1, rooms + delta));
-    setRooms(nextRooms);
-    if (nextRooms === 1 && guests > 3) {
-      setGuests(3);
+  // Date State for Interactive Date Picker
+  const getInitialDate = (offsetDays = 0) => {
+    const d = new Date();
+    d.setDate(d.getDate() + offsetDays);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const [checkIn, setCheckIn] = useState(() => getInitialDate(1));
+  const [checkOut, setCheckOut] = useState(() => getInitialDate(2));
+
+  // Compute nights
+  const calculateNights = (inDateStr: string, outDateStr: string) => {
+    try {
+      if (!inDateStr || !outDateStr) return 1;
+      const [y1, m1, d1] = inDateStr.split('-').map(Number);
+      const [y2, m2, d2] = outDateStr.split('-').map(Number);
+      const date1 = new Date(y1, m1 - 1, d1);
+      const date2 = new Date(y2, m2 - 1, d2);
+      const diffTime = date2.getTime() - date1.getTime();
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays > 0 ? diffDays : 1;
+    } catch {
+      return 1;
     }
   };
 
-  const handleGuestChange = (delta: number) => {
-    const maxGuests = rooms * 3;
-    const nextGuests = Math.min(maxGuests, Math.max(1, guests + delta));
-    setGuests(nextGuests);
+  const nights = calculateNights(checkIn, checkOut);
+  const totalPrice = rooms * 3000 * nights;
+
+  // Visual Interactive Calendar State
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const d = new Date();
+    return new Date(d.getFullYear(), d.getMonth(), 1);
+  });
+  const [activeDateStep, setActiveDateStep] = useState<'checkIn' | 'checkOut'>('checkIn');
+
+  // Month navigation
+  const prevMonth = () => {
+    setCalendarMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+  };
+  const nextMonth = () => {
+    setCalendarMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
   };
 
-  const totalPrice = rooms * 3000;
+  // Calendar Day Generation
+  const getDaysInMonth = (year: number, month: number) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+  const getFirstDayOfMonth = (year: number, month: number) => {
+    return new Date(year, month, 1).getDay();
+  };
+
+  const handleDateCellClick = (year: number, month: number, day: number) => {
+    const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const selectedDate = new Date(year, month, day);
+
+    if (activeDateStep === 'checkIn') {
+      setCheckIn(dateStr);
+      const [oy, om, od] = checkOut.split('-').map(Number);
+      const outD = new Date(oy, om - 1, od);
+      if (outD <= selectedDate || isNaN(outD.getTime())) {
+        const nextDay = new Date(selectedDate);
+        nextDay.setDate(nextDay.getDate() + 1);
+        const ny = nextDay.getFullYear();
+        const nm = String(nextDay.getMonth() + 1).padStart(2, '0');
+        const nd = String(nextDay.getDate()).padStart(2, '0');
+        setCheckOut(`${ny}-${nm}-${nd}`);
+      }
+      setActiveDateStep('checkOut');
+    } else {
+      const [iy, im, id] = checkIn.split('-').map(Number);
+      const inDate = new Date(iy, im - 1, id);
+
+      if (selectedDate <= inDate) {
+        setCheckIn(dateStr);
+        const nextDay = new Date(selectedDate);
+        nextDay.setDate(nextDay.getDate() + 1);
+        const ny = nextDay.getFullYear();
+        const nm = String(nextDay.getMonth() + 1).padStart(2, '0');
+        const nd = String(nextDay.getDate()).padStart(2, '0');
+        setCheckOut(`${ny}-${nm}-${nd}`);
+        setActiveDateStep('checkOut');
+      } else {
+        setCheckOut(dateStr);
+        setShowCalendar(false);
+      }
+    }
+  };
+
+  const applyPreset = (presetNights: number, offsetDays = 1) => {
+    const inD = new Date();
+    inD.setDate(inD.getDate() + offsetDays);
+    const outD = new Date(inD);
+    outD.setDate(outD.getDate() + presetNights);
+
+    const inStr = `${inD.getFullYear()}-${String(inD.getMonth() + 1).padStart(2, '0')}-${String(inD.getDate()).padStart(2, '0')}`;
+    const outStr = `${outD.getFullYear()}-${String(outD.getMonth() + 1).padStart(2, '0')}-${String(outD.getDate()).padStart(2, '0')}`;
+
+    setCheckIn(inStr);
+    setCheckOut(outStr);
+    setShowCalendar(false);
+  };
+
+  const formatDisplayDate = (dateStr: string) => {
+    if (!dateStr) return '';
+    try {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const dateObj = new Date(y, m - 1, d);
+      return dateObj.toLocaleDateString('en-IN', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric'
+      });
+    } catch {
+      return dateStr;
+    }
+  };
+
+  const formattedCheckIn = formatDisplayDate(checkIn);
+  const formattedCheckOut = formatDisplayDate(checkOut);
+
+  const handleRoomChange = (delta: number) => {
+    setRooms((prev) => Math.min(2, Math.max(1, prev + delta)));
+  };
+
+  const handleGuestChange = (delta: number) => {
+    setGuests((prev) => {
+      const maxGuests = rooms * 3;
+      return Math.min(maxGuests, Math.max(1, prev + delta));
+    });
+  };
+
+  useEffect(() => {
+    setGuests((prev) => Math.min(rooms * 3, Math.max(1, prev)));
+  }, [rooms]);
+
+  useEffect(() => {
+    if (showCalendar || showGallery) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [showCalendar, showGallery]);
+
   const whatsappBookingUrl = `https://wa.me/917012761588?text=${encodeURIComponent(
-    `Hi Abhijith, I would like to inquire about booking Zen Homestay for ${guests} guest${guests > 1 ? 's' : ''} (${rooms} Lake View Room${rooms > 1 ? 's' : ''}). Check-in 2:00 PM / Checkout 11:00 AM. Please let me know the availability!`
+    `Hi Abhijith, I would like to inquire about booking Zen Homestay for ${guests} guest${guests > 1 ? 's' : ''} (${rooms} Lake View Room${rooms > 1 ? 's' : ''}) from ${formattedCheckIn} to ${formattedCheckOut} (${nights} night${nights > 1 ? 's' : ''}). Total estimated: ₹${totalPrice.toLocaleString('en-IN')}. Please let me know the availability!`
   )}`;
 
   const images = [
@@ -137,30 +271,287 @@ export default function Home() {
     }
   ];
 
+  const renderBookingCard = () => (
+    <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xl space-y-4 sm:space-y-5">
+
+      {/* Special Offer Header Pill */}
+      <div className="bg-orange-500 text-white text-[11px] font-extrabold py-1.5 px-3 rounded-full text-center tracking-wider uppercase shadow-sm">
+        Direct Host Guaranteed Rate
+      </div>
+
+      {/* Price & Rating Header */}
+      <div className="flex items-baseline justify-between pt-0.5">
+        <div>
+          <span className="text-2xl sm:text-3xl font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
+          <span className="text-slate-500 font-bold text-xs sm:text-sm">
+            {' '}/ {nights} {nights === 1 ? 'night' : 'nights'} ({rooms} {rooms === 1 ? 'room' : 'rooms'})
+          </span>
+        </div>
+        <div className="flex items-center gap-1 text-xs font-bold text-slate-900">
+          <Star className="w-4 h-4 fill-orange-500 text-orange-500" />
+          <span>4.98</span>
+          <span className="text-slate-500 font-normal">(48)</span>
+        </div>
+      </div>
+
+      {/* Interactive Booking Box: Check-in, Check-out, Rooms Counter, Guests Counter */}
+      <div className="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-200 bg-slate-50/70 text-xs font-medium">
+        
+        {/* Date Picker Row - Triggers Visual Calendar Modal or Direct Date Selection */}
+        <div className="grid grid-cols-2 divide-x divide-slate-200 bg-white">
+          
+          {/* Check-in Trigger Box */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveDateStep('checkIn');
+              setShowCalendar(true);
+            }}
+            className="p-3 sm:p-3.5 hover:bg-slate-50 transition-colors text-left block w-full group cursor-pointer touch-manipulation select-none"
+          >
+            <div className="flex items-center justify-between mb-1 pointer-events-none">
+              <span className="font-extrabold uppercase text-[10px] text-slate-500 tracking-wider">
+                Check-in
+              </span>
+              <Calendar className="w-4 h-4 text-sky-600 group-hover:scale-110 transition-transform" />
+            </div>
+            <div className="text-slate-900 font-black text-xs sm:text-sm truncate pointer-events-none">
+              {formattedCheckIn || 'Select Date'}
+            </div>
+            <span className="text-[10px] text-slate-400 font-semibold block mt-0.5 pointer-events-none">2:00 PM Check-in</span>
+          </button>
+
+          {/* Checkout Trigger Box */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              setActiveDateStep('checkOut');
+              setShowCalendar(true);
+            }}
+            className="p-3 sm:p-3.5 hover:bg-slate-50 transition-colors text-left block w-full group cursor-pointer touch-manipulation select-none"
+          >
+            <div className="flex items-center justify-between mb-1 pointer-events-none">
+              <span className="font-extrabold uppercase text-[10px] text-slate-500 tracking-wider">
+                Checkout
+              </span>
+              <span className="text-[10px] font-black text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded border border-orange-200">
+                {nights} {nights === 1 ? 'night' : 'nights'}
+              </span>
+            </div>
+            <div className="text-slate-900 font-black text-xs sm:text-sm truncate pointer-events-none">
+              {formattedCheckOut || 'Select Date'}
+            </div>
+            <span className="text-[10px] text-slate-400 font-semibold block mt-0.5 pointer-events-none">11:00 AM Checkout</span>
+          </button>
+
+        </div>
+
+        {/* Quick Night Selection Chips directly inside the card */}
+        <div className="p-2.5 bg-slate-50/80 flex items-center justify-between gap-1.5 overflow-x-auto text-[11px] font-bold">
+          <span className="text-[10px] font-extrabold uppercase text-slate-400 shrink-0">Stay:</span>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              onClick={() => applyPreset(1, 0)}
+              className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${
+                nights === 1
+                  ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
+                  : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
+              }`}
+            >
+              1 Night
+            </button>
+            <button
+              type="button"
+              onClick={() => applyPreset(2, 0)}
+              className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${
+                nights === 2
+                  ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
+                  : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
+              }`}
+            >
+              2 Nights
+            </button>
+            <button
+              type="button"
+              onClick={() => applyPreset(3, 0)}
+              className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${
+                nights === 3
+                  ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
+                  : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
+              }`}
+            >
+              3 Nights
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveDateStep('checkIn');
+                setShowCalendar(true);
+              }}
+              className="px-2 py-1 rounded-lg bg-sky-50 text-sky-700 border border-sky-200 font-extrabold hover:bg-sky-100 transition-all cursor-pointer touch-manipulation flex items-center gap-1"
+            >
+              <span>📅 Calendar</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Rooms Counter */}
+        <div className="p-3.5 flex items-center justify-between bg-white">
+          <div>
+            <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Rooms</span>
+            <span className="text-slate-900 font-bold text-xs sm:text-sm">
+              {rooms} {rooms === 1 ? 'Room' : 'Rooms'} <span className="text-slate-400 font-normal text-xs">(₹3,000/room)</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-2.5 touch-manipulation">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleRoomChange(-1);
+              }}
+              disabled={rooms <= 1}
+              className="w-11 h-11 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
+              aria-label="Decrease rooms"
+            >
+              <Minus className="w-4 h-4 pointer-events-none stroke-[3]" />
+            </button>
+            <span className="font-black text-base sm:text-sm w-5 text-center text-slate-900 select-none">{rooms}</span>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleRoomChange(1);
+              }}
+              disabled={rooms >= 2}
+              className="w-11 h-11 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
+              aria-label="Increase rooms"
+            >
+              <Plus className="w-4 h-4 pointer-events-none stroke-[3]" />
+            </button>
+          </div>
+        </div>
+
+        {/* Guests Counter */}
+        <div className="p-3.5 flex items-center justify-between bg-white">
+          <div>
+            <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Guests</span>
+            <span className="text-slate-900 font-bold text-xs sm:text-sm">
+              {guests} {guests === 1 ? 'Guest' : 'Guests'} <span className="text-slate-400 font-normal text-xs">(Max {rooms * 3})</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-2.5 touch-manipulation">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleGuestChange(-1);
+              }}
+              disabled={guests <= 1}
+              className="w-11 h-11 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
+              aria-label="Decrease guests"
+            >
+              <Minus className="w-4 h-4 pointer-events-none stroke-[3]" />
+            </button>
+            <span className="font-black text-base sm:text-sm w-5 text-center text-slate-900 select-none">{guests}</span>
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleGuestChange(1);
+              }}
+              disabled={guests >= rooms * 3}
+              className="w-11 h-11 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
+              aria-label="Increase guests"
+            >
+              <Plus className="w-4 h-4 pointer-events-none stroke-[3]" />
+            </button>
+          </div>
+        </div>
+
+        {/* Breakdown Calculation */}
+        <div className="p-2.5 sm:p-3 bg-sky-50 text-sky-900 font-bold flex items-center justify-between text-xs">
+          <div className="flex items-center gap-1.5 truncate pr-2">
+            <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
+            <span className="truncate">₹3,000 × {rooms} room{rooms > 1 ? 's' : ''} × {nights} {nights === 1 ? 'night' : 'nights'}</span>
+          </div>
+          <span className="text-orange-600 font-black shrink-0">₹{totalPrice.toLocaleString('en-IN')}</span>
+        </div>
+      </div>
+
+      {/* High-Conversion Action Buttons with Dynamic WhatsApp Pre-filled text */}
+      <div className="space-y-2.5 pt-1">
+        <a
+          href={whatsappBookingUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="w-full flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base tracking-wide transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-[0.98]"
+        >
+          <MessageCircle className="w-5 h-5 fill-current" />
+          Reserve via WhatsApp
+        </a>
+
+        <a
+          href="tel:+917012761588"
+          className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-black text-white py-3 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all shadow-sm active:scale-[0.98]"
+        >
+          <Phone className="w-4 h-4 text-sky-400" />
+          Call Host (+91 7012 761 588)
+        </a>
+      </div>
+
+      <div className="text-center">
+        <p className="text-[11px] text-slate-500 font-semibold">
+          Zero booking commission · Instant response in &lt; 5 mins
+        </p>
+      </div>
+
+      {/* Verified Guarantees */}
+      <div className="border-t border-slate-100 pt-3.5 space-y-2 text-[11px] sm:text-xs text-slate-600 font-semibold">
+        <div className="flex items-center justify-between">
+          <span className="underline">Instant WhatsApp Confirmation</span>
+          <span className="font-bold text-sky-700">Free</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="underline">5-Minute Speedboat Transfer</span>
+          <span className="font-bold text-sky-700">Included</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="underline">Complimentary Kerala Breakfast</span>
+          <span className="font-bold text-sky-700">Included</span>
+        </div>
+      </div>
+
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-slate-50/50 text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-900 pb-20 md:pb-0">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-900 pb-20 md:pb-0">
 
       {/* Modern Luxury Glassmorphic Navigation Header */}
-      <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] transition-all w-full">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
           
           {/* Brand Logo & Superhost Badge */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-lg shadow-sky-500/20 ring-4 ring-sky-50 group-hover:scale-105 transition-transform duration-300">
-              <Sparkles className="w-5 h-5" />
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink min-w-0">
+            <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-md sm:shadow-lg shadow-sky-500/20 ring-2 sm:ring-4 ring-sky-50 group-hover:scale-105 transition-transform duration-300 shrink-0">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 leading-none group-hover:text-sky-600 transition-colors">
+            <div className="flex flex-col min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-extrabold text-sm sm:text-xl tracking-tight text-slate-900 leading-none group-hover:text-sky-600 transition-colors truncate">
                   Zen Homestay
                 </span>
-                <span className="hidden sm:inline-flex items-center gap-1 bg-orange-50 text-orange-700 text-[10px] font-black px-2 py-0.5 rounded-full border border-orange-200/80">
+                <span className="hidden sm:inline-flex items-center gap-1 bg-orange-50 text-orange-700 text-[10px] font-black px-2 py-0.5 rounded-full border border-orange-200/80 shrink-0">
                   <Award className="w-3 h-3 text-orange-500" /> Superhost
                 </span>
               </div>
-              <span className="text-[11px] font-bold text-sky-600 tracking-wider uppercase mt-1 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                Punnamada Lake · Alleppey
+              <span className="text-[9px] sm:text-[11px] font-bold text-sky-600 tracking-wider uppercase mt-0.5 sm:mt-1 flex items-center gap-1 sm:gap-1.5 truncate">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+                <span className="truncate">Punnamada Lake · Alleppey</span>
               </span>
             </div>
           </Link>
@@ -187,20 +578,19 @@ export default function Home() {
           </nav>
 
           {/* Right Action CTA Buttons */}
-          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <a
               href="https://wa.me/917012761588"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 text-xs font-bold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 hover:text-emerald-900 border border-emerald-200/80 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full transition-all shadow-sm active:scale-95"
+              className="hidden sm:flex items-center gap-2 text-xs font-bold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 hover:text-emerald-900 border border-emerald-200/80 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full transition-all shadow-sm active:scale-95"
             >
               <MessageCircle className="w-4 h-4 text-emerald-600 fill-emerald-600/20" />
-              <span className="hidden sm:inline">WhatsApp Direct</span>
-              <span className="sm:hidden font-extrabold">WhatsApp</span>
+              <span>WhatsApp Direct</span>
             </a>
             <Link
               href="/contact"
-              className="bg-slate-900 hover:bg-orange-600 text-white text-xs font-extrabold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 shadow-md shadow-slate-900/10 hover:shadow-orange-500/25 active:scale-95 flex items-center gap-1.5"
+              className="bg-slate-900 hover:bg-orange-600 text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 shadow-md shadow-slate-900/10 hover:shadow-orange-500/25 active:scale-95 flex items-center gap-1.5"
             >
               <span>Contact Host</span>
             </Link>
@@ -208,7 +598,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 w-full">
 
         {/* Listing Title Header */}
         <div className="mb-6">
@@ -228,7 +618,7 @@ export default function Home() {
         </div>
 
         {/* Mobile Swipeable Photo Gallery */}
-        <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] -mx-4 sm:-mx-6 mb-6 relative">
+        <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] w-full rounded-2xl mb-6 relative">
           {images.map((img, idx) => (
             <div 
               key={idx} 
@@ -554,6 +944,11 @@ export default function Home() {
               </div>
             </div>
 
+            {/* MOBILE ONLY: Booking Card displayed directly below Bedroom section */}
+            <div className="lg:hidden my-6">
+              {renderBookingCard()}
+            </div>
+
             {/* WHAT THIS PLACE OFFERS (Amenities Grid) */}
             <div id="amenities" className="pb-8 border-b border-slate-200 bg-white p-8 rounded-3xl border shadow-sm">
               <h2 className="text-2xl font-extrabold text-slate-900 mb-6">What this place offers</h2>
@@ -731,7 +1126,7 @@ export default function Home() {
                       />
                     </button>
                     {openFaq === idx && (
-                      <div className="p-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
+                      <div className="p-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50">
                         {faq.a}
                       </div>
                     )}
@@ -742,155 +1137,10 @@ export default function Home() {
 
           </div>
 
-          {/* RIGHT COLUMN: High-Conversion Sticky Soft Light-Blue & Orange Reserve Widget */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-28 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xl space-y-6">
-
-              {/* Special Offer Header Pill */}
-              <div className="bg-orange-500 text-white text-[11px] font-extrabold py-1.5 px-3 rounded-full text-center tracking-wider uppercase shadow-sm">
-                Direct Host Guaranteed Rate
-              </div>
-
-              {/* Price & Rating Header */}
-              <div className="flex items-baseline justify-between pt-1">
-                <div>
-                  <span className="text-3xl font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
-                  <span className="text-slate-500 font-bold text-sm"> / {rooms === 1 ? 'room' : '2 rooms'} / night</span>
-                </div>
-                <div className="flex items-center gap-1 text-xs font-bold text-slate-900">
-                  <Star className="w-4 h-4 fill-orange-500 text-orange-500" />
-                  <span>4.98</span>
-                  <span className="text-slate-500 font-normal">(48)</span>
-                </div>
-              </div>
-
-              {/* Interactive Booking Box: Check-in, Check-out, Rooms Counter, Guests Counter */}
-              <div className="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-200 bg-slate-50/70 text-xs font-medium">
-                <div className="grid grid-cols-2 divide-x divide-slate-200">
-                  <div className="p-3">
-                    <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Check-in</span>
-                    <span className="text-slate-900 font-bold text-sm">2:00 PM</span>
-                  </div>
-                  <div className="p-3">
-                    <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Checkout</span>
-                    <span className="text-slate-900 font-bold text-sm">11:00 AM</span>
-                  </div>
-                </div>
-
-                {/* Rooms Counter */}
-                <div className="p-3.5 flex items-center justify-between bg-white">
-                  <div>
-                    <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Rooms</span>
-                    <span className="text-slate-900 font-bold text-sm">
-                      {rooms} {rooms === 1 ? 'Room' : 'Rooms'} <span className="text-slate-400 font-normal text-xs">(₹3,000/room)</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => handleRoomChange(-1)}
-                      disabled={rooms <= 1}
-                      className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 hover:border-slate-400 disabled:opacity-30 disabled:cursor-not-allowed text-base font-bold bg-white transition-colors active:scale-95"
-                      aria-label="Decrease rooms"
-                    >
-                      <Minus className="w-3.5 h-3.5" />
-                    </button>
-                    <span className="font-extrabold text-sm w-4 text-center text-slate-900">{rooms}</span>
-                    <button
-                      type="button"
-                      onClick={() => handleRoomChange(1)}
-                      disabled={rooms >= 2}
-                      className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 hover:border-slate-400 disabled:opacity-30 disabled:cursor-not-allowed text-base font-bold bg-white transition-colors active:scale-95"
-                      aria-label="Increase rooms"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Guests Counter */}
-                <div className="p-3.5 flex items-center justify-between bg-white">
-                  <div>
-                    <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Guests</span>
-                    <span className="text-slate-900 font-bold text-sm">
-                      {guests} {guests === 1 ? 'Guest' : 'Guests'} <span className="text-slate-400 font-normal text-xs">(Max {rooms * 3})</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => handleGuestChange(-1)}
-                      disabled={guests <= 1}
-                      className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 hover:border-slate-400 disabled:opacity-30 disabled:cursor-not-allowed text-base font-bold bg-white transition-colors active:scale-95"
-                      aria-label="Decrease guests"
-                    >
-                      <Minus className="w-3.5 h-3.5" />
-                    </button>
-                    <span className="font-extrabold text-sm w-4 text-center text-slate-900">{guests}</span>
-                    <button
-                      type="button"
-                      onClick={() => handleGuestChange(1)}
-                      disabled={guests >= rooms * 3}
-                      className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 hover:border-slate-400 disabled:opacity-30 disabled:cursor-not-allowed text-base font-bold bg-white transition-colors active:scale-95"
-                      aria-label="Increase guests"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-
-                <div className="p-3 bg-sky-50 text-sky-900 font-bold flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
-                    <span>Free 5-min speed boat pickup</span>
-                  </div>
-                  <span className="text-orange-600 font-black text-xs">₹{totalPrice.toLocaleString('en-IN')}/night</span>
-                </div>
-              </div>
-
-              {/* High-Conversion Action Buttons with Dynamic WhatsApp Pre-filled text */}
-              <div className="space-y-3 pt-2">
-                <a
-                  href={whatsappBookingUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-2xl font-black text-base tracking-wide transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-[0.98]"
-                >
-                  <MessageCircle className="w-5 h-5 fill-current" />
-                  Reserve via WhatsApp
-                </a>
-
-                <a
-                  href="tel:+917012761588"
-                  className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-black text-white py-3.5 rounded-2xl font-bold text-sm tracking-wide transition-all shadow-sm active:scale-[0.98]"
-                >
-                  <Phone className="w-4 h-4 text-sky-400" />
-                  Call Host (+91 7012 761 588)
-                </a>
-              </div>
-
-              <div className="text-center">
-                <p className="text-xs text-slate-500 font-semibold">
-                  Zero booking commission · Instant response in &lt; 5 mins
-                </p>
-              </div>
-
-              {/* Verified Guarantees */}
-              <div className="border-t border-slate-100 pt-5 space-y-3 text-xs text-slate-600 font-semibold">
-                <div className="flex items-center justify-between">
-                  <span className="underline">Instant WhatsApp Confirmation</span>
-                  <span className="font-bold text-sky-700">Free</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="underline">5-Minute Speedboat Transfer</span>
-                  <span className="font-bold text-sky-700">Included</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="underline">Complimentary Kerala Breakfast</span>
-                  <span className="font-bold text-sky-700">Included</span>
-                </div>
-              </div>
-
+          {/* RIGHT COLUMN: High-Conversion Sticky Soft Light-Blue & Orange Reserve Widget (Desktop Only) */}
+          <div className="hidden lg:block lg:col-span-1 h-full">
+            <div className="sticky top-24 z-30">
+              {renderBookingCard()}
             </div>
           </div>
 
@@ -1075,18 +1325,22 @@ export default function Home() {
 
       {/* Mobile Sticky Bottom Floating Action Bar */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-4 flex items-center justify-between shadow-2xl">
-        <div>
+        <button 
+          type="button"
+          onClick={() => setShowCalendar(true)}
+          className="text-left cursor-pointer active:scale-95 transition-transform"
+        >
           <div className="flex items-baseline gap-1">
             <span className="text-lg font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
-            <span className="text-xs text-slate-500">/ {rooms} {rooms === 1 ? 'room' : 'rooms'}</span>
+            <span className="text-xs text-orange-600 font-bold underline">/ {nights} {nights === 1 ? 'night' : 'nights'} 📅</span>
           </div>
           <div className="flex items-center gap-1 text-[11px] text-slate-700 font-bold">
             <Star className="w-3 h-3 fill-orange-500 text-orange-500" />
             <span>4.98</span>
             <span>·</span>
-            <span className="text-sky-600">{guests} {guests === 1 ? 'Guest' : 'Guests'}</span>
+            <span className="text-sky-600">{rooms} {rooms === 1 ? 'Room' : 'Rooms'} · {guests} {guests === 1 ? 'Guest' : 'Guests'}</span>
           </div>
-        </div>
+        </button>
 
         <a
           href={whatsappBookingUrl}
@@ -1201,6 +1455,273 @@ export default function Home() {
 
           </div>
 
+        </div>
+      )}
+
+      {/* Modern High-End Visual Interactive Calendar Modal */}
+      {showCalendar && (
+        <div 
+          onClick={() => setShowCalendar(false)}
+          className="fixed inset-0 z-[999] bg-slate-950/80 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in duration-200"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[94vh] sm:max-h-[90vh]"
+          >
+            
+            {/* Modal Header */}
+            <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
+              <div>
+                <h3 className="font-extrabold text-base sm:text-lg text-slate-900">Select Dates & Rooms</h3>
+                <p className="text-xs text-slate-500 font-medium">
+                  {nights} {nights === 1 ? 'Night' : 'Nights'} · {rooms} {rooms === 1 ? 'Room' : 'Rooms'} · {guests} Guests
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowCalendar(false)}
+                className="w-9 h-9 rounded-full bg-white hover:bg-slate-200 border border-slate-200 flex items-center justify-center text-slate-700 font-bold transition-all active:scale-95 cursor-pointer touch-manipulation"
+                aria-label="Close Calendar"
+              >
+                <X className="w-4 h-4 pointer-events-none" />
+              </button>
+            </div>
+
+            {/* Check-in / Checkout Selector Tabs in Modal */}
+            <div className="p-3.5 bg-slate-100/70 grid grid-cols-2 gap-2 border-b border-slate-100 text-xs">
+              <button
+                type="button"
+                onClick={() => setActiveDateStep('checkIn')}
+                className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation ${
+                  activeDateStep === 'checkIn'
+                    ? 'bg-white border-orange-500 shadow-sm ring-2 ring-orange-100'
+                    : 'bg-white/60 border-slate-200 text-slate-600'
+                }`}
+              >
+                <span className="font-bold text-[10px] uppercase text-slate-500 block">Check-in</span>
+                <span className="font-extrabold text-slate-900 text-xs sm:text-sm">{formattedCheckIn}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveDateStep('checkOut')}
+                className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation ${
+                  activeDateStep === 'checkOut'
+                    ? 'bg-white border-orange-500 shadow-sm ring-2 ring-orange-100'
+                    : 'bg-white/60 border-slate-200 text-slate-600'
+                }`}
+              >
+                <span className="font-bold text-[10px] uppercase text-slate-500 block">Checkout</span>
+                <span className="font-extrabold text-slate-900 text-xs sm:text-sm">{formattedCheckOut}</span>
+              </button>
+            </div>
+
+            {/* Calendar Grid & Adjusters Body */}
+            <div className="p-4 sm:p-5 overflow-y-auto space-y-4">
+              
+              {/* Month Navigation */}
+              <div className="flex items-center justify-between">
+                <h4 className="font-extrabold text-sm sm:text-base text-slate-900">
+                  {calendarMonth.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}
+                </h4>
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={prevMonth}
+                    className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
+                    aria-label="Previous Month"
+                  >
+                    <ChevronLeft className="w-4 h-4 pointer-events-none" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextMonth}
+                    className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
+                    aria-label="Next Month"
+                  >
+                    <ChevronRight className="w-4 h-4 pointer-events-none" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Day of week headers */}
+              <div className="grid grid-cols-7 gap-1 text-center font-bold text-[11px] text-slate-400">
+                <div>Su</div>
+                <div>Mo</div>
+                <div>Tu</div>
+                <div>We</div>
+                <div>Th</div>
+                <div>Fr</div>
+                <div>Sa</div>
+              </div>
+
+              {/* Day cells */}
+              <div className="grid grid-cols-7 gap-1 text-center text-xs">
+                {/* Empty offset days */}
+                {Array.from({ length: getFirstDayOfMonth(calendarMonth.getFullYear(), calendarMonth.getMonth()) }).map((_, i) => (
+                  <div key={`empty-${i}`} className="h-9" />
+                ))}
+
+                {/* Actual Days */}
+                {Array.from({ length: getDaysInMonth(calendarMonth.getFullYear(), calendarMonth.getMonth()) }).map((_, i) => {
+                  const day = i + 1;
+                  const year = calendarMonth.getFullYear();
+                  const month = calendarMonth.getMonth();
+                  const cellDate = new Date(year, month, day);
+                  const cellStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                  
+                  const today = new Date();
+                  today.setHours(0, 0, 0, 0);
+                  const isPast = cellDate < today;
+
+                  const isCheckIn = cellStr === checkIn;
+                  const isCheckOut = cellStr === checkOut;
+
+                  const inParts = checkIn.split('-').map(Number);
+                  const outParts = checkOut.split('-').map(Number);
+                  const inDate = new Date(inParts[0], inParts[1] - 1, inParts[2]);
+                  const outDate = new Date(outParts[0], outParts[1] - 1, outParts[2]);
+                  const isInRange = cellDate > inDate && cellDate < outDate;
+
+                  let cellClasses = "h-9 w-full rounded-xl flex items-center justify-center font-bold transition-all cursor-pointer touch-manipulation ";
+
+                  if (isPast) {
+                    cellClasses += "text-slate-300 cursor-not-allowed opacity-40";
+                  } else if (isCheckIn || isCheckOut) {
+                    cellClasses += "bg-orange-500 text-white shadow-md shadow-orange-500/30 scale-95 font-extrabold";
+                  } else if (isInRange) {
+                    cellClasses += "bg-orange-100 text-orange-950 rounded-none font-extrabold";
+                  } else {
+                    cellClasses += "text-slate-800 hover:bg-sky-100 hover:text-sky-900";
+                  }
+
+                  return (
+                    <button
+                      key={`day-${day}`}
+                      type="button"
+                      disabled={isPast}
+                      onClick={() => handleDateCellClick(year, month, day)}
+                      className={cellClasses}
+                    >
+                      {day}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Quick Presets */}
+              <div className="pt-2">
+                <span className="text-[10px] font-extrabold uppercase text-slate-400 block mb-1.5 tracking-wider">
+                  Quick Presets
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => applyPreset(1, 1)}
+                    className="px-2.5 py-1 rounded-lg border border-slate-200 text-[11px] font-bold text-slate-700 hover:bg-orange-50 hover:text-orange-600 hover:border-orange-200 transition-colors cursor-pointer touch-manipulation"
+                  >
+                    Tomorrow (1N)
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyPreset(2, 1)}
+                    className="px-2.5 py-1 rounded-lg border border-slate-200 text-[11px] font-bold text-slate-700 hover:bg-orange-50 hover:text-orange-600 hover:border-orange-200 transition-colors cursor-pointer touch-manipulation"
+                  >
+                    2 Nights
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => applyPreset(3, 1)}
+                    className="px-2.5 py-1 rounded-lg border border-slate-200 text-[11px] font-bold text-slate-700 hover:bg-orange-50 hover:text-orange-600 hover:border-orange-200 transition-colors cursor-pointer touch-manipulation"
+                  >
+                    3 Nights
+                  </button>
+                </div>
+              </div>
+
+              {/* In-Modal Room & Guest Adjuster */}
+              <div className="pt-3 border-t border-slate-100 space-y-2.5">
+                <span className="text-[10px] font-extrabold uppercase text-slate-400 block tracking-wider">
+                  Room & Guest Configuration
+                </span>
+
+                <div className="grid grid-cols-2 gap-2">
+                  {/* Modal Room Counter */}
+                  <div className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                    <div>
+                      <span className="font-bold text-[10px] uppercase text-slate-500 block">Rooms</span>
+                      <span className="text-slate-900 font-extrabold text-xs">{rooms} {rooms === 1 ? 'Room' : 'Rooms'}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 touch-manipulation">
+                      <button
+                        type="button"
+                        onClick={() => handleRoomChange(-1)}
+                        disabled={rooms <= 1}
+                        className="w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 disabled:opacity-25 bg-white active:scale-90 cursor-pointer touch-manipulation"
+                        aria-label="Decrease rooms"
+                      >
+                        <Minus className="w-3.5 h-3.5 pointer-events-none" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleRoomChange(1)}
+                        disabled={rooms >= 2}
+                        className="w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 disabled:opacity-25 bg-white active:scale-90 cursor-pointer touch-manipulation"
+                        aria-label="Increase rooms"
+                      >
+                        <Plus className="w-3.5 h-3.5 pointer-events-none" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Modal Guest Counter */}
+                  <div className="p-2.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                    <div>
+                      <span className="font-bold text-[10px] uppercase text-slate-500 block">Guests</span>
+                      <span className="text-slate-900 font-extrabold text-xs">{guests} {guests === 1 ? 'Guest' : 'Guests'}</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 touch-manipulation">
+                      <button
+                        type="button"
+                        onClick={() => handleGuestChange(-1)}
+                        disabled={guests <= 1}
+                        className="w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 disabled:opacity-25 bg-white active:scale-90 cursor-pointer touch-manipulation"
+                        aria-label="Decrease guests"
+                      >
+                        <Minus className="w-3.5 h-3.5 pointer-events-none" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleGuestChange(1)}
+                        disabled={guests >= rooms * 3}
+                        className="w-7 h-7 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 disabled:opacity-25 bg-white active:scale-90 cursor-pointer touch-manipulation"
+                        aria-label="Increase guests"
+                      >
+                        <Plus className="w-3.5 h-3.5 pointer-events-none" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Modal Footer / CTA */}
+            <div className="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between gap-3">
+              <div>
+                <span className="text-[11px] text-slate-500 font-semibold block">Total ({nights}N · {rooms}R)</span>
+                <span className="text-base font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowCalendar(false)}
+                className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow-md shadow-orange-500/20 active:scale-95 transition-all cursor-pointer touch-manipulation"
+              >
+                Apply Dates
+              </button>
+            </div>
+
+          </div>
         </div>
       )}
 
