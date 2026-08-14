@@ -1,144 +1,177 @@
 import Link from 'next/link';
-import { Leaf, MessageCircle, PhoneCall, Mail, MapPin } from 'lucide-react';
+import { 
+  Sparkles, 
+  MessageCircle, 
+  Phone, 
+  Mail, 
+  MapPin, 
+  ShieldCheck, 
+  Clock, 
+  CheckCircle2, 
+  Star,
+  Award
+} from 'lucide-react';
 
 export default function Contact() {
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50 text-neutral-900 font-sans">
-      {/* Navigation */}
-      <nav className="w-full z-50 bg-white border-b border-neutral-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center gap-2">
-              <Leaf className="h-8 w-8 text-emerald-600" />
-              <span className="font-bold text-2xl tracking-tight text-emerald-950">Zen Homestay</span>
+    <div className="min-h-screen bg-white text-neutral-900 font-sans antialiased selection:bg-rose-100 selection:text-rose-900">
+      
+      {/* Airbnb-style Top Navigation */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-full bg-rose-500 flex items-center justify-center text-white shadow-sm">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-xl tracking-tight text-neutral-900 leading-none">Zen Homestay</span>
+              <span className="text-[11px] font-medium text-neutral-500 tracking-wider uppercase mt-0.5">Punnamada Lake · Alleppey</span>
+            </div>
+          </Link>
+
+          <div className="flex items-center gap-3">
+            <Link 
+              href="/" 
+              className="text-xs font-bold text-neutral-800 hover:bg-neutral-100 px-4 py-2.5 rounded-full transition-colors"
+            >
+              ← Back to Listing
             </Link>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/#experience" className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">Experience</Link>
-              <Link href="/#rooms" className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">Rooms</Link>
-              <Link href="/#amenities" className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">Amenities</Link>
-            </div>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
+        
+        {/* Header Title */}
+        <div className="mb-10 text-center sm:text-left">
+          <div className="inline-flex items-center gap-1 bg-amber-50 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-md border border-amber-200/80 mb-3">
+            <Award className="w-3.5 h-3.5 text-amber-600" /> Superhost Response Rate: 100%
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+            Contact Host directly
+          </h1>
+          <p className="text-neutral-500 text-sm sm:text-base mt-2 font-medium">
+            Have questions about room availability, our complimentary 5-minute speed boat transfer, or custom Kerala meals? Reach out instantly.
+          </p>
+        </div>
+
+        {/* Contact Action Cards (Airbnb style) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          
+          {/* WhatsApp Card */}
+          <div className="p-8 rounded-3xl border border-neutral-200 bg-neutral-50/60 hover:bg-white hover:shadow-xl transition-all flex flex-col justify-between">
             <div>
-              <Link href="/contact" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-md">
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Main Content */}
-      <main className="flex-grow pt-16 pb-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-emerald-950 mb-4 tracking-tight">Get in Touch</h1>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              We'd love to hear from you. Whether you have a question about booking, our amenities, or want to plan a custom Kerala experience, feel free to reach out.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Contact Options */}
-            <div className="bg-white p-8 rounded-3xl shadow-lg border border-neutral-100 flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-[#25D366]/10 text-[#25D366] rounded-full flex items-center justify-center mb-6">
-                <MessageCircle className="w-8 h-8" />
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-6">
+                <MessageCircle className="w-6 h-6 fill-current" />
               </div>
-              <h2 className="text-2xl font-bold text-emerald-950 mb-2">WhatsApp Us</h2>
-              <p className="text-neutral-600 mb-8">
-                Fastest way to reach us. We typically reply within a few minutes.
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className="font-extrabold text-lg text-neutral-900">WhatsApp Instant Chat</h3>
+                <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  Fastest
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-neutral-600 mb-6 leading-relaxed">
+                Chat with Abhijith directly for instantaneous quote calculations, photos, and direct booking confirmation.
               </p>
-              <a 
-                href="https://wa.me/917012761588" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-md hover:-translate-y-1"
-              >
-                <MessageCircle className="w-6 h-6" />
-                Chat on WhatsApp
-              </a>
             </div>
 
-            <div className="bg-white p-8 rounded-3xl shadow-lg border border-neutral-100 flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6">
-                <PhoneCall className="w-8 h-8" />
-              </div>
-              <h2 className="text-2xl font-bold text-emerald-950 mb-2">Call Us</h2>
-              <p className="text-neutral-600 mb-8">
-                Prefer speaking to someone directly? Give us a call anytime.
-              </p>
-              <a 
-                href="tel:+917012761588" 
-                className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-md hover:-translate-y-1"
-              >
-                <PhoneCall className="w-6 h-6" />
-                +91 7012 761 588
-              </a>
-            </div>
+            <a 
+              href="https://wa.me/917012761588" 
+              target="_blank" 
+              rel="noreferrer"
+              className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-sm hover:shadow active:scale-95"
+            >
+              <MessageCircle className="w-4 h-4 fill-current" />
+              Chat on WhatsApp
+            </a>
           </div>
 
-          {/* Other Details */}
-          <div className="mt-16 bg-white rounded-3xl shadow-md border border-neutral-100 overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-100">
-              <div className="p-8 flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-emerald-600 shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-bold text-lg text-emerald-950 mb-1">Our Location</h3>
-                  <p className="text-neutral-600 leading-relaxed">
-                    Punnamada Lake Road<br/>
-                    Alleppey, Kerala 688006<br/>
-                    India
-                  </p>
-                </div>
+          {/* Call Card */}
+          <div className="p-8 rounded-3xl border border-neutral-200 bg-neutral-50/60 hover:bg-white hover:shadow-xl transition-all flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-neutral-900/10 text-neutral-900 flex items-center justify-center mb-6">
+                <Phone className="w-6 h-6" />
               </div>
-              <div className="p-8 flex items-start gap-4">
-                <Mail className="w-6 h-6 text-emerald-600 shrink-0 mt-1" />
-                <div>
-                  <h3 className="font-bold text-lg text-emerald-950 mb-1">Email Us</h3>
-                  <p className="text-neutral-600">
-                    <a href="mailto:hello@zenhomestay.in" className="hover:text-emerald-600 transition-colors">
-                      hello@zenhomestay.in
-                    </a>
-                  </p>
-                </div>
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className="font-extrabold text-lg text-neutral-900">Direct Phone Call</h3>
+                <span className="bg-neutral-200 text-neutral-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  Direct Line
+                </span>
               </div>
+              <p className="text-xs sm:text-sm text-neutral-600 mb-6 leading-relaxed">
+                Prefer to speak over the phone? Feel free to call us directly for immediate inquiries.
+              </p>
             </div>
+
+            <a 
+              href="tel:+917012761588" 
+              className="w-full flex items-center justify-center gap-2 bg-neutral-900 hover:bg-black text-white py-3.5 rounded-xl font-bold text-sm transition-all shadow-sm hover:shadow active:scale-95"
+            >
+              <Phone className="w-4 h-4" />
+              Call +91 7012 761 588
+            </a>
           </div>
 
         </div>
+
+        {/* Host Profile Info Card */}
+        <div className="rounded-3xl border border-neutral-200 p-8 bg-white shadow-sm space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-neutral-100">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-full bg-neutral-900 text-white font-extrabold text-xl flex items-center justify-center border-2 border-rose-500 shadow-sm">
+                ZH
+              </div>
+              <div>
+                <h3 className="font-extrabold text-lg text-neutral-900 flex items-center gap-2">
+                  Hosted by Abhijith
+                  <ShieldCheck className="w-4 h-4 text-rose-500" />
+                </h3>
+                <p className="text-xs text-neutral-500 font-medium">Superhost · 5 Years Hosting on Punnamada Lake</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6 text-xs text-neutral-700 font-semibold">
+              <div>
+                <span className="text-sm font-extrabold text-neutral-900 block">48</span>
+                <span className="text-neutral-500">Reviews</span>
+              </div>
+              <div>
+                <span className="text-sm font-extrabold text-neutral-900 block">4.98 ★</span>
+                <span className="text-neutral-500">Rating</span>
+              </div>
+              <div>
+                <span className="text-sm font-extrabold text-neutral-900 block">&lt; 5 min</span>
+                <span className="text-neutral-500">Response</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-neutral-700">
+            <div className="flex items-start gap-3">
+              <MapPin className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+              <div>
+                <strong className="block text-neutral-900 mb-0.5 font-bold">Location & Meeting Point</strong>
+                <span>Near Nehru Trophy Boat Race Finishing Point, Punnamada Lake, Alleppey, Kerala 688006</span>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <Mail className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+              <div>
+                <strong className="block text-neutral-900 mb-0.5 font-bold">Email</strong>
+                <span>hello@zenhomestay.in</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </main>
 
       {/* Footer */}
-      <footer className="bg-neutral-900 text-neutral-400 py-12 border-t border-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Leaf className="h-6 w-6 text-emerald-500" />
-              <span className="font-bold text-xl text-white">Zen Homestay</span>
-            </div>
-            <p className="max-w-xs text-sm">Authentic backwater living in the heart of Alleppey, Kerala. Your peaceful retreat awaits.</p>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Contact Us</h4>
-            <address className="not-italic text-sm space-y-2">
-              <p>Punnamada Lake Road</p>
-              <p>Alleppey, Kerala 688006</p>
-              <p>Phone: +91 7012 761 588</p>
-              <p>Email: hello@zenhomestay.in</p>
-            </address>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-            <ul className="text-sm space-y-2">
-              <li><Link href="/" className="hover:text-emerald-400 transition-colors">Home</Link></li>
-              <li><Link href="/#rooms" className="hover:text-emerald-400 transition-colors">Our Rooms</Link></li>
-              <li><Link href="/contact" className="hover:text-emerald-400 transition-colors">Contact</Link></li>
-              <li><Link href="#" className="hover:text-emerald-400 transition-colors">Terms & Conditions</Link></li>
-            </ul>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-neutral-800 text-sm text-center">
-          <p>&copy; {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
-        </div>
+      <footer className="bg-neutral-100 border-t border-neutral-200 py-8 text-xs text-neutral-600 text-center">
+        <p>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
       </footer>
+
     </div>
   );
 }

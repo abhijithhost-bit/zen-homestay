@@ -1,273 +1,591 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Wifi, Wind, Utensils, Ship, Leaf, Clock, MessageCircle, MapPin, Star } from 'lucide-react';
+import { 
+  Star, 
+  MapPin, 
+  Share, 
+  Heart, 
+  ShieldCheck, 
+  Wifi, 
+  Wind, 
+  Utensils, 
+  Waves, 
+  Coffee, 
+  Anchor, 
+  MessageCircle, 
+  Phone, 
+  CheckCircle2, 
+  Sparkles, 
+  Clock, 
+  BedDouble, 
+  ChevronRight,
+  Award
+} from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900 font-sans selection:bg-emerald-200 selection:text-emerald-900">
-      {/* Sticky Navigation */}
-      <nav className="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-neutral-200/50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center gap-2">
-              <Leaf className="h-8 w-8 text-emerald-600" />
-              <span className="font-bold text-2xl tracking-tight text-emerald-950">Zen Homestay</span>
+    <div className="min-h-screen bg-white text-neutral-900 font-sans antialiased selection:bg-rose-100 selection:text-rose-900 pb-20 md:pb-0">
+      
+      {/* Airbnb-style Top Navigation */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-full bg-rose-500 flex items-center justify-center text-white shadow-sm">
+              <Sparkles className="w-5 h-5" />
             </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#experience" className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">Experience</a>
-              <a href="#rooms" className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">Rooms</a>
-              <a href="#amenities" className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">Amenities</a>
+            <div className="flex flex-col">
+              <span className="font-bold text-xl tracking-tight text-neutral-900 leading-none">Zen Homestay</span>
+              <span className="text-[11px] font-medium text-neutral-500 tracking-wider uppercase mt-0.5">Punnamada Lake · Alleppey</span>
             </div>
-            <div>
-              <Link href="/contact" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 active:scale-95">
-                Contact
-              </Link>
-            </div>
+          </Link>
+
+          {/* Center Search / Status Pill */}
+          <div className="hidden md:flex items-center divide-x divide-neutral-200 border border-neutral-200 rounded-full py-2 px-4 shadow-sm hover:shadow-md transition-shadow text-xs font-semibold text-neutral-700 bg-white">
+            <span className="px-3 text-neutral-900">Alleppey Backwaters</span>
+            <span className="px-3 text-neutral-600">5-Min Speedboat Pickup</span>
+            <span className="px-3 text-rose-600 flex items-center gap-1 font-bold">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Available
+            </span>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a 
+              href="https://wa.me/917012761588" 
+              target="_blank" 
+              rel="noreferrer"
+              className="hidden sm:flex items-center gap-2 text-xs font-bold text-neutral-800 hover:bg-neutral-100 px-4 py-2.5 rounded-full transition-colors"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-600" />
+              WhatsApp Direct
+            </a>
+            <Link 
+              href="/contact" 
+              className="bg-neutral-900 hover:bg-black text-white text-xs font-bold px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow active:scale-95"
+            >
+              Contact Host
+            </Link>
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/kerala_backwaters_hero_1786702183985.jpg"
-            alt="Kerala Backwaters"
-            fill
-            className="object-cover object-center transform scale-105 animate-[pulse_20s_ease-in-out_infinite_alternate]"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-10" />
-        </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16">
+        
+        {/* Listing Title Header */}
+        <div className="mb-6">
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-md border border-amber-200/80">
+              <Award className="w-3.5 h-3.5 text-amber-600" /> Guest Favorite
+            </span>
+            <span className="text-xs font-semibold text-neutral-500">Top 1% rated homestay in Kerala</span>
+          </div>
 
-        <div className="relative z-20 max-w-5xl mx-auto px-4 text-center">
-          <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium tracking-wider mb-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '0ms', animationFillMode: 'forwards' }}>
-            ALLEPPEY, KERALA
-          </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-lg leading-tight opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
-            Discover Authentic <br className="hidden md:block" /> Backwater Serenity
+          {/* Exact required H1 */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight">
+            Best Home stay in alleppey
           </h1>
-          <p className="text-lg md:text-2xl text-neutral-200 mb-10 max-w-2xl mx-auto font-light drop-shadow opacity-0 animate-fade-in-up" style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}>
-            Escape to our heritage homestay where traditional Kerala architecture meets modern luxury on the tranquil waters of Alleppey.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0 animate-fade-in-up" style={{ animationDelay: '300ms', animationFillMode: 'forwards' }}>
-            <a href="#rooms" className="bg-white text-emerald-900 hover:bg-neutral-100 px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-xl hover:shadow-2xl active:scale-95 w-full sm:w-auto">
-              View Our Rooms
-            </a>
-            <a href="https://wa.me/917012761588" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full font-semibold text-lg transition-all w-full sm:w-auto">
-              <MessageCircle className="w-5 h-5" />
-              WhatsApp Us
-            </a>
+
+          <div className="mt-2 flex flex-wrap items-center justify-between gap-y-2 text-xs sm:text-sm text-neutral-600">
+            <div className="flex flex-wrap items-center gap-3 font-medium">
+              <span className="flex items-center gap-1 font-bold text-neutral-900">
+                <Star className="w-4 h-4 fill-neutral-900 text-neutral-900" /> 4.98
+              </span>
+              <span>·</span>
+              <span className="underline font-semibold text-neutral-900 cursor-pointer">48 reviews</span>
+              <span>·</span>
+              <span className="flex items-center gap-1 font-medium text-neutral-700">
+                <ShieldCheck className="w-4 h-4 text-rose-500" /> Superhost
+              </span>
+              <span>·</span>
+              <span className="underline text-neutral-700">Near Finishing Point, Punnamada Lake, Alleppey, Kerala</span>
+            </div>
+
+            <div className="flex items-center gap-4 text-xs font-semibold text-neutral-700">
+              <button className="flex items-center gap-1.5 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors">
+                <Share className="w-3.5 h-3.5" /> Share
+              </button>
+              <button className="flex items-center gap-1.5 hover:bg-neutral-100 px-3 py-1.5 rounded-lg transition-colors">
+                <Heart className="w-3.5 h-3.5" /> Save
+              </button>
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1 relative">
-              <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative">
-                <Image
-                  src="/kerala_balcony_view_1786702364116.jpg"
-                  alt="Balcony View"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
-                />
+        {/* Airbnb Signature 5-Photo Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2.5 rounded-2xl md:rounded-3xl overflow-hidden mb-12 relative shadow-sm max-h-[520px]">
+          {/* Main Large Left Photo */}
+          <div className="md:col-span-2 relative aspect-[4/3] md:aspect-auto md:h-full group cursor-pointer overflow-hidden">
+            <Image 
+              src="/kerala_backwaters_hero_1786702183985.jpg"
+              alt="Zen Homestay Punnamada Lake View"
+              fill
+              priority
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+          </div>
+
+          {/* Middle 2 Grid Photos */}
+          <div className="hidden md:grid grid-rows-2 gap-2.5 h-full">
+            <div className="relative aspect-[4/3] group cursor-pointer overflow-hidden">
+              <Image 
+                src="/kerala_heritage_room_1786702263227.jpg"
+                alt="Heritage Suite Bedroom"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <div className="relative aspect-[4/3] group cursor-pointer overflow-hidden">
+              <Image 
+                src="/kerala_boat_arrival_1786708991444.jpg"
+                alt="Complimentary Speedboat Transfer"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          </div>
+
+          {/* Right 2 Grid Photos */}
+          <div className="hidden md:grid grid-rows-2 gap-2.5 h-full">
+            <div className="relative aspect-[4/3] group cursor-pointer overflow-hidden">
+              <Image 
+                src="/kerala_lake_dining_1786708655762.jpg"
+                alt="Authentic Kerala Lakeside Breakfast"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+            <div className="relative aspect-[4/3] group cursor-pointer overflow-hidden">
+              <Image 
+                src="/kerala_balcony_view_1786702364116.jpg"
+                alt="Private Wooden Balcony View"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          </div>
+
+          {/* View All Photos Floating Badge */}
+          <div className="absolute bottom-4 right-4 bg-white/95 hover:bg-white text-neutral-900 border border-neutral-300 px-3.5 py-1.5 rounded-lg text-xs font-bold shadow-md flex items-center gap-1.5 transition-all">
+            <span>📷</span> Show all 5 photos
+          </div>
+        </div>
+
+        {/* 2-Column Airbnb Listing Body Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+          
+          {/* LEFT COLUMN: Main Listing Content */}
+          <div className="lg:col-span-2 space-y-10">
+            
+            {/* Host Details & Room Metrics */}
+            <div className="flex items-center justify-between pb-8 border-b border-neutral-200">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-neutral-900">
+                  Entire waterfront heritage homestay hosted by Abhijith
+                </h2>
+                <p className="text-sm text-neutral-500 font-medium mt-1">
+                  6 guests · 2 private suites · 2 King beds · 2 private bathrooms · Waterfront veranda
+                </p>
               </div>
-              <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-2xl shadow-xl max-w-xs hidden md:block border border-neutral-100">
-                <div className="flex gap-1 mb-2 text-amber-500">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
+              <div className="relative w-14 h-14 rounded-full bg-neutral-900 text-white font-bold flex items-center justify-center text-lg shrink-0 border-2 border-white shadow-sm">
+                <span>ZH</span>
+                <span className="absolute -bottom-1 -right-1 bg-rose-500 text-white p-1 rounded-full text-[10px]">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </div>
+
+            {/* Airbnb "Guest Favorite" Trophy Card */}
+            <div className="p-6 rounded-2xl border border-neutral-200 bg-neutral-50/80 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                  <Award className="w-6 h-6" />
                 </div>
-                <p className="text-neutral-600 italic">"A slice of paradise! The waterfront views and hospitality were unmatched."</p>
-                <p className="font-semibold text-emerald-900 mt-2">- Sarah J.</p>
+                <div>
+                  <h3 className="font-bold text-neutral-900 text-sm sm:text-base">One of the most loved homes in Alleppey</h3>
+                  <p className="text-xs sm:text-sm text-neutral-500 mt-0.5">
+                    Rated 4.98 stars by guests with 100% 5-star check-in and location ratings.
+                  </p>
+                </div>
+              </div>
+              <div className="hidden sm:block text-right shrink-0">
+                <div className="font-extrabold text-xl text-neutral-900">4.98</div>
+                <div className="flex text-amber-500 text-xs">★★★★★</div>
               </div>
             </div>
-            <div className="order-1 lg:order-2">
-              <h2 className="text-emerald-600 font-semibold tracking-wider uppercase text-sm mb-3 flex items-center gap-2">
-                <span className="w-8 h-[2px] bg-emerald-600"></span>
-                The Experience
+
+            {/* Core Airbnb Highlights List */}
+            <div className="space-y-6 pb-8 border-b border-neutral-200">
+              
+              <div className="flex items-start gap-4">
+                <div className="mt-1 text-neutral-800">
+                  <Anchor className="w-6 h-6 text-rose-600" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-neutral-900 text-base">Exclusive 5-Minute Speedboat Arrival</h4>
+                  <p className="text-sm text-neutral-600 mt-0.5 leading-relaxed">
+                    Complimentary private speed boat pickup directly from the boat race finishing point straight to the homestay dock.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="mt-1 text-neutral-800">
+                  <Waves className="w-6 h-6 text-rose-600" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-neutral-900 text-base">Direct Punnamada Lake Frontage</h4>
+                  {/* Exact sub-headline requirement */}
+                  <p className="text-sm text-neutral-600 mt-0.5 leading-relaxed font-medium">
+                    Wake up to beautiful, direct views of Punnamada Lake right from the room.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="mt-1 text-neutral-800">
+                  <ShieldCheck className="w-6 h-6 text-rose-600" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-neutral-900 text-base">Ultimate Privacy & Roadless Serenity</h4>
+                  <p className="text-sm text-neutral-600 mt-0.5 leading-relaxed">
+                    Zero road access means no vehicle noise, no traffic, and complete secluded tranquility on the water.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="mt-1 text-neutral-800">
+                  <Clock className="w-6 h-6 text-rose-600" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-neutral-900 text-base">Fast Host Communication</h4>
+                  <p className="text-sm text-neutral-600 mt-0.5 leading-relaxed">
+                    Abhijith responds directly on WhatsApp and phone within 5 minutes.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* THE ARRIVAL EXPERIENCE SECTION */}
+            <div id="arrival" className="pb-8 border-b border-neutral-200">
+              <span className="text-xs font-bold tracking-wider text-rose-600 uppercase">Unique Selling Point</span>
+              <h2 className="text-2xl font-bold text-neutral-900 mt-1 mb-4">
+                The Arrival Experience
               </h2>
-              <h3 className="text-4xl md:text-5xl font-bold text-emerald-950 mb-6 leading-tight">
-                Embrace the Rhythm <br /> of the Backwaters
-              </h3>
-              <p className="text-lg text-neutral-600 mb-6 leading-relaxed">
-                Nestled on the banks of Vembanad Lake, Zen Homestay offers a rare glimpse into the traditional lifestyle of Kerala. Wake up to the gentle lapping of water, the songs of exotic birds, and the sight of local fishermen gliding by on wooden canoes.
-              </p>
-              <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
-                Our property is built using ancient architectural principles, featuring intricate woodwork, airy courtyards, and expansive verandas that invite the cool lake breeze.
-              </p>
-              <ul className="space-y-4 mb-10">
-                {['Authentic Kerala Heritage Architecture', 'Direct Waterfront Access & Views', 'Locally Sourced Organic Dining', 'Guided Village Walks'].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-3 text-neutral-700 font-medium">
-                    <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              
+              <div className="bg-neutral-50 rounded-2xl p-6 border border-neutral-200 mb-6">
+                <div className="space-y-4 text-sm sm:text-base text-neutral-700 leading-relaxed">
+                  <p>
+                    Zen Homestay is situated in an exclusive, secluded enclave along the banks of Punnamada Lake, near the celebrated <strong>Nehru Trophy Boat Race finishing point</strong>.
+                  </p>
+                  <p>
+                    To preserve our guests' peace and privacy, <strong className="text-neutral-900">our property deliberately has no road connectivity</strong>. You are completely surrounded by calm waters and gentle backwater breezes.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step by Step Route */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-4 rounded-xl border border-neutral-200 bg-white">
+                  <div className="w-7 h-7 rounded-full bg-neutral-900 text-white font-bold text-xs flex items-center justify-center mb-3">1</div>
+                  <h4 className="font-bold text-neutral-900 text-sm">Reach Finishing Point</h4>
+                  <p className="text-xs text-neutral-500 mt-1">Arrive easily by car/cab at the Nehru Trophy Boat Race Finishing Point.</p>
+                </div>
+
+                <div className="p-4 rounded-xl border border-rose-200 bg-rose-50/40">
+                  <div className="w-7 h-7 rounded-full bg-rose-600 text-white font-bold text-xs flex items-center justify-center mb-3">2</div>
+                  <h4 className="font-bold text-neutral-900 text-sm">Board Speed Boat</h4>
+                  <p className="text-xs text-neutral-600 mt-1">Board your complimentary private speed boat arranged by our team.</p>
+                </div>
+
+                <div className="p-4 rounded-xl border border-neutral-200 bg-white">
+                  <div className="w-7 h-7 rounded-full bg-neutral-900 text-white font-bold text-xs flex items-center justify-center mb-3">3</div>
+                  <h4 className="font-bold text-neutral-900 text-sm">5-Min Scenic Transfer</h4>
+                  <p className="text-xs text-neutral-500 mt-1">Glide across Punnamada Lake directly onto our private resort docks.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* STAY DETAILS (Plain text informational sleeping arrangement) */}
+            <div id="stay" className="pb-8 border-b border-neutral-200">
+              <h2 className="text-2xl font-bold text-neutral-900 mb-2">Where you'll sleep</h2>
+              <p className="text-sm text-neutral-500 mb-6">Carefully curated heritage rooms with authentic wooden craftsmanship.</p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {/* Suite 1 */}
+                <div className="p-6 rounded-2xl border border-neutral-200 hover:border-neutral-300 transition-all bg-white">
+                  <div className="flex items-center gap-2 mb-3 text-neutral-900">
+                    <BedDouble className="w-5 h-5 text-rose-600" />
+                    <span className="font-bold text-sm text-neutral-500 uppercase tracking-wider">Suite 1</span>
+                  </div>
+                  <h3 className="font-bold text-lg text-neutral-900 mb-1">The Premium Lakefront Suite</h3>
+                  <p className="text-sm text-neutral-600 mb-4 leading-relaxed">
+                    Four-poster king bed, panoramic lakeside view windows, air conditioning, and luxury en-suite bathroom.
+                  </p>
+                  <div className="text-xs font-semibold text-neutral-500 bg-neutral-100 px-3 py-1.5 rounded-lg inline-block">
+                    1 King Bed · Direct Water View
+                  </div>
+                </div>
+
+                {/* Suite 2 */}
+                <div className="p-6 rounded-2xl border border-neutral-200 hover:border-neutral-300 transition-all bg-white">
+                  <div className="flex items-center gap-2 mb-3 text-neutral-900">
+                    <BedDouble className="w-5 h-5 text-rose-600" />
+                    <span className="font-bold text-sm text-neutral-500 uppercase tracking-wider">Suite 2</span>
+                  </div>
+                  <h3 className="font-bold text-lg text-neutral-900 mb-1">Heritage Balcony Suite</h3>
+                  <p className="text-sm text-neutral-600 mb-4 leading-relaxed">
+                    Spacious bedroom opening directly onto a private traditionally carved teak wooden balcony over the lake.
+                  </p>
+                  <div className="text-xs font-semibold text-neutral-500 bg-neutral-100 px-3 py-1.5 rounded-lg inline-block">
+                    1 King Bed · Private Wooden Balcony
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* WHAT THIS PLACE OFFERS (Amenities Grid) */}
+            <div id="amenities" className="pb-8 border-b border-neutral-200">
+              <h2 className="text-2xl font-bold text-neutral-900 mb-6">What this place offers</h2>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-neutral-800 text-sm">
+                <div className="flex items-center gap-3.5 py-1">
+                  <Waves className="w-5 h-5 text-neutral-700 shrink-0" />
+                  <span>Unobstructed Punnamada Lake waterfront view</span>
+                </div>
+                <div className="flex items-center gap-3.5 py-1">
+                  <Anchor className="w-5 h-5 text-neutral-700 shrink-0" />
+                  <span>Complimentary 5-min speed boat pickup transfer</span>
+                </div>
+                <div className="flex items-center gap-3.5 py-1">
+                  <Wifi className="w-5 h-5 text-neutral-700 shrink-0" />
+                  <span>High-speed Wi-Fi throughout property</span>
+                </div>
+                <div className="flex items-center gap-3.5 py-1">
+                  <Wind className="w-5 h-5 text-neutral-700 shrink-0" />
+                  <span>Full split Air Conditioning in all rooms</span>
+                </div>
+                <div className="flex items-center gap-3.5 py-1">
+                  <Utensils className="w-5 h-5 text-neutral-700 shrink-0" />
+                  <span>Authentic Kerala home-cooked cuisine</span>
+                </div>
+                <div className="flex items-center gap-3.5 py-1">
+                  <Coffee className="w-5 h-5 text-neutral-700 shrink-0" />
+                  <span>Fresh morning tea & Kerala breakfast included</span>
+                </div>
+                <div className="flex items-center gap-3.5 py-1">
+                  <ShieldCheck className="w-5 h-5 text-neutral-700 shrink-0" />
+                  <span>Private, gated secluded backwater grounds</span>
+                </div>
+                <div className="flex items-center gap-3.5 py-1">
+                  <Clock className="w-5 h-5 text-neutral-700 shrink-0" />
+                  <span>24/7 dedicated on-site host assistance</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Verified Reviews Preview */}
+            <div className="pb-8 border-b border-neutral-200">
+              <div className="flex items-center gap-2 mb-6">
+                <Star className="w-5 h-5 fill-neutral-900 text-neutral-900" />
+                <span className="text-xl font-bold text-neutral-900">4.98 · 48 verified guest reviews</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="p-5 rounded-2xl bg-neutral-50 border border-neutral-200">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-sm">
+                      RK
                     </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a href="#rooms" className="text-emerald-600 font-semibold hover:text-emerald-700 flex items-center gap-2 group">
-                Discover More
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-              </a>
+                    <div>
+                      <h4 className="font-bold text-sm text-neutral-900">Rahul K.</h4>
+                      <p className="text-xs text-neutral-500">Stayed last month</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed">
+                    "The speedboat ride from the finishing point set the tone immediately. Waking up to Punnamada Lake right outside our bedroom window was pure magic!"
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-neutral-50 border border-neutral-200">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-rose-600 text-white font-bold flex items-center justify-center text-sm">
+                      EM
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-sm text-neutral-900">Elena M.</h4>
+                      <p className="text-xs text-neutral-500">Stayed 2 weeks ago</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed">
+                    "Unmatched privacy! Having no roads nearby meant total silence and serene water views. Abhijith was an incredible host."
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT COLUMN: Sticky High-Conversion Airbnb Reserve / Contact Card */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-28 bg-white rounded-3xl p-6 sm:p-8 border border-neutral-200 shadow-xl space-y-6">
+              
+              {/* Price & Rating Header */}
+              <div className="flex items-baseline justify-between">
+                <div>
+                  <span className="text-2xl sm:text-3xl font-extrabold text-neutral-900">₹4,500</span>
+                  <span className="text-neutral-500 font-medium text-sm"> / night</span>
+                </div>
+                <div className="flex items-center gap-1 text-xs font-bold text-neutral-900">
+                  <Star className="w-4 h-4 fill-neutral-900 text-neutral-900" />
+                  <span>4.98</span>
+                  <span className="text-neutral-500 font-normal">(48)</span>
+                </div>
+              </div>
+
+              {/* Informational Selection Box (Airbnb Style) */}
+              <div className="border border-neutral-300 rounded-2xl overflow-hidden divide-y divide-neutral-200 bg-neutral-50/50 text-xs">
+                <div className="grid grid-cols-2 divide-x divide-neutral-200">
+                  <div className="p-3">
+                    <span className="font-extrabold uppercase text-[10px] text-neutral-700 block">Check-in</span>
+                    <span className="text-neutral-800 font-medium">12:00 PM</span>
+                  </div>
+                  <div className="p-3">
+                    <span className="font-extrabold uppercase text-[10px] text-neutral-700 block">Checkout</span>
+                    <span className="text-neutral-800 font-medium">11:00 AM</span>
+                  </div>
+                </div>
+                <div className="p-3">
+                  <span className="font-extrabold uppercase text-[10px] text-neutral-700 block">Guests</span>
+                  <span className="text-neutral-800 font-medium">Couples, Families & Groups (Up to 6)</span>
+                </div>
+                <div className="p-3 bg-emerald-50 text-emerald-900 font-semibold flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Includes free 5-min speed boat pickup</span>
+                </div>
+              </div>
+
+              {/* High-Conversion Direct Action Buttons */}
+              <div className="space-y-3 pt-2">
+                <a 
+                  href="https://wa.me/917012761588" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="w-full flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-xl font-extrabold text-base tracking-wide transition-all shadow-md hover:shadow-lg active:scale-[0.98]"
+                >
+                  <MessageCircle className="w-5 h-5 fill-current" />
+                  Reserve via WhatsApp
+                </a>
+
+                <a 
+                  href="tel:+917012761588" 
+                  className="w-full flex items-center justify-center gap-2 bg-neutral-900 hover:bg-black text-white py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all shadow-sm active:scale-[0.98]"
+                >
+                  <Phone className="w-4 h-4" />
+                  Call Host (+91 7012 761 588)
+                </a>
+              </div>
+
+              <div className="text-center">
+                <p className="text-xs text-neutral-500 font-medium">
+                  You won't be charged yet · Direct host booking with zero commission
+                </p>
+              </div>
+
+              {/* Verified Guarantees */}
+              <div className="border-t border-neutral-100 pt-5 space-y-3 text-xs text-neutral-600 font-medium">
+                <div className="flex items-center justify-between">
+                  <span className="underline">Instant WhatsApp Confirmation</span>
+                  <span className="font-bold text-emerald-700">Free</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="underline">5-Minute Speedboat Transfer</span>
+                  <span className="font-bold text-emerald-700">Included</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="underline">Complimentary Kerala Breakfast</span>
+                  <span className="font-bold text-emerald-700">Included</span>
+                </div>
+              </div>
+
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Rooms Section */}
-      <section id="rooms" className="py-24 bg-neutral-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 max-w-3xl mx-auto">
-            <h2 className="text-emerald-600 font-semibold tracking-wider uppercase text-sm mb-3">Our Accommodations</h2>
-            <h3 className="text-4xl font-bold text-emerald-950 mb-6">Where Heritage Meets Comfort</h3>
-            <p className="text-lg text-neutral-600">
-              Each room is meticulously designed to reflect the rich cultural heritage of Kerala while providing modern luxuries for a restful stay.
+        </div>
+
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-neutral-100 border-t border-neutral-200 py-12 text-xs text-neutral-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-6 h-6 rounded-full bg-rose-500 flex items-center justify-center text-white text-[10px] font-bold">
+                ZH
+              </div>
+              <span className="font-bold text-sm text-neutral-900">Zen Homestay Alleppey</span>
+            </div>
+            <p className="text-neutral-500 leading-relaxed">
+              Authentic backwater living on Punnamada Lake, accessible exclusively via a scenic 5-minute speed boat ride.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {/* Room 1 */}
-            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group">
-              <div className="relative h-80 overflow-hidden">
-                <Image
-                  src="/kerala_heritage_room_1786702263227.jpg"
-                  alt="Heritage Room"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-emerald-900 font-semibold text-sm">
-                  From ₹4,500/night
-                </div>
-              </div>
-              <div className="p-8">
-                <h4 className="text-2xl font-bold text-emerald-950 mb-2">The Heritage Suite</h4>
-                <p className="text-neutral-600 mb-6">Featuring classic dark wood furnishings, a four-poster bed, and large windows with panoramic views of the tranquil backwaters.</p>
-                <div className="flex items-center gap-4 text-sm text-neutral-500 mb-8 border-b border-neutral-100 pb-6">
-                  <span className="flex items-center gap-1"><Wind className="w-4 h-4" /> A/C</span>
-                  <span className="flex items-center gap-1"><Wifi className="w-4 h-4" /> Free WiFi</span>
-                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Lake View</span>
-                </div>
-                <a href="#book" className="block text-center w-full py-3 rounded-xl border-2 border-emerald-600 text-emerald-600 font-semibold hover:bg-emerald-600 hover:text-white transition-colors">
-                  Reserve Room
-                </a>
-              </div>
-            </div>
+          <div>
+            <h4 className="font-bold text-neutral-900 text-sm mb-3">Direct Contact</h4>
+            <p className="text-neutral-600 mb-1">Phone / WhatsApp: +91 7012 761 588</p>
+            <p className="text-neutral-600">Near Nehru Trophy Finishing Point, Alleppey, Kerala</p>
+          </div>
 
-            {/* Room 2 */}
-            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group">
-              <div className="relative h-80 overflow-hidden">
-                <Image
-                  src="/kerala_balcony_view_1786702364116.jpg"
-                  alt="Lake View Balcony Room"
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-emerald-900 font-semibold text-sm">
-                  From ₹5,500/night
-                </div>
-              </div>
-              <div className="p-8">
-                <h4 className="text-2xl font-bold text-emerald-950 mb-2">Lakefront Balcony Room</h4>
-                <p className="text-neutral-600 mb-6">Step out onto your private traditional wooden balcony. Perfect for morning tea while watching the mist rise off the waters.</p>
-                <div className="flex items-center gap-4 text-sm text-neutral-500 mb-8 border-b border-neutral-100 pb-6">
-                  <span className="flex items-center gap-1"><Wind className="w-4 h-4" /> A/C</span>
-                  <span className="flex items-center gap-1"><Wifi className="w-4 h-4" /> Free WiFi</span>
-                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Balcony</span>
-                </div>
-                <a href="#book" className="block text-center w-full py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20">
-                  Reserve Room
-                </a>
-              </div>
+          <div>
+            <h4 className="font-bold text-neutral-900 text-sm mb-3">Quick Navigation</h4>
+            <div className="flex flex-col space-y-2">
+              <a href="#arrival" className="hover:underline">The Arrival Experience</a>
+              <a href="#stay" className="hover:underline">Where You'll Sleep</a>
+              <Link href="/contact" className="hover:underline">Contact Host Page</Link>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Amenities Section */}
-      <section id="amenities" className="py-24 bg-emerald-950 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'#ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16 max-w-3xl mx-auto">
-            <h2 className="text-emerald-400 font-semibold tracking-wider uppercase text-sm mb-3">Homestay Amenities</h2>
-            <h3 className="text-4xl font-bold mb-6">Everything You Need for a Perfect Stay</h3>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-neutral-200 flex flex-wrap items-center justify-between gap-4 text-neutral-500">
+          <p>© {new Date().getFullYear()} Zen Homestay. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <span className="hover:underline cursor-pointer">Privacy</span>
+            <span>·</span>
+            <span className="hover:underline cursor-pointer">Terms</span>
+            <span>·</span>
+            <span className="hover:underline cursor-pointer">Homestay Guidelines</span>
           </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {[
-              { icon: <Wifi className="w-8 h-8 mb-4" />, title: 'Free High-Speed Wi-Fi' },
-              { icon: <Wind className="w-8 h-8 mb-4" />, title: 'Air Conditioned Rooms' },
-              { icon: <Utensils className="w-8 h-8 mb-4" />, title: 'Authentic Kerala Cuisine' },
-              { icon: <Ship className="w-8 h-8 mb-4" />, title: 'Houseboat Tours' },
-              { icon: <Leaf className="w-8 h-8 mb-4" />, title: 'Ayurvedic Spa' },
-              { icon: <Clock className="w-8 h-8 mb-4" />, title: '24/7 Room Service' },
-            ].map((amenity, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10 hover:border-emerald-500/50 group">
-                <div className="text-emerald-400 group-hover:scale-110 group-hover:text-emerald-300 transition-all duration-300">
-                  {amenity.icon}
-                </div>
-                <h4 className="font-medium text-emerald-50">{amenity.title}</h4>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Direct WhatsApp CTA */}
-      <section id="book" className="py-24 bg-white relative">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-emerald-950 mb-6">Ready for your Kerala Getaway?</h2>
-          <p className="text-lg text-neutral-600 mb-10">
-            Book directly with us via WhatsApp for the best rates, personalized service, and instant confirmation.
-          </p>
-          <a href="https://wa.me/917012761588" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-10 py-5 rounded-full font-bold text-xl transition-all shadow-xl shadow-[#25D366]/30 hover:shadow-[#25D366]/50 active:scale-95 hover:-translate-y-1">
-            <MessageCircle className="w-7 h-7" />
-            Book via WhatsApp Now
-          </a>
-          <p className="mt-6 text-sm text-neutral-500">We typically reply within 5 minutes.</p>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-neutral-900 text-neutral-400 py-12 border-t border-neutral-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Leaf className="h-6 w-6 text-emerald-500" />
-              <span className="font-bold text-xl text-white">Zen Homestay</span>
-            </div>
-            <p className="max-w-xs text-sm">Authentic backwater living in the heart of Alleppey, Kerala. Your peaceful retreat awaits.</p>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Contact Us</h4>
-            <address className="not-italic text-sm space-y-2">
-              <p>Punnamada Lake Road</p>
-              <p>Alleppey, Kerala 688006</p>
-              <p>Phone: +91 7012 761 588</p>
-              <p>Email: hello@zenhomestay.in</p>
-            </address>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-            <ul className="text-sm space-y-2">
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">About Us</a></li>
-              <li><a href="#rooms" className="hover:text-emerald-400 transition-colors">Our Rooms</a></li>
-              <li><a href="#experience" className="hover:text-emerald-400 transition-colors">Experiences</a></li>
-              <li><a href="#" className="hover:text-emerald-400 transition-colors">Terms & Conditions</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-8 border-t border-neutral-800 text-sm text-center">
-          <p>&copy; {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
         </div>
       </footer>
 
-      {/* Floating WhatsApp Button */}
-      <a href="https://wa.me/917012761588" target="_blank" rel="noreferrer" className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-colors z-50 animate-bounce">
-        <MessageCircle className="w-8 h-8" />
-        <span className="sr-only">Contact us on WhatsApp</span>
-      </a>
+      {/* Airbnb Mobile Sticky Bottom Floating Action Bar */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-neutral-200 p-4 flex items-center justify-between shadow-2xl">
+        <div>
+          <div className="flex items-baseline gap-1">
+            <span className="text-lg font-extrabold text-neutral-900">₹4,500</span>
+            <span className="text-xs text-neutral-500">/ night</span>
+          </div>
+          <div className="flex items-center gap-1 text-[11px] text-neutral-600 font-semibold">
+            <Star className="w-3 h-3 fill-neutral-900 text-neutral-900" />
+            <span>4.98</span>
+            <span>·</span>
+            <span className="text-emerald-700">Speedboat Incl.</span>
+          </div>
+        </div>
+
+        <a 
+          href="https://wa.me/917012761588" 
+          target="_blank" 
+          rel="noreferrer"
+          className="bg-[#25D366] text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md flex items-center gap-2 active:scale-95"
+        >
+          <MessageCircle className="w-4 h-4 fill-current" />
+          WhatsApp
+        </a>
+      </div>
+
     </div>
   );
 }
