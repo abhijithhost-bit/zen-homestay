@@ -14,23 +14,33 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-slate-50/50 text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-900">
       
-      {/* Soft Light-Blue & Orange Top Navigation */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-400 via-sky-500 to-orange-500 flex items-center justify-center text-white shadow-md shadow-orange-500/10">
+      {/* Modern Luxury Glassmorphic Navigation Header */}
+      <header className="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] transition-all">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+          <Link href="/" className="flex items-center gap-3 group shrink-0">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-lg shadow-sky-500/20 ring-4 ring-sky-50 group-hover:scale-105 transition-transform duration-300">
               <Sparkles className="w-5 h-5" />
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-xl tracking-tight text-slate-900 leading-none">Zen Homestay</span>
-              <span className="text-[11px] font-bold text-sky-600 tracking-wider uppercase mt-0.5">Punnamada Lake · Alleppey</span>
+              <div className="flex items-center gap-2">
+                <span className="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 leading-none group-hover:text-sky-600 transition-colors">
+                  Zen Homestay
+                </span>
+                <span className="hidden sm:inline-flex items-center gap-1 bg-orange-50 text-orange-700 text-[10px] font-black px-2 py-0.5 rounded-full border border-orange-200/80">
+                  <Award className="w-3 h-3 text-orange-500" /> Superhost
+                </span>
+              </div>
+              <span className="text-[11px] font-bold text-sky-600 tracking-wider uppercase mt-1 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                Punnamada Lake · Alleppey
+              </span>
             </div>
           </Link>
 
           <div className="flex items-center gap-3">
             <Link 
               href="/" 
-              className="text-xs font-bold text-slate-700 hover:text-orange-600 hover:bg-orange-50 px-4 py-2.5 rounded-full transition-colors border border-slate-200"
+              className="text-xs font-extrabold text-slate-700 hover:text-orange-600 hover:bg-orange-50 px-4 py-2.5 rounded-full transition-all border border-slate-200 shadow-sm active:scale-95 flex items-center gap-1.5"
             >
               ← Back to Listing
             </Link>
