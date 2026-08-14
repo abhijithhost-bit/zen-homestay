@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Wifi, Wind, Utensils, Ship, Leaf, Clock, MessageCircle, MapPin, Star } from 'lucide-react';
 
 export default function Home() {
@@ -18,9 +19,9 @@ export default function Home() {
               <a href="#amenities" className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">Amenities</a>
             </div>
             <div>
-              <a href="#book" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 active:scale-95">
-                Book Now
-              </a>
+              <Link href="/contact" className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full font-medium transition-all shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 active:scale-95">
+                Contact
+              </Link>
             </div>
           </div>
         </div>
