@@ -29,7 +29,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen min-h-[600px] flex items-center justify-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <Image 
+          <Image
             src="/kerala_backwaters_hero_1786702183985.jpg"
             alt="Kerala Backwaters"
             fill
@@ -38,13 +38,13 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-10" />
         </div>
-        
+
         <div className="relative z-20 max-w-5xl mx-auto px-4 text-center">
           <span className="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-sm font-medium tracking-wider mb-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '0ms', animationFillMode: 'forwards' }}>
             ALLEPPEY, KERALA
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 tracking-tight drop-shadow-lg leading-tight opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
-            Discover Authentic <br className="hidden md:block"/> Backwater Serenity
+            Discover Authentic <br className="hidden md:block" /> Backwater Serenity
           </h1>
           <p className="text-lg md:text-2xl text-neutral-200 mb-10 max-w-2xl mx-auto font-light drop-shadow opacity-0 animate-fade-in-up" style={{ animationDelay: '200ms', animationFillMode: 'forwards' }}>
             Escape to our heritage homestay where traditional Kerala architecture meets modern luxury on the tranquil waters of Alleppey.
@@ -53,7 +53,7 @@ export default function Home() {
             <a href="#rooms" className="bg-white text-emerald-900 hover:bg-neutral-100 px-8 py-4 rounded-full font-semibold text-lg transition-all shadow-xl hover:shadow-2xl active:scale-95 w-full sm:w-auto">
               View Our Rooms
             </a>
-            <a href="#book" className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full font-semibold text-lg transition-all w-full sm:w-auto">
+            <a href="https://wa.me/917012761588" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full font-semibold text-lg transition-all w-full sm:w-auto">
               <MessageCircle className="w-5 h-5" />
               WhatsApp Us
             </a>
@@ -67,7 +67,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 relative">
               <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative">
-                <Image 
+                <Image
                   src="/kerala_balcony_view_1786702364116.jpg"
                   alt="Balcony View"
                   fill
@@ -88,7 +88,7 @@ export default function Home() {
                 The Experience
               </h2>
               <h3 className="text-4xl md:text-5xl font-bold text-emerald-950 mb-6 leading-tight">
-                Embrace the Rhythm <br/> of the Backwaters
+                Embrace the Rhythm <br /> of the Backwaters
               </h3>
               <p className="text-lg text-neutral-600 mb-6 leading-relaxed">
                 Nestled on the banks of Vembanad Lake, Zen Homestay offers a rare glimpse into the traditional lifestyle of Kerala. Wake up to the gentle lapping of water, the songs of exotic birds, and the sight of local fishermen gliding by on wooden canoes.
@@ -130,7 +130,7 @@ export default function Home() {
             {/* Room 1 */}
             <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group">
               <div className="relative h-80 overflow-hidden">
-                <Image 
+                <Image
                   src="/kerala_heritage_room_1786702263227.jpg"
                   alt="Heritage Room"
                   fill
@@ -144,9 +144,9 @@ export default function Home() {
                 <h4 className="text-2xl font-bold text-emerald-950 mb-2">The Heritage Suite</h4>
                 <p className="text-neutral-600 mb-6">Featuring classic dark wood furnishings, a four-poster bed, and large windows with panoramic views of the tranquil backwaters.</p>
                 <div className="flex items-center gap-4 text-sm text-neutral-500 mb-8 border-b border-neutral-100 pb-6">
-                  <span className="flex items-center gap-1"><Wind className="w-4 h-4"/> A/C</span>
-                  <span className="flex items-center gap-1"><Wifi className="w-4 h-4"/> Free WiFi</span>
-                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4"/> Lake View</span>
+                  <span className="flex items-center gap-1"><Wind className="w-4 h-4" /> A/C</span>
+                  <span className="flex items-center gap-1"><Wifi className="w-4 h-4" /> Free WiFi</span>
+                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Lake View</span>
                 </div>
                 <a href="#book" className="block text-center w-full py-3 rounded-xl border-2 border-emerald-600 text-emerald-600 font-semibold hover:bg-emerald-600 hover:text-white transition-colors">
                   Reserve Room
@@ -157,7 +157,7 @@ export default function Home() {
             {/* Room 2 */}
             <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group">
               <div className="relative h-80 overflow-hidden">
-                <Image 
+                <Image
                   src="/kerala_balcony_view_1786702364116.jpg"
                   alt="Lake View Balcony Room"
                   fill
@@ -171,9 +171,9 @@ export default function Home() {
                 <h4 className="text-2xl font-bold text-emerald-950 mb-2">Lakefront Balcony Room</h4>
                 <p className="text-neutral-600 mb-6">Step out onto your private traditional wooden balcony. Perfect for morning tea while watching the mist rise off the waters.</p>
                 <div className="flex items-center gap-4 text-sm text-neutral-500 mb-8 border-b border-neutral-100 pb-6">
-                  <span className="flex items-center gap-1"><Wind className="w-4 h-4"/> A/C</span>
-                  <span className="flex items-center gap-1"><Wifi className="w-4 h-4"/> Free WiFi</span>
-                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4"/> Balcony</span>
+                  <span className="flex items-center gap-1"><Wind className="w-4 h-4" /> A/C</span>
+                  <span className="flex items-center gap-1"><Wifi className="w-4 h-4" /> Free WiFi</span>
+                  <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> Balcony</span>
                 </div>
                 <a href="#book" className="block text-center w-full py-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20">
                   Reserve Room
@@ -220,7 +220,7 @@ export default function Home() {
           <p className="text-lg text-neutral-600 mb-10">
             Book directly with us via WhatsApp for the best rates, personalized service, and instant confirmation.
           </p>
-          <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-10 py-5 rounded-full font-bold text-xl transition-all shadow-xl shadow-[#25D366]/30 hover:shadow-[#25D366]/50 active:scale-95 hover:-translate-y-1">
+          <a href="https://wa.me/917012761588" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white px-10 py-5 rounded-full font-bold text-xl transition-all shadow-xl shadow-[#25D366]/30 hover:shadow-[#25D366]/50 active:scale-95 hover:-translate-y-1">
             <MessageCircle className="w-7 h-7" />
             Book via WhatsApp Now
           </a>
@@ -243,7 +243,7 @@ export default function Home() {
             <address className="not-italic text-sm space-y-2">
               <p>Punnamada Lake Road</p>
               <p>Alleppey, Kerala 688006</p>
-              <p>Phone: +91 98765 43210</p>
+              <p>Phone: +91 7012 761 588</p>
               <p>Email: hello@zenhomestay.in</p>
             </address>
           </div>
@@ -263,7 +263,7 @@ export default function Home() {
       </footer>
 
       {/* Floating WhatsApp Button */}
-      <a href="https://wa.me/1234567890" target="_blank" rel="noreferrer" className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-colors z-50 animate-bounce">
+      <a href="https://wa.me/917012761588" target="_blank" rel="noreferrer" className="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#128C7E] transition-colors z-50 animate-bounce">
         <MessageCircle className="w-8 h-8" />
         <span className="sr-only">Contact us on WhatsApp</span>
       </a>
