@@ -250,8 +250,8 @@ export default function Home() {
 
   const faqs = [
     {
-      q: "Why is Zen Homestay rated the best home stay in alleppey?",
-      a: "Zen Homestay offers an unmatched waterfront experience directly along the banks of Punnamada Lake. With zero road access, guests experience true peaceful tranquility, waking up to uninterrupted water views, authentic home-cooked Kerala cuisine, and personalized 5-star hospitality from your host Abhijith."
+      q: "What makes Zen Homestay the best alleppey homestay?",
+      a: "Zen Homestay is rated the best alleppey homestay because it sits directly on the banks of Punnamada Lake with zero road access. Guests enjoy unmatched privacy, waking up to uninterrupted water views, authentic home-cooked Kerala cuisine, complimentary speedboat pickup, and personalized 5-star hospitality from host Abhijith — all at direct-host rates with no booking commissions."
     },
     {
       q: "How does the complimentary 5-minute speed boat transfer work?",
@@ -611,10 +611,13 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Exact required H1 */}
+          {/* H1 optimized for focus keyword "alleppey homestay" */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Best Home stay in alleppey
+            Alleppey Homestay on Punnamada Lake — Zen Homestay
           </h1>
+          <p className="text-sm sm:text-base text-slate-600 font-medium mt-2 leading-relaxed">
+            Wake up to direct views of Punnamada Lake at the best alleppey homestay. Exclusive waterfront retreat with complimentary speedboat transfer &amp; authentic Kerala breakfast.
+          </p>
         </div>
 
         {/* Mobile Swipeable Photo Gallery */}
@@ -758,7 +761,7 @@ export default function Home() {
             <div className="flex items-center justify-between pb-8 border-b border-slate-200 bg-white p-6 rounded-3xl border shadow-sm">
               <div>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
-                  Entire waterfront heritage homestay hosted by Abhijith
+                  Alleppey Homestay hosted by Abhijith — entire waterfront heritage property
                 </h2>
                 <p className="text-sm text-slate-600 font-semibold mt-1 flex items-center gap-2 flex-wrap">
                   <span className="bg-sky-50 text-sky-800 px-2.5 py-0.5 rounded-md font-bold">2 Lake View Bedrooms</span>
@@ -995,15 +998,15 @@ export default function Home() {
                 Authentic Kerala Living
               </span>
               <h2 className="text-2xl font-extrabold text-slate-900 mt-3 mb-4">
-                Why Guests Choose Zen Homestay in Alleppey
+                Why Guests Choose This Alleppey Homestay
               </h2>
 
               <div className="space-y-4 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
                 <p>
-                  Finding the right stay in Alleppey makes all the difference. While many properties are located near busy town centers and noisy thoroughfares, Zen Homestay offers an oasis of pure serenity right on the world-famous waters of <strong>Punnamada Lake</strong>.
+                  Finding the right <strong>alleppey homestay</strong> makes all the difference. While many properties are located near busy town centers and noisy thoroughfares, Zen Homestay offers an oasis of pure serenity right on the world-famous waters of <strong>Punnamada Lake</strong>.
                 </p>
                 <p>
-                  Here, the rhythms of life move with the gentle water tides. You will see local canoe fishermen gliding past in the early morning fog, migratory birds perching on coconut fronds, and the mesmerizing reflection of the Kerala sunset dancing across the lake surface.
+                  At this alleppey homestay, the rhythms of life move with the gentle water tides. You will see local canoe fishermen gliding past in the early morning fog, migratory birds perching on coconut fronds, and the mesmerizing reflection of the Kerala sunset dancing across the lake surface.
                 </p>
               </div>
 

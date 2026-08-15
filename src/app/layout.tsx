@@ -22,14 +22,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://zen-homestay.vercel.app'),
-  title: "Best Home stay in alleppey | Zen Homestay Punnamada Lake",
-  description: "Wake up to beautiful, direct views of Punnamada Lake at Zen Homestay. Exclusive waterfront heritage stay near the boat race finishing point, accessible via complimentary 5-minute speed boat transfer.",
+  title: "Alleppey Homestay on Punnamada Lake | Zen Homestay – Best in Alleppey",
+  description: "Zen Homestay is the best Alleppey homestay — a secluded waterfront retreat on Punnamada Lake with direct lake views, complimentary 5-min speedboat transfer & authentic Kerala breakfast. Book direct for best rates.",
   keywords: [
-    "best home stay in alleppey",
+    "alleppey homestay",
+    "best alleppey homestay",
+    "homestay in alleppey",
     "punnamada lake homestay",
     "waterfront homestay alleppey",
-    "boat race finishing point stay",
     "kerala backwater homestay",
+    "alleppey lake view homestay",
+    "best home stay in alleppey",
+    "boat race finishing point stay",
     "private lake view rooms alleppey",
     "heritage homestay kerala",
     "zen homestay alleppey"
@@ -37,8 +41,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Abhijith" }],
   creator: "Zen Homestay",
   openGraph: {
-    title: "Best Home stay in alleppey | Zen Homestay Punnamada Lake",
-    description: "Wake up to beautiful, direct views of Punnamada Lake. Exclusive waterfront privacy with complimentary 5-minute speed boat transfer.",
+    title: "Alleppey Homestay on Punnamada Lake | Zen Homestay – Best in Alleppey",
+    description: "The best Alleppey homestay — direct Punnamada Lake views, complimentary 5-min speedboat transfer & authentic Kerala breakfast. Book direct, zero commission.",
     url: "https://zen-homestay.vercel.app",
     siteName: "Zen Homestay Alleppey",
     images: [
@@ -46,7 +50,7 @@ export const metadata: Metadata = {
         url: "/kerala_backwaters_hero_1786702183985.jpg",
         width: 1200,
         height: 630,
-        alt: "Zen Homestay - Best Home stay in alleppey on Punnamada Lake",
+        alt: "Zen Homestay – Best Alleppey Homestay on Punnamada Lake",
       },
     ],
     locale: "en_IN",
@@ -54,8 +58,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Home stay in alleppey | Zen Homestay",
-    description: "Wake up to beautiful, direct views of Punnamada Lake at Zen Homestay. Exclusive speedboat access & ultimate privacy.",
+    title: "Alleppey Homestay | Zen Homestay on Punnamada Lake",
+    description: "The best Alleppey homestay — wake up to direct Punnamada Lake views. Speedboat access, Kerala breakfast & zero commission booking.",
     images: ["/kerala_backwaters_hero_1786702183985.jpg"],
   },
   alternates: {
@@ -69,9 +73,9 @@ const jsonLd = {
     {
       "@type": "BedAndBreakfast",
       "@id": "https://zen-homestay.vercel.app/#lodging",
-      "name": "Zen Homestay",
-      "headline": "Best Home stay in alleppey",
-      "description": "Wake up to beautiful, direct views of Punnamada Lake right from the room. Exclusive waterfront heritage homestay with complimentary 5-minute private speed boat pickup from the boat race finishing point.",
+      "name": "Zen Homestay – Alleppey Homestay",
+      "headline": "Best Alleppey Homestay on Punnamada Lake",
+      "description": "Zen Homestay is the best alleppey homestay — a secluded waterfront retreat on Punnamada Lake with direct lake views, complimentary 5-minute speedboat transfer from the Nehru Trophy Boat Race finishing point, and authentic Kerala home cooking.",
       "image": [
         "https://zen-homestay.vercel.app/kerala_backwaters_hero_1786702183985.jpg",
         "https://zen-homestay.vercel.app/kerala_heritage_room_1786702263227.jpg",
@@ -118,10 +122,18 @@ const jsonLd = {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How do guests arrive at Zen Homestay?",
+          "name": "What makes Zen Homestay the best alleppey homestay?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Guests arrive at the Nehru Trophy Boat Race Finishing Point in Alleppey and are picked up via a complimentary, scenic 5-minute speed boat ride directly to the homestay's private dock."
+            "text": "Zen Homestay is rated the best alleppey homestay because it sits directly on the banks of Punnamada Lake with zero road access, offering unmatched privacy, direct lake views from every room, complimentary speedboat pickup, and authentic Kerala home cooking — all at direct-host rates with no booking commissions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do guests arrive at this alleppey homestay?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Guests arrive at the Nehru Trophy Boat Race Finishing Point in Alleppey and are picked up via a complimentary, scenic 5-minute speed boat ride directly to this alleppey homestay's private dock on Punnamada Lake."
           }
         },
         {
@@ -134,10 +146,10 @@ const jsonLd = {
         },
         {
           "@type": "Question",
-          "name": "What views can I enjoy from the rooms?",
+          "name": "What views can I enjoy from the rooms at this alleppey homestay?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Guests can wake up to beautiful, direct views of Punnamada Lake right from the room and from the private traditional teak wooden balcony."
+            "text": "Guests at this alleppey homestay can wake up to beautiful, direct views of Punnamada Lake right from the room and from the private traditional teak wooden balcony."
           }
         },
         {
@@ -145,7 +157,15 @@ const jsonLd = {
           "name": "How can I book or contact the host?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You can connect directly with the host, Abhijith, via WhatsApp or phone call at +91 7012 761 588 for instant booking and best rates."
+            "text": "You can connect directly with the host, Abhijith, via WhatsApp or phone call at +91 7012 761 588 for instant booking and best rates for this alleppey homestay."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What meals are included at this alleppey homestay?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every booking at Zen Homestay includes a complimentary authentic Kerala breakfast with Appam, Puttu, fresh fruits and local tea or coffee served beside the water."
           }
         }
       ]
@@ -160,7 +180,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="en-IN"
       style={{ colorScheme: 'light' }}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
