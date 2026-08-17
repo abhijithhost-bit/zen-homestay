@@ -65,6 +65,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://zen-homestay.vercel.app",
   },
+  verification: {
+    google: "DNNTBKuN-gS4T_vMrmELRf8nQyOGaiKOdtleVeRTyPA",
+  },
 };
 
 const jsonLd = {

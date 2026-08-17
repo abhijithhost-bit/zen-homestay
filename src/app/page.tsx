@@ -2,23 +2,23 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { 
-  Star, 
+import {
+  Star,
   MapPin,
   Calendar,
-  ShieldCheck, 
-  Wifi, 
-  Wind, 
-  Utensils, 
-  Waves, 
-  Coffee, 
-  Anchor, 
-  MessageCircle, 
-  Phone, 
-  CheckCircle2, 
-  Sparkles, 
-  Clock, 
-  BedDouble, 
+  ShieldCheck,
+  Wifi,
+  Wind,
+  Utensils,
+  Waves,
+  Coffee,
+  Anchor,
+  MessageCircle,
+  Phone,
+  CheckCircle2,
+  Sparkles,
+  Clock,
+  BedDouble,
   Award,
   ChevronDown,
   ChevronLeft,
@@ -217,32 +217,32 @@ export default function Home() {
   )}`;
 
   const images = [
-    { 
-      src: '/kerala_backwaters_hero_1786702183985.jpg', 
+    {
+      src: '/kerala_backwaters_hero_1786702183985.jpg',
       alt: 'Punnamada Lake View - Zen Homestay Alleppey',
       title: 'Panoramic Punnamada Lake Waterfront',
       tag: 'Waterfront Living'
     },
-    { 
-      src: '/kerala_heritage_room_1786702263227.jpg', 
+    {
+      src: '/kerala_heritage_room_1786702263227.jpg',
       alt: 'Lake View Premium Room - Zen Homestay',
       title: 'Lake View Premium Heritage Bedroom',
       tag: 'Bedroom & Suite'
     },
-    { 
-      src: '/kerala_boat_arrival_1786708991444.jpg', 
+    {
+      src: '/kerala_boat_arrival_1786708991444.jpg',
       alt: 'Complimentary Speedboat Transfer Alleppey',
       title: 'Private 5-Minute Speedboat Arrival Experience',
       tag: 'Boat Transfer'
     },
-    { 
-      src: '/kerala_lake_dining_1786708655762.jpg', 
+    {
+      src: '/kerala_lake_dining_1786708655762.jpg',
       alt: 'Authentic Kerala Lakeside Breakfast',
       title: 'Fresh Authentic Kerala Breakfast by the Water',
       tag: 'Dining & Food'
     },
-    { 
-      src: '/kerala_balcony_view_1786702364116.jpg', 
+    {
+      src: '/kerala_balcony_view_1786702364116.jpg',
       alt: 'Private Veranda over Punnamada Lake',
       title: 'Private Wooden Veranda Overlooking the Lake',
       tag: 'Veranda & Patio'
@@ -297,10 +297,10 @@ export default function Home() {
 
       {/* Interactive Booking Box: Check-in, Check-out, Rooms Counter, Guests Counter */}
       <div className="border border-slate-200 rounded-2xl overflow-hidden divide-y divide-slate-200 bg-slate-50/70 text-xs font-medium">
-        
+
         {/* Date Picker Row - Triggers Visual Calendar Modal or Direct Date Selection */}
         <div className="grid grid-cols-2 divide-x divide-slate-200 bg-white">
-          
+
           {/* Check-in Trigger Box */}
           <button
             type="button"
@@ -356,33 +356,30 @@ export default function Home() {
             <button
               type="button"
               onClick={() => applyPreset(1, 0)}
-              className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${
-                nights === 1
+              className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${nights === 1
                   ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
                   : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
-              }`}
+                }`}
             >
               1 Night
             </button>
             <button
               type="button"
               onClick={() => applyPreset(2, 0)}
-              className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${
-                nights === 2
+              className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${nights === 2
                   ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
                   : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
-              }`}
+                }`}
             >
               2 Nights
             </button>
             <button
               type="button"
               onClick={() => applyPreset(3, 0)}
-              className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${
-                nights === 3
+              className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${nights === 3
                   ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
                   : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
-              }`}
+                }`}
             >
               3 Nights
             </button>
@@ -535,7 +532,7 @@ export default function Home() {
       {/* Modern Luxury Glassmorphic Navigation Header */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] transition-all w-full">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
-          
+
           {/* Brand Logo & Superhost Badge */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink min-w-0">
             <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-md sm:shadow-lg shadow-sky-500/20 ring-2 sm:ring-4 ring-sky-50 group-hover:scale-105 transition-transform duration-300 shrink-0">
@@ -624,15 +621,15 @@ export default function Home() {
         {/* Mobile Swipeable Photo Gallery */}
         <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] w-full rounded-2xl mb-6 relative">
           {images.map((img, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="relative w-full shrink-0 aspect-[4/3] snap-center cursor-pointer"
               onClick={() => {
                 setActivePhotoIdx(idx);
                 setShowGallery(true);
               }}
             >
-              <Image 
+              <Image
                 src={img.src}
                 alt={img.alt}
                 fill
@@ -642,7 +639,7 @@ export default function Home() {
             </div>
           ))}
           {/* Mobile Photo Count Badge */}
-          <button 
+          <button
             onClick={() => {
               setActivePhotoIdx(0);
               setShowGallery(true);
@@ -656,14 +653,14 @@ export default function Home() {
         {/* Desktop Bento Grid Photo Gallery */}
         <div className="hidden md:grid grid-cols-4 gap-2.5 rounded-3xl overflow-hidden mb-12 relative shadow-md h-[520px] bg-slate-200">
           {/* Main Large Left Photo */}
-          <div 
-            className="col-span-2 relative h-full group cursor-pointer overflow-hidden" 
+          <div
+            className="col-span-2 relative h-full group cursor-pointer overflow-hidden"
             onClick={() => {
               setActivePhotoIdx(0);
               setShowGallery(true);
             }}
           >
-            <Image 
+            <Image
               src={images[0].src}
               alt={images[0].alt}
               fill
@@ -678,28 +675,28 @@ export default function Home() {
 
           {/* Middle 2 Grid Photos */}
           <div className="grid grid-rows-2 gap-2.5 h-full">
-            <div 
-              className="relative group cursor-pointer overflow-hidden" 
+            <div
+              className="relative group cursor-pointer overflow-hidden"
               onClick={() => {
                 setActivePhotoIdx(1);
                 setShowGallery(true);
               }}
             >
-              <Image 
+              <Image
                 src={images[1].src}
                 alt={images[1].alt}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
             </div>
-            <div 
-              className="relative group cursor-pointer overflow-hidden" 
+            <div
+              className="relative group cursor-pointer overflow-hidden"
               onClick={() => {
                 setActivePhotoIdx(2);
                 setShowGallery(true);
               }}
             >
-              <Image 
+              <Image
                 src={images[2].src}
                 alt={images[2].alt}
                 fill
@@ -710,28 +707,28 @@ export default function Home() {
 
           {/* Right 2 Grid Photos */}
           <div className="grid grid-rows-2 gap-2.5 h-full">
-            <div 
-              className="relative group cursor-pointer overflow-hidden" 
+            <div
+              className="relative group cursor-pointer overflow-hidden"
               onClick={() => {
                 setActivePhotoIdx(3);
                 setShowGallery(true);
               }}
             >
-              <Image 
+              <Image
                 src={images[3].src}
                 alt={images[3].alt}
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
             </div>
-            <div 
-              className="relative group cursor-pointer overflow-hidden" 
+            <div
+              className="relative group cursor-pointer overflow-hidden"
               onClick={() => {
                 setActivePhotoIdx(4);
                 setShowGallery(true);
               }}
             >
-              <Image 
+              <Image
                 src={images[4].src}
                 alt={images[4].alt}
                 fill
@@ -741,7 +738,7 @@ export default function Home() {
           </div>
 
           {/* View All Photos Floating Badge */}
-          <button 
+          <button
             onClick={() => {
               setActivePhotoIdx(0);
               setShowGallery(true);
@@ -1045,10 +1042,10 @@ export default function Home() {
               <div className="flex items-center gap-2 mb-5">
                 {/* Google "G" logo SVG */}
                 <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
                 </svg>
                 <span className="text-lg font-extrabold text-slate-900">Google Reviews</span>
               </div>
@@ -1058,8 +1055,8 @@ export default function Home() {
                 <div className="flex flex-col items-center shrink-0">
                   <span className="text-5xl font-black text-slate-900 leading-none">4.9</span>
                   <div className="flex items-center gap-0.5 mt-1.5">
-                    {[1,2,3,4,5].map((s) => (
-                      <svg key={s} className="w-4 h-4" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <svg key={s} className="w-4 h-4" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                     ))}
                   </div>
                   <span className="text-xs text-slate-500 font-medium mt-1">48 reviews</span>
@@ -1069,14 +1066,14 @@ export default function Home() {
                 <div className="flex-1 w-full space-y-1.5">
                   {[
                     { stars: 5, count: 47, pct: 98 },
-                    { stars: 4, count: 1,  pct: 2  },
-                    { stars: 3, count: 0,  pct: 0  },
-                    { stars: 2, count: 0,  pct: 0  },
-                    { stars: 1, count: 0,  pct: 0  },
+                    { stars: 4, count: 1, pct: 2 },
+                    { stars: 3, count: 0, pct: 0 },
+                    { stars: 2, count: 0, pct: 0 },
+                    { stars: 1, count: 0, pct: 0 },
                   ].map(({ stars, pct }) => (
                     <div key={stars} className="flex items-center gap-2 text-xs">
                       <span className="text-slate-600 font-medium w-3 shrink-0">{stars}</span>
-                      <svg className="w-3 h-3 shrink-0" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg className="w-3 h-3 shrink-0" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                       <div className="flex-1 bg-slate-100 rounded-full h-2 overflow-hidden">
                         <div className="h-2 rounded-full bg-[#FBBC05]" style={{ width: `${pct}%` }} />
                       </div>
@@ -1087,12 +1084,12 @@ export default function Home() {
                 <div className="shrink-0 flex flex-col items-center gap-2">
                   <div className="text-xs text-slate-500 font-medium">Powered by</div>
                   <svg className="w-16" viewBox="0 0 272 92" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" fill="#EA4335"/>
-                    <path d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" fill="#FBBC05"/>
-                    <path d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z" fill="#4285F4"/>
-                    <path d="M225 3v65h-9.5V3h9.5z" fill="#34A853"/>
-                    <path d="M262.02 54.48l7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98l19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z" fill="#EA4335"/>
-                    <path d="M35.29 41.41V32H67c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 34.91.36 15.93 16.32.47 35.3.47c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.49.01z" fill="#4285F4"/>
+                    <path d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" fill="#EA4335" />
+                    <path d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" fill="#FBBC05" />
+                    <path d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z" fill="#4285F4" />
+                    <path d="M225 3v65h-9.5V3h9.5z" fill="#34A853" />
+                    <path d="M262.02 54.48l7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98l19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z" fill="#EA4335" />
+                    <path d="M35.29 41.41V32H67c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 34.91.36 15.93 16.32.47 35.3.47c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.49.01z" fill="#4285F4" />
                   </svg>
                 </div>
               </div>
@@ -1110,10 +1107,10 @@ export default function Home() {
                         <p className="text-[11px] text-slate-400 font-medium">1 month ago</p>
                       </div>
                     </div>
-                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
                   </div>
                   <div className="flex items-center gap-0.5 mb-2.5">
-                    {[1,2,3,4,5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}
+                    {[1, 2, 3, 4, 5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
                   </div>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">The speedboat ride from the finishing point set the tone immediately. Best <strong>alleppey homestay</strong> I&apos;ve ever stayed at — waking up to Punnamada Lake right outside the bedroom window was pure magic!</p>
                 </div>
@@ -1128,10 +1125,10 @@ export default function Home() {
                         <p className="text-[11px] text-slate-400 font-medium">2 weeks ago</p>
                       </div>
                     </div>
-                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
                   </div>
                   <div className="flex items-center gap-0.5 mb-2.5">
-                    {[1,2,3,4,5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}
+                    {[1, 2, 3, 4, 5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
                   </div>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">Unmatched privacy at this <strong>homestay in Alleppey</strong>! No roads nearby means total silence and the most serene water views I&apos;ve experienced. Abhijith was an incredible, attentive host throughout.</p>
                 </div>
@@ -1146,10 +1143,10 @@ export default function Home() {
                         <p className="text-[11px] text-slate-400 font-medium">3 weeks ago</p>
                       </div>
                     </div>
-                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
                   </div>
                   <div className="flex items-center gap-0.5 mb-2.5">
-                    {[1,2,3,4,5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}
+                    {[1, 2, 3, 4, 5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
                   </div>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">We searched for the best <strong>waterfront homestay in Alleppey</strong> and Zen Homestay exceeded every expectation. The Kerala breakfast served by the lakeside was divine — Appam and stew tasted like a dream!</p>
                 </div>
@@ -1164,10 +1161,10 @@ export default function Home() {
                         <p className="text-[11px] text-slate-400 font-medium">1 month ago</p>
                       </div>
                     </div>
-                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
                   </div>
                   <div className="flex items-center gap-0.5 mb-2.5">
-                    {[1,2,3,4,5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}
+                    {[1, 2, 3, 4, 5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
                   </div>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">Stayed here for our anniversary and it was phenomenal. This <strong>Punnamada Lake homestay</strong> is unlike anything else in Alleppey — the direct lake view from bed, the wooden balcony, the morning breeze. Absolutely 5 stars.</p>
                 </div>
@@ -1182,10 +1179,10 @@ export default function Home() {
                         <p className="text-[11px] text-slate-400 font-medium">2 months ago</p>
                       </div>
                     </div>
-                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
                   </div>
                   <div className="flex items-center gap-0.5 mb-2.5">
-                    {[1,2,3,4,5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}
+                    {[1, 2, 3, 4, 5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
                   </div>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">If you&apos;re looking for a peaceful <strong>Kerala backwater homestay</strong>, stop searching — this is it. The speedboat pickup felt like arriving at a private island resort. Abhijith&apos;s hospitality is truly world-class.</p>
                 </div>
@@ -1200,10 +1197,10 @@ export default function Home() {
                         <p className="text-[11px] text-slate-400 font-medium">2 months ago</p>
                       </div>
                     </div>
-                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
                   </div>
                   <div className="flex items-center gap-0.5 mb-2.5">
-                    {[1,2,3,4,5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}
+                    {[1, 2, 3, 4, 5].map(s => <svg key={s} className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>)}
                   </div>
                   <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">Traveled from Bangalore to experience Kerala&apos;s backwaters — this <strong>alleppey homestay on Punnamada Lake</strong> was the highlight of our entire trip. The authentic food, the silence, the lake... absolutely spectacular.</p>
                 </div>
@@ -1212,7 +1209,7 @@ export default function Home() {
 
               {/* "Powered by Google" footer link */}
               <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-slate-400 font-medium">
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
                 <span>Reviews styled after Google Reviews · 48 verified guests</span>
               </div>
 
@@ -1295,10 +1292,10 @@ export default function Home() {
       {/* Premium Waterfront Homestay Footer with Embedded Google Map */}
       <footer className="bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 border-t border-slate-800/80 text-slate-400 pt-16 pb-12 text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Top Grid: Brand, Navigation, Contact, and Embedded Google Map */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-800/80">
-            
+
             {/* Col 1: Brand & Backwater Sanctuary Info (4 cols) */}
             <div className="lg:col-span-4 space-y-4">
               <div className="flex items-center gap-2.5">
@@ -1474,7 +1471,7 @@ export default function Home() {
 
       {/* Mobile Sticky Bottom Floating Action Bar */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-4 flex items-center justify-between shadow-2xl">
-        <button 
+        <button
           type="button"
           onClick={() => setShowCalendar(true)}
           className="text-left cursor-pointer active:scale-95 transition-transform"
@@ -1510,11 +1507,11 @@ export default function Home() {
       {/* Modern High-End Image Gallery Lightbox Modal (Slideshow View) */}
       {showGallery && (
         <div className="fixed inset-0 z-[100] bg-slate-950/98 backdrop-blur-2xl text-white flex flex-col animate-in fade-in duration-200">
-          
+
           {/* Top Modal Navigation Header */}
           <div className="flex items-center justify-between px-4 sm:px-8 py-3.5 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md z-20 shrink-0">
             <div className="flex items-center gap-3">
-              <button 
+              <button
                 onClick={() => setShowGallery(false)}
                 className="flex items-center gap-2 text-xs sm:text-sm font-bold bg-white/10 hover:bg-white/20 text-white px-3.5 py-2 rounded-xl transition-all active:scale-95 border border-white/10"
                 aria-label="Close photo gallery"
@@ -1538,10 +1535,10 @@ export default function Home() {
 
           {/* Modal Main Content Area (Slideshow) */}
           <div className="flex-1 flex flex-col justify-between overflow-hidden p-3 sm:p-6 relative">
-            
+
             {/* Main Image Stage */}
             <div className="flex-1 relative flex items-center justify-center min-h-0 py-2">
-              
+
               {/* Previous Button */}
               <button
                 onClick={() => setActivePhotoIdx((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
@@ -1591,11 +1588,10 @@ export default function Home() {
                 <button
                   key={idx}
                   onClick={() => setActivePhotoIdx(idx)}
-                  className={`relative w-16 h-12 sm:w-24 sm:h-16 rounded-xl overflow-hidden shrink-0 transition-all border-2 ${
-                    activePhotoIdx === idx
+                  className={`relative w-16 h-12 sm:w-24 sm:h-16 rounded-xl overflow-hidden shrink-0 transition-all border-2 ${activePhotoIdx === idx
                       ? 'border-orange-500 scale-105 shadow-lg shadow-orange-500/20 opacity-100 ring-2 ring-orange-500/40'
                       : 'border-slate-800 opacity-50 hover:opacity-80 hover:border-slate-600'
-                  }`}
+                    }`}
                 >
                   <Image
                     src={img.src}
@@ -1614,15 +1610,15 @@ export default function Home() {
 
       {/* Modern High-End Visual Interactive Calendar Modal */}
       {showCalendar && (
-        <div 
+        <div
           onClick={() => setShowCalendar(false)}
           className="fixed inset-0 z-[999] bg-slate-950/80 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4 animate-in fade-in duration-200"
         >
-          <div 
+          <div
             onClick={(e) => e.stopPropagation()}
             className="bg-white w-full max-w-md rounded-t-3xl sm:rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[94vh] sm:max-h-[90vh]"
           >
-            
+
             {/* Modal Header */}
             <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
               <div>
@@ -1646,11 +1642,10 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setActiveDateStep('checkIn')}
-                className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation ${
-                  activeDateStep === 'checkIn'
+                className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation ${activeDateStep === 'checkIn'
                     ? 'bg-white border-orange-500 shadow-sm ring-2 ring-orange-100'
                     : 'bg-white/60 border-slate-200 text-slate-600'
-                }`}
+                  }`}
               >
                 <span className="font-bold text-[10px] uppercase text-slate-500 block">Check-in</span>
                 <span className="font-extrabold text-slate-900 text-xs sm:text-sm">{formattedCheckIn}</span>
@@ -1659,11 +1654,10 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setActiveDateStep('checkOut')}
-                className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation ${
-                  activeDateStep === 'checkOut'
+                className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation ${activeDateStep === 'checkOut'
                     ? 'bg-white border-orange-500 shadow-sm ring-2 ring-orange-100'
                     : 'bg-white/60 border-slate-200 text-slate-600'
-                }`}
+                  }`}
               >
                 <span className="font-bold text-[10px] uppercase text-slate-500 block">Checkout</span>
                 <span className="font-extrabold text-slate-900 text-xs sm:text-sm">{formattedCheckOut}</span>
@@ -1672,7 +1666,7 @@ export default function Home() {
 
             {/* Calendar Grid & Adjusters Body */}
             <div className="p-4 sm:p-5 overflow-y-auto space-y-4">
-              
+
               {/* Month Navigation */}
               <div className="flex items-center justify-between">
                 <h4 className="font-extrabold text-sm sm:text-base text-slate-900">
@@ -1723,7 +1717,7 @@ export default function Home() {
                   const month = calendarMonth.getMonth();
                   const cellDate = new Date(year, month, day);
                   const cellStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                  
+
                   const today = new Date();
                   today.setHours(0, 0, 0, 0);
                   const isPast = cellDate < today;
@@ -1859,7 +1853,6 @@ export default function Home() {
               </div>
 
             </div>
-
             {/* Modal Footer / CTA */}
             <div className="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between gap-3">
               <div>
