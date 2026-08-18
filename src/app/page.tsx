@@ -359,8 +359,8 @@ export default function Home() {
               type="button"
               onClick={() => applyPreset(1, 0)}
               className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${nights === 1
-                  ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
+                ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
                 }`}
             >
               1 Night
@@ -369,8 +369,8 @@ export default function Home() {
               type="button"
               onClick={() => applyPreset(2, 0)}
               className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${nights === 2
-                  ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
+                ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
                 }`}
             >
               2 Nights
@@ -379,8 +379,8 @@ export default function Home() {
               type="button"
               onClick={() => applyPreset(3, 0)}
               className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${nights === 3
-                  ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
+                ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold'
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
                 }`}
             >
               3 Nights
@@ -564,7 +564,7 @@ export default function Home() {
             </Link>
 
             {/* Centre Nav — desktop only */}
-            <nav className="hidden lg:flex items-center bg-slate-100/90 border border-slate-200/80 rounded-full p-1.5 text-xs font-bold text-slate-600 shadow-inner gap-0.5">
+            <nav className="hidden lg:flex items-center bg-slate-100/90 border border-slate-200/80 rounded-full p-1 text-xs font-bold text-slate-600 shadow-inner gap-0.5">
               {[
                 { href: '#arrival', label: 'Arrival Route' },
                 { href: '#stay', label: 'Lakefront Rooms' },
@@ -575,15 +575,15 @@ export default function Home() {
                 <a
                   key={href}
                   href={href}
-                  className="px-4 py-1.5 rounded-full hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all duration-200 relative group"
+                  className="px-3.5 py-1 rounded-full hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all duration-200 relative group"
                 >
                   {label}
                   {/* Subtle orange underline on hover */}
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-4 h-[2px] bg-orange-400 rounded-full transition-all duration-200" />
+                  <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0 group-hover:w-4 h-[2px] bg-orange-400 rounded-full transition-all duration-200" />
                 </a>
               ))}
-              <div className="h-4 w-px bg-slate-300 mx-1" />
-              <div className="flex items-center gap-1.5 px-3 text-[11px] font-extrabold text-orange-600">
+              <div className="h-3.5 w-px bg-slate-300 mx-1" />
+              <div className="flex items-center gap-1.5 px-3 py-0.5 text-[11px] font-extrabold text-orange-600">
                 <span className="relative flex w-2 h-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
                   <span className="relative inline-flex rounded-full w-2 h-2 bg-orange-500" />
@@ -701,11 +701,10 @@ export default function Home() {
               {images.map((_, idx) => (
                 <span
                   key={idx}
-                  className={`block rounded-full transition-all duration-300 ${
-                    mobileSlideIdx === idx
-                      ? 'w-5 h-2 bg-orange-500'
-                      : 'w-2 h-2 bg-slate-300'
-                  }`}
+                  className={`block rounded-full transition-all duration-300 ${mobileSlideIdx === idx
+                    ? 'w-5 h-2 bg-orange-500'
+                    : 'w-2 h-2 bg-slate-300'
+                    }`}
                 />
               ))}
             </div>
@@ -1676,9 +1675,9 @@ export default function Home() {
               {/* Star rating strip */}
               <div className="flex items-center gap-2 bg-slate-900 rounded-xl px-4 py-3 border border-slate-800">
                 <div className="flex items-center gap-0.5">
-                  {[1,2,3,4,5].map(s => (
+                  {[1, 2, 3, 4, 5].map(s => (
                     <svg key={s} className="w-4 h-4" viewBox="0 0 20 20" fill="#FBBC05">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
@@ -1964,8 +1963,8 @@ export default function Home() {
                   key={idx}
                   onClick={() => setActivePhotoIdx(idx)}
                   className={`relative w-16 h-12 sm:w-24 sm:h-16 rounded-xl overflow-hidden shrink-0 transition-all border-2 ${activePhotoIdx === idx
-                      ? 'border-orange-500 scale-105 shadow-lg shadow-orange-500/20 opacity-100 ring-2 ring-orange-500/40'
-                      : 'border-slate-800 opacity-50 hover:opacity-80 hover:border-slate-600'
+                    ? 'border-orange-500 scale-105 shadow-lg shadow-orange-500/20 opacity-100 ring-2 ring-orange-500/40'
+                    : 'border-slate-800 opacity-50 hover:opacity-80 hover:border-slate-600'
                     }`}
                 >
                   <Image
@@ -2018,8 +2017,8 @@ export default function Home() {
                 type="button"
                 onClick={() => setActiveDateStep('checkIn')}
                 className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation ${activeDateStep === 'checkIn'
-                    ? 'bg-white border-orange-500 shadow-sm ring-2 ring-orange-100'
-                    : 'bg-white/60 border-slate-200 text-slate-600'
+                  ? 'bg-white border-orange-500 shadow-sm ring-2 ring-orange-100'
+                  : 'bg-white/60 border-slate-200 text-slate-600'
                   }`}
               >
                 <span className="font-bold text-[10px] uppercase text-slate-500 block">Check-in</span>
@@ -2030,8 +2029,8 @@ export default function Home() {
                 type="button"
                 onClick={() => setActiveDateStep('checkOut')}
                 className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation ${activeDateStep === 'checkOut'
-                    ? 'bg-white border-orange-500 shadow-sm ring-2 ring-orange-100'
-                    : 'bg-white/60 border-slate-200 text-slate-600'
+                  ? 'bg-white border-orange-500 shadow-sm ring-2 ring-orange-100'
+                  : 'bg-white/60 border-slate-200 text-slate-600'
                   }`}
               >
                 <span className="font-bold text-[10px] uppercase text-slate-500 block">Checkout</span>
