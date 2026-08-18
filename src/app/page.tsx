@@ -34,6 +34,7 @@ import {
 export default function Home() {
   const [showGallery, setShowGallery] = useState(false);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [mobileSlideIdx, setMobileSlideIdx] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
 
@@ -494,10 +495,15 @@ export default function Home() {
 
         <a
           href="tel:+917012761588"
-          className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-black text-white py-3 rounded-2xl font-bold text-xs sm:text-sm tracking-wide transition-all shadow-sm active:scale-[0.98]"
+          className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white py-2.5 rounded-xl font-bold text-xs tracking-wide transition-all shadow-md shadow-emerald-500/25 hover:shadow-emerald-500/40 active:scale-[0.98] relative overflow-hidden group"
         >
-          <Phone className="w-4 h-4 text-sky-400" />
-          Call Host (+91 7012 761 588)
+          <span className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
+          <span className="relative flex items-center gap-2">
+            <span className="flex items-center justify-center w-5 h-5 bg-white/20 rounded-full ring-1 ring-white/30">
+              <Phone className="w-3 h-3 fill-current" />
+            </span>
+            <span className="font-bold">Call Host · +91 7012 761 588</span>
+          </span>
         </a>
       </div>
 
@@ -529,72 +535,98 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-900 pb-20 md:pb-0">
 
-      {/* Modern Luxury Glassmorphic Navigation Header */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] transition-all w-full">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
+      {/* Improved Sticky Navigation Header */}
+      <header className="sticky top-0 z-50 w-full">
+        {/* Ultra-thin accent line at the very top */}
+        <div className="h-[3px] bg-gradient-to-r from-sky-500 via-orange-400 to-sky-500" />
 
-          {/* Brand Logo & Superhost Badge */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink min-w-0">
-            <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-md sm:shadow-lg shadow-sky-500/20 ring-2 sm:ring-4 ring-sky-50 group-hover:scale-105 transition-transform duration-300 shrink-0">
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-            </div>
-            <div className="flex flex-col min-w-0">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className="font-extrabold text-sm sm:text-xl tracking-tight text-slate-900 leading-none group-hover:text-sky-600 transition-colors truncate">
+        <div className="bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_30px_-5px_rgba(0,0,0,0.08)]">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-[72px] flex items-center justify-between gap-2 sm:gap-4">
+
+            {/* Brand Logo & Superhost Badge */}
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink min-w-0">
+              <div className="relative shrink-0">
+                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-md sm:shadow-lg shadow-sky-500/20 ring-2 sm:ring-[3px] ring-sky-100 group-hover:scale-105 transition-transform duration-300">
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
+                {/* Live green dot */}
+                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full shadow-sm" />
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="font-extrabold text-base sm:text-xl tracking-tight text-slate-900 leading-none group-hover:text-sky-600 transition-colors truncate">
                   Zen Homestay
                 </span>
-                <span className="hidden sm:inline-flex items-center gap-1 bg-orange-50 text-orange-700 text-[10px] font-black px-2 py-0.5 rounded-full border border-orange-200/80 shrink-0">
-                  <Award className="w-3 h-3 text-orange-500" /> Superhost
+                <span className="text-[10px] sm:text-[11px] font-bold text-sky-600 tracking-wider uppercase mt-0.5 sm:mt-1 flex items-center gap-1 sm:gap-1.5 truncate">
+                  <span className="truncate">Punnamada Lake · Alleppey, Kerala</span>
                 </span>
               </div>
-              <span className="text-[9px] sm:text-[11px] font-bold text-sky-600 tracking-wider uppercase mt-0.5 sm:mt-1 flex items-center gap-1 sm:gap-1.5 truncate">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
-                <span className="truncate">Punnamada Lake · Alleppey</span>
-              </span>
-            </div>
-          </Link>
-
-          {/* Center Interactive Navigation Links & Live Status Pill */}
-          <nav className="hidden lg:flex items-center bg-slate-100/90 border border-slate-200/80 rounded-full p-1.5 text-xs font-bold text-slate-700 shadow-inner">
-            <a href="#arrival" className="px-3.5 py-1.5 rounded-full hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all">
-              Arrival Route
-            </a>
-            <a href="#stay" className="px-3.5 py-1.5 rounded-full hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all">
-              Lakefront Rooms
-            </a>
-            <a href="#amenities" className="px-3.5 py-1.5 rounded-full hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all">
-              Amenities
-            </a>
-            <a href="#faq" className="px-3.5 py-1.5 rounded-full hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all">
-              FAQs
-            </a>
-            <div className="h-4 w-[1px] bg-slate-300 mx-1"></div>
-            <div className="flex items-center gap-1.5 px-3 text-[11px] font-extrabold text-orange-600">
-              <span className="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
-              Direct Host Rates
-            </div>
-          </nav>
-
-          {/* Right Action CTA Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <a
-              href="https://wa.me/917012761588"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden sm:flex items-center gap-2 text-xs font-bold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 hover:text-emerald-900 border border-emerald-200/80 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full transition-all shadow-sm active:scale-95"
-            >
-              <MessageCircle className="w-4 h-4 text-emerald-600 fill-emerald-600/20" />
-              <span>WhatsApp Direct</span>
-            </a>
-            <Link
-              href="/contact"
-              className="bg-orange-500 hover:bg-orange-600 text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 shadow-md shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-95 flex items-center gap-1.5"
-            >
-              <span>Contact Host</span>
             </Link>
+
+            {/* Centre Nav — desktop only */}
+            <nav className="hidden lg:flex items-center bg-slate-100/90 border border-slate-200/80 rounded-full p-1.5 text-xs font-bold text-slate-600 shadow-inner gap-0.5">
+              {[
+                { href: '#arrival', label: 'Arrival Route' },
+                { href: '#stay', label: 'Lakefront Rooms' },
+                { href: '#amenities', label: 'Amenities' },
+                { href: '#faq', label: 'FAQs' },
+              ].map(({ href, label }) => (
+                <a
+                  key={href}
+                  href={href}
+                  className="px-4 py-1.5 rounded-full hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all duration-200 relative group"
+                >
+                  {label}
+                  {/* Subtle orange underline on hover */}
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 group-hover:w-4 h-[2px] bg-orange-400 rounded-full transition-all duration-200" />
+                </a>
+              ))}
+              <div className="h-4 w-px bg-slate-300 mx-1" />
+              <div className="flex items-center gap-1.5 px-3 text-[11px] font-extrabold text-orange-600">
+                <span className="relative flex w-2 h-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full w-2 h-2 bg-orange-500" />
+                </span>
+                Direct Host Rates
+              </div>
+            </nav>
+
+            {/* Right CTAs */}
+            <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+              {/* WhatsApp — visible from sm */}
+              <a
+                href="https://wa.me/917012761588"
+                target="_blank"
+                rel="noreferrer"
+                className="hidden sm:flex items-center gap-1.5 text-xs font-bold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 hover:text-emerald-900 border border-emerald-200/80 px-3.5 py-2 sm:py-2.5 rounded-full transition-all shadow-sm active:scale-95"
+              >
+                <MessageCircle className="w-4 h-4 text-emerald-600 fill-emerald-600/20" />
+                <span>WhatsApp</span>
+              </a>
+
+              {/* WhatsApp icon-only — mobile */}
+              <a
+                href="https://wa.me/917012761588"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="WhatsApp"
+                className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/80 active:scale-95 transition-all shadow-sm"
+              >
+                <MessageCircle className="w-4 h-4 fill-emerald-600/20" />
+              </a>
+
+              {/* Contact Host */}
+              <Link
+                href="/contact"
+                className="bg-orange-500 hover:bg-orange-600 text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 shadow-md shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-95 flex items-center gap-1.5"
+              >
+                <Phone className="w-3.5 h-3.5 hidden sm:block" />
+                <span>Contact Host</span>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
+
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 w-full">
 
@@ -619,35 +651,73 @@ export default function Home() {
         </div>
 
         {/* Mobile Swipeable Photo Gallery */}
-        <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] w-full rounded-2xl mb-6 relative">
-          {images.map((img, idx) => (
-            <div
-              key={idx}
-              className="relative w-full shrink-0 aspect-[4/3] snap-center cursor-pointer"
+        <div className="md:hidden relative mb-6">
+          {/* Swipe hint — fades out after 2s */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none animate-[fadeOut_2s_ease-in-out_1s_forwards] flex items-center gap-1.5 bg-black/50 backdrop-blur-sm text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">
+            <svg className="w-3.5 h-3.5 animate-[bounceX_0.8s_ease-in-out_infinite_alternate]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+            <span>Swipe photos</span>
+            <svg className="w-3.5 h-3.5 animate-[bounceX_0.8s_ease-in-out_infinite_alternate-reverse]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </div>
+
+          {/* Scrollable strip */}
+          <div
+            className="flex overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] w-full rounded-2xl"
+            onScroll={(e) => {
+              const el = e.currentTarget;
+              const idx = Math.round(el.scrollLeft / el.offsetWidth);
+              setMobileSlideIdx(idx);
+            }}
+          >
+            {images.map((img, idx) => (
+              <div
+                key={idx}
+                className="relative w-full shrink-0 aspect-[4/3] snap-center cursor-pointer"
+                onClick={() => {
+                  setActivePhotoIdx(idx);
+                  setShowGallery(true);
+                }}
+              >
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  priority={idx === 0}
+                  className="object-cover"
+                />
+                {/* Per-slide tag */}
+                <div className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+                  {img.tag}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bottom bar: dots + view-all badge */}
+          <div className="flex items-center justify-between mt-2.5 px-1">
+            {/* Dot indicators */}
+            <div className="flex items-center gap-1.5">
+              {images.map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`block rounded-full transition-all duration-300 ${
+                    mobileSlideIdx === idx
+                      ? 'w-5 h-2 bg-orange-500'
+                      : 'w-2 h-2 bg-slate-300'
+                  }`}
+                />
+              ))}
+            </div>
+            {/* View all button */}
+            <button
               onClick={() => {
-                setActivePhotoIdx(idx);
+                setActivePhotoIdx(0);
                 setShowGallery(true);
               }}
+              className="bg-slate-900/80 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-[11px] font-bold shadow-md flex items-center gap-1.5 active:scale-95"
             >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                priority={idx === 0}
-                className="object-cover"
-              />
-            </div>
-          ))}
-          {/* Mobile Photo Count Badge */}
-          <button
-            onClick={() => {
-              setActivePhotoIdx(0);
-              setShowGallery(true);
-            }}
-            className="absolute bottom-4 right-4 bg-slate-900/80 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-md flex items-center gap-1.5 z-10 active:scale-95"
-          >
-            <span>📷</span> 1 / 5 · View all
-          </button>
+              <span>📷</span> {mobileSlideIdx + 1} / {images.length} · View all
+            </button>
+          </div>
         </div>
 
         {/* Desktop Bento Grid Photo Gallery */}
@@ -1035,6 +1105,31 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Things to Know & House Rules */}
+            <div className="pb-8 border-b border-slate-200">
+              <h3 className="text-lg font-extrabold text-slate-900 mb-4">Things to Know</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-slate-600">
+                <div className="bg-white p-5 rounded-2xl border border-slate-200">
+                  <h4 className="font-bold text-slate-900 mb-2">Check-in &amp; Checkout</h4>
+                  <p className="leading-relaxed font-bold text-slate-900">Check-in: 2:00 PM</p>
+                  <p className="leading-relaxed font-bold text-slate-900">Checkout: 11:00 AM</p>
+                  <p className="leading-relaxed text-slate-500 mt-1">Flexible timing upon prior request via WhatsApp.</p>
+                </div>
+                <div className="bg-white p-5 rounded-2xl border border-slate-200">
+                  <h4 className="font-bold text-slate-900 mb-2">Speedboat Pickup</h4>
+                  <p className="leading-relaxed">Free private boat transfer</p>
+                  <p className="leading-relaxed">Luggage assistance included</p>
+                  <p className="leading-relaxed text-slate-500 mt-1">Directly from the Finishing Point.</p>
+                </div>
+                <div className="bg-white p-5 rounded-2xl border border-slate-200">
+                  <h4 className="font-bold text-slate-900 mb-2">Peaceful Sanctuary</h4>
+                  <p className="leading-relaxed">Suitable for families &amp; couples</p>
+                  <p className="leading-relaxed">Strict zero noise pollution zone</p>
+                  <p className="leading-relaxed text-slate-500 mt-1">Dedicated on-site host care.</p>
+                </div>
+              </div>
+            </div>
+
             {/* Google Reviews Section */}
             <div className="pb-8 border-b border-slate-200">
 
@@ -1215,31 +1310,6 @@ export default function Home() {
 
             </div>
 
-            {/* Things to Know & House Rules */}
-            <div className="pb-8 border-b border-slate-200">
-              <h3 className="text-lg font-extrabold text-slate-900 mb-4">Things to Know</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-slate-600">
-                <div className="bg-white p-5 rounded-2xl border border-slate-200">
-                  <h4 className="font-bold text-slate-900 mb-2">Check-in & Checkout</h4>
-                  <p className="leading-relaxed font-bold text-slate-900">Check-in: 2:00 PM</p>
-                  <p className="leading-relaxed font-bold text-slate-900">Checkout: 11:00 AM</p>
-                  <p className="leading-relaxed text-slate-500 mt-1">Flexible timing upon prior request via WhatsApp.</p>
-                </div>
-                <div className="bg-white p-5 rounded-2xl border border-slate-200">
-                  <h4 className="font-bold text-slate-900 mb-2">Speedboat Pickup</h4>
-                  <p className="leading-relaxed">Free private boat transfer</p>
-                  <p className="leading-relaxed">Luggage assistance included</p>
-                  <p className="leading-relaxed text-slate-500 mt-1">Directly from the Finishing Point.</p>
-                </div>
-                <div className="bg-white p-5 rounded-2xl border border-slate-200">
-                  <h4 className="font-bold text-slate-900 mb-2">Peaceful Sanctuary</h4>
-                  <p className="leading-relaxed">Suitable for families & couples</p>
-                  <p className="leading-relaxed">Strict zero noise pollution zone</p>
-                  <p className="leading-relaxed text-slate-500 mt-1">Dedicated on-site host care.</p>
-                </div>
-              </div>
-            </div>
-
             {/* Interactive FAQ Accordion */}
             <div id="faq">
               <div className="flex items-center gap-2 mb-2">
@@ -1289,112 +1359,185 @@ export default function Home() {
 
       </main>
 
-      {/* Premium Waterfront Homestay Footer with Embedded Google Map */}
-      <footer className="bg-gradient-to-b from-slate-900 via-slate-950 to-slate-950 border-t border-slate-800/80 text-slate-400 pt-16 pb-12 text-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Premium Footer */}
+      <footer className="bg-slate-950 text-slate-400 text-xs">
 
-          {/* Top Grid: Brand, Navigation, Contact, and Embedded Google Map */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-800/80">
+        {/* ── Premium CTA Band ── */}
+        <div className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border-t border-slate-800/80 py-14 sm:py-16 px-4">
+          {/* Subtle ambient lighting glows for a luxury atmosphere */}
+          <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Col 1: Brand & Backwater Sanctuary Info (4 cols) */}
-            <div className="lg:col-span-4 space-y-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-400 via-sky-500 to-orange-500 flex items-center justify-center text-white font-black text-sm shadow-md shadow-orange-500/10">
+          <div className="relative max-w-4xl mx-auto text-center space-y-4 sm:space-y-5">
+            {/* Elegant luxury eyebrow tag */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/25 text-amber-300 text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>Direct Host · Zero Commission · Best Rates</span>
+            </div>
+
+            {/* Main Heading */}
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+              Ready to wake up on{' '}
+              <span className="bg-gradient-to-r from-sky-300 via-teal-200 to-amber-200 bg-clip-text text-transparent">
+                Punnamada Lake?
+              </span>
+            </h2>
+
+            {/* Description */}
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+              Message Abhijith directly for personalized lakeside hospitality, live room availability, and instant confirmation — with zero middlemen or booking fees.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              <a
+                href="https://wa.me/917012761588"
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-extrabold px-7 py-3.5 rounded-2xl shadow-xl shadow-emerald-950/60 hover:shadow-emerald-500/20 text-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-95 group"
+              >
+                <MessageCircle className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
+                <span>Book on WhatsApp</span>
+              </a>
+              <a
+                href="tel:+917012761588"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-slate-800/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 hover:border-slate-600 px-7 py-3.5 rounded-2xl font-bold text-sm transition-all duration-200 hover:-translate-y-0.5 active:scale-95 backdrop-blur-md shadow-lg"
+              >
+                <Phone className="w-4 h-4 text-sky-400" />
+                <span>+91 7012 761 588</span>
+              </a>
+            </div>
+
+            {/* Micro Perks Strip */}
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] font-semibold text-slate-400">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                Instant response &lt; 5 mins
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                Free Speedboat Pickup
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                Complimentary Breakfast
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Main Grid ── */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-800/70">
+
+            {/* Brand Column — 4 cols */}
+            <div className="lg:col-span-4 space-y-5">
+              {/* Logo */}
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-400 via-sky-500 to-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
                   <Sparkles className="w-5 h-5" />
                 </div>
-                <div className="flex flex-col">
-                  <span className="font-extrabold text-lg text-white tracking-tight">Zen Homestay</span>
-                  <span className="text-[10px] font-bold text-sky-400 uppercase tracking-wider">Punnamada Lake · Alleppey</span>
+                <div>
+                  <span className="font-extrabold text-xl text-white tracking-tight block leading-tight">Zen Homestay</span>
+                  <span className="text-[11px] font-bold text-sky-400 uppercase tracking-widest">Punnamada Lake · Alleppey</span>
                 </div>
               </div>
 
-              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed font-normal">
-                An exclusive secluded waterfront sanctuary situated on the calm waters of Punnamada Lake, accessible exclusively by our complimentary 5-minute speedboat transfer. Zero traffic noise, authentic Kerala cuisine, and 5-star host care.
+              {/* Star rating strip */}
+              <div className="flex items-center gap-2 bg-slate-900 rounded-xl px-4 py-3 border border-slate-800">
+                <div className="flex items-center gap-0.5">
+                  {[1,2,3,4,5].map(s => (
+                    <svg key={s} className="w-4 h-4" viewBox="0 0 20 20" fill="#FBBC05">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+                <span className="text-white font-black text-sm">4.98</span>
+                <span className="text-slate-500 font-medium">· 48 Google reviews</span>
+              </div>
+
+              <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                An exclusive waterfront sanctuary on Punnamada Lake — accessible only by our complimentary 5-minute speedboat. Zero road noise, authentic Kerala cuisine, and attentive 5-star host care.
               </p>
 
-              <div className="flex flex-wrap gap-2 pt-1">
-                <span className="bg-slate-800/90 text-sky-400 border border-slate-700/60 px-2.5 py-1 rounded-lg text-[11px] font-bold flex items-center gap-1.5">
+              {/* Badges */}
+              <div className="flex flex-wrap gap-2">
+                <span className="bg-slate-900 text-sky-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
                   <Anchor className="w-3 h-3" /> 5-Min Boat Pickup
                 </span>
-                <span className="bg-slate-800/90 text-orange-400 border border-slate-700/60 px-2.5 py-1 rounded-lg text-[11px] font-bold flex items-center gap-1.5">
-                  <Award className="w-3 h-3" /> 4.98 Superhost
+                <span className="bg-slate-900 text-orange-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
+                  <Award className="w-3 h-3" /> Superhost 4.98★
                 </span>
-                <span className="bg-slate-800/90 text-emerald-400 border border-slate-700/60 px-2.5 py-1 rounded-lg text-[11px] font-bold flex items-center gap-1.5">
-                  <ShieldCheck className="w-3 h-3" /> Direct Host Rates
+                <span className="bg-slate-900 text-emerald-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
+                  <ShieldCheck className="w-3 h-3" /> 0% Commission
+                </span>
+                <span className="bg-slate-900 text-amber-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
+                  <Coffee className="w-3 h-3" /> Breakfast Included
                 </span>
               </div>
             </div>
 
-            {/* Col 2: Navigation & Quick Links (2 cols) */}
-            <div className="lg:col-span-2 space-y-3">
-              <h4 className="font-extrabold text-white text-xs uppercase tracking-wider">
-                Quick Navigation
-              </h4>
-              <ul className="space-y-2.5 text-xs font-medium">
-                <li>
-                  <a href="#arrival" className="hover:text-orange-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-sky-500">•</span> The Arrival Route
-                  </a>
-                </li>
-                <li>
-                  <a href="#stay" className="hover:text-orange-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-sky-500">•</span> Where You'll Sleep
-                  </a>
-                </li>
-                <li>
-                  <a href="#amenities" className="hover:text-orange-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-sky-500">•</span> Property Amenities
-                  </a>
-                </li>
-                <li>
-                  <a href="#faq" className="hover:text-orange-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-sky-500">•</span> FAQs
-                  </a>
-                </li>
-                <li>
-                  <Link href="/contact" className="hover:text-orange-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-sky-500">•</span> Contact Host Page
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/terms-and-conditions" className="hover:text-orange-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-sky-500">•</span> Terms & House Rules
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/privacy-policy" className="hover:text-orange-400 transition-colors flex items-center gap-1.5">
-                    <span className="text-sky-500">•</span> Privacy Policy
-                  </Link>
-                </li>
+            {/* Quick Links — 2 cols */}
+            <div className="lg:col-span-2 space-y-4">
+              <h4 className="font-extrabold text-white text-[11px] uppercase tracking-widest">Explore</h4>
+              <ul className="space-y-2.5 font-medium">
+                {[
+                  { href: '#arrival', label: 'The Arrival Route' },
+                  { href: '#stay', label: "Where You'll Sleep" },
+                  { href: '#amenities', label: 'Property Amenities' },
+                  { href: '#faq', label: 'FAQs' },
+                ].map(({ href, label }) => (
+                  <li key={href}>
+                    <a href={href} className="hover:text-orange-400 transition-colors flex items-center gap-2 group">
+                      <span className="w-1 h-1 rounded-full bg-sky-500 group-hover:bg-orange-400 transition-colors shrink-0" />
+                      {label}
+                    </a>
+                  </li>
+                ))}
+                {[
+                  { href: '/contact', label: 'Contact Host' },
+                  { href: '/terms-and-conditions', label: 'Terms & House Rules' },
+                  { href: '/privacy-policy', label: 'Privacy Policy' },
+                ].map(({ href, label }) => (
+                  <li key={href}>
+                    <Link href={href} className="hover:text-orange-400 transition-colors flex items-center gap-2 group">
+                      <span className="w-1 h-1 rounded-full bg-sky-500 group-hover:bg-orange-400 transition-colors shrink-0" />
+                      {label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Col 3: Direct Host Contact (2 cols) */}
-            <div className="lg:col-span-2 space-y-3">
-              <h4 className="font-extrabold text-white text-xs uppercase tracking-wider">
-                Direct Host
-              </h4>
-              <div className="space-y-3 text-xs">
-                <div>
-                  <span className="text-slate-500 block text-[10px] uppercase font-bold">Call / WhatsApp</span>
-                  <a href="tel:+917012761588" className="text-white font-bold hover:text-orange-400 transition-colors block mt-0.5 text-sm">
-                    +91 7012 761 588
-                  </a>
-                </div>
-                <div>
-                  <span className="text-slate-500 block text-[10px] uppercase font-bold">Host</span>
-                  <span className="text-slate-300 font-semibold block">Abhijith (Host)</span>
-                </div>
-                <div>
-                  <span className="text-slate-500 block text-[10px] uppercase font-bold">Timings</span>
-                  <span className="text-slate-300 font-medium block">Check-in: 2:00 PM</span>
-                  <span className="text-slate-300 font-medium block">Checkout: 11:00 AM</span>
+            {/* Contact Column — 2 cols */}
+            <div className="lg:col-span-2 space-y-4">
+              <h4 className="font-extrabold text-white text-[11px] uppercase tracking-widest">Contact</h4>
+              <div className="space-y-4">
+                <div className="bg-slate-900 rounded-2xl border border-slate-800 p-4 space-y-3">
+                  <div>
+                    <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider block mb-0.5">Your Host</span>
+                    <span className="text-white font-bold text-sm">Abhijith</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider block mb-0.5">Phone / WhatsApp</span>
+                    <a href="tel:+917012761588" className="text-white font-black text-sm hover:text-orange-400 transition-colors">
+                      +91 7012 761 588
+                    </a>
+                  </div>
+                  <div className="grid grid-cols-2 gap-1.5 text-[10px] font-bold text-slate-400">
+                    <div className="bg-slate-800 rounded-lg px-2 py-1.5 text-center">
+                      <span className="block text-white font-black">2:00 PM</span>Check-in
+                    </div>
+                    <div className="bg-slate-800 rounded-lg px-2 py-1.5 text-center">
+                      <span className="block text-white font-black">11:00 AM</span>Checkout
+                    </div>
+                  </div>
                 </div>
                 <a
                   href="https://wa.me/917012761588"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-3.5 py-2 rounded-xl transition-all active:scale-95 text-[11px] shadow-sm"
+                  className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2.5 rounded-xl transition-all active:scale-95 text-xs shadow-md shadow-emerald-900/40 w-full"
                 >
                   <MessageCircle className="w-3.5 h-3.5 fill-current" />
                   Chat on WhatsApp
@@ -1402,72 +1545,73 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Col 4: Interactive Google Maps Location Card (4 cols) */}
+            {/* Map Column — 4 cols */}
             <div className="lg:col-span-4 space-y-3">
               <div className="flex items-center justify-between">
-                <h4 className="font-extrabold text-white text-xs uppercase tracking-wider flex items-center gap-1.5">
+                <h4 className="font-extrabold text-white text-[11px] uppercase tracking-widest flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-orange-500" />
-                  Location & Pickup Point
+                  Location & Pickup
                 </h4>
                 <a
                   href="https://maps.google.com/?q=9.5016131229736,76.35738157806414"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[11px] font-bold text-sky-400 hover:text-sky-300 underline"
+                  className="text-[11px] font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1 transition-colors"
                 >
-                  Open in Google Maps ↗
+                  Open Maps ↗
                 </a>
               </div>
 
-              {/* Google Maps Embed Container */}
-              <div className="relative rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900 shadow-xl group">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl group">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1171.7375215159498!2d76.35738157806414!3d9.5016131229736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1786728871048!5m2!1sen!2sin"
                   width="100%"
-                  height="190"
+                  height="220"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="strict-origin-when-cross-origin"
-                  className="w-full h-[190px] brightness-90 contrast-[1.05] group-hover:brightness-100 transition-all duration-300"
+                  className="w-full brightness-90 contrast-[1.05] group-hover:brightness-100 transition-all duration-300"
                   title="Zen Homestay Location Map"
                 />
-                <div className="p-3 bg-slate-900/95 border-t border-slate-800 flex items-center justify-between text-[11px]">
-                  <div className="flex items-center gap-1.5 text-slate-300 truncate pr-2 font-medium">
+                <div className="p-3 bg-slate-900/95 border-t border-slate-800 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-slate-300 font-medium truncate pr-2">
                     <MapPin className="w-3 h-3 text-sky-400 shrink-0" />
                     <span className="truncate">Finishing Point, Punnamada Lake</span>
                   </div>
                   <span className="text-orange-400 font-extrabold shrink-0">Alleppey, Kerala</span>
                 </div>
               </div>
+
+              {/* Travel tip */}
+              <div className="flex items-start gap-2 bg-slate-900 border border-slate-800 rounded-xl p-3">
+                <Anchor className="w-3.5 h-3.5 text-sky-400 mt-0.5 shrink-0" />
+                <p className="text-slate-400 text-[11px] leading-relaxed">
+                  <span className="text-white font-bold">No road access</span> — arrive at the Nehru Trophy Finishing Point and your complimentary speedboat will pick you up in 5 minutes.
+                </p>
+              </div>
             </div>
 
           </div>
 
-          {/* Bottom Copyright & Policy Links */}
-          <div className="pt-8 flex flex-wrap items-center justify-between gap-4 text-slate-500 text-xs font-medium">
-            <div className="flex flex-wrap items-center gap-2">
-              <p>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
-              <span className="hidden sm:inline">·</span>
-              <span className="text-slate-400 hidden sm:inline">Direct Host Rates with 0% Commission</span>
+          {/* ── Bottom Bar ── */}
+          <div className="pt-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px] font-medium">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-center sm:text-left">
+              <p className="text-slate-500">© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
+              <span className="hidden sm:inline text-slate-700">·</span>
+              <span className="text-slate-600">Direct Host · 0% Commission · Best Rate Guaranteed</span>
             </div>
-            <div className="flex items-center gap-4 text-slate-400">
-              <Link href="/terms-and-conditions" className="hover:underline hover:text-white transition-colors">
-                Terms & Conditions
-              </Link>
-              <span>·</span>
-              <Link href="/privacy-policy" className="hover:underline hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <span>·</span>
-              <Link href="/contact" className="hover:underline hover:text-white transition-colors">
-                Contact Host
-              </Link>
+            <div className="flex items-center gap-3 text-slate-600">
+              <Link href="/terms-and-conditions" className="hover:text-slate-300 transition-colors">Terms</Link>
+              <span className="text-slate-800">·</span>
+              <Link href="/privacy-policy" className="hover:text-slate-300 transition-colors">Privacy</Link>
+              <span className="text-slate-800">·</span>
+              <Link href="/contact" className="hover:text-slate-300 transition-colors">Contact</Link>
             </div>
           </div>
-
         </div>
       </footer>
+
 
       {/* Mobile Sticky Bottom Floating Action Bar */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-4 flex items-center justify-between shadow-2xl">

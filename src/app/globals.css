@@ -25,6 +25,16 @@
       transform: translateY(0);
     }
   }
+
+  @keyframes fadeOut {
+    0%   { opacity: 1; }
+    100% { opacity: 0; pointer-events: none; }
+  }
+
+  @keyframes bounceX {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(4px); }
+  }
 }
 
 html {

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://zen-homestay.vercel.app';
+  const baseUrl = 'https://abhijithr.online';
 
   return [
     {
