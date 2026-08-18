@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     siteName: "Zen Homestay Alleppey",
     images: [
       {
-        url: "/kerala_backwaters_hero_1786702183985.jpg",
+        url: "https://abhijithr.online/kerala_backwaters_hero_1786702183985.jpg",
         width: 1200,
         height: 630,
         alt: "Zen Homestay – Best Alleppey Homestay on Punnamada Lake",

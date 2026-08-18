@@ -34,10 +34,18 @@ import {
 
 export default function Home() {
   const [showGallery, setShowGallery] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [mobileSlideIdx, setMobileSlideIdx] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+
+  // Scroll detection for header animation
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Keyboard navigation & body scroll lock for Gallery Modal
   useEffect(() => {
@@ -125,7 +133,7 @@ export default function Home() {
   const handleDateCellClick = (year: number, month: number, day: number) => {
     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const selectedDate = new Date(year, month, day);
-
+    
     if (activeDateStep === 'checkIn') {
       setCheckIn(dateStr);
       const [oy, om, od] = checkOut.split('-').map(Number);
@@ -276,6 +284,18 @@ export default function Home() {
 
   const renderBookingCard = () => (
     <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xl space-y-4 sm:space-y-5">
+
+      {/* Urgency / Scarcity Banner */}
+      <div className="flex items-center justify-between bg-red-50 border border-red-200 rounded-2xl px-3 py-2">
+        <div className="flex items-center gap-1.5">
+          <span className="relative flex w-2 h-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+            <span className="relative inline-flex rounded-full w-2 h-2 bg-red-500" />
+          </span>
+          <span className="text-[11px] font-extrabold text-red-700">Only 2 rooms · Fills fast</span>
+        </div>
+        <span className="text-[10px] font-bold text-red-600 bg-red-100 px-2 py-0.5 rounded-full border border-red-200">🔥 High demand</span>
+      </div>
 
       {/* Special Offer Header Pill */}
       <div className="bg-orange-500 text-white text-[11px] font-extrabold py-1.5 px-3 rounded-full text-center tracking-wider uppercase shadow-sm">
@@ -530,41 +550,122 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Host Profile Card — Fix #3 */}
+      <div className="border-t border-slate-100 pt-3.5">
+        <div className="flex items-center gap-3">
+          <div className="relative shrink-0">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-sky-400 via-sky-500 to-orange-500 flex items-center justify-center text-white font-black text-base shadow-md">
+              A
+            </div>
+            <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full" />
+          </div>
+          <div className="min-w-0">
+            <p className="font-extrabold text-slate-900 text-sm leading-tight">Abhijith · Your Host</p>
+            <p className="text-[11px] text-slate-500 font-medium mt-0.5">Responds in &lt; 5 mins · English, Malayalam</p>
+            <div className="flex items-center gap-1 mt-0.5">
+              <span className="text-orange-500 text-[11px]">★★★★★</span>
+              <span className="text-[11px] font-bold text-slate-700">4.98</span>
+              <span className="text-[11px] text-slate-400">(48 reviews)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-900 pb-20 md:pb-0">
 
-      {/* Improved Sticky Navigation Header */}
-      <header className="sticky top-0 z-50 w-full">
-        {/* Ultra-thin accent line at the very top */}
-        <div className="h-[3px] bg-gradient-to-r from-sky-500 via-orange-400 to-sky-500" />
+      {/* Sticky Navigation Header — morphs on scroll */}
+      <header
+        className="sticky top-0 z-50 w-full transition-all duration-500 ease-in-out"
+        style={scrolled ? { padding: '10px 16px' } : {}}
+      >
+        {/* Ultra-thin accent line — hidden when scrolled */}
+        <div
+          className="h-[3px] bg-gradient-to-r from-sky-500 via-orange-400 to-sky-500 transition-all duration-500"
+          style={scrolled ? { height: 0 } : {}}
+        />
 
-        <div className="bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_30px_-5px_rgba(0,0,0,0.08)]">
-          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-[72px] flex items-center justify-between gap-2 sm:gap-4">
+        <div
+          className="transition-all duration-500 ease-in-out"
+          style={scrolled
+            ? {
+                background: 'rgba(15,23,42,0.92)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                borderRadius: '9999px',
+                boxShadow: '0 8px 40px -8px rgba(0,0,0,0.45)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                maxWidth: '1050px',
+                margin: '0 auto',
+              }
+            : {
+                background: 'rgba(255,255,255,0.92)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                borderBottom: '1px solid rgba(203,213,225,0.7)',
+                boxShadow: '0 4px 30px -5px rgba(0,0,0,0.08)',
+              }
+          }
+        >
+          <div
+            className="transition-all duration-500 ease-in-out flex items-center justify-between"
+            style={scrolled
+              ? { padding: '6px 18px', gap: '10px' }
+              : { maxWidth: '80rem', margin: '0 auto', padding: '0 1rem', height: '72px', gap: '16px' }
+            }
+          >
 
             {/* Brand Logo & Superhost Badge */}
             <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink min-w-0">
               <div className="relative shrink-0">
-                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-md sm:shadow-lg shadow-sky-500/20 ring-2 sm:ring-[3px] ring-sky-100 group-hover:scale-105 transition-transform duration-300">
-                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                <div
+                  className="rounded-xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-md transition-all duration-500"
+                  style={scrolled
+                    ? { width: '30px', height: '30px', boxShadow: '0 0 0 2px rgba(255,255,255,0.15)' }
+                    : { width: '44px', height: '44px', borderRadius: '14px', boxShadow: '0 4px 12px rgba(14,165,233,0.25)', outline: '3px solid rgb(224,242,254)' }
+                  }
+                >
+                  <Sparkles className="w-4 h-4" />
                 </div>
                 {/* Live green dot */}
-                <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full shadow-sm" />
+                <span
+                  className="absolute -bottom-0.5 -right-0.5 bg-emerald-500 border-2 rounded-full transition-all duration-500"
+                  style={scrolled
+                    ? { width: '8px', height: '8px', borderColor: 'rgb(15,23,42)' }
+                    : { width: '10px', height: '10px', borderColor: 'white' }
+                  }
+                />
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="font-extrabold text-base sm:text-xl tracking-tight text-slate-900 leading-none group-hover:text-sky-600 transition-colors truncate">
+                <span
+                  className="font-extrabold tracking-tight leading-none transition-all duration-500 truncate"
+                  style={scrolled ? { color: 'white', fontSize: '15px' } : { color: 'rgb(15,23,42)', fontSize: '19px' }}
+                >
                   Zen Homestay
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-bold text-sky-600 tracking-wider uppercase mt-0.5 sm:mt-1 flex items-center gap-1 sm:gap-1.5 truncate">
+                <span
+                  className="font-bold tracking-wider uppercase flex items-center gap-1 truncate transition-all duration-500"
+                  style={scrolled
+                    ? { color: 'rgb(125,211,252)', fontSize: '9px', marginTop: '1px' }
+                    : { color: 'rgb(2,132,199)', fontSize: '11px', marginTop: '3px' }
+                  }
+                >
                   <span className="truncate">Punnamada Lake · Alleppey, Kerala</span>
                 </span>
               </div>
             </Link>
 
             {/* Centre Nav — desktop only */}
-            <nav className="hidden lg:flex items-center bg-slate-100/90 border border-slate-200/80 rounded-full p-1 text-xs font-bold text-slate-600 shadow-inner gap-0.5">
+            <nav
+              className="hidden lg:flex items-center rounded-full p-1 text-xs font-bold gap-0.5 transition-all duration-500"
+              style={scrolled
+                ? { background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)' }
+                : { background: 'rgba(241,245,249,0.9)', border: '1px solid rgba(203,213,225,0.8)', boxShadow: 'inset 0 1px 4px rgba(0,0,0,0.05)' }
+              }
+            >
               {[
                 { href: '#arrival', label: 'Arrival Route' },
                 { href: '#stay', label: 'Lakefront Rooms' },
@@ -575,15 +676,32 @@ export default function Home() {
                 <a
                   key={href}
                   href={href}
-                  className="px-3.5 py-1 rounded-full hover:bg-white hover:text-slate-900 hover:shadow-sm transition-all duration-200 relative group"
+                  className="px-3.5 py-1.5 rounded-full transition-all duration-200 relative group whitespace-nowrap"
+                  style={scrolled
+                    ? { color: 'rgba(255,255,255,0.8)' }
+                    : { color: 'rgb(71,85,105)' }
+                  }
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.background = scrolled ? 'rgba(255,255,255,0.12)' : 'white';
+                    (e.currentTarget as HTMLElement).style.color = scrolled ? 'white' : 'rgb(15,23,42)';
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.background = 'transparent';
+                    (e.currentTarget as HTMLElement).style.color = scrolled ? 'rgba(255,255,255,0.8)' : 'rgb(71,85,105)';
+                  }}
                 >
                   {label}
-                  {/* Subtle orange underline on hover */}
                   <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0 group-hover:w-4 h-[2px] bg-orange-400 rounded-full transition-all duration-200" />
                 </a>
               ))}
-              <div className="h-3.5 w-px bg-slate-300 mx-1" />
-              <div className="flex items-center gap-1.5 px-3 py-0.5 text-[11px] font-extrabold text-orange-600">
+              <div
+                className="h-3.5 w-px mx-1"
+                style={scrolled ? { background: 'rgba(255,255,255,0.15)' } : { background: 'rgb(203,213,225)' }}
+              />
+              <div
+                className="flex items-center gap-1.5 px-3 py-0.5 text-[11px] font-extrabold"
+                style={scrolled ? { color: 'rgb(251,146,60)' } : { color: 'rgb(234,88,12)' }}
+              >
                 <span className="relative flex w-2 h-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
                   <span className="relative inline-flex rounded-full w-2 h-2 bg-orange-500" />
@@ -599,9 +717,16 @@ export default function Home() {
                 href="https://wa.me/917012761588"
                 target="_blank"
                 rel="noreferrer"
-                className="hidden sm:flex items-center gap-1.5 text-xs font-bold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 hover:text-emerald-900 border border-emerald-200/80 px-3.5 py-2 sm:py-2.5 rounded-full transition-all shadow-sm active:scale-95"
+                className="hidden sm:flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-full transition-all duration-300 active:scale-95"
+                style={scrolled
+                  ? { background: 'rgba(255,255,255,0.1)', color: 'white', border: '1px solid rgba(255,255,255,0.15)' }
+                  : { background: 'rgb(240,253,244)', color: 'rgb(6,78,59)', border: '1px solid rgba(187,247,208,0.8)', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }
+                }
               >
-                <MessageCircle className="w-4 h-4 text-emerald-600 fill-emerald-600/20" />
+                <MessageCircle
+                  className="w-4 h-4"
+                  style={scrolled ? { color: 'rgb(134,239,172)' } : { color: 'rgb(22,163,74)' }}
+                />
                 <span>WhatsApp</span>
               </a>
 
@@ -611,15 +736,26 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="WhatsApp"
-                className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/80 active:scale-95 transition-all shadow-sm"
+                className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full active:scale-95 transition-all"
+                style={scrolled
+                  ? { background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)' }
+                  : { background: 'rgb(240,253,244)', border: '1px solid rgba(187,247,208,0.8)' }
+                }
               >
-                <MessageCircle className="w-4 h-4 fill-emerald-600/20" />
+                <MessageCircle
+                  className="w-4 h-4"
+                  style={scrolled ? { color: 'rgb(134,239,172)' } : { color: 'rgb(22,163,74)' }}
+                />
               </a>
 
               {/* Contact Host */}
               <Link
                 href="/contact"
-                className="bg-orange-500 hover:bg-orange-600 text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 shadow-md shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-95 flex items-center gap-1.5"
+                className="bg-orange-500 hover:bg-orange-600 text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 shadow-md active:scale-95 flex items-center gap-1.5"
+                style={scrolled
+                  ? { boxShadow: '0 4px 20px rgba(249,115,22,0.4)' }
+                  : { boxShadow: '0 4px 12px rgba(249,115,22,0.25)' }
+                }
               >
                 <Phone className="w-3.5 h-3.5 hidden sm:block" />
                 <span>Contact Host</span>
@@ -924,7 +1060,7 @@ export default function Home() {
             </div>
 
             {/* THE ARRIVAL EXPERIENCE SECTION */}
-            <div id="arrival" className="pb-8 border-b border-slate-200">
+            <div id="arrival" className="pb-8 border-b border-slate-200 scroll-mt-24">
               <span className="text-xs font-extrabold tracking-wider text-orange-600 uppercase bg-orange-50 px-3 py-1 rounded-full border border-orange-200">
                 Unique Selling Point
               </span>
@@ -966,7 +1102,7 @@ export default function Home() {
             </div>
 
             {/* STAY DETAILS (Plain text informational sleeping arrangement) */}
-            <div id="stay" className="pb-8 border-b border-slate-200">
+            <div id="stay" className="pb-8 border-b border-slate-200 scroll-mt-24">
               <div className="flex items-baseline justify-between mb-2">
                 <h2 className="text-2xl font-extrabold text-slate-900">Where you'll sleep</h2>
                 <span className="text-xs font-bold text-orange-600 bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200">
@@ -1022,7 +1158,7 @@ export default function Home() {
             </div>
 
             {/* WHAT THIS PLACE OFFERS (Amenities Grid) */}
-            <div id="amenities" className="pb-8 border-b border-slate-200 bg-white p-8 rounded-3xl border shadow-sm">
+            <div id="amenities" className="pb-8 border-b border-slate-200 bg-white p-8 rounded-3xl border shadow-sm scroll-mt-24">
               <h2 className="text-2xl font-extrabold text-slate-900 mb-6">What this place offers</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-slate-800 text-sm">
@@ -1062,7 +1198,58 @@ export default function Home() {
             </div>
 
             {/* HOW TO BOOK YOUR ROOM SECTION */}
-            <div id="how-to-book" className="pb-8 border-b border-slate-200">
+            {/* OTA vs Direct Booking Price Comparison */}
+            <div className="pb-8 border-b border-slate-200">
+              <span className="text-xs font-extrabold tracking-wider text-emerald-700 uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                Why Book Direct?
+              </span>
+              <h2 className="text-2xl font-extrabold text-slate-900 mt-3 mb-2">Save 20–25% vs Booking Platforms</h2>
+              <p className="text-sm text-slate-600 mb-6 font-medium">
+                OTA platforms add 15–25% commission on top of the room rate. Booking directly with Abhijith means you pay less and get more.
+              </p>
+
+              <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                <table className="w-full text-sm text-left">
+                  <thead>
+                    <tr className="bg-slate-900 text-white text-xs">
+                      <th className="px-4 py-3 font-bold rounded-tl-xl">What you get</th>
+                      <th className="px-4 py-3 font-bold text-center">
+                        <span className="inline-flex items-center gap-1">
+                          <span className="text-sky-400">✦</span> Zen Homestay Direct
+                        </span>
+                      </th>
+                      <th className="px-4 py-3 font-bold text-center text-slate-400 rounded-tr-xl">Airbnb / MakeMyTrip</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {[
+                      ['Room rate (1 night, 1 room)', '₹3,000', '₹3,600–₹4,500'],
+                      ['Platform service fee', '₹0', '₹400–₹800'],
+                      ['Speedboat transfer', '✅ Free', '❌ Not included'],
+                      ['Kerala breakfast', '✅ Included', '❌ Extra cost'],
+                      ['Host response time', '< 5 mins', '24–48 hrs'],
+                      ['Cancellation flexibility', '✅ Direct negotiation', '⚠️ Platform policy'],
+                      ['Total effective saving', '₹1,000–₹2,300 saved', '—'],
+                    ].map(([feature, direct, ota], i) => (
+                      <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'}>
+                        <td className="px-4 py-3 font-medium text-slate-700">{feature}</td>
+                        <td className="px-4 py-3 text-center font-bold text-emerald-700 bg-emerald-50/60">{direct}</td>
+                        <td className="px-4 py-3 text-center text-slate-500">{ota}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-4 flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-2xl px-4 py-3">
+                <span className="text-emerald-600 text-lg">💸</span>
+                <p className="text-sm font-bold text-emerald-800">
+                  Most guests save <span className="text-emerald-600">₹1,000–₹2,300 per stay</span> by booking directly with Abhijith.
+                </p>
+              </div>
+            </div>
+
+            <div id="how-to-book" className="pb-8 border-b border-slate-200 scroll-mt-24">
               <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                 <span className="text-xs font-extrabold tracking-wider text-orange-600 uppercase bg-orange-50 px-3 py-1 rounded-full border border-orange-200 inline-flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5" />
@@ -1540,7 +1727,7 @@ export default function Home() {
             </div>
 
             {/* Interactive FAQ Accordion */}
-            <div id="faq">
+            <div id="faq" className="scroll-mt-24">
               <div className="flex items-center gap-2 mb-2">
                 <HelpCircle className="w-5 h-5 text-sky-600" />
                 <span className="text-xs font-extrabold tracking-wider text-sky-700 uppercase">Frequently Asked Questions</span>
