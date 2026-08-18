@@ -28,7 +28,8 @@ import {
   Sun,
   HelpCircle,
   Plus,
-  Minus
+  Minus,
+  ArrowRight
 } from 'lucide-react';
 
 export default function Home() {
@@ -568,6 +569,7 @@ export default function Home() {
                 { href: '#arrival', label: 'Arrival Route' },
                 { href: '#stay', label: 'Lakefront Rooms' },
                 { href: '#amenities', label: 'Amenities' },
+                { href: '#how-to-book', label: 'How to Book' },
                 { href: '#faq', label: 'FAQs' },
               ].map(({ href, label }) => (
                 <a
@@ -1060,6 +1062,234 @@ export default function Home() {
               </div>
             </div>
 
+            {/* HOW TO BOOK YOUR ROOM SECTION */}
+            <div id="how-to-book" className="pb-8 border-b border-slate-200">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span className="text-xs font-extrabold tracking-wider text-orange-600 uppercase bg-orange-50 px-3 py-1 rounded-full border border-orange-200 inline-flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  Simple 4-Step Booking
+                </span>
+                <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                  Zero Commission · Direct Host Rates
+                </span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">
+                How to Book Your Room
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 mb-8 leading-relaxed font-normal">
+                Reserve your lakefront stay directly with host Abhijith in under 2 minutes. Enjoy 100% transparent pricing with zero middleman commissions, instant confirmation, and complimentary speedboat transfer.
+              </p>
+
+              {/* 4 Step Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+
+                {/* Step 1 */}
+                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-sky-300 transition-all flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-10 h-10 rounded-2xl bg-sky-500 text-white font-black text-sm flex items-center justify-center shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform">
+                        01
+                      </div>
+                      <div className="p-2.5 rounded-xl bg-sky-50 text-sky-600">
+                        <Calendar className="w-5 h-5" />
+                      </div>
+                    </div>
+                    <h3 className="font-extrabold text-slate-900 text-base mb-1.5">
+                      1. Select Dates &amp; Guests
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      Choose your check-in &amp; check-out dates and guest count using our interactive reservation widget. Select 1 or 2 identical lakefront rooms (accommodates up to 3 guests per room).
+                    </p>
+                  </div>
+                  <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="font-extrabold text-orange-600 bg-orange-50 px-2.5 py-1 rounded-lg border border-orange-200">
+                      ₹3,000 / room / night
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const widget = document.getElementById('booking-section');
+                        if (widget && window.innerWidth < 1024) {
+                          widget.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                      }}
+                      className="text-sky-600 font-bold hover:text-sky-700 inline-flex items-center gap-1 hover:underline cursor-pointer"
+                    >
+                      <span>Select dates</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Step 2 */}
+                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-orange-300 transition-all flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-10 h-10 rounded-2xl bg-orange-500 text-white font-black text-sm flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:scale-105 transition-transform">
+                        02
+                      </div>
+                      <div className="p-2.5 rounded-xl bg-orange-50 text-orange-600">
+                        <MessageCircle className="w-5 h-5" />
+                      </div>
+                    </div>
+                    <h3 className="font-extrabold text-slate-900 text-base mb-1.5">
+                      2. Connect Directly with Host
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      Tap <strong>Reserve via WhatsApp</strong> or call host Abhijith at <strong>+91 7012 761 588</strong>. Your requested dates, guests, and calculated direct pricing are pre-filled automatically.
+                    </p>
+                  </div>
+                  <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Host replies in &lt; 5 mins
+                    </span>
+                    <a
+                      href={whatsappBookingUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-orange-600 font-bold hover:text-orange-700 inline-flex items-center gap-1 hover:underline"
+                    >
+                      <span>Chat now</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white font-black text-sm flex items-center justify-center shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform">
+                        03
+                      </div>
+                      <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600">
+                        <ShieldCheck className="w-5 h-5" />
+                      </div>
+                    </div>
+                    <h3 className="font-extrabold text-slate-900 text-base mb-1.5">
+                      3. Instant Confirmation &amp; 0% Fee
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      Abhijith checks live availability and confirms your reservation immediately. Enjoy direct host transparent pricing with no OTA markups, service taxes, or hidden extras.
+                    </p>
+                  </div>
+                  <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="font-bold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-lg">
+                      Direct Host Guarantee
+                    </span>
+                    <span className="font-bold text-emerald-600">No Hidden Costs</span>
+                  </div>
+                </div>
+
+                {/* Step 4 */}
+                <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-sky-300 transition-all flex flex-col justify-between group">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-10 h-10 rounded-2xl bg-sky-600 text-white font-black text-sm flex items-center justify-center shadow-md shadow-sky-600/20 group-hover:scale-105 transition-transform">
+                        04
+                      </div>
+                      <div className="p-2.5 rounded-xl bg-sky-50 text-sky-600">
+                        <Anchor className="w-5 h-5" />
+                      </div>
+                    </div>
+                    <h3 className="font-extrabold text-slate-900 text-base mb-1.5">
+                      4. Free Boat Pickup &amp; Check-In
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      Arrive at the Nehru Trophy Boat Race Finishing Point in Alleppey. Our team meets you with your complimentary private speed boat for a scenic 5-minute transfer right to our docks.
+                    </p>
+                  </div>
+                  <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="font-bold text-sky-700 bg-sky-50 px-2.5 py-1 rounded-lg border border-sky-100">
+                      Free Speedboat Transfer
+                    </span>
+                    <span className="font-bold text-slate-500">Check-in: 2:00 PM</span>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Direct Booking Advantages Callout Card */}
+              <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-800">
+                    <div>
+                      <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20 inline-block mb-2">
+                        Why Book Direct with Host Abhijith?
+                      </span>
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+                        Best Rate &amp; VIP Backwater Hospitality Guaranteed
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap items-center gap-3 shrink-0">
+                      <a
+                        href={whatsappBookingUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold px-5 py-3 rounded-2xl text-xs sm:text-sm shadow-lg shadow-emerald-950/50 hover:shadow-emerald-500/30 transition-all active:scale-95 group"
+                      >
+                        <MessageCircle className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
+                        <span>Reserve on WhatsApp</span>
+                      </a>
+                      <a
+                        href="tel:+917012761588"
+                        className="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 px-4 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all active:scale-95"
+                      >
+                        <Phone className="w-4 h-4 text-sky-400" />
+                        <span>Call +91 7012 761 588</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 text-xs sm:text-sm">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-400 flex items-center justify-center shrink-0">
+                        <CheckCircle2 className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white text-sm">Save 15-20% Commission</h4>
+                        <p className="text-slate-400 text-xs mt-0.5 leading-relaxed">
+                          No third-party online booking portal surcharges. Best direct host rates.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-sky-400/10 border border-sky-400/20 text-sky-400 flex items-center justify-center shrink-0">
+                        <Waves className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white text-sm">Free Speedboat Transfer</h4>
+                        <p className="text-slate-400 text-xs mt-0.5 leading-relaxed">
+                          Scenic 5-minute private speed boat pickup coordinated seamlessly with Abhijith.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 flex items-center justify-center shrink-0">
+                        <Coffee className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-white text-sm">Breakfast &amp; Custom Trips</h4>
+                        <p className="text-slate-400 text-xs mt-0.5 leading-relaxed">
+                          Fresh Kerala breakfast included, plus personalized Shikara ride arrangements.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* The Backwater Lifestyle Experience */}
             <div className="pb-8 border-b border-slate-200">
               <span className="text-xs font-bold tracking-wider text-sky-700 uppercase bg-sky-50 px-3 py-1 rounded-full border border-sky-100">
@@ -1485,6 +1715,7 @@ export default function Home() {
                   { href: '#arrival', label: 'The Arrival Route' },
                   { href: '#stay', label: "Where You'll Sleep" },
                   { href: '#amenities', label: 'Property Amenities' },
+                  { href: '#how-to-book', label: 'How to Book' },
                   { href: '#faq', label: 'FAQs' },
                 ].map(({ href, label }) => (
                   <li key={href}>
