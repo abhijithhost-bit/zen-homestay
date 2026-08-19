@@ -1057,6 +1057,22 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Host Family Trust Signal */}
+              <div className="flex items-start gap-4 pt-2 mt-2 border-t border-slate-100">
+                <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600 shrink-0">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-base flex items-center gap-2">
+                    Home-Hosted by a Real Local Family
+                    <span className="text-[10px] bg-emerald-100 text-emerald-700 font-black px-2 py-0.5 rounded-full uppercase tracking-wide">Safe Stay</span>
+                  </h4>
+                  <p className="text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    Abhijith and his family live on the ground floor — guests enjoy the entire upper floor privately. You're staying in a real home, not a hotel.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
             {/* THE ARRIVAL EXPERIENCE SECTION */}
