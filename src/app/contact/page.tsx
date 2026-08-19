@@ -118,6 +118,22 @@ export default function Contact() {
               <Phone className="w-4 h-4 text-sky-400" />
               Call +91 7012 761 588
             </a>
+            <div className="flex gap-2 mt-2">
+              <a
+                href="tel:+919947753154"
+                className="flex-1 flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 py-3 rounded-xl font-bold text-xs transition-all active:scale-95"
+              >
+                <Phone className="w-3.5 h-3.5 text-sky-600" />
+                +91 9947 753 154
+              </a>
+              <a
+                href="tel:+916238951178"
+                className="flex-1 flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 py-3 rounded-xl font-bold text-xs transition-all active:scale-95"
+              >
+                <Phone className="w-3.5 h-3.5 text-sky-600" />
+                +91 6238 951 178
+              </a>
+            </div>
           </div>
 
         </div>

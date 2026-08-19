@@ -1937,8 +1937,14 @@ export default function Home() {
                   </div>
                   <div>
                     <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider block mb-0.5">Phone / WhatsApp</span>
-                    <a href="tel:+917012761588" className="text-white font-black text-sm hover:text-orange-400 transition-colors">
+                    <a href="tel:+917012761588" className="text-white font-black text-sm hover:text-orange-400 transition-colors block">
                       +91 7012 761 588
+                    </a>
+                    <a href="tel:+919947753154" className="text-slate-300 font-bold text-xs hover:text-orange-400 transition-colors block mt-0.5">
+                      +91 9947 753 154
+                    </a>
+                    <a href="tel:+916238951178" className="text-slate-300 font-bold text-xs hover:text-orange-400 transition-colors block mt-0.5">
+                      +91 6238 951 178
                     </a>
                   </div>
                   <div className="grid grid-cols-2 gap-1.5 text-[10px] font-bold text-slate-400">
