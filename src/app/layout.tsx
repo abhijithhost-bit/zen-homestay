@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://abhijithr.online'),
   title: "Alleppey Homestay on Punnamada Lake | Zen Homestay – Best in Alleppey",
-  description: "Zen Homestay is the best Alleppey homestay — a secluded waterfront retreat on Punnamada Lake with direct lake views, complimentary 5-min speedboat transfer & authentic Kerala breakfast. Book direct for best rates.",
+  description: "Zen Homestay is the best Alleppey homestay — a modern lakefront retreat on Punnamada Lake, located directly opposite the Nehru Trophy Boat Race finishing point. Enjoy direct lake views, beautiful sunsets, complimentary speedboat pickup & drop-off & authentic Kerala breakfast. Book direct for best rates.",
   keywords: [
     "alleppey homestay",
     "best alleppey homestay",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   creator: "Zen Homestay",
   openGraph: {
     title: "Alleppey Homestay on Punnamada Lake | Zen Homestay – Best in Alleppey",
-    description: "The best Alleppey homestay — direct Punnamada Lake views, complimentary 5-min speedboat transfer & authentic Kerala breakfast. Book direct, zero commission.",
+    description: "The best Alleppey homestay — directly across Punnamada Lake from the Nehru Trophy finishing point. Direct lake views, complimentary speedboat pickup & drop-off & authentic Kerala breakfast. Book direct, zero commission.",
     url: "https://abhijithr.online",
     siteName: "Zen Homestay Alleppey",
     images: [
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Alleppey Homestay | Zen Homestay on Punnamada Lake",
-    description: "The best Alleppey homestay — wake up to direct Punnamada Lake views. Speedboat access, Kerala breakfast & zero commission booking.",
+    description: "The best Alleppey homestay — wake up to direct Punnamada Lake views opposite the Nehru Trophy finishing point. Speedboat pickup & drop-off, Kerala breakfast & zero commission booking.",
     images: ["/kerala_backwaters_hero_1786702183985.jpg"],
   },
   alternates: {
@@ -80,7 +80,7 @@ const jsonLd = {
       "alternateName": "Zen Homestay Punnamada Lake Alleppey",
       "url": "https://abhijithr.online",
       "headline": "Best Alleppey Homestay on Punnamada Lake",
-      "description": "Zen Homestay is the best Alleppey homestay — a secluded waterfront retreat on Punnamada Lake with direct lake views, complimentary 5-minute speedboat transfer from the Nehru Trophy Boat Race finishing point, and authentic Kerala home cooking.",
+      "description": "Zen Homestay is the best Alleppey homestay — a modern lakefront retreat on Punnamada Lake, situated directly across the water from the famous Nehru Trophy Boat Race Finishing Point, which guests can see from the property. Complimentary speedboat pickup AND drop-off from the finishing point, stunning sunset views, and authentic Kerala home cooking.",
       "image": [
         "https://abhijithr.online/kerala_backwaters_hero_1786702183985.jpg",
         "https://abhijithr.online/kerala_heritage_room_1786702263227.jpg",
@@ -107,10 +107,10 @@ const jsonLd = {
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 9.5015,
-        "longitude": 76.3537
+        "latitude": 9.502023969622542,
+        "longitude": 76.35757685613443
       },
-      "hasMap": "https://maps.google.com/?q=9.5015,76.3537",
+      "hasMap": "https://maps.google.com/?q=9.502023969622542,76.35757685613443",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.98",
@@ -120,18 +120,22 @@ const jsonLd = {
       },
       "amenityFeature": [
         { "@type": "LocationFeatureSpecification", "name": "Direct Punnamada Lake View", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Complimentary Speedboat Transfer", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Views of Nehru Trophy Finishing Point", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Complimentary Speedboat Pickup & Drop-off", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Authentic Kerala Breakfast Included", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Morning Tea Included", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Air Conditioning", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Free High-Speed Wi-Fi", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Private Wooden Balcony", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Zero Road Noise Seclusion", "value": true }
+        { "@type": "LocationFeatureSpecification", "name": "Private Lake-Facing Balcony", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Shikara Rides Available", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Kayaking Available", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Speedboat Rides Available", "value": true }
       ],
       "containsPlace": [
         {
           "@type": "HotelRoom",
-          "name": "Lake View Heritage Bedroom 1",
-          "description": "Spacious heritage lakefront room with direct panoramic Punnamada Lake views, AC, and private wooden balcony.",
+          "name": "Lake View Bedroom 1",
+          "description": "Modern AC lakefront room with direct panoramic Punnamada Lake views, comfortable king bed, attached bathroom, and lake-facing balcony. Located on the private 2nd floor.",
           "bed": {
             "@type": "BedDetails",
             "numberOfBeds": 1,
@@ -145,8 +149,8 @@ const jsonLd = {
         },
         {
           "@type": "HotelRoom",
-          "name": "Lake View Heritage Bedroom 2",
-          "description": "Traditional Kerala teak wood interior with direct lake breeze, AC, and private waterfront veranda.",
+          "name": "Lake View Bedroom 2",
+          "description": "Modern AC lakefront room with direct Punnamada Lake views, comfortable king bed, and private attached bathroom. Located on the private 2nd floor with beautiful sunset views.",
           "bed": {
             "@type": "BedDetails",
             "numberOfBeds": 1,
@@ -251,23 +255,23 @@ const jsonLd = {
           "name": "What makes Zen Homestay the best alleppey homestay?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Zen Homestay is rated the best alleppey homestay because it sits directly on the banks of Punnamada Lake with zero road access. Guests enjoy unmatched privacy, waking up to uninterrupted water views, authentic home-cooked Kerala cuisine, complimentary speedboat pickup, and personalized 5-star hospitality from host Abhijith — all at direct-host rates with no booking commissions."
+            "text": "Zen Homestay is located on Punnamada Lake, directly across the water from the famous Nehru Trophy Boat Race Finishing Point — which you can see from the homestay. Guests enjoy direct lake views, beautiful sunsets, complimentary speedboat pickup AND drop-off, morning tea, authentic home-cooked Kerala breakfast, and personalized host care from Abhijith — all at direct-host rates with zero commission."
           }
         },
         {
           "@type": "Question",
-          "name": "How does the complimentary 5-minute speed boat transfer work?",
+          "name": "How does the complimentary speedboat pickup and drop-off work?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "When you arrive in Alleppey, you head to the iconic Nehru Trophy Boat Race Finishing Point. Our team greets you there and escorts you onto our private speed boat for a scenic 5-minute ride across Punnamada Lake directly to our private docks. The boat transfer is 100% complimentary for all our guests."
+            "text": "When you arrive in Alleppey, head to the Nehru Trophy Boat Race Finishing Point. Host Abhijith meets you there and brings you across Punnamada Lake by private speedboat in about 5 minutes. When you check out, we drop you back to the same point. Both pickup and drop-off are 100% complimentary for all guests."
           }
         },
         {
           "@type": "Question",
-          "name": "Why is there no road connectivity to the homestay?",
+          "name": "Can I see the Nehru Trophy Boat Race Finishing Point from the homestay?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Our property was chosen deliberately to give our guests complete privacy and authentic backwater peace. Without roads or vehicular traffic, there is zero engine noise or pollution—only gentle water breezes, chirping birds, and tranquil lake vistas."
+            "text": "Yes! Zen Homestay is located on the opposite bank of Punnamada Lake from the Nehru Trophy Finishing Point. You can clearly see the finishing point from the property, and during boat race season you get a stunning front-row view from across the water."
           }
         },
         {
@@ -275,7 +279,15 @@ const jsonLd = {
           "name": "What meals are included with the stay?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Every booking includes a freshly prepared, authentic Kerala morning breakfast featuring classic favorites like hot Appam with stew, Puttu, fresh tropical fruits, and freshly brewed local tea or coffee served right beside the water."
+            "text": "Every booking includes morning tea and a freshly prepared authentic Kerala breakfast featuring classic favorites like hot Appam with stew, Puttu, fresh tropical fruits, and freshly brewed local tea or coffee."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What water activities are available at Zen Homestay?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Abhijith can arrange Shikara rides, kayaking, and speedboat rides on Punnamada Lake — all available at an extra charge. Just let him know in advance and he'll arrange everything for your stay."
           }
         },
         {

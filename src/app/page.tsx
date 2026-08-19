@@ -262,19 +262,27 @@ export default function Home() {
   const faqs = [
     {
       q: "What makes Zen Homestay the best alleppey homestay?",
-      a: "Zen Homestay is rated the best alleppey homestay because it sits directly on the banks of Punnamada Lake with zero road access. Guests enjoy unmatched privacy, waking up to uninterrupted water views, authentic home-cooked Kerala cuisine, complimentary speedboat pickup, and personalized 5-star hospitality from host Abhijith — all at direct-host rates with no booking commissions."
+      a: "Zen Homestay is located on Punnamada Lake — directly across the water from the iconic Nehru Trophy Boat Race Finishing Point, which you can actually see from the homestay. Guests enjoy direct lake views, stunning sunsets over the water, complimentary speedboat pickup AND drop-off, authentic home-cooked Kerala cuisine, and personalized host care from Abhijith — all at direct-host rates with no booking commissions."
     },
     {
-      q: "How does the complimentary 5-minute speed boat transfer work?",
-      a: "When you arrive in Alleppey, you head to the iconic Nehru Trophy Boat Race Finishing Point. Our team greets you there and escorts you onto our private speed boat for a scenic 5-minute ride across Punnamada Lake directly to our private docks. The boat transfer is 100% complimentary for all our guests."
+      q: "How does the complimentary speedboat pickup and drop-off work?",
+      a: "When you arrive in Alleppey, simply head to the Nehru Trophy Boat Race Finishing Point. Host Abhijith greets you there and brings you across Punnamada Lake by private speedboat in about 5 minutes — your complimentary check-in transfer. When you check out, we drop you back to the finishing point by speedboat as well, also complimentary. Please note: the complimentary speedboat is for check-in pickup and check-out drop-off only (one trip each way). If you'd like additional trips to town during your stay — for shopping, dining, or sightseeing — these are available at ₹300 per trip."
     },
     {
-      q: "Why is there no road connectivity to the homestay?",
-      a: "Our property was chosen deliberately to give our guests complete privacy and authentic backwater peace. Without roads or vehicular traffic, there is zero engine noise or pollution—only gentle water breezes, chirping birds, and tranquil lake vistas."
+      q: "Can I see the Nehru Trophy Boat Race Finishing Point from the homestay?",
+      a: "Yes! Zen Homestay is situated directly opposite the famous Nehru Trophy Boat Race Finishing Point on the other side of Punnamada Lake. You can see the finishing point from the homestay, and during the boat race season it's a front-row view of all the action from across the water."
     },
     {
       q: "What meals are included with the stay?",
-      a: "Every booking includes a freshly prepared, authentic Kerala morning breakfast featuring classic favorites like hot Appam with stew, Puttu, fresh tropical fruits, and freshly brewed local tea or coffee served right beside the water."
+      a: "Every booking includes a freshly prepared, authentic Kerala morning breakfast featuring classic favorites like hot Appam with stew, Puttu, fresh tropical fruits, and freshly brewed local tea or coffee. Morning tea is also included as part of your stay."
+    },
+    {
+      q: "What water activities and experiences are available?",
+      a: "We can arrange a range of backwater experiences for you: Shikara rides, kayaking, and speedboat rides — all available at an extra charge. Just let Abhijith know in advance and he'll arrange everything for you."
+    },
+    {
+      q: "Is this homestay suitable for families or couples?",
+      a: "Zen Homestay is ideal for couples, honeymooners, and small families looking for a peaceful, private lakeside getaway. We maintain a calm, respectful environment for all our guests. We welcome guests who appreciate serenity and natural beauty."
     },
     {
       q: "How do I check room availability or reserve a date?",
@@ -541,11 +549,11 @@ export default function Home() {
           <span className="font-bold text-sky-700">Free</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="underline">5-Minute Speedboat Transfer</span>
-          <span className="font-bold text-sky-700">Included</span>
+          <span className="underline">Speedboat Pickup &amp; Drop-off</span>
+          <span className="font-bold text-sky-700">Free (1 time each)</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="underline">Complimentary Kerala Breakfast</span>
+          <span className="underline">Morning Tea &amp; Kerala Breakfast</span>
           <span className="font-bold text-sky-700">Included</span>
         </div>
       </div>
@@ -966,7 +974,7 @@ export default function Home() {
             <div className="flex items-center justify-between pb-8 border-b border-slate-200 bg-white p-6 rounded-3xl border shadow-sm">
               <div>
                 <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
-                  Alleppey Homestay hosted by Abhijith — entire waterfront heritage property
+                  Alleppey Homestay hosted by Abhijith — private 2nd-floor lakefront retreat
                 </h2>
                 <p className="text-sm text-slate-600 font-semibold mt-1 flex items-center gap-2 flex-wrap">
                   <span className="bg-sky-50 text-sky-800 px-2.5 py-0.5 rounded-md font-bold">2 Lake View Bedrooms</span>
@@ -1013,9 +1021,9 @@ export default function Home() {
                   <Anchor className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-base">Exclusive 5-Minute Speedboat Arrival</h4>
+                  <h4 className="font-bold text-slate-900 text-base">Complimentary Speedboat — Both Pickup &amp; Drop-off</h4>
                   <p className="text-sm text-slate-600 mt-0.5 leading-relaxed">
-                    Complimentary private speed boat pickup directly from the boat race finishing point straight to our docks.
+                    We pick you up from the Nehru Trophy Finishing Point by speedboat when you arrive, and drop you back the same way when you leave — all complimentary.
                   </p>
                 </div>
               </div>
@@ -1026,7 +1034,6 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 text-base">Direct Punnamada Lake Frontage</h4>
-                  {/* Exact sub-headline requirement */}
                   <p className="text-sm text-slate-700 mt-0.5 leading-relaxed font-semibold">
                     Wake up to beautiful, direct views of Punnamada Lake right from the room.
                   </p>
@@ -1035,12 +1042,12 @@ export default function Home() {
 
               <div className="flex items-start gap-4">
                 <div className="p-2.5 rounded-xl bg-sky-50 text-sky-600 shrink-0">
-                  <ShieldCheck className="w-6 h-6" />
+                  <Compass className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 text-base">Ultimate Privacy & Roadless Serenity</h4>
+                  <h4 className="font-bold text-slate-900 text-base">Opposite the Famous Nehru Trophy Finishing Point</h4>
                   <p className="text-sm text-slate-600 mt-0.5 leading-relaxed">
-                    Zero road access means no vehicle noise, no traffic, and complete secluded tranquility on the water.
+                    Located directly across Punnamada Lake from the Nehru Trophy Boat Race finishing point — you can see it from the homestay!
                   </p>
                 </div>
               </div>
@@ -1064,11 +1071,11 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-900 text-base flex items-center gap-2">
-                    Home-Hosted by a Real Local Family
+                    Modern Home — Entire Private 2nd Floor for Guests
                     <span className="text-[10px] bg-emerald-100 text-emerald-700 font-black px-2 py-0.5 rounded-full uppercase tracking-wide">Safe Stay</span>
                   </h4>
                   <p className="text-sm text-slate-600 mt-0.5 leading-relaxed">
-                    Abhijith and his family live on the ground floor — guests enjoy the entire upper floor privately. You're staying in a real home, not a hotel.
+                    Abhijith and his family live on the ground floor — guests enjoy the entire 2nd floor privately, with 2 AC rooms and attached bathrooms. You get home warmth without sacrificing privacy.
                   </p>
                 </div>
               </div>
@@ -1081,38 +1088,61 @@ export default function Home() {
                 Unique Selling Point
               </span>
               <h2 className="text-2xl font-extrabold text-slate-900 mt-3 mb-4">
-                The Arrival Experience
+                The Speedboat Experience
               </h2>
 
               <div className="bg-sky-50/70 rounded-3xl p-6 sm:p-8 border border-sky-100 mb-6">
                 <div className="space-y-4 text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
                   <p>
-                    Zen Homestay is situated in an exclusive, secluded enclave along the banks of Punnamada Lake, near the celebrated <strong>Nehru Trophy Boat Race finishing point</strong>.
+                    Zen Homestay is located on the far bank of <strong>Punnamada Lake</strong>, directly across the water from the iconic <strong>Nehru Trophy Boat Race Finishing Point</strong>. You can actually see the finishing point from the homestay!
                   </p>
                   <p>
-                    To preserve our guests' peace and privacy, <strong className="text-sky-950">our property deliberately has no road connectivity</strong>. You are completely surrounded by calm waters and gentle backwater breezes.
+                    Your journey begins the moment you board your <strong className="text-sky-950">complimentary private speedboat</strong>. And when it&apos;s time to leave, we drop you right back the same way.
                   </p>
                 </div>
               </div>
 
-              {/* Step by Step Route */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* Check-in Route */}
+              <p className="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Arrival — Check-in Route</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                 <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-sky-300 transition-colors">
                   <div className="w-8 h-8 rounded-xl bg-sky-500 text-white font-black text-xs flex items-center justify-center mb-3">1</div>
-                  <h4 className="font-bold text-slate-900 text-sm">Reach Finishing Point</h4>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">Arrive easily by car or cab at the Nehru Trophy Boat Race Finishing Point in Alleppey.</p>
+                  <h4 className="font-bold text-slate-900 text-sm">Arrive at Finishing Point</h4>
+                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">Come by car or cab to the Nehru Trophy Boat Race Finishing Point in Alleppey — a well-known landmark.</p>
                 </div>
 
                 <div className="p-5 rounded-2xl border border-orange-200 bg-orange-50/60 shadow-sm">
                   <div className="w-8 h-8 rounded-xl bg-orange-500 text-white font-black text-xs flex items-center justify-center mb-3">2</div>
-                  <h4 className="font-bold text-slate-900 text-sm">Board Speed Boat</h4>
-                  <p className="text-xs text-slate-700 mt-1 leading-relaxed font-medium">Board your complimentary private speed boat arranged by our on-site team.</p>
+                  <h4 className="font-bold text-slate-900 text-sm">Abhijith Picks You Up</h4>
+                  <p className="text-xs text-slate-700 mt-1 leading-relaxed font-medium">Your host comes to the finishing point in our private speedboat. Luggage assistance included.</p>
                 </div>
 
                 <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-sky-300 transition-colors">
                   <div className="w-8 h-8 rounded-xl bg-sky-500 text-white font-black text-xs flex items-center justify-center mb-3">3</div>
-                  <h4 className="font-bold text-slate-900 text-sm">5-Min Scenic Transfer</h4>
-                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">Glide across Punnamada Lake directly onto our private waterfront docks.</p>
+                  <h4 className="font-bold text-slate-900 text-sm">5-Min Lake Crossing</h4>
+                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">Glide across Punnamada Lake in under 5 minutes — arriving in style right at our lakefront door.</p>
+                </div>
+              </div>
+
+              {/* Checkout Route */}
+              <p className="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Departure — Check-out Route</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-emerald-300 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white font-black text-xs flex items-center justify-center mb-3">1</div>
+                  <h4 className="font-bold text-slate-900 text-sm">Check Out by 11 AM</h4>
+                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">Checkout is at 11 AM. Flexible timing available on request via WhatsApp.</p>
+                </div>
+
+                <div className="p-5 rounded-2xl border border-emerald-200 bg-emerald-50/60 shadow-sm">
+                  <div className="w-8 h-8 rounded-xl bg-emerald-600 text-white font-black text-xs flex items-center justify-center mb-3">2</div>
+                  <h4 className="font-bold text-slate-900 text-sm">Speedboat Drop-off</h4>
+                  <p className="text-xs text-slate-700 mt-1 leading-relaxed font-medium">We drop you back across the lake by speedboat — complimentary, just like the pickup.</p>
+                </div>
+
+                <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm hover:border-emerald-300 transition-colors">
+                  <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white font-black text-xs flex items-center justify-center mb-3">3</div>
+                  <h4 className="font-bold text-slate-900 text-sm">Back at Finishing Point</h4>
+                  <p className="text-xs text-slate-500 mt-1 leading-relaxed">You&apos;re dropped back at the iconic Nehru Trophy Finishing Point, ready to continue your journey.</p>
                 </div>
               </div>
             </div>
@@ -1141,10 +1171,10 @@ export default function Home() {
                     <span className="font-black text-orange-600 text-base">₹3,000 <span className="text-xs font-normal text-slate-500">/ night</span></span>
                   </div>
                   <p className="text-sm text-slate-600 mb-4 leading-relaxed">
-                    Plush king bed, direct panoramic lake views, split air conditioning, extra bedding for 3rd guest, and private en-suite bathroom.
+                    Modern, comfortable king bed room with direct panoramic Punnamada Lake views, split air conditioning, and private en-suite bathroom.
                   </p>
                   <div className="text-xs font-bold text-sky-700 bg-sky-50 border border-sky-100 px-3 py-1.5 rounded-xl inline-block">
-                    Max 3 Guests · 1 King Bed · Direct Lake View
+                    Max 3 Guests · 1 King Bed · Direct Lake View · AC
                   </div>
                 </div>
 
@@ -1159,10 +1189,10 @@ export default function Home() {
                     <span className="font-black text-orange-600 text-base">₹3,000 <span className="text-xs font-normal text-slate-500">/ night</span></span>
                   </div>
                   <p className="text-sm text-slate-600 mb-4 leading-relaxed">
-                    Plush king bed, direct panoramic lake views, split air conditioning, extra bedding for 3rd guest, and private en-suite bathroom.
+                    Modern, comfortable king bed room with direct panoramic Punnamada Lake views, split air conditioning, and private en-suite bathroom.
                   </p>
                   <div className="text-xs font-bold text-sky-700 bg-sky-50 border border-sky-100 px-3 py-1.5 rounded-xl inline-block">
-                    Max 3 Guests · 1 King Bed · Direct Lake View
+                    Max 3 Guests · 1 King Bed · Direct Lake View · AC
                   </div>
                 </div>
               </div>
@@ -1177,14 +1207,15 @@ export default function Home() {
             <div id="amenities" className="pb-8 border-b border-slate-200 bg-white p-8 rounded-3xl border shadow-sm scroll-mt-24">
               <h2 className="text-2xl font-extrabold text-slate-900 mb-6">What this place offers</h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-slate-800 text-sm">
+              <p className="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Included in Every Stay</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-slate-800 text-sm mb-7">
                 <div className="flex items-center gap-3.5 py-1">
                   <Waves className="w-5 h-5 text-sky-500 shrink-0" />
-                  <span className="font-medium">Direct Punnamada Lake waterfront view</span>
+                  <span className="font-medium">Direct Punnamada Lake views &amp; stunning sunsets</span>
                 </div>
                 <div className="flex items-center gap-3.5 py-1">
                   <Anchor className="w-5 h-5 text-orange-500 shrink-0" />
-                  <span className="font-medium">Complimentary 5-min speed boat pickup transfer</span>
+                  <span className="font-medium">Speedboat pickup &amp; drop-off — complimentary</span>
                 </div>
                 <div className="flex items-center gap-3.5 py-1">
                   <Wifi className="w-5 h-5 text-sky-500 shrink-0" />
@@ -1195,21 +1226,49 @@ export default function Home() {
                   <span className="font-medium">Full split Air Conditioning in both rooms</span>
                 </div>
                 <div className="flex items-center gap-3.5 py-1">
-                  <Utensils className="w-5 h-5 text-orange-500 shrink-0" />
-                  <span className="font-medium">Authentic Kerala home-cooked cuisine</span>
-                </div>
-                <div className="flex items-center gap-3.5 py-1">
                   <Coffee className="w-5 h-5 text-orange-500 shrink-0" />
-                  <span className="font-medium">Fresh morning tea & Kerala breakfast included</span>
-                </div>
-                <div className="flex items-center gap-3.5 py-1">
-                  <ShieldCheck className="w-5 h-5 text-sky-500 shrink-0" />
-                  <span className="font-medium">Private, gated secluded backwater grounds</span>
+                  <span className="font-medium">Morning tea &amp; authentic Kerala breakfast</span>
                 </div>
                 <div className="flex items-center gap-3.5 py-1">
                   <Clock className="w-5 h-5 text-sky-500 shrink-0" />
                   <span className="font-medium">24/7 dedicated on-site host assistance</span>
                 </div>
+                <div className="flex items-center gap-3.5 py-1">
+                  <ShieldCheck className="w-5 h-5 text-emerald-500 shrink-0" />
+                  <span className="font-medium">Private 2-bedroom 2nd floor — attached bathrooms</span>
+                </div>
+                <div className="flex items-center gap-3.5 py-1">
+                  <Compass className="w-5 h-5 text-sky-500 shrink-0" />
+                  <span className="font-medium">Views of Nehru Trophy Finishing Point across the lake</span>
+                </div>
+              </div>
+
+              <div className="border-t border-slate-100 pt-5">
+                <p className="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Water Experiences (Available at Extra Charge)</p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="flex items-center gap-3 p-3.5 rounded-xl bg-sky-50 border border-sky-100">
+                    <Waves className="w-5 h-5 text-sky-600 shrink-0" />
+                    <div>
+                      <p className="font-bold text-slate-900 text-sm">Shikara Rides</p>
+                      <p className="text-[11px] text-slate-500">Traditional backwater boat</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3.5 rounded-xl bg-sky-50 border border-sky-100">
+                    <Anchor className="w-5 h-5 text-sky-600 shrink-0" />
+                    <div>
+                      <p className="font-bold text-slate-900 text-sm">Kayaking</p>
+                      <p className="text-[11px] text-slate-500">Explore the backwaters</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 p-3.5 rounded-xl bg-orange-50 border border-orange-100">
+                    <Sparkles className="w-5 h-5 text-orange-500 shrink-0" />
+                    <div>
+                      <p className="font-bold text-slate-900 text-sm">Speedboat Rides</p>
+                      <p className="text-[11px] text-slate-500">Thrilling lake rides</p>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-[11px] text-slate-400 mt-2 font-medium">Contact Abhijith to arrange any of these experiences during your stay.</p>
               </div>
             </div>
 
@@ -1503,19 +1562,19 @@ export default function Home() {
 
               <div className="space-y-4 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
                 <p>
-                  Finding the right <strong>alleppey homestay</strong> makes all the difference. While many properties are located near busy town centers and noisy thoroughfares, Zen Homestay offers an oasis of pure serenity right on the world-famous waters of <strong>Punnamada Lake</strong>.
+                  Finding the right <strong>alleppey homestay</strong> makes all the difference. Zen Homestay sits on Punnamada Lake, directly across the water from the famous <strong>Nehru Trophy Boat Race Finishing Point</strong> — you can see it from your room. The moment you board our complimentary speedboat at the finishing point, you know this is unlike any other stay in Alleppey.
                 </p>
                 <p>
-                  At this alleppey homestay, the rhythms of life move with the gentle water tides. You will see local canoe fishermen gliding past in the early morning fog, migratory birds perching on coconut fronds, and the mesmerizing reflection of the Kerala sunset dancing across the lake surface.
+                  Watch the sun dip below the horizon over Punnamada Lake from your room or balcony. See local fishermen glide past in the early morning fog. Hear the silence of the backwaters and wake up to birdsong and the gentle ripple of the lake.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
                 <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
                   <Sun className="w-6 h-6 text-orange-500 mb-3" />
-                  <h4 className="font-bold text-slate-900 text-sm mb-1">Serene Sunrise Vistas</h4>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">Sunset &amp; Lake Views</h4>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Watch the morning sun illuminate Punnamada Lake while enjoying freshly brewed tea on your veranda.
+                    Watch spectacular sunsets over Punnamada Lake from your room — with the finishing point visible across the water.
                   </p>
                 </div>
 
@@ -1523,15 +1582,15 @@ export default function Home() {
                   <Utensils className="w-6 h-6 text-sky-500 mb-3" />
                   <h4 className="font-bold text-slate-900 text-sm mb-1">Authentic Kerala Flavors</h4>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Taste authentic Kerala home cooking prepared with freshly harvested spices and local ingredients.
+                    Start your day with morning tea and authentic Kerala breakfast — prepared with love by the host family.
                   </p>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
                   <Compass className="w-6 h-6 text-orange-500 mb-3" />
-                  <h4 className="font-bold text-slate-900 text-sm mb-1">Historic Location</h4>
+                  <h4 className="font-bold text-slate-900 text-sm mb-1">Front Row to History</h4>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Situated near the historic finishing track of the renowned annual Nehru Trophy Boat Race.
+                    Directly opposite the world-famous Nehru Trophy Boat Race Finishing Point — a truly iconic location.
                   </p>
                 </div>
               </div>
@@ -1545,19 +1604,19 @@ export default function Home() {
                   <h4 className="font-bold text-slate-900 mb-2">Check-in &amp; Checkout</h4>
                   <p className="leading-relaxed font-bold text-slate-900">Check-in: 2:00 PM</p>
                   <p className="leading-relaxed font-bold text-slate-900">Checkout: 11:00 AM</p>
-                  <p className="leading-relaxed text-slate-500 mt-1">Flexible timing upon prior request via WhatsApp.</p>
+                  <p className="leading-relaxed text-slate-500 mt-1">Flexible timing available — just ask Abhijith via WhatsApp.</p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl border border-slate-200">
-                  <h4 className="font-bold text-slate-900 mb-2">Speedboat Pickup</h4>
-                  <p className="leading-relaxed">Free private boat transfer</p>
-                  <p className="leading-relaxed">Luggage assistance included</p>
-                  <p className="leading-relaxed text-slate-500 mt-1">Directly from the Finishing Point.</p>
+                  <h4 className="font-bold text-slate-900 mb-2">Speedboat Pickup &amp; Drop</h4>
+                  <p className="leading-relaxed font-medium text-emerald-700">Free for check-in &amp; check-out</p>
+                  <p className="leading-relaxed">One trip each way, complimentary</p>
+                  <p className="leading-relaxed text-slate-500 mt-1">Extra town trips: <span className="font-bold text-slate-700">₹300/trip</span></p>
                 </div>
                 <div className="bg-white p-5 rounded-2xl border border-slate-200">
-                  <h4 className="font-bold text-slate-900 mb-2">Peaceful Sanctuary</h4>
-                  <p className="leading-relaxed">Suitable for families &amp; couples</p>
-                  <p className="leading-relaxed">Strict zero noise pollution zone</p>
-                  <p className="leading-relaxed text-slate-500 mt-1">Dedicated on-site host care.</p>
+                  <h4 className="font-bold text-slate-900 mb-2">Ideal Guests</h4>
+                  <p className="leading-relaxed font-medium">Couples &amp; honeymooners</p>
+                  <p className="leading-relaxed">Small families welcome</p>
+                  <p className="leading-relaxed text-slate-500 mt-1">We maintain a peaceful, respectful environment for all guests.</p>
                 </div>
               </div>
             </div>
@@ -2003,7 +2062,7 @@ export default function Home() {
 
               <div className="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl group">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1171.7375215159498!2d76.35738157806414!3d9.5016131229736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1786728871048!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d486.2595251483521!2d76.35757685613443!3d9.502023969622542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1787159161675!5m2!1sen!2sin"
                   width="100%"
                   height="220"
                   style={{ border: 0 }}
