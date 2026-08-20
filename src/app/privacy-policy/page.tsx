@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
   Sparkles, 
   ShieldCheck, 
@@ -24,9 +25,14 @@ export default function PrivacyPolicy() {
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] transition-all w-full">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
           <Link href="/" className="flex items-center gap-2 sm:gap-3 group shrink min-w-0">
-            <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-md sm:shadow-lg shadow-sky-500/20 ring-2 sm:ring-4 ring-sky-50 group-hover:scale-105 transition-transform duration-300 shrink-0">
-              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
-            </div>
+            <Image
+              src="/zen-homestay-logo.jpg"
+              alt="Zen Homestay Logo"
+              width={44}
+              height={44}
+              className="object-contain rounded-xl group-hover:scale-105 transition-transform duration-300 shrink-0 ring-2 sm:ring-4 ring-sky-50 shadow-md"
+              style={{ width: '44px', height: '44px' }}
+            />
             <div className="flex flex-col min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="font-extrabold text-sm sm:text-xl tracking-tight text-slate-900 leading-none group-hover:text-sky-600 transition-colors truncate">

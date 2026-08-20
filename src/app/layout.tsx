@@ -65,6 +65,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://abhijithr.online",
   },
+  icons: {
+    icon: "/zen-homestay-logo.jpg",
+    shortcut: "/zen-homestay-logo.jpg",
+    apple: "/zen-homestay-logo.jpg",
+  },
   verification: {
     google: "DNNTBKuN-gS4T_vMrmELRf8nQyOGaiKOdtleVeRTyPA",
   },

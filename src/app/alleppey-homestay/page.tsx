@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Phone, Star, Anchor, Waves, ShieldCheck, Coffee, CheckCircle2, MapPin, Award } from "lucide-react";
 
@@ -43,9 +44,14 @@ export default function AlleppeyHomestayPage() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-orange-500 flex items-center justify-center text-white shadow-md">
-              <Star className="w-4 h-4 fill-current" />
-            </div>
+            <Image
+              src="/zen-homestay-logo.jpg"
+              alt="Zen Homestay Logo"
+              width={36}
+              height={36}
+              className="object-contain rounded-xl shadow-md"
+              style={{ width: '36px', height: '36px' }}
+            />
             <div>
               <span className="font-extrabold text-slate-900 text-sm block leading-none group-hover:text-sky-600 transition-colors">Zen Homestay</span>
               <span className="text-[10px] font-bold text-sky-600 uppercase tracking-wider">Alleppey · Kerala</span>

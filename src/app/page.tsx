@@ -133,7 +133,7 @@ export default function Home() {
   const handleDateCellClick = (year: number, month: number, day: number) => {
     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     const selectedDate = new Date(year, month, day);
-    
+
     if (activeDateStep === 'checkIn') {
       setCheckIn(dateStr);
       const [oy, om, od] = checkOut.split('-').map(Number);
@@ -600,22 +600,22 @@ export default function Home() {
           className="transition-all duration-500 ease-in-out"
           style={scrolled
             ? {
-                background: 'rgba(15,23,42,0.92)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                borderRadius: '9999px',
-                boxShadow: '0 8px 40px -8px rgba(0,0,0,0.45)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                maxWidth: '1050px',
-                margin: '0 auto',
-              }
+              background: 'rgba(15,23,42,0.92)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              borderRadius: '9999px',
+              boxShadow: '0 8px 40px -8px rgba(0,0,0,0.45)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              maxWidth: '1050px',
+              margin: '0 auto',
+            }
             : {
-                background: 'rgba(255,255,255,0.92)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                borderBottom: '1px solid rgba(203,213,225,0.7)',
-                boxShadow: '0 4px 30px -5px rgba(0,0,0,0.08)',
-              }
+              background: 'rgba(255,255,255,0.92)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              borderBottom: '1px solid rgba(203,213,225,0.7)',
+              boxShadow: '0 4px 30px -5px rgba(0,0,0,0.08)',
+            }
           }
         >
           <div
@@ -629,15 +629,17 @@ export default function Home() {
             {/* Brand Logo & Superhost Badge */}
             <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink min-w-0">
               <div className="relative shrink-0">
-                <div
-                  className="rounded-xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 flex items-center justify-center text-white shadow-md transition-all duration-500"
+                <Image
+                  src="/zen-homestay-logo.jpg"
+                  alt="Zen Homestay Logo"
+                  width={44}
+                  height={44}
+                  className="object-contain rounded-xl transition-all duration-500"
                   style={scrolled
-                    ? { width: '30px', height: '30px', boxShadow: '0 0 0 2px rgba(255,255,255,0.15)' }
-                    : { width: '44px', height: '44px', borderRadius: '14px', boxShadow: '0 4px 12px rgba(14,165,233,0.25)', outline: '3px solid rgb(224,242,254)' }
+                    ? { width: '32px', height: '32px', borderRadius: '8px' }
+                    : { width: '48px', height: '48px', borderRadius: '14px', boxShadow: '0 4px 12px rgba(14,165,233,0.2)', outline: '3px solid rgb(224,242,254)' }
                   }
-                >
-                  <Sparkles className="w-4 h-4" />
-                </div>
+                />
                 {/* Live green dot */}
                 <span
                   className="absolute -bottom-0.5 -right-0.5 bg-emerald-500 border-2 rounded-full transition-all duration-500"
