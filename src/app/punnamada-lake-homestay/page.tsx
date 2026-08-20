@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: "Punnamada Lake Homestay | Zen Homestay – Waterfront Stay Alleppey",
   description: "Stay directly on Punnamada Lake at Zen Homestay, Alleppey. Direct lake views from your room, private speedboat pickup, Kerala breakfast included. Book with host Abhijith — zero OTA commission. +91 7012 761 588.",
   keywords: ["punnamada lake homestay", "homestay on punnamada lake", "punnamada lake stay alleppey", "lake view homestay alleppey", "waterfront homestay alleppey"],
-  alternates: { canonical: "https://abhijithr.online/punnamada-lake-homestay" },
+  alternates: { canonical: "https://zenhomestay.in/punnamada-lake-homestay" },
   openGraph: {
     title: "Punnamada Lake Homestay | Zen Homestay Alleppey",
     description: "Direct Punnamada Lake views, speedboat arrival & Kerala breakfast. Book the best waterfront homestay in Alleppey at zero commission.",
-    url: "https://abhijithr.online/punnamada-lake-homestay",
-    images: [{ url: "https://abhijithr.online/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630 }],
+    url: "https://zenhomestay.in/punnamada-lake-homestay",
+    images: [{ url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630 }],
   },
 };
 
@@ -20,7 +20,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BedAndBreakfast",
   "name": "Zen Homestay – Punnamada Lake Homestay",
-  "url": "https://abhijithr.online/punnamada-lake-homestay",
+  "url": "https://zenhomestay.in/punnamada-lake-homestay",
   "description": "Waterfront homestay directly on Punnamada Lake, Alleppey. Speedboat pickup, lake views, Kerala breakfast included.",
   "telephone": "+91-7012-761-588",
   "priceRange": "₹3,000 – ₹6,000",

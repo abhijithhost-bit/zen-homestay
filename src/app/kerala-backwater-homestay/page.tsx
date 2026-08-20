@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: "Kerala Backwater Homestay | Zen Homestay Alleppey – Direct Lake Stay",
   description: "Discover the best Kerala backwater homestay at Zen Homestay, Alleppey. Secluded on Punnamada Lake with no road access, private speedboat, authentic Kerala cuisine & 4.98★ reviews. Book direct. +91 7012 761 588.",
   keywords: ["kerala backwater homestay", "backwater homestay kerala", "alleppey backwater homestay", "kerala backwaters stay", "punnamada backwater homestay"],
-  alternates: { canonical: "https://abhijithr.online/kerala-backwater-homestay" },
+  alternates: { canonical: "https://zenhomestay.in/kerala-backwater-homestay" },
   openGraph: {
     title: "Kerala Backwater Homestay | Zen Homestay Alleppey",
     description: "The most secluded Kerala backwater homestay on Punnamada Lake. Speedboat access, authentic Kerala cuisine & 4.98★ rating. Book direct.",
-    url: "https://abhijithr.online/kerala-backwater-homestay",
-    images: [{ url: "https://abhijithr.online/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630 }],
+    url: "https://zenhomestay.in/kerala-backwater-homestay",
+    images: [{ url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630 }],
   },
 };
 
@@ -20,7 +20,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BedAndBreakfast",
   "name": "Zen Homestay – Kerala Backwater Homestay",
-  "url": "https://abhijithr.online/kerala-backwater-homestay",
+  "url": "https://zenhomestay.in/kerala-backwater-homestay",
   "description": "Best Kerala backwater homestay on Punnamada Lake, Alleppey. No road access, private speedboat, authentic Kerala cuisine, 4.98★ reviews.",
   "telephone": "+91-7012-761-588",
   "priceRange": "₹3,000 – ₹6,000",
