@@ -293,17 +293,6 @@ export default function Home() {
   const renderBookingCard = () => (
     <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xl space-y-4 sm:space-y-5">
 
-      {/* Urgency / Scarcity Banner */}
-      <div className="flex items-center justify-between bg-red-50 border border-red-200 rounded-2xl px-3 py-2">
-        <div className="flex items-center gap-1.5">
-          <span className="relative flex w-2 h-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-            <span className="relative inline-flex rounded-full w-2 h-2 bg-red-500" />
-          </span>
-          <span className="text-[11px] font-extrabold text-red-700">Only 2 rooms · Fills fast</span>
-        </div>
-        <span className="text-[10px] font-bold text-red-600 bg-red-100 px-2 py-0.5 rounded-full border border-red-200">🔥 High demand</span>
-      </div>
 
       {/* Special Offer Header Pill */}
       <div className="bg-orange-500 text-white text-[11px] font-extrabold py-1.5 px-3 rounded-full text-center tracking-wider uppercase shadow-sm">
@@ -320,7 +309,7 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-1 text-xs font-bold text-slate-900">
           <Star className="w-4 h-4 fill-orange-500 text-orange-500" />
-          <span>4.98</span>
+          <span>4.9</span>
           <span className="text-slate-500 font-normal">(48)</span>
         </div>
       </div>
@@ -781,9 +770,6 @@ export default function Home() {
         {/* Listing Title Header */}
         <div className="mb-6">
           <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="inline-flex items-center gap-1.5 bg-orange-50 text-orange-700 text-xs font-extrabold px-3 py-1 rounded-full border border-orange-200 shadow-sm">
-              <Award className="w-3.5 h-3.5 text-orange-500" /> Guest Favorite
-            </span>
             <span className="text-xs font-bold text-sky-700 bg-sky-50 px-3 py-1 rounded-full border border-sky-100">
               Top 1% Waterfront Stay in Alleppey
             </span>
@@ -1927,9 +1913,11 @@ export default function Home() {
             <div className="lg:col-span-4 space-y-5">
               {/* Logo */}
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-400 via-sky-500 to-orange-500 flex items-center justify-center text-white shadow-lg shadow-orange-500/20">
-                  <Sparkles className="w-5 h-5" />
-                </div>
+                <img
+                  src="/zen-homestay-logo.jpg"
+                  alt="Zen Homestay Logo"
+                  className="w-14 h-14 rounded-2xl object-cover shadow-lg"
+                />
                 <div>
                   <span className="font-extrabold text-xl text-white tracking-tight block leading-tight">Zen Homestay</span>
                   <span className="text-[11px] font-bold text-sky-400 uppercase tracking-widest">Punnamada Lake · Alleppey</span>
