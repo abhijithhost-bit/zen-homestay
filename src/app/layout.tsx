@@ -249,60 +249,6 @@ const jsonLd = {
           "item": "https://zenhomestay.in/#stay"
         }
       ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://zenhomestay.in/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What makes Zen Homestay the best alleppey homestay?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Zen Homestay is located on Punnamada Lake, directly across the water from the famous Nehru Trophy Boat Race Finishing Point — which you can see from the homestay. Guests enjoy direct lake views, beautiful sunsets, complimentary speedboat pickup AND drop-off, morning tea, authentic home-cooked Kerala breakfast, and personalized host care from Abhijith — all at direct-host rates with zero commission."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How does the complimentary speedboat pickup and drop-off work?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "When you arrive in Alleppey, head to the Nehru Trophy Boat Race Finishing Point. Host Abhijith meets you there and brings you across Punnamada Lake by private speedboat in about 5 minutes. When you check out, we drop you back to the same point. Both pickup and drop-off are 100% complimentary for all guests."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can I see the Nehru Trophy Boat Race Finishing Point from the homestay?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes! Zen Homestay is located on the opposite bank of Punnamada Lake from the Nehru Trophy Finishing Point. You can clearly see the finishing point from the property, and during boat race season you get a stunning front-row view from across the water."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What meals are included with the stay?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Every booking includes morning tea and a freshly prepared authentic Kerala breakfast featuring classic favorites like hot Appam with stew, Puttu, fresh tropical fruits, and freshly brewed local tea or coffee."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What water activities are available at Zen Homestay?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Abhijith can arrange Shikara rides, kayaking, and speedboat rides on Punnamada Lake — all available at an extra charge. Just let him know in advance and he'll arrange everything for your stay."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I check room availability or reserve a date?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We believe in direct, hassle-free host communication without third-party commission markups. Simply message us on WhatsApp or call host Abhijith directly at +91 7012 761 588 to check your preferred dates and receive instant confirmation."
-          }
-        }
-      ]
     }
   ]
 };

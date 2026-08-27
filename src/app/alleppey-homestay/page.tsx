@@ -72,7 +72,17 @@ export default function AlleppeyHomestayPage() {
       <main>
         {/* Hero */}
         <section className="relative bg-slate-900 text-white py-20 sm:py-28 px-4 text-center overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/kerala_backwaters_hero_1786702183985.jpg')] bg-cover bg-center opacity-25" />
+          {/* Hero background — uses Next.js Image for WebP/AVIF optimization + LCP priority */}
+          <div className="absolute inset-0 opacity-25">
+            <Image
+              src="/kerala_backwaters_hero_1786702183985.jpg"
+              alt="Alleppey homestay on Punnamada Lake"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
           <div className="relative max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-400/30 text-orange-300 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-wider">
               <Award className="w-3.5 h-3.5" /> #1 Rated Alleppey Homestay · 4.98★

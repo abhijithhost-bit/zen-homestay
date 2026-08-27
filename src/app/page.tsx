@@ -1,14 +1,16 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ShieldCheck, Wifi, Wind, Utensils, Waves, Coffee,
   Anchor, MessageCircle, Phone, CheckCircle2, Sparkles,
-  Clock, BedDouble, Award, Compass, Sun, ArrowRight, MapPin, Calendar
+  Clock, BedDouble, Award, Compass, Sun, ArrowRight, MapPin, Calendar, BookOpen
 } from 'lucide-react';
 import { BookingProvider } from './_components/BookingProvider';
 import BookingWidget from './_components/BookingWidget';
 import StickyHeader from './_components/StickyHeader';
 import GallerySection from './_components/GallerySection';
 import FaqAccordion from './_components/FaqAccordion';
+import { blogPosts } from './blog/_data/posts';
 
 // ─── Static Data ─────────────────────────────────────────────────────────────
 
@@ -62,6 +64,20 @@ export default function Home() {
   return (
     <BookingProvider>
       <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-900 pb-20 md:pb-0">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map(faq => ({
+              "@type": "Question",
+              "name": faq.q,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.a
+              }
+            }))
+          })
+        }} />
 
         <StickyHeader />
 
@@ -382,6 +398,59 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* From Our Blog */}
+              <div className="pb-8 border-b border-slate-200">
+                <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center gap-2">
+                    <div className="p-2 rounded-xl bg-sky-50 text-sky-600">
+                      <BookOpen className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-extrabold uppercase tracking-wider text-sky-700">From Our Blog</span>
+                      <p className="text-[11px] text-slate-400 font-medium">Alleppey travel guides &amp; tips</p>
+                    </div>
+                  </div>
+                  <Link
+                    href="/blog"
+                    className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-sky-600 hover:text-sky-800 transition-colors"
+                  >
+                    All articles <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {blogPosts.slice(0, 3).map((post) => (
+                    <Link
+                      key={post.slug}
+                      href={`/blog/${post.slug}`}
+                      className="group flex flex-col rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-sky-300 transition-all"
+                    >
+                      <div className="relative aspect-[16/9] overflow-hidden">
+                        <Image
+                          src={post.heroImage}
+                          alt={post.heroImageAlt}
+                          fill
+                          sizes="(max-width: 640px) 100vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                      <div className="p-4 flex flex-col flex-1">
+                        <p className="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-1.5">{post.category}</p>
+                        <h3 className="text-xs font-extrabold text-slate-900 leading-snug group-hover:text-sky-700 transition-colors line-clamp-2 flex-1 mb-2">{post.title}</h3>
+                        <p className="text-[10px] text-slate-400 font-medium flex items-center gap-1">
+                          <Clock className="w-3 h-3" /> {post.readTime}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href="/blog"
+                  className="sm:hidden mt-4 flex items-center gap-1.5 text-xs font-bold text-sky-600 hover:text-sky-800 transition-colors"
+                >
+                  View all articles <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+
               {/* FAQ (client island) */}
               <FaqAccordion faqs={faqs} />
 
@@ -449,10 +518,10 @@ export default function Home() {
               <div className="lg:col-span-2 space-y-4">
                 <h4 className="font-extrabold text-white text-[11px] uppercase tracking-widest">Explore</h4>
                 <ul className="space-y-2.5 font-medium">
-                  {[{ href: '#arrival', label: 'The Arrival Route' }, { href: '#stay', label: "Where You'll Sleep" }, { href: '#amenities', label: 'Property Amenities' }, { href: '#how-to-book', label: 'How to Book' }, { href: '#faq', label: 'FAQs' }].map(({ href, label }) => (
-                    <li key={href}><a href={href} className="hover:text-orange-400 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-sky-500 group-hover:bg-orange-400 transition-colors shrink-0" />{label}</a></li>
+                  {[{ href: '/alleppey-homestay', label: 'Alleppey Homestay' }, { href: '/punnamada-lake-homestay', label: 'Lake Homestay' }, { href: '/kerala-backwater-homestay', label: 'Backwater Stay' }, { href: '/blog', label: 'Travel Blog' }].map(({ href, label }) => (
+                    <li key={href}><Link href={href} className="hover:text-orange-400 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-sky-500 group-hover:bg-orange-400 transition-colors shrink-0" />{label}</Link></li>
                   ))}
-                  {[{ href: '/contact', label: 'Contact Host' }, { href: '/terms-and-conditions', label: 'Terms & House Rules' }, { href: '/privacy-policy', label: 'Privacy Policy' }].map(({ href, label }) => (
+                  {[{ href: '/contact', label: 'Contact Host' }, { href: '/terms-and-conditions', label: 'House Rules' }, { href: '/privacy-policy', label: 'Privacy Policy' }].map(({ href, label }) => (
                     <li key={href}><Link href={href} className="hover:text-orange-400 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-sky-500 group-hover:bg-orange-400 transition-colors shrink-0" />{label}</Link></li>
                   ))}
                 </ul>
