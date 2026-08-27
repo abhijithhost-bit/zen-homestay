@@ -518,7 +518,7 @@ export default function Home() {
               <div className="lg:col-span-2 space-y-4">
                 <h4 className="font-extrabold text-white text-[11px] uppercase tracking-widest">Explore</h4>
                 <ul className="space-y-2.5 font-medium">
-                  {[{ href: '/alleppey-homestay', label: 'Alleppey Homestay' }, { href: '/punnamada-lake-homestay', label: 'Lake Homestay' }, { href: '/kerala-backwater-homestay', label: 'Backwater Stay' }, { href: '/blog', label: 'Travel Blog' }].map(({ href, label }) => (
+                  {[{ href: '/alleppey-homestay', label: 'Alleppey Homestay' }, { href: '/punnamada-lake-homestay', label: 'Lake Homestay' }, { href: '/kerala-backwater-homestay', label: 'Backwater Stay' }, { href: '/honeymoon-homestay-alleppey', label: 'Honeymoon Stay' }, { href: '/blog', label: 'Travel Blog' }].map(({ href, label }) => (
                     <li key={href}><Link href={href} className="hover:text-orange-400 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-sky-500 group-hover:bg-orange-400 transition-colors shrink-0" />{label}</Link></li>
                   ))}
                   {[{ href: '/contact', label: 'Contact Host' }, { href: '/terms-and-conditions', label: 'House Rules' }, { href: '/privacy-policy', label: 'Privacy Policy' }].map(({ href, label }) => (

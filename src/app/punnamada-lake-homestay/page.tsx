@@ -16,25 +16,51 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BedAndBreakfast",
-  "name": "Zen Homestay – Punnamada Lake Homestay",
-  "url": "https://zenhomestay.in/punnamada-lake-homestay",
-  "description": "Waterfront homestay directly on Punnamada Lake, Alleppey. Speedboat pickup, lake views, Kerala breakfast included.",
-  "telephone": "+91-7012-761-588",
-  "priceRange": "₹3,000 – ₹6,000",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Punnamada Lake, Near Nehru Trophy Boat Race Finishing Point",
-    "addressLocality": "Alleppey",
-    "addressRegion": "Kerala",
-    "postalCode": "688006",
-    "addressCountry": "IN",
+const faqs = [
+  { q: "What makes a Punnamada Lake homestay different from other Alleppey stays?", a: "Zen Homestay is located directly on the banks of Punnamada Lake with no road access whatsoever. This means complete isolation from vehicle noise — just water, birds, and absolute backwater silence. Very few properties in Alleppey can claim this level of true lakefront access." },
+  { q: "How do I get to the Punnamada Lake homestay?", a: "Head to the Nehru Trophy Boat Race Finishing Point in Alleppey — your host Abhijith will meet you there and bring you across the lake by private speedboat in about 5 minutes. Both pickup and drop-off are fully complimentary." },
+  { q: "Can I see the Nehru Trophy Boat Race from the homestay?", a: "Yes! Zen Homestay is situated directly opposite the Nehru Trophy Boat Race Finishing Point on Punnamada Lake. You can see the finishing point from the property, making it a spectacular front-row view during boat race season in August." },
+  { q: "What water activities are available on Punnamada Lake?", a: "Host Abhijith can arrange shikara rides, kayaking, and speedboat rides on Punnamada Lake. These are available at an extra charge — just let him know in advance and he will organise everything for your stay." },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BedAndBreakfast",
+    "name": "Zen Homestay – Punnamada Lake Homestay",
+    "url": "https://zenhomestay.in/punnamada-lake-homestay",
+    "description": "Waterfront homestay directly on Punnamada Lake, Alleppey. Speedboat pickup, lake views, Kerala breakfast included.",
+    "telephone": "+91-7012-761-588",
+    "priceRange": "₹3,000 – ₹6,000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Punnamada Lake, Near Nehru Trophy Boat Race Finishing Point",
+      "addressLocality": "Alleppey",
+      "addressRegion": "Kerala",
+      "postalCode": "688006",
+      "addressCountry": "IN",
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 9.502023969622542, "longitude": 76.35757685613443 },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.98", "reviewCount": "48", "bestRating": "5" },
   },
-  "geo": { "@type": "GeoCoordinates", "latitude": 9.5015, "longitude": 76.3537 },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.98", "reviewCount": "48", "bestRating": "5" },
-};
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zenhomestay.in" },
+      { "@type": "ListItem", "position": 2, "name": "Punnamada Lake Homestay", "item": "https://zenhomestay.in/punnamada-lake-homestay" },
+    ],
+  },
+];
 
 export default function PunnamadaLakeHomestayPage() {
   return (
@@ -225,6 +251,19 @@ export default function PunnamadaLakeHomestayPage() {
               className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all hover:bg-white/20">
               <MapPin className="w-4 h-4" /> Open in Google Maps
             </a>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="max-w-3xl mx-auto px-4 py-14">
+          <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {faqs.map(({ q, a }) => (
+              <div key={q} className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <h3 className="font-extrabold text-slate-900 text-sm mb-2">{q}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{a}</p>
+              </div>
+            ))}
           </div>
         </section>
 

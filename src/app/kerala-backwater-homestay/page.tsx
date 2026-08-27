@@ -16,25 +16,6 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BedAndBreakfast",
-  "name": "Zen Homestay – Kerala Backwater Homestay",
-  "url": "https://zenhomestay.in/kerala-backwater-homestay",
-  "description": "Best Kerala backwater homestay on Punnamada Lake, Alleppey. No road access, private speedboat, authentic Kerala cuisine, 4.98★ reviews.",
-  "telephone": "+91-7012-761-588",
-  "priceRange": "₹3,000 – ₹6,000",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Punnamada Lake, Near Nehru Trophy Boat Race Finishing Point",
-    "addressLocality": "Alleppey",
-    "addressRegion": "Kerala",
-    "postalCode": "688006",
-    "addressCountry": "IN",
-  },
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.98", "reviewCount": "48", "bestRating": "5" },
-};
-
 const faqs = [
   {
     q: "What makes this the best Kerala backwater homestay?",
@@ -51,6 +32,45 @@ const faqs = [
   {
     q: "What Kerala food is served at the homestay?",
     a: "Every stay includes an authentic Kerala breakfast: hot Appam with stew, Puttu, Kadala curry, fresh tropical fruits and locally brewed tea or coffee — prepared fresh every morning by your host.",
+  },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BedAndBreakfast",
+    "name": "Zen Homestay – Kerala Backwater Homestay",
+    "url": "https://zenhomestay.in/kerala-backwater-homestay",
+    "description": "Best Kerala backwater homestay on Punnamada Lake, Alleppey. No road access, private speedboat, authentic Kerala cuisine, 4.98★ reviews.",
+    "telephone": "+91-7012-761-588",
+    "priceRange": "₹3,000 – ₹6,000",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Punnamada Lake, Near Nehru Trophy Boat Race Finishing Point",
+      "addressLocality": "Alleppey",
+      "addressRegion": "Kerala",
+      "postalCode": "688006",
+      "addressCountry": "IN",
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 9.502023969622542, "longitude": 76.35757685613443 },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.98", "reviewCount": "48", "bestRating": "5" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.a },
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://zenhomestay.in" },
+      { "@type": "ListItem", "position": 2, "name": "Kerala Backwater Homestay", "item": "https://zenhomestay.in/kerala-backwater-homestay" },
+    ],
   },
 ];
 
