@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     apple: "/zen-homestay-logo.jpg",
   },
   verification: {
-    google: "DNNTBKuN-gS4T_vMrmELRf8nQyOGaiKOdtleVeRTyPA",
+    google: "WujqYXq12BW06BfB0dpJMO2R1KppwB3JzYDMKk4FXEA",
   },
 };
 
