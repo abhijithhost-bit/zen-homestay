@@ -6,7 +6,7 @@ import { MessageCircle, Phone, Star, Anchor, Waves, ShieldCheck, Coffee, CheckCi
 export const metadata: Metadata = {
   title: "Best Alleppey Homestay on Punnamada Lake | Zen Homestay – Direct Booking",
   description: "The best Alleppey homestay — Zen Homestay on Punnamada Lake. Direct lake views, complimentary 5-min speedboat, authentic Kerala breakfast & 4.98★ rating. Book direct with host Abhijith at zero commission. Call +91 7012 761 588.",
-  keywords: ["alleppey homestay", "best alleppey homestay", "homestay in alleppey", "alleppey lake homestay", "alleppey waterfront homestay"],
+  keywords: ["alleppey homestay", "best alleppey homestay", "best home stay in alleppey", "alleppey lake homestay", "alleppey waterfront homestay", "lake view homestay alleppey"],
   alternates: { canonical: "https://zenhomestay.in/alleppey-homestay" },
   openGraph: {
     title: "Best Alleppey Homestay | Zen Homestay – Direct Booking",
