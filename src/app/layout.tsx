@@ -21,27 +21,24 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://zenhomestay.in'),
-  title: "Alleppey Homestay on Punnamada Lake | Zen Homestay – Best in Alleppey",
-  description: "Zen Homestay is the best Alleppey homestay — a modern lakefront retreat on Punnamada Lake, located directly opposite the Nehru Trophy Boat Race finishing point. Enjoy direct lake views, beautiful sunsets, complimentary speedboat pickup & drop-off & authentic Kerala breakfast. Book direct for best rates.",
+  title: "Homestay in Alleppey on Punnamada Lake | Zen Homestay – Waterfront Lakefront Retreat",
+  description: "Looking for a homestay in Alleppey? Zen Homestay sits directly on Punnamada Lake — opposite the Nehru Trophy Boat Race finishing point. Wake up to direct lake views, enjoy complimentary speedboat pickup & drop-off, and authentic Kerala breakfast. Book direct with host Abhijith at zero commission.",
   keywords: [
-    "alleppey homestay",
-    "best alleppey homestay",
     "homestay in alleppey",
     "punnamada lake homestay",
     "waterfront homestay alleppey",
-    "kerala backwater homestay",
     "alleppey lake view homestay",
-    "best home stay in alleppey",
     "boat race finishing point stay",
     "private lake view rooms alleppey",
-    "heritage homestay kerala",
-    "zen homestay alleppey"
+    "zen homestay alleppey",
+    "alleppey backwater stay",
+    "speedboat homestay alleppey"
   ],
   authors: [{ name: "Abhijith" }],
   creator: "Zen Homestay",
   openGraph: {
-    title: "Alleppey Homestay on Punnamada Lake | Zen Homestay – Best in Alleppey",
-    description: "The best Alleppey homestay — directly across Punnamada Lake from the Nehru Trophy finishing point. Direct lake views, complimentary speedboat pickup & drop-off & authentic Kerala breakfast. Book direct, zero commission.",
+    title: "Homestay in Alleppey on Punnamada Lake | Zen Homestay",
+    description: "The top-rated homestay in Alleppey — directly across Punnamada Lake from the Nehru Trophy finishing point. Direct lake views, complimentary speedboat pickup & drop-off & authentic Kerala breakfast. Book direct, zero commission.",
     url: "https://zenhomestay.in",
     siteName: "Zen Homestay Alleppey",
     images: [
@@ -49,7 +46,7 @@ export const metadata: Metadata = {
         url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg",
         width: 1200,
         height: 630,
-        alt: "Zen Homestay – Best Alleppey Homestay on Punnamada Lake",
+        alt: "Zen Homestay – Homestay in Alleppey on Punnamada Lake",
       },
     ],
     locale: "en_IN",
@@ -57,8 +54,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alleppey Homestay | Zen Homestay on Punnamada Lake",
-    description: "The best Alleppey homestay — wake up to direct Punnamada Lake views opposite the Nehru Trophy finishing point. Speedboat pickup & drop-off, Kerala breakfast & zero commission booking.",
+    title: "Homestay in Alleppey | Zen Homestay on Punnamada Lake",
+    description: "Top-rated homestay in Alleppey — wake up to direct Punnamada Lake views opposite the Nehru Trophy finishing point. Speedboat pickup & drop-off, Kerala breakfast & zero commission booking.",
     images: ["/kerala_backwaters_hero_1786702183985.jpg"],
   },
   alternates: {
@@ -225,7 +222,7 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": "https://zenhomestay.in/#webpage",
       "url": "https://zenhomestay.in",
-      "name": "Alleppey Homestay on Punnamada Lake | Zen Homestay – Best in Alleppey",
+      "name": "Homestay in Alleppey on Punnamada Lake | Zen Homestay",
       "isPartOf": { "@id": "https://zenhomestay.in/#website" },
       "about": { "@id": "https://zenhomestay.in/#lodging" },
       "description": "Zen Homestay is the best Alleppey homestay — a secluded waterfront retreat on Punnamada Lake with direct lake views, complimentary 5-min speedboat transfer & authentic Kerala breakfast.",

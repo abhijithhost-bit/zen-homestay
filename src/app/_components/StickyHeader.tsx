@@ -189,10 +189,10 @@ export default function StickyHeader() {
             {/* Contact Host */}
             <Link
               href="/contact"
-              className="bg-[#C05200] hover:bg-[#a34500] text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 shadow-md active:scale-95 flex items-center gap-1.5"
+              className="bg-orange-500 hover:bg-orange-600 text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 shadow-md active:scale-95 flex items-center gap-1.5"
               style={scrolled
-                ? { boxShadow: '0 4px 20px rgba(192,82,0,0.4)' }
-                : { boxShadow: '0 4px 12px rgba(192,82,0,0.25)' }
+                ? { boxShadow: '0 4px 20px rgba(249,115,22,0.4)' }
+                : { boxShadow: '0 4px 12px rgba(249,115,22,0.25)' }
               }
             >
               <Phone className="w-3.5 h-3.5 hidden sm:block" />

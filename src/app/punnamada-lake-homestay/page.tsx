@@ -4,13 +4,13 @@ import Link from "next/link";
 import { MessageCircle, Phone, Waves, Anchor, Coffee, Star, MapPin, CheckCircle2, Award } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Punnamada Lake Homestay | Zen Homestay – Waterfront Stay Alleppey",
-  description: "Stay directly on Punnamada Lake at Zen Homestay, Alleppey. Direct lake views from your room, private speedboat pickup, Kerala breakfast included. Book with host Abhijith — zero OTA commission. +91 7012 761 588.",
-  keywords: ["punnamada lake homestay", "homestay on punnamada lake", "punnamada lake stay alleppey", "lake view homestay alleppey", "waterfront homestay alleppey"],
+  title: "Punnamada Lake Homestay | Zen Homestay – Stay Directly on the Lake, Alleppey",
+  description: "Zen Homestay sits directly on Punnamada Lake, Alleppey — the venue of the famous Nehru Trophy Boat Race. Direct lake views from your room, private speedboat pickup, Kerala breakfast included. Book with host Abhijith — zero OTA commission. +91 7012 761 588.",
+  keywords: ["punnamada lake homestay", "homestay on punnamada lake", "punnamada lake stay", "punnamada lake alleppey", "nehru trophy finishing point stay", "lake view homestay punnamada"],
   alternates: { canonical: "https://zenhomestay.in/punnamada-lake-homestay" },
   openGraph: {
     title: "Punnamada Lake Homestay | Zen Homestay Alleppey",
-    description: "Direct Punnamada Lake views, speedboat arrival & Kerala breakfast. Book the best waterfront homestay in Alleppey at zero commission.",
+    description: "Stay directly on Punnamada Lake — speedboat arrival, direct lake views & Kerala breakfast. Book with host Abhijith at zero commission.",
     url: "https://zenhomestay.in/punnamada-lake-homestay",
     images: [{ url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630 }],
   },
