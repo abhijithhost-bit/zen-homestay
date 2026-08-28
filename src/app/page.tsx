@@ -187,15 +187,15 @@ export default function Home() {
                 </div>
                 <p className="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Arrival — Check-in Route</p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                  <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="w-8 h-8 rounded-xl bg-sky-500 text-white font-black text-xs flex items-center justify-center mb-3">1</div><h4 className="font-bold text-slate-900 text-sm">Arrive at Finishing Point</h4><p className="text-xs text-slate-500 mt-1 leading-relaxed">Come by car or cab to the Nehru Trophy Boat Race Finishing Point in Alleppey — a well-known landmark.</p></div>
-                  <div className="p-5 rounded-2xl border border-orange-200 bg-orange-50/60 shadow-sm"><div className="w-8 h-8 rounded-xl bg-orange-500 text-white font-black text-xs flex items-center justify-center mb-3">2</div><h4 className="font-bold text-slate-900 text-sm">Abhijith Picks You Up</h4><p className="text-xs text-slate-700 mt-1 leading-relaxed font-medium">Your host comes to the finishing point in our private speedboat. Luggage assistance included.</p></div>
-                  <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="w-8 h-8 rounded-xl bg-sky-500 text-white font-black text-xs flex items-center justify-center mb-3">3</div><h4 className="font-bold text-slate-900 text-sm">5-Min Lake Crossing</h4><p className="text-xs text-slate-500 mt-1 leading-relaxed">Glide across Punnamada Lake in under 5 minutes — arriving in style right at our lakefront door.</p></div>
+                  <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="w-8 h-8 rounded-xl bg-sky-500 text-white font-black text-xs flex items-center justify-center mb-3">1</div><h3 className="font-bold text-slate-900 text-sm">Arrive at Finishing Point</h3><p className="text-xs text-slate-500 mt-1 leading-relaxed">Come by car or cab to the Nehru Trophy Boat Race Finishing Point in Alleppey — a well-known landmark.</p></div>
+                  <div className="p-5 rounded-2xl border border-orange-200 bg-orange-50/60 shadow-sm"><div className="w-8 h-8 rounded-xl bg-orange-500 text-white font-black text-xs flex items-center justify-center mb-3">2</div><h3 className="font-bold text-slate-900 text-sm">Abhijith Picks You Up</h3><p className="text-xs text-slate-700 mt-1 leading-relaxed font-medium">Your host comes to the finishing point in our private speedboat. Luggage assistance included.</p></div>
+                  <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="w-8 h-8 rounded-xl bg-sky-500 text-white font-black text-xs flex items-center justify-center mb-3">3</div><h3 className="font-bold text-slate-900 text-sm">5-Min Lake Crossing</h3><p className="text-xs text-slate-500 mt-1 leading-relaxed">Glide across Punnamada Lake in under 5 minutes — arriving in style right at our lakefront door.</p></div>
                 </div>
                 <p className="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3">Departure — Check-out Route</p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="w-8 h-8 rounded-xl bg-emerald-500 text-white font-black text-xs flex items-center justify-center mb-3">1</div><h4 className="font-bold text-slate-900 text-sm">Check Out by 11 AM</h4><p className="text-xs text-slate-500 mt-1 leading-relaxed">Checkout is at 11 AM. Flexible timing available on request via WhatsApp.</p></div>
-                  <div className="p-5 rounded-2xl border border-emerald-200 bg-emerald-50/60 shadow-sm"><div className="w-8 h-8 rounded-xl bg-emerald-600 text-white font-black text-xs flex items-center justify-center mb-3">2</div><h4 className="font-bold text-slate-900 text-sm">Speedboat Drop-off</h4><p className="text-xs text-slate-700 mt-1 leading-relaxed font-medium">We drop you back across the lake by speedboat — complimentary, just like the pickup.</p></div>
-                  <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="w-8 h-8 rounded-xl bg-emerald-500 text-white font-black text-xs flex items-center justify-center mb-3">3</div><h4 className="font-bold text-slate-900 text-sm">Back at Finishing Point</h4><p className="text-xs text-slate-500 mt-1 leading-relaxed">You&apos;re dropped back at the iconic Nehru Trophy Finishing Point, ready to continue your journey.</p></div>
+                  <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="w-8 h-8 rounded-xl bg-emerald-500 text-white font-black text-xs flex items-center justify-center mb-3">1</div><h3 className="font-bold text-slate-900 text-sm">Check Out by 11 AM</h3><p className="text-xs text-slate-500 mt-1 leading-relaxed">Checkout is at 11 AM. Flexible timing available on request via WhatsApp.</p></div>
+                  <div className="p-5 rounded-2xl border border-emerald-200 bg-emerald-50/60 shadow-sm"><div className="w-8 h-8 rounded-xl bg-emerald-600 text-white font-black text-xs flex items-center justify-center mb-3">2</div><h3 className="font-bold text-slate-900 text-sm">Speedboat Drop-off</h3><p className="text-xs text-slate-700 mt-1 leading-relaxed font-medium">We drop you back across the lake by speedboat — complimentary, just like the pickup.</p></div>
+                  <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="w-8 h-8 rounded-xl bg-emerald-500 text-white font-black text-xs flex items-center justify-center mb-3">3</div><h3 className="font-bold text-slate-900 text-sm">Back at Finishing Point</h3><p className="text-xs text-slate-500 mt-1 leading-relaxed">You&apos;re dropped back at the iconic Nehru Trophy Finishing Point, ready to continue your journey.</p></div>
                 </div>
               </div>
 
@@ -384,7 +384,7 @@ export default function Home() {
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-full text-white font-bold flex items-center justify-center text-sm shrink-0" style={{ background: r.color }}>{r.initials}</div>
-                          <div><p className="font-bold text-sm text-slate-900 leading-tight">{r.name}</p><p className="text-[11px] text-slate-400 font-medium">{r.time}</p></div>
+                          <div><p className="font-bold text-sm text-slate-900 leading-tight">{r.name}</p><p className="text-[11px] text-slate-600 font-medium">{r.time}</p></div>
                         </div>
                         <GoogleIcon />
                       </div>
@@ -533,9 +533,11 @@ export default function Home() {
                     <div><span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider block mb-0.5">Your Host</span><span className="text-white font-bold text-sm">Abhijith</span></div>
                     <div>
                       <span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider block mb-0.5">Phone / WhatsApp</span>
-                      <a href="tel:+917012761588" className="text-white font-black text-sm hover:text-orange-400 transition-colors block">+91 7012 761 588</a>
-                      <a href="tel:+919947753154" className="text-slate-300 font-bold text-xs hover:text-orange-400 transition-colors block mt-0.5">+91 9947 753 154</a>
-                      <a href="tel:+916238951178" className="text-slate-300 font-bold text-xs hover:text-orange-400 transition-colors block mt-0.5">+91 6238 951 178</a>
+                      <div className="flex flex-col gap-0.5">
+                        <a href="tel:+917012761588" className="text-white font-black text-sm hover:text-orange-400 transition-colors py-1.5 inline-block">+91 7012 761 588</a>
+                        <a href="tel:+919947753154" className="text-slate-300 font-bold text-xs hover:text-orange-400 transition-colors py-1.5 inline-block">+91 9947 753 154</a>
+                        <a href="tel:+916238951178" className="text-slate-300 font-bold text-xs hover:text-orange-400 transition-colors py-1.5 inline-block">+91 6238 951 178</a>
+                      </div>
                     </div>
                     <div className="grid grid-cols-2 gap-1.5 text-[10px] font-bold text-slate-400">
                       <div className="bg-slate-800 rounded-lg px-2 py-1.5 text-center"><span className="block text-white font-black">2:00 PM</span>Check-in</div>

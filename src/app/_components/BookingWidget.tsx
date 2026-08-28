@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { Star, MessageCircle, Phone, CheckCircle2, Calendar, Minus, Plus } from 'lucide-react';
 import { useBooking } from './BookingProvider';
@@ -28,7 +28,7 @@ export default function BookingWidget() {
           </span>
           {/* OTA price anchor */}
           <div className="flex items-center gap-1.5 mt-0.5">
-            <span className="text-[11px] text-slate-400 line-through">₹{(rooms * 4200 * nights).toLocaleString('en-IN')} on OTAs</span>
+            <span className="text-[11px] text-slate-600 line-through">₹{(rooms * 4200 * nights).toLocaleString('en-IN')} on OTAs</span>
             <span className="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-md">Save 25%</span>
           </div>
         </div>
