@@ -53,7 +53,7 @@ const jsonLd = [
       "addressCountry": "IN",
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 9.502023969622542, "longitude": 76.35757685613443 },
-    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.98", "reviewCount": "48", "bestRating": "5" },
+    "sameAs": "https://zenhomestay.in",
   },
   {
     "@context": "https://schema.org",

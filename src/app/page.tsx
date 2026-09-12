@@ -78,6 +78,64 @@ export default function Home() {
             }))
           })
         }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Review",
+              "itemReviewed": { "@id": "https://zenhomestay.in/#lodging" },
+              "author": { "@type": "Person", "name": "Arun Menon" },
+              "datePublished": "2026-07-15",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "reviewBody": "The speedboat ride from the finishing point set the tone immediately. Best alleppey homestay I've ever stayed at — waking up to Punnamada Lake right outside the bedroom window was pure magic!"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Review",
+              "itemReviewed": { "@id": "https://zenhomestay.in/#lodging" },
+              "author": { "@type": "Person", "name": "Lakshmi Thomas" },
+              "datePublished": "2026-08-01",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "reviewBody": "Unmatched privacy at this homestay in Alleppey! No roads nearby means total silence and the most serene water views I've experienced. Abhijith was an incredible, attentive host throughout."
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Review",
+              "itemReviewed": { "@id": "https://zenhomestay.in/#lodging" },
+              "author": { "@type": "Person", "name": "Divya Varghese" },
+              "datePublished": "2026-07-25",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "reviewBody": "We searched for the best waterfront homestay in Alleppey and Zen Homestay exceeded every expectation. The Kerala breakfast served by the lakeside was divine — Appam and stew tasted like a dream!"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Review",
+              "itemReviewed": { "@id": "https://zenhomestay.in/#lodging" },
+              "author": { "@type": "Person", "name": "Vineeth Nair" },
+              "datePublished": "2026-07-10",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "reviewBody": "Stayed here for our anniversary and it was phenomenal. This Punnamada Lake homestay is unlike anything else in Alleppey — the direct lake view from bed, the wooden balcony, the morning breeze. Absolutely 5 stars."
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Review",
+              "itemReviewed": { "@id": "https://zenhomestay.in/#lodging" },
+              "author": { "@type": "Person", "name": "Anju Jacob" },
+              "datePublished": "2026-06-20",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "reviewBody": "If you're looking for a peaceful Kerala backwater homestay, stop searching — this is it. The speedboat pickup felt like arriving at a private island resort. Abhijith's hospitality is truly world-class."
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Review",
+              "itemReviewed": { "@id": "https://zenhomestay.in/#lodging" },
+              "author": { "@type": "Person", "name": "Siddharth Kumar" },
+              "datePublished": "2026-06-15",
+              "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+              "reviewBody": "Traveled from Bangalore to experience Kerala's backwaters — this alleppey homestay on Punnamada Lake was the highlight of our entire trip. The authentic food, the silence, the lake... absolutely spectacular."
+            }
+          ])
+        }} />
 
         <StickyHeader />
 
