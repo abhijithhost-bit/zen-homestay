@@ -5,12 +5,12 @@ import { MessageCircle, Phone, Waves, Anchor, Coffee, ShieldCheck, CheckCircle2,
 
 export const metadata: Metadata = {
   title: "Kerala Backwater Homestay | Zen Homestay Alleppey – Direct Lake Stay",
-  description: "Discover the best Kerala backwater homestay at Zen Homestay, Alleppey. Secluded on Punnamada Lake with no road access, private speedboat, authentic Kerala cuisine & 4.98★ reviews. Book direct. +91 7012 761 588.",
+  description: "Discover the best Kerala backwater homestay at Zen Homestay, Alleppey. Secluded on Punnamada Lake with no road access, private speedboat, authentic Kerala cuisine & 4.9★ reviews. Book direct. +91 7012 761 588.",
   keywords: ["kerala backwater homestay", "backwater homestay kerala", "alleppey backwater homestay", "kerala backwaters stay", "punnamada backwater homestay"],
   alternates: { canonical: "https://zenhomestay.in/kerala-backwater-homestay" },
   openGraph: {
     title: "Kerala Backwater Homestay | Zen Homestay Alleppey",
-    description: "The most secluded Kerala backwater homestay on Punnamada Lake. Speedboat access, authentic Kerala cuisine & 4.98★ rating. Book direct.",
+    description: "The most secluded Kerala backwater homestay on Punnamada Lake. Speedboat access, authentic Kerala cuisine & 4.9★ rating. Book direct.",
     url: "https://zenhomestay.in/kerala-backwater-homestay",
     images: [{ url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630 }],
   },
@@ -41,7 +41,7 @@ const jsonLd = [
     "@type": "BedAndBreakfast",
     "name": "Zen Homestay – Kerala Backwater Homestay",
     "url": "https://zenhomestay.in/kerala-backwater-homestay",
-    "description": "Best Kerala backwater homestay on Punnamada Lake, Alleppey. No road access, private speedboat, authentic Kerala cuisine, 4.98★ reviews.",
+    "description": "Best Kerala backwater homestay on Punnamada Lake, Alleppey. No road access, private speedboat, authentic Kerala cuisine, 4.9★ reviews.",
     "telephone": "+91-7012-761-588",
     "priceRange": "₹3,000 – ₹6,000",
     "address": {
@@ -124,7 +124,7 @@ export default function KeralaBackwaterHomestayPage() {
           </div>
           <div className="relative max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-wider">
-              <Award className="w-3.5 h-3.5" /> Secluded Kerala Backwater Homestay · 4.98★
+              <Award className="w-3.5 h-3.5" /> Secluded Kerala Backwater Homestay · 4.9★
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">
               Kerala Backwater Homestay<br />

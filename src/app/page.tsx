@@ -194,11 +194,11 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-extrabold text-slate-900 text-base">One of the most loved homes in Alleppey</h3>
-                    <p className="text-xs sm:text-sm text-slate-600 mt-0.5 font-medium">Rated 4.98 stars with 100% 5-star check-in and private waterfront location scores.</p>
+                    <p className="text-xs sm:text-sm text-slate-600 mt-0.5 font-medium">Rated 4.9 stars with 100% 5-star check-in and private waterfront location scores.</p>
                   </div>
                 </div>
                 <div className="hidden sm:block text-right shrink-0">
-                  <div className="font-black text-2xl text-slate-900">4.98</div>
+                  <div className="font-black text-2xl text-slate-900">4.9</div>
                   <div className="flex text-orange-500 text-xs">★★★★★</div>
                 </div>
               </div>
@@ -562,13 +562,13 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2 bg-slate-900 rounded-xl px-4 py-3 border border-slate-800">
                   <div className="flex items-center gap-0.5"><StarRow /></div>
-                  <span className="text-white font-black text-sm">4.98</span>
+                  <span className="text-white font-black text-sm">4.9</span>
                   <span className="text-slate-500 font-medium">· 48 Google reviews</span>
                 </div>
                 <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">An exclusive waterfront sanctuary on Punnamada Lake — accessible only by our complimentary 5-minute speedboat. Zero road noise, authentic Kerala cuisine, and attentive 5-star host care.</p>
                 <div className="flex flex-wrap gap-2">
                   <span className="bg-slate-900 text-sky-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5"><Anchor className="w-3 h-3" /> 5-Min Boat Pickup</span>
-                  <span className="bg-slate-900 text-orange-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5"><Award className="w-3 h-3" /> Superhost 4.98★</span>
+                  <span className="bg-slate-900 text-orange-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5"><Award className="w-3 h-3" /> Superhost 4.9★</span>
                   <span className="bg-slate-900 text-emerald-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5"><ShieldCheck className="w-3 h-3" /> 0% Commission</span>
                   <span className="bg-slate-900 text-amber-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5"><Coffee className="w-3 h-3" /> Breakfast Included</span>
                 </div>

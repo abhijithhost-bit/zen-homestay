@@ -112,7 +112,7 @@ export default function PunnamadaLakeHomestayPage() {
           </div>
           <div className="relative max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-sky-500/20 border border-sky-400/30 text-sky-300 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-wider">
-              <Award className="w-3.5 h-3.5" /> Directly on Punnamada Lake · 4.98★
+              <Award className="w-3.5 h-3.5" /> Directly on Punnamada Lake · 4.9★
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">
               Punnamada Lake Homestay<br />

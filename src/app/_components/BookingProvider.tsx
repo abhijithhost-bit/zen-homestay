@@ -1,9 +1,9 @@
-﻿'use client';
+'use client';
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { Star, X, ChevronLeft, ChevronRight, Minus, Plus } from 'lucide-react';
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+// --- Types -------------------------------------------------------------------
 
 export interface BookingContextType {
   rooms: number;
@@ -30,7 +30,7 @@ export interface BookingContextType {
   getFirstDayOfMonth: (year: number, month: number) => number;
 }
 
-// ─── Context ─────────────────────────────────────────────────────────────────
+// --- Context -----------------------------------------------------------------
 
 const BookingContext = createContext<BookingContextType | null>(null);
 
@@ -40,7 +40,7 @@ export function useBooking(): BookingContextType {
   return ctx;
 }
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+// --- Helpers -----------------------------------------------------------------
 
 function getInitialDate(offsetDays = 0): string {
   const d = new Date();
@@ -68,7 +68,7 @@ function calculateNights(inDateStr: string, outDateStr: string): number {
 
 function padDate(n: number) { return String(n).padStart(2, '0'); }
 
-// ─── CalendarModal ────────────────────────────────────────────────────────────
+// --- CalendarModal ------------------------------------------------------------
 
 function CalendarModal() {
   const {
@@ -101,7 +101,7 @@ function CalendarModal() {
         <div className="p-4 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/80">
           <div>
             <h3 className="font-extrabold text-base sm:text-lg text-slate-900">Select Dates & Rooms</h3>
-            <p className="text-xs text-slate-500 font-medium">{nights} {nights === 1 ? 'Night' : 'Nights'} · {rooms} {rooms === 1 ? 'Room' : 'Rooms'} · {guests} Guests</p>
+            <p className="text-xs text-slate-500 font-medium">{nights} {nights === 1 ? 'Night' : 'Nights'} � {rooms} {rooms === 1 ? 'Room' : 'Rooms'} � {guests} Guests</p>
           </div>
           <button
             type="button"
@@ -237,8 +237,8 @@ function CalendarModal() {
         {/* Footer */}
         <div className="p-4 border-t border-slate-100 bg-slate-50 flex items-center justify-between gap-3">
           <div>
-            <span className="text-[11px] text-slate-500 font-semibold block">Total ({nights}N · {rooms}R)</span>
-            <span className="text-base font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
+            <span className="text-[11px] text-slate-500 font-semibold block">Total ({nights}N � {rooms}R)</span>
+            <span className="text-base font-black text-slate-900">?{totalPrice.toLocaleString('en-IN')}</span>
           </div>
           <button
             type="button"
@@ -253,7 +253,7 @@ function CalendarModal() {
   );
 }
 
-// ─── MobileBottomBar ──────────────────────────────────────────────────────────
+// --- MobileBottomBar ----------------------------------------------------------
 
 function MobileBottomBar() {
   const { totalPrice, nights, rooms, guests, setShowCalendar } = useBooking();
@@ -266,14 +266,14 @@ function MobileBottomBar() {
         className="text-left cursor-pointer active:scale-95 transition-transform"
       >
         <div className="flex items-baseline gap-1">
-          <span className="text-lg font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
-          <span className="text-xs text-orange-600 font-bold underline">/ {nights} {nights === 1 ? 'night' : 'nights'} 📅</span>
+          <span className="text-lg font-black text-slate-900">?{totalPrice.toLocaleString('en-IN')}</span>
+          <span className="text-xs text-orange-600 font-bold underline">/ {nights} {nights === 1 ? 'night' : 'nights'} ??</span>
         </div>
         <div className="flex items-center gap-1 text-[11px] text-slate-700 font-bold">
           <Star className="w-3 h-3 fill-orange-500 text-orange-500" />
-          <span>4.98</span>
-          <span>·</span>
-          <span className="text-sky-600">{rooms} {rooms === 1 ? 'Room' : 'Rooms'} · {guests} {guests === 1 ? 'Guest' : 'Guests'}</span>
+          <span>4.9</span>
+          <span>�</span>
+          <span className="text-sky-600">{rooms} {rooms === 1 ? 'Room' : 'Rooms'} � {guests} {guests === 1 ? 'Guest' : 'Guests'}</span>
         </div>
       </button>
 
@@ -286,13 +286,13 @@ function MobileBottomBar() {
         className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3.5 rounded-xl font-black text-sm shadow-lg shadow-orange-500/25 flex items-center gap-1.5 active:scale-95 transition-all cursor-pointer touch-manipulation"
       >
         <span>Book Now</span>
-        <span className="text-xs font-black">↓</span>
+        <span className="text-xs font-black">?</span>
       </a>
     </div>
   );
 }
 
-// ─── BookingProvider ──────────────────────────────────────────────────────────
+// --- BookingProvider ----------------------------------------------------------
 
 export function BookingProvider({ children }: { children: ReactNode }) {
   const [rooms, setRooms] = useState(1);
@@ -312,7 +312,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   const formattedCheckOut = formatDisplayDate(checkOut);
 
   const whatsappBookingUrl = `https://wa.me/917012761588?text=${encodeURIComponent(
-    `Hi Abhijith, I would like to inquire about booking Zen Homestay for ${guests} guest${guests > 1 ? 's' : ''} (${rooms} Lake View Room${rooms > 1 ? 's' : ''}) from ${formattedCheckIn} to ${formattedCheckOut} (${nights} night${nights > 1 ? 's' : ''}). Total estimated: ₹${totalPrice.toLocaleString('en-IN')}. Please let me know the availability!`
+    `Hi Abhijith, I would like to inquire about booking Zen Homestay for ${guests} guest${guests > 1 ? 's' : ''} (${rooms} Lake View Room${rooms > 1 ? 's' : ''}) from ${formattedCheckIn} to ${formattedCheckOut} (${nights} night${nights > 1 ? 's' : ''}). Total estimated: ?${totalPrice.toLocaleString('en-IN')}. Please let me know the availability!`
   )}`;
 
   const prevMonth = () => setCalendarMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));

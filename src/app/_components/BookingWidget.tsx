@@ -34,7 +34,7 @@ export default function BookingWidget() {
         </div>
         <div className="flex items-center gap-1 text-xs font-bold text-slate-900">
           <Star className="w-4 h-4 fill-orange-500 text-orange-500" />
-          <span>4.98</span>
+          <span>4.9</span>
           <span className="text-slate-500 font-normal">(48)</span>
         </div>
       </div>
@@ -223,7 +223,7 @@ export default function BookingWidget() {
             <p className="text-[11px] text-slate-500 font-medium mt-0.5">Responds in &lt; 5 mins · English, Malayalam</p>
             <div className="flex items-center gap-1 mt-0.5">
               <span className="text-orange-500 text-[11px]">★★★★★</span>
-              <span className="text-[11px] font-bold text-slate-700">4.98</span>
+              <span className="text-[11px] font-bold text-slate-700">4.9</span>
               <span className="text-[11px] text-slate-400">(48 reviews)</span>
             </div>
           </div>

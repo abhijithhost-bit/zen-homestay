@@ -159,7 +159,7 @@ export default function HoneymoonHomestayPage() {
               { Icon: Sparkles, bg: "bg-amber-50", text: "text-amber-600", title: "Complete Privacy", desc: "No road access means no vehicle noise, no strangers walking past, no intrusions. Just the two of you and the water." },
               { Icon: Coffee, bg: "bg-orange-50", text: "text-orange-600", title: "Kerala Breakfast by the Lake", desc: "Hot Appam with stew, Puttu, fresh fruit and tea — served lakeside by your host every morning. Home cooking at its most memorable." },
               { Icon: Heart, bg: "bg-rose-50", text: "text-rose-600", title: "Honeymoon Surprises", desc: "Tell Abhijith it is your honeymoon. He will add a personal touch — fresh flowers, a warm welcome, a private shikara at sunset." },
-              { Icon: Star, bg: "bg-amber-50", text: "text-amber-600", title: "4.98★ · 48 Reviews", desc: "Consistently rated by guests as one of the best and most romantic stays in all of Alleppey." },
+              { Icon: Star, bg: "bg-amber-50", text: "text-amber-600", title: "4.9★ · 48 Reviews", desc: "Consistently rated by guests as one of the best and most romantic stays in all of Alleppey." },
             ].map(({ Icon, bg, text, title, desc }) => (
               <div key={title} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                 <div className={`w-10 h-10 rounded-xl ${bg} ${text} flex items-center justify-center mb-3`}>

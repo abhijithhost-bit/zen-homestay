@@ -114,7 +114,7 @@ const jsonLd = {
       "hasMap": "https://maps.google.com/?q=9.502023969622542,76.35757685613443",
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.98",
+        "ratingValue": "4.9",
         "reviewCount": 48,
         "bestRating": "5",
         "worstRating": "1"

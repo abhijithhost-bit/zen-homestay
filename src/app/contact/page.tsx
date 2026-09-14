@@ -166,7 +166,7 @@ export default function Contact() {
                 <span className="text-slate-500">Reviews</span>
               </div>
               <div>
-                <span className="text-sm font-black text-orange-600 block">4.98 ★</span>
+                <span className="text-sm font-black text-orange-600 block">4.9 ★</span>
                 <span className="text-slate-500">Rating</span>
               </div>
               <div>

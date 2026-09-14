@@ -5,12 +5,12 @@ import { MessageCircle, Phone, Star, Anchor, Waves, ShieldCheck, Coffee, CheckCi
 
 export const metadata: Metadata = {
   title: "Best Alleppey Homestay on Punnamada Lake | Zen Homestay – Direct Booking",
-  description: "The best Alleppey homestay — Zen Homestay on Punnamada Lake. Direct lake views, complimentary 5-min speedboat, authentic Kerala breakfast & 4.98★ rating. Book direct with host Abhijith at zero commission. Call +91 7012 761 588.",
+  description: "The best Alleppey homestay — Zen Homestay on Punnamada Lake. Direct lake views, complimentary 5-min speedboat, authentic Kerala breakfast & 4.9★ rating. Book direct with host Abhijith at zero commission. Call +91 7012 761 588.",
   keywords: ["alleppey homestay", "best alleppey homestay", "best home stay in alleppey", "alleppey lake homestay", "alleppey waterfront homestay", "lake view homestay alleppey"],
   alternates: { canonical: "https://zenhomestay.in/alleppey-homestay" },
   openGraph: {
     title: "Best Alleppey Homestay | Zen Homestay – Direct Booking",
-    description: "Best Alleppey homestay on Punnamada Lake. Speedboat access, Kerala breakfast & 4.98★ rating. Book direct — zero commission.",
+    description: "Best Alleppey homestay on Punnamada Lake. Speedboat access, Kerala breakfast & 4.9★ rating. Book direct — zero commission.",
     url: "https://zenhomestay.in/alleppey-homestay",
     images: [{ url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630 }],
   },
@@ -112,7 +112,7 @@ export default function AlleppeyHomestayPage() {
           </div>
           <div className="relative max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-400/30 text-orange-300 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-wider">
-              <Award className="w-3.5 h-3.5" /> #1 Rated Alleppey Homestay · 4.98★
+              <Award className="w-3.5 h-3.5" /> #1 Rated Alleppey Homestay · 4.9★
             </div>
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-4">
               Best Alleppey Homestay<br />
@@ -156,7 +156,7 @@ export default function AlleppeyHomestayPage() {
               { Icon: Waves, bg: "bg-blue-50", text: "text-blue-600", title: "Direct Punnamada Lake View", desc: "Both rooms have unobstructed panoramic lake views. Wake up to the water every morning." },
               { Icon: Coffee, bg: "bg-orange-50", text: "text-orange-600", title: "Authentic Kerala Breakfast", desc: "Hot Appam, Puttu, fresh fruits and tea served lakeside — home-cooked by your host every morning." },
               { Icon: ShieldCheck, bg: "bg-emerald-50", text: "text-emerald-600", title: "Zero Road Noise", desc: "No vehicle traffic, no road sounds — just water, birds, and total backwater silence." },
-              { Icon: Star, bg: "bg-amber-50", text: "text-amber-600", title: "4.98★ · 48 Verified Reviews", desc: "Consistently rated as one of the best stays in all of Alleppey by guests from across India." },
+              { Icon: Star, bg: "bg-amber-50", text: "text-amber-600", title: "4.9★ · 48 Verified Reviews", desc: "Consistently rated as one of the best stays in all of Alleppey by guests from across India." },
               { Icon: MessageCircle, bg: "bg-green-50", text: "text-green-600", title: "Book Direct · Save 20%", desc: "No Airbnb or MakeMyTrip fees. Message Abhijith directly and save ₹1,000–₹2,300 per stay." },
             ].map(({ Icon, bg, text, title, desc }) => (
               <div key={title} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">

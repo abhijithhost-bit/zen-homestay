@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -85,7 +85,7 @@ export default function GallerySection({ images }: Props) {
             onClick={() => { setActivePhotoIdx(0); setShowGallery(true); }}
             className="bg-slate-900/80 backdrop-blur-md text-white px-3 py-1.5 rounded-full text-[11px] font-bold shadow-md flex items-center gap-1.5 active:scale-95"
           >
-            <span>📷</span> {mobileSlideIdx + 1} / {images.length} · View all
+            <span>??</span> {mobileSlideIdx + 1} / {images.length} � View all
           </button>
         </div>
       </div>
@@ -129,7 +129,7 @@ export default function GallerySection({ images }: Props) {
           onClick={() => { setActivePhotoIdx(0); setShowGallery(true); }}
           className="absolute bottom-4 right-4 bg-white/95 hover:bg-white text-slate-900 border border-slate-200 px-4 py-2 rounded-xl text-xs font-extrabold shadow-lg flex items-center gap-2 transition-all cursor-pointer hover:scale-105 active:scale-95 hover:text-orange-600"
         >
-          <span>📷</span> Show all 5 photos
+          <span>??</span> Show all 5 photos
         </button>
       </div>
 
@@ -145,10 +145,10 @@ export default function GallerySection({ images }: Props) {
               <X className="w-4 h-4" />
               <span>Close</span>
             </button>
-            <div className="text-slate-500 text-xs hidden sm:block">Esc to close · ← → to navigate</div>
+            <div className="text-slate-500 text-xs hidden sm:block">Esc to close � ? ? to navigate</div>
             <div className="text-xs font-bold text-slate-400">
               <span className="text-orange-400">{images[activePhotoIdx]?.tag}</span>
-              <span className="text-slate-600 mx-2">·</span>
+              <span className="text-slate-600 mx-2">�</span>
               <span className="text-white font-black">{activePhotoIdx + 1}</span>
               <span className="text-slate-600"> / {images.length}</span>
             </div>
