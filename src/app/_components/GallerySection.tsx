@@ -156,34 +156,36 @@ export default function GallerySection({ images }: Props) {
 
           {/* Main Content */}
           <div className="flex-1 flex flex-col min-h-0">
-            {/* Image Stage */}
-            <div className="flex-1 relative flex items-center justify-center min-h-0 px-12 sm:px-16">
-              <button
-                onClick={() => setActivePhotoIdx(prev => (prev === 0 ? images.length - 1 : prev - 1))}
-                aria-label="Previous photo"
-                className="absolute left-2 sm:left-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center text-white transition-all active:scale-90 cursor-pointer"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-
-              <div className="relative w-full h-full max-h-[55vh] sm:max-h-[65vh]">
-                <Image
-                  src={images[activePhotoIdx].src}
-                  alt={images[activePhotoIdx].alt}
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 100vw, 85vw"
-                  className="object-contain"
-                />
+            {/* Image Stage — fixed 4:3 aspect ratio so all images same size */}
+            <div className="flex-1 flex items-center justify-center min-h-0 px-4 sm:px-8 py-3">
+              <div className="relative w-full max-w-4xl">
+                {/* Aspect-ratio locked container — every image renders the same size */}
+                <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
+                  <Image
+                    src={images[activePhotoIdx].src}
+                    alt={images[activePhotoIdx].alt}
+                    fill
+                    priority
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 896px"
+                    className="object-cover transition-opacity duration-300"
+                  />
+                  {/* Nav arrows overlaid on image edges */}
+                  <button
+                    onClick={() => setActivePhotoIdx(prev => (prev === 0 ? images.length - 1 : prev - 1))}
+                    aria-label="Previous photo"
+                    className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition-all active:scale-90 cursor-pointer"
+                  >
+                    <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </button>
+                  <button
+                    onClick={() => setActivePhotoIdx(prev => (prev === images.length - 1 ? 0 : prev + 1))}
+                    aria-label="Next photo"
+                    className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition-all active:scale-90 cursor-pointer"
+                  >
+                    <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                  </button>
+                </div>
               </div>
-
-              <button
-                onClick={() => setActivePhotoIdx(prev => (prev === images.length - 1 ? 0 : prev + 1))}
-                aria-label="Next photo"
-                className="absolute right-2 sm:right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 flex items-center justify-center text-white transition-all active:scale-90 cursor-pointer"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
             </div>
 
             {/* Photo Title */}
