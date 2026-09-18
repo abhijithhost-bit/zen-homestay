@@ -75,9 +75,8 @@ export default function GallerySection({ images }: Props) {
             {images.map((_, idx) => (
               <span
                 key={idx}
-                className={`block rounded-full transition-all duration-300 ${
-                  mobileSlideIdx === idx ? 'w-5 h-2 bg-orange-500' : 'w-2 h-2 bg-slate-300'
-                }`}
+                className={`block rounded-full transition-all duration-300 ${mobileSlideIdx === idx ? 'w-5 h-2 bg-orange-500' : 'w-2 h-2 bg-slate-300'
+                  }`}
               />
             ))}
           </div>
@@ -156,11 +155,10 @@ export default function GallerySection({ images }: Props) {
 
           {/* Main Content */}
           <div className="flex-1 flex flex-col min-h-0">
-            {/* Image Stage — fixed 4:3 aspect ratio so all images same size */}
+            {/* Image Stage — height-driven so it never overflows on large screens */}
             <div className="flex-1 flex items-center justify-center min-h-0 px-4 sm:px-8 py-3">
-              <div className="relative w-full max-w-4xl">
-                {/* Aspect-ratio locked container — every image renders the same size */}
-                <div className="relative w-full h-[55vh] sm:h-auto sm:aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
+              {/* Height is capped; width auto-sizes via aspect-ratio to keep 4:3 */}
+              <div className="relative h-[45vh] sm:h-[52vh] w-auto aspect-[4/3] max-w-full rounded-xl overflow-hidden shadow-2xl">
                   <Image
                     src={images[activePhotoIdx].src}
                     alt={images[activePhotoIdx].alt}
@@ -185,7 +183,6 @@ export default function GallerySection({ images }: Props) {
                     <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
                 </div>
-              </div>
             </div>
 
             {/* Photo Title */}
@@ -200,9 +197,8 @@ export default function GallerySection({ images }: Props) {
                 <button
                   key={idx}
                   onClick={() => setActivePhotoIdx(idx)}
-                  className={`relative w-16 h-12 sm:w-20 sm:h-14 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${
-                    activePhotoIdx === idx ? 'border-orange-500 scale-105' : 'border-transparent opacity-60 hover:opacity-100'
-                  }`}
+                  className={`relative w-16 h-12 sm:w-20 sm:h-14 rounded-lg overflow-hidden shrink-0 border-2 transition-all cursor-pointer ${activePhotoIdx === idx ? 'border-orange-500 scale-105' : 'border-transparent opacity-60 hover:opacity-100'
+                    }`}
                 >
                   <Image src={img.src} alt={img.alt} fill sizes="96px" className="object-cover" />
                 </button>
