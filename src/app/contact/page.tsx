@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
@@ -10,6 +11,12 @@ import {
   Award,
   CheckCircle2
 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Contact Zen Homestay Alleppey | Book Direct with Host Abhijith',
+  description: 'Contact Zen Homestay Alleppey directly — call or WhatsApp host Abhijith at +91 7012 761 588 for availability, rates, and direct booking on Punnamada Lake. Zero commission.',
+  alternates: { canonical: 'https://zenhomestay.in/contact' },
+};
 
 export default function Contact() {
   return (

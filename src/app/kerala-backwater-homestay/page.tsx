@@ -6,7 +6,7 @@ import { MessageCircle, Phone, Waves, Anchor, Coffee, ShieldCheck, CheckCircle2,
 export const metadata: Metadata = {
   title: "Kerala Backwater Homestay | Zen Homestay Alleppey – Direct Lake Stay",
   description: "Discover the best Kerala backwater homestay at Zen Homestay, Alleppey. Secluded on Punnamada Lake with no road access, private speedboat, authentic Kerala cuisine & 4.9★ reviews. Book direct. +91 7012 761 588.",
-  keywords: ["kerala backwater homestay", "backwater homestay kerala", "alleppey backwater homestay", "kerala backwaters stay", "punnamada backwater homestay"],
+  keywords: ["kerala backwater homestay", "alleppey backwater homestay", "kerala backwaters accommodation", "punnamada backwater homestay"],
   alternates: { canonical: "https://zenhomestay.in/kerala-backwater-homestay" },
   openGraph: {
     title: "Kerala Backwater Homestay | Zen Homestay Alleppey",

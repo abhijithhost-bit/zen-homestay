@@ -6,7 +6,7 @@ import { MessageCircle, Phone, Heart, Anchor, Coffee, Waves, Star, CheckCircle2,
 export const metadata: Metadata = {
   title: "Honeymoon Homestay Alleppey | Zen Homestay on Punnamada Lake",
   description: "Plan your Kerala honeymoon at Zen Homestay Alleppey — a romantic lakefront retreat on Punnamada Lake. Private rooms, speedboat arrival, sunrise lake views & authentic Kerala breakfast. Book direct with host Abhijith. +91 7012 761 588.",
-  keywords: ["honeymoon homestay alleppey", "alleppey honeymoon", "kerala honeymoon backwaters", "romantic homestay alleppey", "honeymoon in alleppey", "couples homestay kerala", "punnamada lake honeymoon"],
+  keywords: ["honeymoon homestay alleppey", "romantic homestay alleppey", "couples homestay kerala", "honeymoon stay punnamada lake", "alleppey honeymoon package"],
   alternates: { canonical: "https://zenhomestay.in/honeymoon-homestay-alleppey" },
   openGraph: {
     title: "Honeymoon Homestay Alleppey | Zen Homestay on Punnamada Lake",

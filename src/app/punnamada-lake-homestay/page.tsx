@@ -6,7 +6,7 @@ import { MessageCircle, Phone, Waves, Anchor, Coffee, Star, MapPin, CheckCircle2
 export const metadata: Metadata = {
   title: "Punnamada Lake Homestay | Zen Homestay – Stay Directly on the Lake, Alleppey",
   description: "Zen Homestay sits directly on Punnamada Lake, Alleppey — the venue of the famous Nehru Trophy Boat Race. Direct lake views from your room, private speedboat pickup, Kerala breakfast included. Book with host Abhijith — zero OTA commission. +91 7012 761 588.",
-  keywords: ["punnamada lake homestay", "homestay on punnamada lake", "punnamada lake stay", "punnamada lake alleppey", "nehru trophy finishing point stay", "lake view homestay punnamada"],
+  keywords: ["punnamada lake homestay", "nehru trophy finishing point stay", "lake view homestay punnamada", "alleppey lake stay"],
   alternates: { canonical: "https://zenhomestay.in/punnamada-lake-homestay" },
   openGraph: {
     title: "Punnamada Lake Homestay | Zen Homestay Alleppey",

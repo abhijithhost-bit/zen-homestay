@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import {
   ShieldCheck, Wifi, Wind, Utensils, Waves, Coffee,
   Anchor, MessageCircle, Phone, CheckCircle2, Sparkles,
@@ -11,6 +12,14 @@ import StickyHeader from './_components/StickyHeader';
 import GallerySection from './_components/GallerySection';
 import FaqAccordion from './_components/FaqAccordion';
 import { blogPosts } from './blog/_data/posts';
+
+export const metadata: Metadata = {
+  title: 'Homestay in Alleppey | Zen Homestay – Punnamada Lake',
+  description: 'Homestay in Alleppey on Punnamada Lake — direct lake views, complimentary speedboat pickup & authentic Kerala breakfast. Book direct with host Abhijith. Zero commission.',
+  alternates: {
+    canonical: 'https://zenhomestay.in',
+  },
+};
 
 // ─── Static Data ─────────────────────────────────────────────────────────────
 
@@ -409,7 +418,7 @@ export default function Home() {
 
               {/* Things to Know */}
               <div className="pb-8 border-b border-slate-200">
-                <h3 className="text-lg font-extrabold text-slate-900 mb-4">Things to Know</h3>
+                <h2 className="text-2xl font-extrabold text-slate-900 mb-4">Things to Know</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-slate-600">
                   <div className="bg-white p-5 rounded-2xl border border-slate-200"><h4 className="font-bold text-slate-900 mb-2">Check-in &amp; Checkout</h4><p className="leading-relaxed font-bold text-slate-900">Check-in: 2:00 PM</p><p className="leading-relaxed font-bold text-slate-900">Checkout: 11:00 AM</p><p className="leading-relaxed text-slate-500 mt-1">Flexible timing available — just ask Abhijith via WhatsApp.</p></div>
                   <div className="bg-white p-5 rounded-2xl border border-slate-200"><h4 className="font-bold text-slate-900 mb-2">Speedboat Pickup &amp; Drop</h4><p className="leading-relaxed font-medium text-emerald-700">Free for check-in &amp; check-out</p><p className="leading-relaxed">One trip each way, complimentary</p><p className="leading-relaxed text-slate-500 mt-1">Extra town trips: <span className="font-bold text-slate-700">₹300/trip</span></p></div>

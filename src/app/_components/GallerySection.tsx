@@ -61,7 +61,7 @@ export default function GallerySection({ images }: Props) {
               className="relative w-full shrink-0 aspect-[4/3] snap-center cursor-pointer"
               onClick={() => { setActivePhotoIdx(idx); setShowGallery(true); }}
             >
-              <Image src={img.src} alt={img.alt} fill sizes="100vw" priority={idx === 0} className="object-cover" />
+              <Image src={img.src} alt={img.alt} fill sizes="(max-width: 768px) 100vw, 50vw" priority={idx === 0} className="object-cover" />
               <div className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
                 {img.tag}
               </div>
