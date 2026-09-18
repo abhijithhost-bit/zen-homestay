@@ -19,6 +19,8 @@ export default function GallerySection({ images }: Props) {
   const [showGallery, setShowGallery] = useState(false);
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
   const [mobileSlideIdx, setMobileSlideIdx] = useState(0);
+  // Store detected aspect ratios per image index
+  const [aspectRatios, setAspectRatios] = useState<Record<number, number>>({});
 
   useEffect(() => {
     if (!showGallery) return;
@@ -155,34 +157,50 @@ export default function GallerySection({ images }: Props) {
 
           {/* Main Content */}
           <div className="flex-1 flex flex-col min-h-0">
-            {/* Image Stage — height-driven so it never overflows on large screens */}
+            {/* Image Stage — adapts to each image's natural aspect ratio */}
             <div className="flex-1 flex items-center justify-center min-h-0 px-4 sm:px-8 py-3">
-              {/* Height is capped; width auto-sizes via aspect-ratio to keep 4:3 */}
-              <div className="relative h-[45vh] sm:h-[52vh] w-auto aspect-[4/3] max-w-full rounded-xl overflow-hidden shadow-2xl">
-                  <Image
-                    src={images[activePhotoIdx].src}
-                    alt={images[activePhotoIdx].alt}
-                    fill
-                    priority
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 896px"
-                    className="object-cover transition-opacity duration-300"
-                  />
-                  {/* Nav arrows overlaid on image edges */}
-                  <button
-                    onClick={() => setActivePhotoIdx(prev => (prev === 0 ? images.length - 1 : prev - 1))}
-                    aria-label="Previous photo"
-                    className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition-all active:scale-90 cursor-pointer"
+              {(() => {
+                const ratio = aspectRatios[activePhotoIdx] ?? (4 / 3);
+                // Clamp to sensible bounds so ultra-wide or ultra-tall images stay usable
+                const clampedRatio = Math.min(Math.max(ratio, 0.5), 2.5);
+                return (
+                  <div
+                    className="relative h-[45vh] sm:h-[52vh] max-w-full rounded-xl overflow-hidden shadow-2xl"
+                    style={{ aspectRatio: clampedRatio }}
                   >
-                    <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </button>
-                  <button
-                    onClick={() => setActivePhotoIdx(prev => (prev === images.length - 1 ? 0 : prev + 1))}
-                    aria-label="Next photo"
-                    className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition-all active:scale-90 cursor-pointer"
-                  >
-                    <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-                  </button>
-                </div>
+                    <Image
+                      src={images[activePhotoIdx].src}
+                      alt={images[activePhotoIdx].alt}
+                      fill
+                      priority
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 896px"
+                      className="object-contain transition-opacity duration-300"
+                      onLoad={(e) => {
+                        const img = e.currentTarget as HTMLImageElement;
+                        if (img.naturalWidth && img.naturalHeight) {
+                          const r = img.naturalWidth / img.naturalHeight;
+                          setAspectRatios(prev => ({ ...prev, [activePhotoIdx]: r }));
+                        }
+                      }}
+                    />
+                    {/* Nav arrows overlaid on image edges */}
+                    <button
+                      onClick={() => setActivePhotoIdx(prev => (prev === 0 ? images.length - 1 : prev - 1))}
+                      aria-label="Previous photo"
+                      className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition-all active:scale-90 cursor-pointer"
+                    >
+                      <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </button>
+                    <button
+                      onClick={() => setActivePhotoIdx(prev => (prev === images.length - 1 ? 0 : prev + 1))}
+                      aria-label="Next photo"
+                      className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white transition-all active:scale-90 cursor-pointer"
+                    >
+                      <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </button>
+                  </div>
+                );
+              })()}
             </div>
 
             {/* Photo Title */}
