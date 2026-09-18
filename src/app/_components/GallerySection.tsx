@@ -160,7 +160,7 @@ export default function GallerySection({ images }: Props) {
             <div className="flex-1 flex items-center justify-center min-h-0 px-4 sm:px-8 py-3">
               <div className="relative w-full max-w-4xl">
                 {/* Aspect-ratio locked container — every image renders the same size */}
-                <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
+                <div className="relative w-full h-[55vh] sm:h-auto sm:aspect-[4/3] rounded-xl overflow-hidden shadow-2xl">
                   <Image
                     src={images[activePhotoIdx].src}
                     alt={images[activePhotoIdx].alt}
