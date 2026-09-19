@@ -810,6 +810,114 @@ export const blogPosts: BlogPost[] = [
       whatsappText: "Hi Abhijith, I read about the Ultimate Alleppey Package and I'd like to book for my dates. Can you confirm availability?",
     },
   },
+
+  // ─── Post 9 — Kerala Food Guide Alleppey ───────────────────────────────────
+  {
+    slug: 'what-to-eat-in-alleppey-kerala-food-guide',
+    title: 'What to Eat in Alleppey — The Complete Kerala Food Guide for Visitors',
+    metaTitle: 'What to Eat in Alleppey — Kerala Food Guide 2026 | Zen Homestay',
+    description: 'Discover the best food in Alleppey — from karimeen pollichathu and appam with coconut stew to Kerala prawn curry and toddy shop lunches. A complete guide to what and where to eat in the backwaters of Kerala.',
+    publishedDate: '2026-09-19',
+    readTime: '7 min read',
+    category: 'Travel Guide',
+    keywords: [
+      'what to eat in alleppey',
+      'alleppey food guide',
+      'kerala food alleppey',
+      'best food in alleppey',
+      'alleppey seafood',
+      'kerala breakfast alleppey',
+      'karimeen pollichathu alleppey',
+      'alleppey local food',
+    ],
+    excerpt: 'Alleppey is not just a backwater destination — it is one of Kerala\'s great food destinations. From karimeen pollichathu in a roadside toddy shop to appam with coconut stew at a lakefront homestay, here\'s your complete guide to eating in Alleppey.',
+    heroImage: '/kerala_lake_dining_1786708655762.jpg',
+    heroImageAlt: 'Authentic Kerala breakfast served lakeside at Zen Homestay, Alleppey',
+    sections: [
+      {
+        heading: 'Why Alleppey Food is in a League of Its Own',
+        body: [
+          'Kerala cuisine is widely considered one of the most complex and nuanced regional food cultures in India — and Alleppey sits at its richest intersection. Surrounded by backwaters, close to the sea, and surrounded by coconut groves, rice fields, and spice gardens, Alleppey has access to an extraordinary range of fresh, local ingredients that most of India can only import.',
+          'What makes Alleppey\'s food particularly special is not just the ingredients — it\'s the cooking traditions. This is not tourist-adapted Kerala cuisine. This is how the families of Alleppey actually eat: coconut in every form, freshwater fish from the backwater channels, rice grown in the paddy fields of Kuttanad, and spices that arrive from the Western Ghats barely a day\'s journey away.',
+          'If you leave Alleppey without eating properly, you have missed one of the best reasons to come.',
+        ],
+      },
+      {
+        heading: 'Karimeen Pollichathu — The Iconic Alleppey Dish',
+        body: [
+          '<strong>Karimeen pollichathu</strong> is the dish that defines Alleppey. Karimeen — pearl spot fish — is a small, bony freshwater fish that lives in the backwater channels of Kerala. It has an intensely flavourful flesh that absorbs spice beautifully and holds together during cooking. "Pollichathu" means cooked in a banana leaf — the fish is marinated in a paste of red chilli, turmeric, black pepper, ginger, garlic, and shallots, then wrapped tightly in banana leaf and pan-roasted or slow-cooked over a flame.',
+          'The result is something extraordinary: the fish steams gently inside the leaf, the marinade caramelises at the edges, and the banana leaf imparts a faintly smoky, grassy fragrance that no other cooking method can replicate. When the leaf is unwrapped at the table, the aroma alone is worth the journey to Alleppey.',
+          'The best karimeen pollichathu is found at roadside toddy shops (kallu shappu) along the backwater channels, not in tourist restaurants. Ask your homestay host where to go — they will point you to the right place.',
+        ],
+      },
+      {
+        heading: 'Appam and Coconut Stew — The Kerala Breakfast You\'ll Dream About',
+        body: [
+          'If karimeen pollichathu is Alleppey\'s great dinner, <strong>appam with coconut stew</strong> is its perfect morning. Appam is a lacy, bowl-shaped rice flour pancake with crisp, golden edges and a soft, spongy centre — somewhere between a crêpe and a soufflé in texture. It is cooked in a small curved pan (appachatti) over high heat and takes skill and practice to get right.',
+          'The coconut stew that accompanies it is made from freshly extracted coconut milk, gently simmered with thin slices of potato, onion, green chilli, ginger, and whole spices — cardamom, cloves, cinnamon. It is white, aromatic, and deceptively light. The contrast between the crisp appam edges and the silky stew is one of the great textural pleasures in Indian food.',
+          'At a family <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">homestay in Alleppey</a>, this breakfast is cooked from scratch every morning using fresh ingredients. No powders, no shortcuts. Eaten on a veranda overlooking <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a>, it is one of the best meals you will have in India.',
+        ],
+      },
+      {
+        heading: 'Puttu and Kadala Curry — The Everyday Kerala Classic',
+        body: [
+          '<strong>Puttu</strong> is steamed rice flour pressed into a cylinder with layers of grated coconut, giving it a crumbly, soft texture that is not quite like any other dish in Indian cuisine. It is cooked in a dedicated metal mould (puttukutti) and comes out as a fragrant, slightly sweet cylinder that falls apart in the hand.',
+          '<strong>Kadala curry</strong> — a thick, dark brown curry made from black chickpeas cooked with shallots, coconut, and a complex spice blend — is the traditional accompaniment. The contrast between the mild, slightly sweet puttu and the deep, earthy, slightly tangy kadala curry is exactly right. It is substantial and satisfying in a way that sets you up for a morning kayak or a speedboat ride.',
+          'Alternatively, puttu is often served with ripe banana and coconut milk — a sweeter, gentler breakfast option that is equally beloved. Many families serve both options and let guests choose.',
+        ],
+      },
+      {
+        heading: 'Kerala Prawn Curry — Backwater Seafood at Its Best',
+        body: [
+          'The backwaters of Alleppey are teeming with prawns — large, fresh, locally caught — and Kerala\'s prawn curry does them full justice. The base is a deeply flavoured sauce of coconut milk, tomato, shallots, green chilli, and a specific blend of spices including fenugreek and curry leaves that gives Kerala prawn curry its signature aroma.',
+          'What distinguishes Kerala-style prawn curry from its counterparts elsewhere in India is the use of <strong>kudampuli</strong> (Malabar tamarind, also called gamboge or fish tamarind) — a small, dried fruit that adds a distinctive sour note that cuts through the richness of the coconut milk and balances the heat of the chillies. The result is layered, complex, and unmistakably of this place.',
+          'Prawn curry is most commonly served with Kerala\'s red-hued parboiled rice — matta rice — which has a slightly earthy flavour and holds up beautifully against a rich curry. This combination is a near-perfect meal.',
+        ],
+      },
+      {
+        heading: 'The Toddy Shop Experience — Kerala\'s Most Authentic Lunch',
+        body: [
+          'A <strong>kallu shappu</strong> (toddy shop) is one of Kerala\'s most distinctive and beloved institutions — and visiting one for lunch in Alleppey is an experience that most tourists miss entirely. Toddy shops serve freshly tapped palm wine (toddy), but their real fame in Alleppey is the food: extraordinarily fresh, locally sourced seafood cooked to order in an open kitchen with zero pretension.',
+          'A typical toddy shop lunch in Alleppey might include: karimeen fry, prawn fry with shallots and curry leaves, clam stir-fry (kakka fry), fish curry, mussels in coconut, and red Kerala rice served on a banana leaf or a steel plate with coconut oil poured on top. The bill for this feast — including a glass of toddy if you choose — is usually under ₹300 per person.',
+          'These are not tourist restaurants. The seating is basic, the ambience is local, and you may be the only non-Keralite in the room. That is precisely the point. Ask your homestay host for their recommended toddy shop — they will know the one where the karimeen is always fresh.',
+        ],
+      },
+      {
+        heading: 'Idiyappam — String Hoppers from Kerala',
+        body: [
+          '<strong>Idiyappam</strong> — known elsewhere in South India and Sri Lanka as string hoppers — is made from rice flour pressed through a mould to create delicate, thin noodles that are then steamed into a delicate, lacy disc. The texture is feather-light and slightly sticky, with a clean, mild flavour that pairs beautifully with both savoury curries and sweet coconut milk.',
+          'In Alleppey, idiyappam is a common breakfast item served alongside coconut stew, a thin chicken curry, or simply with coconut milk and banana. It is a quieter dish than appam — less dramatic, but deeply satisfying in its simplicity. If you are given a choice between appam and idiyappam at breakfast, the correct answer is to ask for both.',
+        ],
+      },
+      {
+        heading: 'Kerala Fish Moilee — The Elegant Cousin of Fish Curry',
+        body: [
+          'Where Kerala prawn curry is bold and earthy, <strong>fish moilee</strong> is its elegant, gentle counterpart. A moilee is a mild coconut milk curry — no heavy spice paste, no deep frying — where fresh fish (typically seer fish or pomfret) is simmered briefly in turmeric-tinged coconut milk with ginger, green chilli, and curry leaves. The result is pale yellow, deeply aromatic, and extraordinarily delicate.',
+          'Fish moilee is the Kerala dish that surprises people who expect their curries to be fiery. It is proof that restraint in spicing, when executed with perfect ingredients and technique, produces something more memorable than any high-heat curry. It is best eaten the day it is made, with Kerala\'s parboiled red rice, a spoon of ghee, and a papadum on the side.',
+        ],
+      },
+      {
+        heading: 'Drinks — Toddy, Fresh Coconut, and Cardamom Tea',
+        body: [
+          '<strong>Fresh coconut water</strong> is everywhere in Alleppey and costs next to nothing — roadside vendors crack green coconuts to order. After a kayak session or a long walk on the beach, nothing is more restorative than fresh coconut water drunk directly from the fruit, followed by the sweet, jelly-like coconut flesh scraped out with a spoon.',
+          '<strong>Toddy</strong> (kallu) — freshly tapped palm wine — is available at toddy shops and is mildly alcoholic in the morning (when it is still fermenting) and stronger by afternoon. It is sweet, fizzy, and slightly sour — an acquired taste for many, but deeply embedded in Kerala food culture.',
+          '<strong>Cardamom tea</strong> (elakka chaya) served at a Kerala homestay is its own pleasure — strong black tea brewed with crushed green cardamom pods, strained, and poured into a glass with milk added separately. It is spiced, warming, and exactly right at 6:30am on a veranda overlooking a glassy lake.',
+        ],
+      },
+      {
+        heading: 'Where to Eat in Alleppey — The Honest Hierarchy',
+        body: [
+          'The best food in Alleppey is found in order of decreasing price and increasing authenticity: <strong>family homestays</strong> serve the most personal and freshly cooked meals, prepared by people who have been making these dishes their entire lives. <strong>Local toddy shops</strong> offer the best seafood for the lowest prices. <strong>Mid-range restaurants</strong> near the town centre are reliable but less distinctive. <strong>Hotel restaurants</strong> and <strong>houseboat kitchens</strong> serve tourist-adapted versions of Kerala food that are fine but rarely exceptional.',
+          'If you are staying at a lakefront <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> like Zen Homestay, your breakfast is already sorted — and your host will know every good toddy shop, local restaurant, and evening food stall in the area. Use them as your food guide. This is the most valuable tourism resource in Alleppey and it costs nothing.',
+        ],
+      },
+    ],
+    cta: {
+      heading: 'Wake Up to a Kerala Breakfast on Punnamada Lake',
+      body: 'Every stay at Zen Homestay includes a freshly cooked Kerala breakfast — appam with coconut stew, puttu and kadala curry, idiyappam, fresh fruit, and cardamom tea — served on the veranda overlooking Punnamada Lake. Host Abhijith will also point you to the best local toddy shops and seafood spots in Alleppey. Book direct for the best rates.',
+      whatsappText: "Hi Abhijith, I read your Alleppey food guide and I'd love to stay at Zen Homestay. Can you check availability for my dates?",
+    },
+  },
 ];
 
 // Helper — get post by slug
