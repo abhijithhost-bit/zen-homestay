@@ -177,7 +177,7 @@ export default function StickyHeader() {
               />
             </a>
 
-            {/* Contact Host */}
+            {/* Contact */}
             <Link
               href="/contact"
               className="bg-orange-500 hover:bg-orange-600 text-white text-xs font-extrabold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 shadow-md active:scale-95 flex items-center gap-1.5"
@@ -187,7 +187,7 @@ export default function StickyHeader() {
               }
             >
               <Phone className="w-3.5 h-3.5 hidden sm:block" />
-              <span>Contact Host</span>
+              <span>Contact</span>
             </Link>
           </div>
         </div>
