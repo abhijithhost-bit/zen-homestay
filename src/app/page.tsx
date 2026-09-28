@@ -11,13 +11,39 @@ import BookingWidget from './_components/BookingWidget';
 import StickyHeader from './_components/StickyHeader';
 import GallerySection from './_components/GallerySection';
 import FaqAccordion from './_components/FaqAccordion';
+import PhotoCarousel from './_components/PhotoCarousel';
 import { blogPosts } from './blog/_data/posts';
 
 export const metadata: Metadata = {
   title: 'Homestay in Alleppey | Zen Homestay – Punnamada Lake',
   description: 'Homestay in Alleppey on Punnamada Lake — direct lake views, complimentary speedboat pickup & authentic Kerala breakfast. Book direct with host Abhijith. Zero commission.',
-  alternates: {
-    canonical: 'https://zenhomestay.in',
+  keywords: [
+    'homestay in alleppey', 'alleppey homestay', 'punnamada lake homestay',
+    'waterfront homestay alleppey', 'kerala backwater homestay',
+    'nehru trophy boat race homestay', 'speedboat homestay alleppey',
+    'zen homestay alleppey', 'lake view rooms alleppey', 'alleppey homestay direct booking',
+  ],
+  authors: [{ name: 'Abhijith — Zen Homestay', url: 'https://zenhomestay.in' }],
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large' } },
+  alternates: { canonical: 'https://zenhomestay.in' },
+  openGraph: {
+    title: 'Homestay in Alleppey | Zen Homestay on Punnamada Lake',
+    description: 'Top-rated homestay in Alleppey — direct Punnamada Lake views, complimentary speedboat pickup & authentic Kerala breakfast. Book direct with host Abhijith. Zero commission.',
+    url: 'https://zenhomestay.in',
+    siteName: 'Zen Homestay Alleppey',
+    locale: 'en_IN',
+    type: 'website',
+    images: [{
+      url: 'https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg',
+      width: 1200, height: 630,
+      alt: 'Zen Homestay – Waterfront Homestay on Punnamada Lake, Alleppey, Kerala',
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Homestay in Alleppey | Zen Homestay on Punnamada Lake',
+    description: 'Top-rated homestay in Alleppey — direct lake views, speedboat pickup & Kerala breakfast. Book direct with host Abhijith.',
+    images: ['https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg'],
   },
 };
 
@@ -426,6 +452,11 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Premium photo carousel — dark cinematic section */}
+              <div className="border-b border-slate-200 pb-0">
+                <PhotoCarousel images={images.map(({ src, alt, tag }) => ({ src, alt, tag }))} />
+              </div>
+
               {/* Google Reviews */}
               <div className="pb-8 border-b border-slate-200">
                 <div className="flex items-center gap-2 mb-5"><GoogleIcon /><span className="text-lg font-extrabold text-slate-900">Google Reviews</span></div>
@@ -622,7 +653,7 @@ export default function Home() {
                   <a href="https://maps.google.com/?q=9.5016131229736,76.35738157806414" target="_blank" rel="noreferrer" className="text-[11px] font-bold text-sky-400 hover:text-sky-300 transition-colors">Open Maps ↗</a>
                 </div>
                 <div className="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d486.2595251483521!2d76.35757685613443!3d9.502023969622542!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1787159161675!5m2!1sen!2sin" width="100%" height="220" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="strict-origin-when-cross-origin" className="w-full brightness-90 contrast-[1.05]" title="Zen Homestay Location Map" />
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11687.476946382158!2d76.35789056312872!3d9.50244965339974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sde!4v1790614964115!5m2!1sen!2sde" width="100%" height="220" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="strict-origin-when-cross-origin" className="w-full brightness-90 contrast-[1.05]" title="Zen Homestay Location Map" />
                   <div className="p-3 bg-slate-900/95 border-t border-slate-800 flex items-center justify-between">
                     <div className="flex items-center gap-1.5 text-slate-300 font-medium truncate pr-2"><MapPin className="w-3 h-3 text-sky-400 shrink-0" /><span className="truncate">Finishing Point, Punnamada Lake</span></div>
                     <span className="text-orange-400 font-extrabold shrink-0">Alleppey, Kerala</span>

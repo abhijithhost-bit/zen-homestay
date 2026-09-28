@@ -223,6 +223,21 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* ImageGallery schema — helps Google Images index property photos */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ImageGallery",
+          "name": "Zen Homestay Alleppey — Property Photos",
+          "description": "Photos of Zen Homestay waterfront property on Punnamada Lake, Alleppey, Kerala",
+          "url": "https://zenhomestay.in",
+          "image": [
+            { "@type": "ImageObject", "url": "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg",  "name": "Punnamada Lake View",           "description": "Panoramic view of Punnamada Lake from Zen Homestay, Alleppey",           "width": 1200, "height": 800 },
+            { "@type": "ImageObject", "url": "https://zenhomestay.in/kerala_heritage_room_1786702263227.jpg",  "name": "Lake View Heritage Bedroom",    "description": "Premium lake-view bedroom at Zen Homestay, Alleppey",                   "width": 1200, "height": 800 },
+            { "@type": "ImageObject", "url": "https://zenhomestay.in/kerala_boat_arrival_1786708991444.jpg",  "name": "Speedboat Transfer Alleppey",  "description": "Complimentary speedboat pickup from Nehru Trophy Finishing Point",       "width": 1200, "height": 800 },
+            { "@type": "ImageObject", "url": "https://zenhomestay.in/kerala_lake_dining_1786708655762.jpg",   "name": "Kerala Lakeside Breakfast",   "description": "Authentic Kerala breakfast served by Punnamada Lake, Zen Homestay",     "width": 1200, "height": 800 },
+            { "@type": "ImageObject", "url": "https://zenhomestay.in/kerala_balcony_view_1786702364116.jpg", "name": "Private Veranda Lake View",   "description": "Private wooden veranda overlooking Punnamada Lake at Zen Homestay",    "width": 1200, "height": 800 }
+          ]
+        })}} />
       </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

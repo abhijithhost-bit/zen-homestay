@@ -15,12 +15,85 @@ import {
 export const metadata: Metadata = {
   title: 'Contact Zen Homestay Alleppey | Book Direct with Host Abhijith',
   description: 'Contact Zen Homestay Alleppey directly — call or WhatsApp host Abhijith at +91 7012 761 588 for availability, rates, and direct booking on Punnamada Lake. Zero commission.',
+  keywords: [
+    'contact zen homestay alleppey', 'book alleppey homestay direct',
+    'alleppey homestay phone number', 'abhijith zen homestay',
+    'punnamada lake homestay booking', 'alleppey homestay whatsapp',
+  ],
+  authors: [{ name: 'Abhijith — Zen Homestay', url: 'https://zenhomestay.in' }],
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large' } },
   alternates: { canonical: 'https://zenhomestay.in/contact' },
+  openGraph: {
+    title: 'Contact Zen Homestay Alleppey | Book Direct — Zero Commission',
+    description: 'Call or WhatsApp host Abhijith directly at +91 7012 761 588. Direct lake-view homestay on Punnamada Lake. No OTA commission, best rates guaranteed.',
+    url: 'https://zenhomestay.in/contact',
+    siteName: 'Zen Homestay Alleppey',
+    locale: 'en_IN',
+    type: 'website',
+    images: [{
+      url: 'https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg',
+      width: 1200, height: 630,
+      alt: 'Zen Homestay Alleppey — Contact Host Abhijith on Punnamada Lake',
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Zen Homestay Alleppey | Book Direct',
+    description: 'Call or WhatsApp host Abhijith at +91 7012 761 588. Lake-view homestay on Punnamada Lake, Alleppey. Zero commission.',
+    images: ['https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg'],
+  },
+};
+
+const contactJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ContactPage',
+      '@id': 'https://zenhomestay.in/contact#page',
+      'url': 'https://zenhomestay.in/contact',
+      'name': 'Contact Zen Homestay Alleppey',
+      'description': 'Contact page for Zen Homestay, Alleppey — direct booking with host Abhijith on Punnamada Lake.',
+      'isPartOf': { '@id': 'https://zenhomestay.in/#website' },
+      'about': { '@id': 'https://zenhomestay.in/#lodging' },
+      'breadcrumb': {
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home',    'item': 'https://zenhomestay.in' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Contact', 'item': 'https://zenhomestay.in/contact' },
+        ],
+      },
+    },
+    {
+      '@type': ['BedAndBreakfast', 'LodgingBusiness'],
+      '@id': 'https://zenhomestay.in/#lodging',
+      'name': 'Zen Homestay – Alleppey Homestay',
+      'url': 'https://zenhomestay.in',
+      'telephone': '+91-7012-761-588',
+      'email': 'hello@zenhomestay.in',
+      'priceRange': '₹3,000 - ₹6,000',
+      'address': {
+        '@type': 'PostalAddress',
+        'streetAddress': 'Near Nehru Trophy Boat Race Finishing Point, Punnamada Lake',
+        'addressLocality': 'Alleppey',
+        'addressRegion': 'Kerala',
+        'postalCode': '688006',
+        'addressCountry': 'IN',
+      },
+      'geo': { '@type': 'GeoCoordinates', 'latitude': 9.502023969622542, 'longitude': 76.35757685613443 },
+      'openingHoursSpecification': [
+        { '@type': 'OpeningHoursSpecification', 'dayOfWeek': ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'], 'opens': '07:00', 'closes': '22:00' },
+      ],
+      'contactPoint': [
+        { '@type': 'ContactPoint', 'telephone': '+91-7012-761-588', 'contactType': 'reservations', 'availableLanguage': ['English','Malayalam','Hindi'] },
+      ],
+    },
+  ],
 };
 
 export default function Contact() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-900">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }} />
       
       {/* Modern Luxury Glassmorphic Navigation Header */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] transition-all w-full">
