@@ -50,11 +50,14 @@ export const metadata: Metadata = {
 // ─── Static Data ─────────────────────────────────────────────────────────────
 
 const images = [
-  { src: '/kerala_backwaters_hero_1786702183985.jpg', alt: 'Punnamada Lake View - Zen Homestay Alleppey', title: 'Panoramic Punnamada Lake Waterfront', tag: 'Waterfront Living' },
-  { src: '/kerala_heritage_room_1786702263227.jpg', alt: 'Lake View Premium Room - Zen Homestay', title: 'Lake View Premium Heritage Bedroom', tag: 'Bedroom & Suite' },
-  { src: '/kerala_boat_arrival_1786708991444.jpg', alt: 'Complimentary Speedboat Transfer Alleppey', title: 'Private 5-Minute Speedboat Arrival Experience', tag: 'Boat Transfer' },
-  { src: '/kerala_lake_dining_1786708655762.jpg', alt: 'Authentic Kerala Lakeside Breakfast', title: 'Fresh Authentic Kerala Breakfast by the Water', tag: 'Dining & Food' },
-  { src: '/kerala_balcony_view_1786702364116.jpg', alt: 'Private Veranda over Punnamada Lake', title: 'Private Wooden Veranda Overlooking the Lake', tag: 'Veranda & Patio' },
+  { src: '/kerala_sunset_panorama.jpg', alt: 'Aerial sunset view of Punnamada Lake Kerala backwaters - Zen Homestay Alleppey', title: 'Panoramic Punnamada Lake at Golden Hour', tag: 'Sunset Views' },
+  { src: '/kerala_speedboat_transfer.jpg', alt: 'Private speedboat transfer across Punnamada Lake - Zen Homestay Alleppey', title: 'Complimentary Private Speedboat Arrival', tag: 'Boat Transfer' },
+  { src: '/kerala_lakeview_bedroom.jpg', alt: 'Heritage lake view bedroom with direct Punnamada Lake view - Zen Homestay', title: 'Lake View Premium Heritage Bedroom', tag: 'Bedroom & Suite' },
+  { src: '/kerala_authentic_breakfast.jpg', alt: 'Authentic Kerala breakfast with Appam, Puttu and filter coffee by the lake', title: 'Fresh Authentic Kerala Lakeside Breakfast', tag: 'Dining & Food' },
+  { src: '/kerala_wooden_veranda.jpg', alt: 'Wooden veranda balcony overlooking Punnamada Lake - Zen Homestay Alleppey', title: 'Private Wooden Veranda Over the Lake', tag: 'Veranda & Patio' },
+  { src: '/kerala_shikara_backwaters.jpg', alt: 'Shikara boat ride through Kerala backwater canals at sunrise Alleppey', title: 'Serene Shikara Ride Through the Backwaters', tag: 'Shikara Ride' },
+  { src: '/kerala_homestay_evening.jpg', alt: 'Zen Homestay Kerala waterfront at dusk with lake reflections Alleppey', title: 'Romantic Evening at the Lakefront Homestay', tag: 'Lakefront Home' },
+  { src: '/kerala_couple_lakeside.jpg', alt: 'Couple enjoying sunset on wooden dock over Kerala backwaters Alleppey', title: 'Romantic Sunset Moments by the Lake', tag: 'Couples & Romance' },
 ];
 
 const faqs = [

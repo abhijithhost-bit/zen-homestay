@@ -317,7 +317,8 @@ function Card({ img, p, onOpen }: { img: CarouselImage; p: P; onOpen: () => void
       {/* Photo */}
       <Image
         src={img.src} alt={img.alt} fill
-        sizes="(max-width: 640px) 40vw, 210px"
+        quality={90}
+        sizes="(max-width: 640px) 55vw, (max-width: 1024px) 30vw, 400px"
         className="object-cover pointer-events-none transition-transform duration-700 group-hover/card:scale-110"
         draggable={false}
       />
