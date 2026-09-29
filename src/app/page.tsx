@@ -58,6 +58,7 @@ const images = [
   { src: '/kerala_shikara_backwaters.jpg', alt: 'Shikara boat ride through Kerala backwater canals at sunrise Alleppey', title: 'Serene Shikara Ride Through the Backwaters', tag: 'Shikara Ride' },
   { src: '/kerala_homestay_evening.jpg', alt: 'Zen Homestay Kerala waterfront at dusk with lake reflections Alleppey', title: 'Romantic Evening at the Lakefront Homestay', tag: 'Lakefront Home' },
   { src: '/kerala_couple_lakeside.jpg', alt: 'Couple enjoying sunset on wooden dock over Kerala backwaters Alleppey', title: 'Romantic Sunset Moments by the Lake', tag: 'Couples & Romance' },
+  { src: '/kerala_homestay_collage.jpg', alt: 'Zen Homestay Alleppey – waterfront exterior, floor plan and lake view bedrooms collage', title: 'Zen Homestay — Waterfront Overview & Floor Plan', tag: 'Property Overview' },
 ];
 
 const faqs = [
