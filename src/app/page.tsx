@@ -3,7 +3,7 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import {
   ShieldCheck, Wifi, Wind, Utensils, Waves, Coffee,
-  Anchor, MessageCircle, Phone, CheckCircle2, Sparkles,
+  Anchor, MessageCircle, Phone, Sparkles,
   Clock, BedDouble, Award, Compass, Sun, ArrowRight, MapPin, Calendar, BookOpen
 } from 'lucide-react';
 import { BookingProvider } from './_components/BookingProvider';
@@ -202,10 +202,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
 
             {/* LEFT COLUMN */}
-            <div className="lg:col-span-2 space-y-12">
+            <div className="lg:col-span-2 space-y-8">
 
               {/* Host Details */}
-              <div className="flex items-center justify-between pb-8 border-b border-slate-200 bg-white p-6 rounded-3xl border shadow-sm">
+              <div className="flex items-center justify-between pb-6 border-b border-slate-200 bg-white p-4 rounded-3xl border shadow-sm">
                 <div>
                   <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
                     Alleppey Homestay hosted by Abhijith — private 2nd-floor lakefront retreat
@@ -389,7 +389,7 @@ export default function Home() {
               <div id="how-to-book" className="pb-8 border-b border-slate-200 scroll-mt-24">
                 <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                   <span className="text-xs font-extrabold tracking-wider text-orange-600 uppercase bg-orange-50 px-3 py-1 rounded-full border border-orange-200 inline-flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5" />Simple 4-Step Booking</span>
-                  <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />Zero Commission · Direct Host Rates</span>
+                  <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />Zero Commission · Direct Host Rates</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 mb-2">How to Book Your Room</h2>
                 <p className="text-sm sm:text-base text-slate-600 mb-8 leading-relaxed">Reserve your lakefront stay directly with host Abhijith in under 2 minutes. Enjoy 100% transparent pricing with zero middleman commissions, instant confirmation, and complimentary speedboat transfer.</p>
@@ -411,24 +411,7 @@ export default function Home() {
                     <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs"><span className="font-bold text-sky-700 bg-sky-50 px-2.5 py-1 rounded-lg border border-sky-100">Free Speedboat Transfer</span><span className="font-bold text-slate-500">Check-in: 2:00 PM</span></div>
                   </div>
                 </div>
-                <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
-                  <div className="absolute bottom-0 left-0 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
-                  <div className="relative z-10">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-slate-800">
-                      <div><span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/20 inline-block mb-2">Why Book Direct with Host Abhijith?</span><h3 className="text-xl sm:text-2xl font-extrabold text-white">Best Rate &amp; VIP Backwater Hospitality Guaranteed</h3></div>
-                      <div className="flex flex-wrap items-center gap-3 shrink-0">
-                        <a href="https://wa.me/917012761588" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-extrabold px-5 py-3 rounded-2xl text-xs sm:text-sm shadow-lg transition-all active:scale-95"><MessageCircle className="w-4 h-4 fill-current" /><span>Reserve on WhatsApp</span></a>
-                        <a href="tel:+917012761588" className="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-4 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all active:scale-95"><Phone className="w-4 h-4 text-sky-400" /><span>Call +91 7012 761 588</span></a>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 text-xs sm:text-sm">
-                      <div className="flex items-start gap-3"><div className="w-8 h-8 rounded-xl bg-amber-400/10 border border-amber-400/20 text-amber-400 flex items-center justify-center shrink-0"><CheckCircle2 className="w-4 h-4" /></div><div><h4 className="font-bold text-white text-sm">Save 15-20% Commission</h4><p className="text-slate-400 text-xs mt-0.5 leading-relaxed">No third-party online booking portal surcharges. Best direct host rates.</p></div></div>
-                      <div className="flex items-start gap-3"><div className="w-8 h-8 rounded-xl bg-sky-400/10 border border-sky-400/20 text-sky-400 flex items-center justify-center shrink-0"><Waves className="w-4 h-4" /></div><div><h4 className="font-bold text-white text-sm">Free Speedboat Transfer</h4><p className="text-slate-400 text-xs mt-0.5 leading-relaxed">Scenic 5-minute private speed boat pickup coordinated seamlessly with Abhijith.</p></div></div>
-                      <div className="flex items-start gap-3"><div className="w-8 h-8 rounded-xl bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 flex items-center justify-center shrink-0"><Coffee className="w-4 h-4" /></div><div><h4 className="font-bold text-white text-sm">Breakfast &amp; Custom Trips</h4><p className="text-slate-400 text-xs mt-0.5 leading-relaxed">Fresh Kerala breakfast included, plus personalized Shikara ride arrangements.</p></div></div>
-                    </div>
-                  </div>
-                </div>
+
               </div>
 
               {/* Backwater Lifestyle */}
@@ -464,25 +447,26 @@ export default function Home() {
               {/* Google Reviews */}
               <div className="pb-8 border-b border-slate-200">
                 <div className="flex items-center gap-2 mb-5"><GoogleIcon /><span className="text-lg font-extrabold text-slate-900">Google Reviews</span></div>
-                <div className="bg-white border border-slate-200 rounded-2xl p-5 mb-6 flex flex-col sm:flex-row items-center gap-6 shadow-sm">
-                  <div className="flex flex-col items-center shrink-0">
-                    <span className="text-5xl font-black text-slate-900 leading-none">4.9</span>
-                    <div className="flex items-center gap-0.5 mt-1.5"><StarRow /></div>
-                    <span className="text-xs text-slate-500 font-medium mt-1">48 reviews</span>
+                <div className="bg-white border border-slate-200 rounded-2xl p-3 mb-5 flex flex-row items-center gap-4 shadow-sm">
+                  <div className="flex flex-col items-center shrink-0 px-2">
+                    <span className="text-3xl font-black text-slate-900 leading-none">4.9</span>
+                    <div className="flex items-center gap-0.5 mt-1"><StarRow cls="w-3 h-3" /></div>
+                    <span className="text-[10px] text-slate-500 font-medium mt-0.5">48 reviews</span>
                   </div>
-                  <div className="flex-1 w-full space-y-1.5">
+                  <div className="flex-1 w-full space-y-1">
                     {[{ s: 5, p: 98 }, { s: 4, p: 2 }, { s: 3, p: 0 }, { s: 2, p: 0 }, { s: 1, p: 0 }].map(({ s, p }) => (
-                      <div key={s} className="flex items-center gap-2 text-xs">
-                        <span className="text-slate-600 font-medium w-3 shrink-0">{s}</span>
-                        <svg className="w-3 h-3 shrink-0" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <div className="flex-1 bg-slate-100 rounded-full h-2 overflow-hidden"><div className="h-2 rounded-full bg-[#FBBC05]" style={{ width: p + '%' }} /></div>
+                      <div key={s} className="flex items-center gap-1.5 text-[10px]">
+                        <span className="text-slate-600 font-medium w-2.5 shrink-0">{s}</span>
+                        <svg className="w-2.5 h-2.5 shrink-0" viewBox="0 0 20 20" fill="#FBBC05"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                        <div className="flex-1 bg-slate-100 rounded-full h-1.5 overflow-hidden"><div className="h-1.5 rounded-full bg-[#FBBC05]" style={{ width: p + '%' }} /></div>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {reviews.map((r, i) => (
-                    <div key={i} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                    <div key={i} className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
                           <div className="w-10 h-10 rounded-full text-white font-bold flex items-center justify-center text-sm shrink-0" style={{ background: r.color }}>{r.initials}</div>
