@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import HomestayPromoCard from '../_components/HomestayPromoCard';
 import { 
   Sparkles, 
   MessageCircle, 
@@ -274,6 +275,9 @@ export default function Contact() {
             </div>
           </div>
         </div>
+
+        {/* Homestay promo card — helps visitors discover Zen Homestay details */}
+        <HomestayPromoCard />
 
       </main>
 

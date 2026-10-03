@@ -543,7 +543,7 @@ export default function Home() {
             </div>
 
             {/* RIGHT COLUMN: Sticky Booking Widget */}
-            <div className="hidden lg:block lg:col-span-1 h-full">
+            <div id="booking" className="hidden lg:block lg:col-span-1 h-full scroll-mt-24">
               <div className="sticky top-24 z-30">
                 <BookingWidget />
               </div>

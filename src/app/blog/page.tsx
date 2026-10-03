@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { blogPosts } from './_data/posts';
 import { Clock, ArrowRight, BookOpen } from 'lucide-react';
+import HomestayPromoCard from '../_components/HomestayPromoCard';
 
 export const metadata: Metadata = {
   title: 'Alleppey Travel Blog — Backwater Tips, Guides & Local Insights | Zen Homestay',
@@ -177,6 +178,10 @@ export default function BlogPage() {
             </a>
           </div>
         </div>
+
+        {/* Homestay promo card */}
+        <HomestayPromoCard />
+
       </main>
 
       {/* Footer */}

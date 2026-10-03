@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Phone, Heart, Anchor, Coffee, Waves, Star, CheckCircle2, MapPin, Sparkles } from "lucide-react";
+import HomestayPromoCard from "../_components/HomestayPromoCard";
 
 export const metadata: Metadata = {
   title: "Honeymoon Homestay Alleppey | Zen Homestay on Punnamada Lake",
@@ -272,14 +273,20 @@ export default function HoneymoonHomestayPage() {
               <Phone className="w-4 h-4" /> +91 7012 761 588
             </a>
           </div>
-          <p className="text-xs text-slate-400 mt-4">
-            <Link href="/" className="underline hover:text-slate-600">← Back to Zen Homestay</Link>
-            {" · "}
-            <Link href="/alleppey-homestay" className="underline hover:text-slate-600">Alleppey Homestay</Link>
-            {" · "}
-            <Link href="/blog/alleppey-honeymoon-homestay-guide" className="underline hover:text-slate-600">Honeymoon Travel Guide</Link>
-          </p>
+          <div className="mt-4 flex justify-center">
+            <Link
+              href="/#booking"
+              className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-extrabold px-6 py-3 rounded-2xl text-sm transition-all shadow-md hover:-translate-y-0.5 active:scale-95"
+            >
+              Check Availability &amp; Book →
+            </Link>
+          </div>
         </section>
+
+        {/* Homestay promo card — helps visitors learn about Zen Homestay */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <HomestayPromoCard />
+        </div>
       </main>
     </div>
   );

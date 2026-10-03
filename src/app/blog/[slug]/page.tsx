@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { blogPosts, getPostBySlug, getAllSlugs } from '../_data/posts';
 import { Clock, ArrowRight, MessageCircle, Phone, ChevronLeft, BookOpen } from 'lucide-react';
+import HomestayPromoCard from '../../_components/HomestayPromoCard';
 
 // ─── Static Generation ────────────────────────────────────────────────────────
 
@@ -286,6 +287,11 @@ export default async function BlogPostPage(
 
         </article>
       </main>
+
+      {/* Homestay promo card — visible below article content, above footer */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <HomestayPromoCard />
+      </div>
 
       {/* Footer */}
       <footer className="bg-slate-950 text-slate-500 text-xs py-6 text-center">
