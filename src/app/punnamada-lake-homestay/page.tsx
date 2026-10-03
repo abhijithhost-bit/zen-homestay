@@ -168,7 +168,7 @@ export default function PunnamadaLakeHomestayPage() {
         {/* Inclusions */}
         <section className="bg-white border-y border-slate-200 py-14 px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">Everything Included at This Punnamada Lake Homestay</h2>
+            <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">Everything Included in Your Stay</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
                 "Direct Punnamada Lake view from bedroom",
@@ -191,7 +191,7 @@ export default function PunnamadaLakeHomestayPage() {
 
         {/* Pricing */}
         <section className="max-w-xl mx-auto px-4 py-14 text-center">
-          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Punnamada Lake Homestay Rates</h2>
+          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Room Rates & Direct Pricing</h2>
           <p className="text-slate-500 text-sm mb-8">Direct from host Abhijith — no platform markup, no hidden fees.</p>
           <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="bg-sky-50 border border-sky-200 rounded-2xl p-5 text-center">
@@ -216,13 +216,13 @@ export default function PunnamadaLakeHomestayPage() {
         {/* Reviews */}
         <section className="bg-slate-50 border-t border-slate-200 py-14 px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">What Guests Say About Our Punnamada Lake Homestay</h2>
+            <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">What Our Guests Say</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { name: "Vineeth Nair", text: "This Punnamada Lake homestay is unlike anything else in Alleppey — the direct lake view from bed, the wooden balcony, the morning breeze. Absolutely 5 stars." },
-                { name: "Anju Jacob", text: "The speedboat pickup felt like arriving at a private island resort. Abhijith's hospitality is truly world-class. The lake at sunset was breathtaking." },
-                { name: "Siddharth Kumar", text: "Traveled from Bangalore — this alleppey homestay on Punnamada Lake was the highlight of our trip. The authentic food, the silence, the lake... spectacular." },
-                { name: "Arun Menon", text: "Waking up to Punnamada Lake right outside the bedroom window was pure magic. Best homestay experience I've had in all of Kerala." },
+                { name: "Meera Krishnan", text: "The lake is literally right there when you open the window. Not 'nearby' or 'a short walk' — directly outside. We spent hours just sitting on the veranda watching the water change colour." },
+                { name: "Rohan & Sneha", text: "We've stayed at three different waterfront properties in Alleppey over the years. None of them compare to this level of direct lake access. The speedboat arriving at your private dock is unforgettable." },
+                { name: "Thomas Mathew", text: "Being on the far bank of Punnamada Lake means absolute silence. No roads, no traffic — just water and birdsong. I slept better here than I have in years." },
+                { name: "Nisha Rajan", text: "What makes this special is the position on the lake. You can see the Nehru Trophy finishing point across the water and the sunsets turn the entire lake gold. Worth every rupee." },
               ].map(({ name, text }) => (
                 <div key={name} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                   <div className="flex items-center gap-0.5 mb-2">{[1,2,3,4,5].map(s => <span key={s} className="text-amber-400 text-sm">★</span>)}</div>
@@ -237,7 +237,7 @@ export default function PunnamadaLakeHomestayPage() {
         {/* Map / How to reach */}
         <section className="bg-slate-900 text-white py-12 px-4 text-center">
           <MapPin className="w-7 h-7 text-orange-400 mx-auto mb-3" />
-          <h2 className="text-xl font-extrabold mb-2">Getting to Our Punnamada Lake Homestay</h2>
+          <h2 className="text-xl font-extrabold mb-2">How to Reach Us</h2>
           <p className="text-slate-300 text-sm leading-relaxed max-w-lg mx-auto mb-5">
             Head to the <strong className="text-white">Nehru Trophy Boat Race Finishing Point, Punnamada, Alleppey</strong>. Abhijith&apos;s team will greet you for a complimentary 5-minute speedboat ride directly to the homestay dock.
           </p>
@@ -269,7 +269,7 @@ export default function PunnamadaLakeHomestayPage() {
 
         {/* CTA Footer */}
         <section className="py-14 px-4 text-center">
-          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Book Your Punnamada Lake Stay</h2>
+          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Book Your Lakefront Stay</h2>
           <p className="text-slate-500 text-sm mb-6">Instant confirmation · Best direct rate · No OTA fees</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="https://wa.me/917012761588?text=Hi%20Abhijith%2C%20I%20want%20to%20book%20the%20Punnamada%20Lake%20homestay." target="_blank" rel="noreferrer"

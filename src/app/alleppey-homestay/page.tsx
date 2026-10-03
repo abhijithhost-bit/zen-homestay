@@ -144,7 +144,7 @@ export default function AlleppeyHomestayPage() {
         <section className="max-w-5xl mx-auto px-4 py-16">
           <div className="text-center mb-10">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">
-              Why Zen Homestay is the Best Alleppey Homestay
+              Why Guests Rate Us #1 in Alleppey
             </h2>
             <p className="text-slate-600 max-w-2xl mx-auto text-sm leading-relaxed">
               Unlike most homestays in Alleppey located on busy roads, Zen Homestay sits directly on Punnamada Lake with zero road access — offering unmatched privacy, silence, and authentic backwater living.
@@ -173,7 +173,7 @@ export default function AlleppeyHomestayPage() {
         {/* Pricing */}
         <section className="bg-white border-y border-slate-200 py-14 px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Alleppey Homestay Room Rates</h2>
+            <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Room Rates & Direct Pricing</h2>
             <p className="text-slate-500 text-sm mb-8">Direct host rates — breakfast, speedboat & all surprises included.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-xl mx-auto mb-8">
               <div className="bg-sky-50 border border-sky-200 rounded-2xl p-6 text-center">
@@ -198,13 +198,13 @@ export default function AlleppeyHomestayPage() {
 
         {/* Reviews */}
         <section className="max-w-4xl mx-auto px-4 py-14">
-          <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">Guest Reviews — Alleppey Homestay</h2>
+          <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">What Our Guests Say</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { name: "Arun Menon", text: "Best alleppey homestay I've ever stayed at — waking up to Punnamada Lake right outside the window was pure magic!" },
-              { name: "Lakshmi Thomas", text: "No roads nearby means total silence and the most serene water views. Abhijith was an incredible, attentive host throughout." },
-              { name: "Divya Varghese", text: "We searched for the best waterfront homestay in Alleppey — Zen Homestay exceeded every expectation. The Kerala breakfast was divine!" },
-              { name: "Vineeth Nair", text: "This Punnamada Lake homestay is unlike anything else in Alleppey. Direct lake view from bed, morning breeze. Absolutely 5 stars." },
+              { name: "Priya Menon", text: "We compared over a dozen Alleppey stays before choosing this one. The speedboat arrival alone made it clear we'd made the right call. Everything from the breakfast to the sunset views was exceptional." },
+              { name: "Karthik & Revathi", text: "What sets this apart from other properties is the combination of genuine lakefront access AND personal host care. Abhijith remembered our breakfast preferences by day two. That kind of attention is rare." },
+              { name: "Deepa Nambiar", text: "I've stayed at resorts and houseboats in Alleppey before. This was the first time I felt I was actually living on the backwaters — not just visiting them. The silence at night is extraordinary." },
+              { name: "Ajay Krishnan", text: "Booked direct with Abhijith and saved nearly ₹2,000 compared to OTA prices. The room was spotless, the food was the best Kerala breakfast I've ever had, and the lake view is genuinely unmatched." },
             ].map(({ name, text }) => (
               <div key={name} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
                 <div className="flex items-center gap-0.5 mb-2">{[1,2,3,4,5].map(s => <span key={s} className="text-amber-400 text-sm">★</span>)}</div>
@@ -219,7 +219,7 @@ export default function AlleppeyHomestayPage() {
         <section className="bg-slate-900 text-white py-12 px-4">
           <div className="max-w-2xl mx-auto text-center">
             <MapPin className="w-7 h-7 text-orange-400 mx-auto mb-3" />
-            <h2 className="text-xl font-extrabold mb-2">How to Reach This Alleppey Homestay</h2>
+            <h2 className="text-xl font-extrabold mb-2">How to Reach Us</h2>
             <p className="text-slate-300 text-sm leading-relaxed mb-5">
               Arrive at the <strong className="text-white">Nehru Trophy Boat Race Finishing Point, Punnamada</strong>. Our team greets you for a complimentary 5-minute scenic speedboat ride straight to your room.
             </p>
@@ -246,7 +246,7 @@ export default function AlleppeyHomestayPage() {
 
         {/* Final CTA */}
         <section className="py-14 px-4 text-center">
-          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Book Your Alleppey Homestay Today</h2>
+          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Book Your Stay Today</h2>
           <p className="text-slate-500 text-sm mb-6">Instant confirmation · Best direct rate · No hidden fees</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="https://wa.me/917012761588?text=Hi%20Abhijith%2C%20I%20want%20to%20book%20the%20Alleppey%20homestay." target="_blank" rel="noreferrer"

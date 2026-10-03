@@ -176,7 +176,7 @@ export default function KeralaBackwaterHomestayPage() {
         {/* FAQ */}
         <section className="bg-white border-y border-slate-200 py-14 px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">Kerala Backwater Homestay — FAQs</h2>
+            <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">Frequently Asked Questions</h2>
             <div className="space-y-4">
               {faqs.map(({ q, a }) => (
                 <div key={q} className="border border-slate-200 rounded-xl bg-slate-50 p-5">
@@ -190,7 +190,7 @@ export default function KeralaBackwaterHomestayPage() {
 
         {/* Pricing */}
         <section className="max-w-xl mx-auto px-4 py-14 text-center">
-          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Kerala Backwater Homestay Rates</h2>
+          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Room Rates & Direct Pricing</h2>
           <p className="text-slate-500 text-sm mb-8">Book direct with host Abhijith — no OTA surcharges.</p>
           <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="bg-sky-50 border border-sky-200 rounded-2xl p-5 text-center">
@@ -222,7 +222,7 @@ export default function KeralaBackwaterHomestayPage() {
         {/* Location & How to Reach */}
         <section className="bg-slate-900 text-white py-12 px-4 text-center">
           <MapPin className="w-7 h-7 text-orange-400 mx-auto mb-3" />
-          <h2 className="text-xl font-extrabold mb-2">How to Reach This Kerala Backwater Homestay</h2>
+          <h2 className="text-xl font-extrabold mb-2">How to Reach Us</h2>
           <p className="text-slate-300 text-sm leading-relaxed max-w-lg mx-auto mb-5">
             From Alleppey town, take a cab to the <strong className="text-white">Nehru Trophy Boat Race Finishing Point, Punnamada</strong>. Abhijith&apos;s team will pick you up by private speedboat for a scenic 5-minute transfer across the backwaters.
           </p>
@@ -241,7 +241,7 @@ export default function KeralaBackwaterHomestayPage() {
 
         {/* CTA */}
         <section className="py-14 px-4 text-center">
-          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Book Your Kerala Backwater Homestay</h2>
+          <h2 className="text-2xl font-extrabold text-slate-900 mb-2">Book Your Backwater Stay</h2>
           <p className="text-slate-500 text-sm mb-6">Instant confirmation · Direct host rates · No fees</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="https://wa.me/917012761588?text=Hi%20Abhijith%2C%20I%20want%20to%20book%20the%20Kerala%20backwater%20homestay." target="_blank" rel="noreferrer"

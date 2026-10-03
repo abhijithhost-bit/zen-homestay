@@ -624,26 +624,26 @@ export const blogPosts: BlogPost[] = [
     },
   },
 
-  // ─── Post 7 — Best Homestay in Alleppey ────────────────────────────────────
+  // ─── Post 7 — How to Choose a Homestay in Alleppey ──────────────────────────
   {
     slug: 'best-homestay-in-alleppey-why-zen-homestay-stands-out',
-    title: 'Best Homestay in Alleppey — Why Zen Homestay on Punnamada Lake Stands Out',
-    metaTitle: 'Best Homestay in Alleppey 2026 — Zen Homestay on Punnamada Lake Review',
-    description: 'Looking for the best homestay in Alleppey? Zen Homestay sits directly on Punnamada Lake with complimentary speedboat transfer, lake view rooms at ₹3,000/night, Kerala breakfast, and kayaking. Here\'s an honest look at what makes it different.',
+    title: 'How to Choose the Best Homestay in Alleppey — A Local\'s Honest Guide',
+    metaTitle: 'How to Choose a Homestay in Alleppey | What to Look For in 2026',
+    description: 'Not all Alleppey homestays are equal. This honest guide covers what to look for — location, lake access, host quality, pricing traps, and how to spot the difference between a genuine lakefront property and a marketing gimmick.',
     publishedDate: '2026-09-12',
     readTime: '8 min read',
     category: 'Travel Guide',
     keywords: [
-      'best homestay in alleppey',
-      'alleppey homestay on punnamada lake',
-      'alleppey waterfront homestay',
-      'zen homestay alleppey review',
-      'homestay alleppey with speedboat',
+      'how to choose homestay in alleppey',
+      'what to look for in alleppey homestay',
+      'alleppey homestay tips',
+      'alleppey accommodation guide',
+      'homestay vs resort alleppey',
       'alleppey homestay with kayaking',
-      'direct lake view homestay alleppey',
-      'alleppey homestay book direct',
+      'lake view homestay tips alleppey',
+      'alleppey homestay booking tips',
     ],
-    excerpt: 'There are dozens of homestays in Alleppey — so what makes Zen Homestay on Punnamada Lake genuinely different? Direct lake views, complimentary speedboat transfers, kayaking, and a host who has spent his whole life on these waters.',
+    excerpt: 'There are hundreds of homestays in Alleppey — so how do you tell the genuinely great ones from the marketing-heavy average ones? Here\'s what to look for, what to avoid, and why location on the water changes everything.',
     heroImage: '/kerala_balcony_view_1786702364116.jpg',
     heroImageAlt: 'Direct lake view veranda at Zen Homestay, Punnamada Lake Alleppey',
     sections: [
