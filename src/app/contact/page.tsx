@@ -160,7 +160,7 @@ export default function Contact() {
                 <MessageCircle className="w-6 h-6 fill-current" />
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-extrabold text-xl text-slate-900">WhatsApp Instant Chat</h3>
+                <h2 className="font-extrabold text-xl text-slate-900">WhatsApp Instant Chat</h2>
                 <span className="bg-orange-100 text-orange-800 text-[10px] font-black px-2.5 py-0.5 rounded-full">
                   Fastest
                 </span>
@@ -188,7 +188,7 @@ export default function Contact() {
                 <Phone className="w-6 h-6" />
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-extrabold text-xl text-slate-900">Direct Phone Call</h3>
+                <h2 className="font-extrabold text-xl text-slate-900">Direct Phone Call</h2>
                 <span className="bg-sky-100 text-sky-800 text-[10px] font-black px-2.5 py-0.5 rounded-full">
                   Direct Line
                 </span>
@@ -233,10 +233,10 @@ export default function Contact() {
                 ZH
               </div>
               <div>
-                <h3 className="font-extrabold text-lg text-slate-900 flex items-center gap-2">
+                <h2 className="font-extrabold text-lg text-slate-900 flex items-center gap-2">
                   Hosted by Abhijith
                   <ShieldCheck className="w-4 h-4 text-orange-500" />
-                </h3>
+                </h2>
                 <p className="text-xs text-slate-500 font-semibold">Superhost · 5 Years Hosting on Punnamada Lake</p>
               </div>
             </div>

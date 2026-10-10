@@ -423,9 +423,9 @@ export default function Home() {
                   <p>Watch the sun dip below the horizon over Punnamada Lake from your room or balcony. See local fishermen glide past in the early morning fog. Hear the silence of the backwaters and wake up to birdsong and the gentle ripple of the lake.</p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-                  <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm"><Sun className="w-6 h-6 text-orange-500 mb-3" /><h4 className="font-bold text-slate-900 text-sm mb-1">Sunset &amp; Lake Views</h4><p className="text-xs text-slate-600 leading-relaxed">Watch spectacular sunsets over Punnamada Lake from your room — with the finishing point visible across the water.</p></div>
-                  <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm"><Utensils className="w-6 h-6 text-sky-500 mb-3" /><h4 className="font-bold text-slate-900 text-sm mb-1">Authentic Kerala Flavors</h4><p className="text-xs text-slate-600 leading-relaxed">Start your day with morning tea and authentic Kerala breakfast — prepared with love by the host family.</p></div>
-                  <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm"><Compass className="w-6 h-6 text-orange-500 mb-3" /><h4 className="font-bold text-slate-900 text-sm mb-1">Front Row to History</h4><p className="text-xs text-slate-600 leading-relaxed">Directly opposite the world-famous Nehru Trophy Boat Race Finishing Point — a truly iconic location.</p></div>
+                  <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm"><Sun className="w-6 h-6 text-orange-500 mb-3" /><h3 className="font-bold text-slate-900 text-sm mb-1">Sunset &amp; Lake Views</h3><p className="text-xs text-slate-600 leading-relaxed">Watch spectacular sunsets over Punnamada Lake from your room — with the finishing point visible across the water.</p></div>
+                  <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm"><Utensils className="w-6 h-6 text-sky-500 mb-3" /><h3 className="font-bold text-slate-900 text-sm mb-1">Authentic Kerala Flavors</h3><p className="text-xs text-slate-600 leading-relaxed">Start your day with morning tea and authentic Kerala breakfast — prepared with love by the host family.</p></div>
+                  <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm"><Compass className="w-6 h-6 text-orange-500 mb-3" /><h3 className="font-bold text-slate-900 text-sm mb-1">Front Row to History</h3><p className="text-xs text-slate-600 leading-relaxed">Directly opposite the world-famous Nehru Trophy Boat Race Finishing Point — a truly iconic location.</p></div>
                 </div>
               </div>
 
@@ -433,9 +433,9 @@ export default function Home() {
               <div className="pb-8 border-b border-slate-200">
                 <h2 className="text-2xl font-extrabold text-slate-900 mb-4">Things to Know</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-slate-600">
-                  <div className="bg-white p-5 rounded-2xl border border-slate-200"><h4 className="font-bold text-slate-900 mb-2">Check-in &amp; Checkout</h4><p className="leading-relaxed font-bold text-slate-900">Check-in: 2:00 PM</p><p className="leading-relaxed font-bold text-slate-900">Checkout: 11:00 AM</p><p className="leading-relaxed text-slate-500 mt-1">Flexible timing available — just ask Abhijith via WhatsApp.</p></div>
-                  <div className="bg-white p-5 rounded-2xl border border-slate-200"><h4 className="font-bold text-slate-900 mb-2">Speedboat Pickup &amp; Drop</h4><p className="leading-relaxed font-medium text-emerald-700">Free for check-in &amp; check-out</p><p className="leading-relaxed">One trip each way, complimentary</p><p className="leading-relaxed text-slate-500 mt-1">Extra town trips: <span className="font-bold text-slate-700">₹300/trip</span></p></div>
-                  <div className="bg-white p-5 rounded-2xl border border-slate-200"><h4 className="font-bold text-slate-900 mb-2">Ideal Guests</h4><p className="leading-relaxed font-medium">Couples &amp; honeymooners</p><p className="leading-relaxed">Small families welcome</p><p className="leading-relaxed text-slate-500 mt-1">We maintain a peaceful, respectful environment for all guests.</p></div>
+                  <div className="bg-white p-5 rounded-2xl border border-slate-200"><h3 className="font-bold text-slate-900 mb-2">Check-in &amp; Checkout</h3><p className="leading-relaxed font-bold text-slate-900">Check-in: 2:00 PM</p><p className="leading-relaxed font-bold text-slate-900">Checkout: 11:00 AM</p><p className="leading-relaxed text-slate-500 mt-1">Flexible timing available — just ask Abhijith via WhatsApp.</p></div>
+                  <div className="bg-white p-5 rounded-2xl border border-slate-200"><h3 className="font-bold text-slate-900 mb-2">Speedboat Pickup &amp; Drop</h3><p className="leading-relaxed font-medium text-emerald-700">Free for check-in &amp; check-out</p><p className="leading-relaxed">One trip each way, complimentary</p><p className="leading-relaxed text-slate-500 mt-1">Extra town trips: <span className="font-bold text-slate-700">₹300/trip</span></p></div>
+                  <div className="bg-white p-5 rounded-2xl border border-slate-200"><h3 className="font-bold text-slate-900 mb-2">Ideal Guests</h3><p className="leading-relaxed font-medium">Couples &amp; honeymooners</p><p className="leading-relaxed">Small families welcome</p><p className="leading-relaxed text-slate-500 mt-1">We maintain a peaceful, respectful environment for all guests.</p></div>
                 </div>
               </div>
 
@@ -602,7 +602,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="lg:col-span-2 space-y-4">
-                <h4 className="font-extrabold text-white text-[11px] uppercase tracking-widest">Explore</h4>
+                <h3 className="font-extrabold text-white text-[11px] uppercase tracking-widest">Explore</h3>
                 <ul className="space-y-2.5 font-medium">
                   {[{ href: '/alleppey-homestay', label: 'Alleppey Homestay' }, { href: '/punnamada-lake-homestay', label: 'Lake Homestay' }, { href: '/kerala-backwater-homestay', label: 'Backwater Stay' }, { href: '/honeymoon-homestay-alleppey', label: 'Honeymoon Stay' }, { href: '/blog', label: 'Travel Blog' }].map(({ href, label }) => (
                     <li key={href}><Link href={href} className="hover:text-orange-400 transition-colors flex items-center gap-2 group"><span className="w-1 h-1 rounded-full bg-sky-500 group-hover:bg-orange-400 transition-colors shrink-0" />{label}</Link></li>
@@ -613,7 +613,7 @@ export default function Home() {
                 </ul>
               </div>
               <div className="lg:col-span-2 space-y-4">
-                <h4 className="font-extrabold text-white text-[11px] uppercase tracking-widest">Contact</h4>
+                <h3 className="font-extrabold text-white text-[11px] uppercase tracking-widest">Contact</h3>
                 <div className="space-y-4">
                   <div className="bg-slate-900 rounded-2xl border border-slate-800 p-4 space-y-3">
                     <div><span className="text-[10px] text-slate-500 uppercase font-bold tracking-wider block mb-0.5">Your Host</span><span className="text-white font-bold text-sm">Abhijith</span></div>
