@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -216,7 +217,7 @@ export default function RootLayout({
       style={{ colorScheme: 'light' }}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <head>
+      <body className="min-h-full flex flex-col">
         {/* Preconnect hints — saves 200-400ms on FCP for fonts & maps */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -240,8 +241,15 @@ export default function RootLayout({
             { "@type": "ImageObject", "url": "https://zenhomestay.in/kerala_balcony_view_1786702364116.jpg", "name": "Private Veranda Lake View",   "description": "Private wooden veranda overlooking Punnamada Lake at Zen Homestay",    "width": 1200, "height": 800 }
           ]
         })}} />
-      </head>
-      <body className="min-h-full flex flex-col">{children}<SpeedInsights /><Analytics /></body>
+        {children}
+        <SpeedInsights />
+        <Analytics />
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="c98fb9a1-4e7b-41fe-941d-19fd921c6b1e"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }
