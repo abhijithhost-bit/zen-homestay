@@ -45,3 +45,26 @@ export interface DayAvailability {
   room_2_price_paise: number;
   whole_floor_price_paise: number;
 }
+
+export interface DateBlock {
+  id: string;
+  room_id: string | null;
+  start_date: string;
+  end_date: string;
+  reason: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface PricingRule {
+  id: string;
+  room_id: string | null;
+  start_date: string;
+  end_date: string;
+  price_paise: number;
+  title: string;
+  priority?: number;
+  is_active: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
