@@ -1,41 +1,146 @@
 'use client';
 
-import { Star, MessageCircle, Phone, CheckCircle2, Calendar, Minus, Plus } from 'lucide-react';
-import { useBooking } from './BookingProvider';
+import { Star, MessageCircle, Phone, CheckCircle2, Calendar, Minus, Plus, Home, BedDouble } from 'lucide-react';
+import { useBooking, TIERS, BookingTier } from './BookingProvider';
 
 export default function BookingWidget() {
   const {
-    rooms, guests, nights, totalPrice,
+    tier, setTier,
+    guests, nights, totalPrice, nightlyRate,
     formattedCheckIn, formattedCheckOut, whatsappBookingUrl,
-    handleRoomChange, handleGuestChange, applyPreset,
+    handleGuestChange, applyPreset,
     setActiveDateStep, setShowCalendar,
+    availabilityLoading,
   } = useBooking();
+
+  const currentTier = TIERS[tier];
+  const otaEstimatedPrice = Math.round(totalPrice * 1.33);
 
   return (
     <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xl space-y-4 sm:space-y-5">
 
       {/* Special Offer Header Pill */}
-      <div className="bg-orange-500 text-white text-[11px] font-extrabold py-1.5 px-3 rounded-full text-center tracking-wider uppercase shadow-sm">
-        Direct Host Guaranteed Rate
+      <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[11px] font-extrabold py-1.5 px-3 rounded-full text-center tracking-wider uppercase shadow-sm">
+        Direct Host Guaranteed Rate · Zero Commission
       </div>
 
       {/* Price & Rating Header */}
       <div className="flex items-baseline justify-between pt-0.5">
         <div>
-          <span className="text-2xl sm:text-3xl font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
-          <span className="text-slate-500 font-bold text-xs sm:text-sm">
-            {' '}/ {nights} {nights === 1 ? 'night' : 'nights'} ({rooms} {rooms === 1 ? 'room' : 'rooms'})
-          </span>
-          {/* OTA price anchor */}
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-2xl sm:text-3xl font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
+            <span className="text-slate-500 font-bold text-xs sm:text-sm">
+              / {nights} {nights === 1 ? 'night' : 'nights'}
+            </span>
+          </div>
+          {/* OTA price comparison anchor */}
           <div className="flex items-center gap-1.5 mt-0.5">
-            <span className="text-[11px] text-slate-600 line-through">₹{(rooms * 4200 * nights).toLocaleString('en-IN')} on OTAs</span>
-            <span className="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-md">Save 25%</span>
+            <span className="text-[11px] text-slate-600 line-through">₹{otaEstimatedPrice.toLocaleString('en-IN')} on OTAs</span>
+            <span className="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-md">Save ~25%</span>
           </div>
         </div>
         <div className="flex items-center gap-1 text-xs font-bold text-slate-900">
           <Star className="w-4 h-4 fill-orange-500 text-orange-500" />
           <span>4.9</span>
           <span className="text-slate-500 font-normal">(48)</span>
+        </div>
+      </div>
+
+      {/* TIER SELECTION CARDS */}
+      <div className="space-y-2">
+        <label className="block text-[10px] font-extrabold uppercase text-slate-500 tracking-wider">
+          Select Your Stay Option
+        </label>
+        <div className="grid grid-cols-1 gap-2">
+          {/* Lakefront Room 1 */}
+          <button
+            type="button"
+            onClick={() => setTier('lakefront-room-1')}
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation flex items-center justify-between group ${
+              tier === 'lakefront-room-1' 
+                ? 'border-orange-500 bg-orange-50/50 shadow-sm ring-2 ring-orange-200' 
+                : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className={`p-2 rounded-xl shrink-0 transition-colors ${
+                tier === 'lakefront-room-1' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-600'
+              }`}>
+                <BedDouble className="w-4 h-4" />
+              </div>
+              <div className="truncate">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-extrabold text-xs text-slate-900 truncate">Lakefront Room 1</span>
+                  <span className="text-[9px] font-extrabold text-sky-700 bg-sky-50 px-1.5 py-0.2 rounded border border-sky-100">King Bed</span>
+                </div>
+                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Direct lake view · Up to 3 guests</p>
+              </div>
+            </div>
+            <div className="text-right shrink-0 pl-2">
+              <span className="text-xs font-black text-slate-900">₹3,000</span>
+              <span className="text-[10px] text-slate-500 block">/ night</span>
+            </div>
+          </button>
+
+          {/* Lakefront Room 2 */}
+          <button
+            type="button"
+            onClick={() => setTier('lakefront-room-2')}
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation flex items-center justify-between group ${
+              tier === 'lakefront-room-2' 
+                ? 'border-orange-500 bg-orange-50/50 shadow-sm ring-2 ring-orange-200' 
+                : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className={`p-2 rounded-xl shrink-0 transition-colors ${
+                tier === 'lakefront-room-2' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-600'
+              }`}>
+                <BedDouble className="w-4 h-4" />
+              </div>
+              <div className="truncate">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-extrabold text-xs text-slate-900 truncate">Lakefront Room 2</span>
+                  <span className="text-[9px] font-extrabold text-sky-700 bg-sky-50 px-1.5 py-0.2 rounded border border-sky-100">King Bed</span>
+                </div>
+                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Direct lake view · Up to 3 guests</p>
+              </div>
+            </div>
+            <div className="text-right shrink-0 pl-2">
+              <span className="text-xs font-black text-slate-900">₹3,000</span>
+              <span className="text-[10px] text-slate-500 block">/ night</span>
+            </div>
+          </button>
+
+          {/* Whole Floor */}
+          <button
+            type="button"
+            onClick={() => setTier('whole-floor')}
+            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation flex items-center justify-between group ${
+              tier === 'whole-floor' 
+                ? 'border-orange-500 bg-orange-50/70 shadow-sm ring-2 ring-orange-200' 
+                : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+            }`}
+          >
+            <div className="flex items-center gap-2.5 min-w-0">
+              <div className={`p-2 rounded-xl shrink-0 transition-colors ${
+                tier === 'whole-floor' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-600'
+              }`}>
+                <Home className="w-4 h-4" />
+              </div>
+              <div className="truncate">
+                <div className="flex items-center gap-1.5">
+                  <span className="font-extrabold text-xs text-slate-900 truncate">Whole Floor (Both Rooms)</span>
+                  <span className="text-[9px] font-black text-orange-700 bg-orange-100 px-1.5 py-0.2 rounded">Exclusive</span>
+                </div>
+                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Entire private 2nd floor · Up to 6 guests</p>
+              </div>
+            </div>
+            <div className="text-right shrink-0 pl-2">
+              <span className="text-xs font-black text-slate-900">₹6,000</span>
+              <span className="text-[10px] text-slate-500 block">/ night</span>
+            </div>
+          </button>
         </div>
       </div>
 
@@ -73,7 +178,7 @@ export default function BookingWidget() {
           </button>
         </div>
 
-        {/* Quick Night Selection Chips */}
+        {/* Quick Stay Presets & Calendar Trigger */}
         <div className="p-2.5 bg-slate-50/80 flex items-center justify-between gap-1.5 overflow-x-auto text-[11px] font-bold">
           <span className="text-[10px] font-extrabold uppercase text-slate-400 shrink-0">Stay:</span>
           <div className="flex items-center gap-1.5 shrink-0">
@@ -82,7 +187,11 @@ export default function BookingWidget() {
                 key={n}
                 type="button"
                 onClick={() => applyPreset(n, 0)}
-                className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${nights === n ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold' : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'}`}
+                className={`px-2.5 py-1 rounded-lg border transition-all cursor-pointer touch-manipulation ${
+                  nights === n 
+                    ? 'bg-orange-500 text-white border-orange-500 shadow-sm font-extrabold' 
+                    : 'bg-white text-slate-700 border-slate-200 hover:bg-orange-50'
+                }`}
               >
                 {n} {n === 1 ? 'Night' : 'Nights'}
               </button>
@@ -97,40 +206,14 @@ export default function BookingWidget() {
           </div>
         </div>
 
-        {/* Rooms Counter */}
-        <div className="p-3.5 flex items-center justify-between bg-white">
-          <div>
-            <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Rooms</span>
-            <span className="text-slate-900 font-bold text-xs sm:text-sm">{rooms} {rooms === 1 ? 'Room' : 'Rooms'} <span className="text-slate-400 font-normal text-xs">(₹3,000/room)</span></span>
-          </div>
-          <div className="flex items-center gap-2.5 touch-manipulation">
-            <button
-              type="button"
-              onClick={() => handleRoomChange(-1)}
-              disabled={rooms <= 1}
-              aria-label="Decrease rooms"
-              className="w-11 h-11 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
-            >
-              <Minus className="w-4 h-4 pointer-events-none stroke-[3]" />
-            </button>
-            <span className="font-black text-base sm:text-sm w-5 text-center text-slate-900 select-none">{rooms}</span>
-            <button
-              type="button"
-              onClick={() => handleRoomChange(1)}
-              disabled={rooms >= 2}
-              aria-label="Increase rooms"
-              className="w-11 h-11 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
-            >
-              <Plus className="w-4 h-4 pointer-events-none stroke-[3]" />
-            </button>
-          </div>
-        </div>
-
         {/* Guests Counter */}
         <div className="p-3.5 flex items-center justify-between bg-white">
           <div>
             <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Guests</span>
-            <span className="text-slate-900 font-bold text-xs sm:text-sm">{guests} {guests === 1 ? 'Guest' : 'Guests'} <span className="text-slate-400 font-normal text-xs">(Max {rooms * 3})</span></span>
+            <span className="text-slate-900 font-bold text-xs sm:text-sm">
+              {guests} {guests === 1 ? 'Guest' : 'Guests'}{' '}
+              <span className="text-slate-400 font-normal text-xs">(Max {currentTier.maxGuests})</span>
+            </span>
           </div>
           <div className="flex items-center gap-2.5 touch-manipulation">
             <button
@@ -138,7 +221,7 @@ export default function BookingWidget() {
               onClick={() => handleGuestChange(-1)}
               disabled={guests <= 1}
               aria-label="Decrease guests"
-              className="w-11 h-11 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
+              className="w-10 h-10 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
             >
               <Minus className="w-4 h-4 pointer-events-none stroke-[3]" />
             </button>
@@ -146,22 +229,26 @@ export default function BookingWidget() {
             <button
               type="button"
               onClick={() => handleGuestChange(1)}
-              disabled={guests >= rooms * 3}
+              disabled={guests >= currentTier.maxGuests}
               aria-label="Increase guests"
-              className="w-11 h-11 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
+              className="w-10 h-10 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
             >
               <Plus className="w-4 h-4 pointer-events-none stroke-[3]" />
             </button>
           </div>
         </div>
 
-        {/* Breakdown */}
+        {/* Live Breakdown */}
         <div className="p-2.5 sm:p-3 bg-sky-50 text-sky-900 font-bold flex items-center justify-between text-xs">
           <div className="flex items-center gap-1.5 truncate pr-2">
             <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
-            <span className="truncate">₹3,000 × {rooms} room{rooms > 1 ? 's' : ''} × {nights} {nights === 1 ? 'night' : 'nights'}</span>
+            <span className="truncate">
+              {currentTier.shortName} · {nights} {nights === 1 ? 'night' : 'nights'} (₹{nightlyRate.toLocaleString('en-IN')}/nt avg)
+            </span>
           </div>
-          <span className="text-orange-600 font-black shrink-0">₹{totalPrice.toLocaleString('en-IN')}</span>
+          <span className="text-orange-600 font-black shrink-0">
+            {availabilityLoading ? '...' : `₹${totalPrice.toLocaleString('en-IN')}`}
+          </span>
         </div>
       </div>
 
@@ -215,7 +302,9 @@ export default function BookingWidget() {
       <div className="border-t border-slate-100 pt-3.5">
         <div className="flex items-center gap-3">
           <div className="relative shrink-0">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-sky-400 via-sky-500 to-orange-500 flex items-center justify-center text-white font-black text-base shadow-md">A</div>
+            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-sky-400 via-sky-500 to-orange-500 flex items-center justify-center text-white font-black text-base shadow-md">
+              A
+            </div>
             <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full" />
           </div>
           <div className="min-w-0">
