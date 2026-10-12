@@ -11,16 +11,19 @@ export default function BookingWidget() {
     handleGuestChange, applyPreset,
     setActiveDateStep, setShowCalendar,
     availabilityLoading,
+    isCurrentSelectionAvailable,
+    is1RoomAvailable,
+    isWholeFloorAvailable,
   } = useBooking();
 
-  const currentTier = TIERS[tier];
+  const currentTier = TIERS[tier] || TIERS['1-room'];
   const otaEstimatedPrice = Math.round(totalPrice * 1.33);
 
   return (
     <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xl space-y-4 sm:space-y-5">
 
       {/* Special Offer Header Pill */}
-      <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[11px] font-extrabold py-1.5 px-3 rounded-full text-center tracking-wider uppercase shadow-sm">
+      <div className="w-fit mx-auto bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[9.5px] sm:text-[10px] font-bold py-1 px-2.5 sm:px-3 rounded-full text-center tracking-wide uppercase shadow-sm">
         Direct Host Guaranteed Rate · Zero Commission
       </div>
 
@@ -52,26 +55,29 @@ export default function BookingWidget() {
           Select Your Stay Option
         </label>
         <div className="grid grid-cols-1 gap-2">
-          {/* Lakefront Room 1 */}
+          {/* Option 1: 1 Bedroom */}
           <button
             type="button"
-            onClick={() => setTier('lakefront-room-1')}
+            onClick={() => setTier('1-room')}
             className={`p-3 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation flex items-center justify-between group ${
-              tier === 'lakefront-room-1' 
+              tier === '1-room' 
                 ? 'border-orange-500 bg-orange-50/50 shadow-sm ring-2 ring-orange-200' 
                 : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
             }`}
           >
             <div className="flex items-center gap-2.5 min-w-0">
               <div className={`p-2 rounded-xl shrink-0 transition-colors ${
-                tier === 'lakefront-room-1' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-600'
+                tier === '1-room' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-600'
               }`}>
                 <BedDouble className="w-4 h-4" />
               </div>
-              <div className="truncate">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-extrabold text-xs text-slate-900 truncate">Lakefront Room 1</span>
-                  <span className="text-[9px] font-extrabold text-sky-700 bg-sky-50 px-1.5 py-0.2 rounded border border-sky-100">King Bed</span>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="font-extrabold text-xs text-slate-900">1 Bedroom</span>
+                  <span className="text-[9px] font-extrabold text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-100">King Bed</span>
+                  {!is1RoomAvailable && (
+                    <span className="text-[9px] font-bold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">Sold Out</span>
+                  )}
                 </div>
                 <p className="text-[10px] text-slate-500 mt-0.5 truncate">Direct lake view · Up to 3 guests</p>
               </div>
@@ -82,37 +88,7 @@ export default function BookingWidget() {
             </div>
           </button>
 
-          {/* Lakefront Room 2 */}
-          <button
-            type="button"
-            onClick={() => setTier('lakefront-room-2')}
-            className={`p-3 rounded-2xl border text-left transition-all cursor-pointer touch-manipulation flex items-center justify-between group ${
-              tier === 'lakefront-room-2' 
-                ? 'border-orange-500 bg-orange-50/50 shadow-sm ring-2 ring-orange-200' 
-                : 'border-slate-200 hover:border-slate-300 hover:bg-slate-50'
-            }`}
-          >
-            <div className="flex items-center gap-2.5 min-w-0">
-              <div className={`p-2 rounded-xl shrink-0 transition-colors ${
-                tier === 'lakefront-room-2' ? 'bg-orange-500 text-white' : 'bg-slate-100 text-slate-600'
-              }`}>
-                <BedDouble className="w-4 h-4" />
-              </div>
-              <div className="truncate">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-extrabold text-xs text-slate-900 truncate">Lakefront Room 2</span>
-                  <span className="text-[9px] font-extrabold text-sky-700 bg-sky-50 px-1.5 py-0.2 rounded border border-sky-100">King Bed</span>
-                </div>
-                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Direct lake view · Up to 3 guests</p>
-              </div>
-            </div>
-            <div className="text-right shrink-0 pl-2">
-              <span className="text-xs font-black text-slate-900">₹3,000</span>
-              <span className="text-[10px] text-slate-500 block">/ night</span>
-            </div>
-          </button>
-
-          {/* Whole Floor */}
+          {/* Option 2: 2 Bedrooms (Entire Floor) */}
           <button
             type="button"
             onClick={() => setTier('whole-floor')}
@@ -128,12 +104,15 @@ export default function BookingWidget() {
               }`}>
                 <Home className="w-4 h-4" />
               </div>
-              <div className="truncate">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-extrabold text-xs text-slate-900 truncate">Whole Floor (Both Rooms)</span>
-                  <span className="text-[9px] font-black text-orange-700 bg-orange-100 px-1.5 py-0.2 rounded">Exclusive</span>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="font-extrabold text-xs text-slate-900">2 Bedrooms</span>
+                  <span className="text-[9px] font-black text-orange-700 bg-orange-100 px-1.5 py-0.5 rounded">Entire Floor</span>
+                  {!isWholeFloorAvailable && (
+                    <span className="text-[9px] font-bold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">Sold Out</span>
+                  )}
                 </div>
-                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Entire private 2nd floor · Up to 6 guests</p>
+                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Both lakefront rooms · Up to 6 guests</p>
               </div>
             </div>
             <div className="text-right shrink-0 pl-2">
@@ -239,15 +218,26 @@ export default function BookingWidget() {
         </div>
 
         {/* Live Breakdown */}
-        <div className="p-2.5 sm:p-3 bg-sky-50 text-sky-900 font-bold flex items-center justify-between text-xs">
+        <div className={`p-2.5 sm:p-3 font-bold flex items-center justify-between text-xs ${
+          isCurrentSelectionAvailable 
+            ? 'bg-sky-50 text-sky-900' 
+            : 'bg-rose-50 text-rose-900'
+        }`}>
           <div className="flex items-center gap-1.5 truncate pr-2">
-            <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
+            {isCurrentSelectionAvailable ? (
+              <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
+            ) : (
+              <span className="text-rose-600 font-black text-xs shrink-0">✕</span>
+            )}
             <span className="truncate">
-              {currentTier.shortName} · {nights} {nights === 1 ? 'night' : 'nights'} (₹{nightlyRate.toLocaleString('en-IN')}/nt avg)
+              {isCurrentSelectionAvailable 
+                ? `${currentTier.shortName} · ${nights} ${nights === 1 ? 'night' : 'nights'} (₹${nightlyRate.toLocaleString('en-IN')}/nt avg)`
+                : `Sold out for selected dates (${nights} ${nights === 1 ? 'night' : 'nights'})`
+              }
             </span>
           </div>
-          <span className="text-orange-600 font-black shrink-0">
-            {availabilityLoading ? '...' : `₹${totalPrice.toLocaleString('en-IN')}`}
+          <span className={`font-black shrink-0 ${isCurrentSelectionAvailable ? 'text-orange-600' : 'text-rose-600'}`}>
+            {availabilityLoading ? '...' : isCurrentSelectionAvailable ? `₹${totalPrice.toLocaleString('en-IN')}` : 'Sold Out'}
           </span>
         </div>
       </div>
@@ -258,10 +248,14 @@ export default function BookingWidget() {
           href={whatsappBookingUrl}
           target="_blank"
           rel="noreferrer"
-          className="w-full flex items-center justify-center gap-2.5 bg-orange-500 hover:bg-orange-600 text-white py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base tracking-wide transition-all shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-[0.98]"
+          className={`w-full flex items-center justify-center gap-2.5 py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base tracking-wide transition-all shadow-lg active:scale-[0.98] ${
+            isCurrentSelectionAvailable
+              ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-orange-500/25 hover:shadow-orange-500/40'
+              : 'bg-amber-600 hover:bg-amber-700 text-white shadow-amber-600/25'
+          }`}
         >
           <MessageCircle className="w-5 h-5 fill-current" />
-          Reserve via WhatsApp
+          {isCurrentSelectionAvailable ? 'Reserve via WhatsApp' : 'Inquire on WhatsApp (Sold Out)'}
         </a>
 
         <a

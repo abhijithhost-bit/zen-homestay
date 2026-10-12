@@ -7,7 +7,9 @@ import { supabase, isSupabaseConfigured, DayAvailability } from '@/lib/supabase'
 
 // --- Tier Definitions --------------------------------------------------------
 
-export type BookingTier = 'lakefront-room-1' | 'lakefront-room-2' | 'whole-floor';
+export type BookingOption = '1-room' | 'whole-floor';
+export type BookingTier = '1-room' | 'whole-floor' | 'lakefront-room-1' | 'lakefront-room-2';
+export type PhysicalRoom = 'lakefront-room-1' | 'lakefront-room-2' | 'whole-floor';
 
 export interface TierInfo {
   id: BookingTier;
@@ -20,22 +22,12 @@ export interface TierInfo {
   basePrice: number;
 }
 
-export const TIERS: Record<BookingTier, TierInfo> = {
-  'lakefront-room-1': {
-    id: 'lakefront-room-1',
-    name: 'Lakefront Room 1',
-    shortName: 'Room 1',
-    tag: 'Lakefront King Bedroom',
-    description: 'Direct Punnamada Lake view · Attached bathroom · King bed',
-    maxGuests: 3,
-    rooms: 1,
-    basePrice: 3000,
-  },
-  'lakefront-room-2': {
-    id: 'lakefront-room-2',
-    name: 'Lakefront Room 2',
-    shortName: 'Room 2',
-    tag: 'Lakefront King Bedroom',
+export const TIERS: Record<string, TierInfo> = {
+  '1-room': {
+    id: '1-room',
+    name: '1 Bedroom (Lake View)',
+    shortName: '1 Bedroom',
+    tag: 'Lake View King Bedroom',
     description: 'Direct Punnamada Lake view · Attached bathroom · King bed',
     maxGuests: 3,
     rooms: 1,
@@ -43,13 +35,34 @@ export const TIERS: Record<BookingTier, TierInfo> = {
   },
   'whole-floor': {
     id: 'whole-floor',
-    name: 'Whole Floor (Both Rooms)',
-    shortName: 'Whole Floor',
+    name: '2 Bedrooms (Entire Floor)',
+    shortName: '2 Bedrooms (Entire Floor)',
     tag: 'Entire Private 2nd Floor',
-    description: 'Both Lakefront Bedrooms · 2 King beds · Exclusive waterfront floor',
+    description: 'Both Lakefront Bedrooms · 2 King beds · Exclusive private floor',
     maxGuests: 6,
     rooms: 2,
     basePrice: 6000,
+  },
+  // Legacy aliases for total backward compatibility
+  'lakefront-room-1': {
+    id: '1-room',
+    name: '1 Bedroom (Lake View)',
+    shortName: '1 Bedroom',
+    tag: 'Lake View King Bedroom',
+    description: 'Direct Punnamada Lake view · Attached bathroom · King bed',
+    maxGuests: 3,
+    rooms: 1,
+    basePrice: 3000,
+  },
+  'lakefront-room-2': {
+    id: '1-room',
+    name: '1 Bedroom (Lake View)',
+    shortName: '1 Bedroom',
+    tag: 'Lake View King Bedroom',
+    description: 'Direct Punnamada Lake view · Attached bathroom · King bed',
+    maxGuests: 3,
+    rooms: 1,
+    basePrice: 3000,
   },
 };
 
@@ -58,6 +71,10 @@ export const TIERS: Record<BookingTier, TierInfo> = {
 export interface BookingContextType {
   tier: BookingTier;
   setTier: (tier: BookingTier) => void;
+  assignedRoom: PhysicalRoom | null;
+  isCurrentSelectionAvailable: boolean;
+  is1RoomAvailable: boolean;
+  isWholeFloorAvailable: boolean;
   rooms: number; // For compatibility (1 or 2)
   guests: number;
   checkIn: string;
@@ -74,8 +91,8 @@ export interface BookingContextType {
   availability: Record<string, DayAvailability>;
   availabilityLoading: boolean;
   availabilityError: string | null;
-  isDateBlocked: (dateStr: string, tierToCheck?: BookingTier) => boolean;
-  isRangeAvailable: (inDateStr: string, outDateStr: string, tierToCheck?: BookingTier) => boolean;
+  isDateBlocked: (dateStr: string, tierToCheck?: string) => boolean;
+  isRangeAvailable: (inDateStr: string, outDateStr: string, tierToCheck?: string) => boolean;
   handleRoomChange: (delta: number) => void;
   handleGuestChange: (delta: number) => void;
   handleDateCellClick: (year: number, month: number, day: number) => void;
@@ -130,8 +147,8 @@ function padDate(n: number) { return String(n).padStart(2, '0'); }
 // --- MobileBottomBar Component -----------------------------------------------
 
 function MobileBottomBar() {
-  const { totalPrice, nights, tier, guests, setShowCalendar } = useBooking();
-  const currentTier = TIERS[tier];
+  const { totalPrice, nights, tier, guests, setShowCalendar, isCurrentSelectionAvailable } = useBooking();
+  const currentTier = TIERS[tier] || TIERS['1-room'];
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-3.5 flex items-center justify-between shadow-2xl">
@@ -141,8 +158,12 @@ function MobileBottomBar() {
         className="text-left cursor-pointer active:scale-95 transition-transform"
       >
         <div className="flex items-baseline gap-1">
-          <span className="text-lg font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
-          <span className="text-xs text-orange-600 font-bold underline">/ {nights} {nights === 1 ? 'night' : 'nights'}</span>
+          <span className="text-lg font-black text-slate-900">
+            {isCurrentSelectionAvailable ? `₹${totalPrice.toLocaleString('en-IN')}` : 'Sold Out'}
+          </span>
+          {isCurrentSelectionAvailable && (
+            <span className="text-xs text-orange-600 font-bold underline">/ {nights} {nights === 1 ? 'night' : 'nights'}</span>
+          )}
         </div>
         <div className="flex items-center gap-1.5 text-[11px] text-slate-700 font-bold mt-0.5">
           <Star className="w-3 h-3 fill-orange-500 text-orange-500 shrink-0" />
@@ -170,8 +191,8 @@ function MobileBottomBar() {
 // --- Main BookingProvider ----------------------------------------------------
 
 export function BookingProvider({ children }: { children: ReactNode }) {
-  // State
-  const [tier, setTier] = useState<BookingTier>('lakefront-room-1');
+  // State: default to '1-room'
+  const [tier, setTier] = useState<BookingTier>('1-room');
   const [guests, setGuests] = useState(2);
   const [checkIn, setCheckIn] = useState(() => getInitialDate(1));
   const [checkOut, setCheckOut] = useState(() => getInitialDate(2));
@@ -191,7 +212,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   const nights = calculateNights(checkIn, checkOut);
   const formattedCheckIn = formatDisplayDate(checkIn);
   const formattedCheckOut = formatDisplayDate(checkOut);
-  const rooms = TIERS[tier].rooms;
+  const rooms = (TIERS[tier] || TIERS['1-room']).rooms;
 
   // 1. Fetch Availability from Supabase via get_calendar_availability RPC
   const fetchAvailability = useCallback(async () => {
@@ -239,7 +260,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   }, [fetchAvailability]);
 
   // 2. Check if a single date is blocked for a specific tier
-  const isDateBlocked = useCallback((dateStr: string, tierToCheck?: BookingTier): boolean => {
+  const isDateBlocked = useCallback((dateStr: string, tierToCheck?: string): boolean => {
     if (!dateStr) return false;
     const [y, m, d] = dateStr.split('-').map(Number);
     const cellDate = new Date(y, m - 1, d);
@@ -263,6 +284,10 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       if (targetTier === 'whole-floor') {
         return !dayData.whole_floor_available;
       }
+      // '1-room' option is blocked only if BOTH rooms are unavailable
+      if (targetTier === '1-room') {
+        return !dayData.room_1_available && !dayData.room_2_available;
+      }
     }
 
     // Fallback: If outside 90-day window or offline, treat future as open
@@ -270,8 +295,17 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   }, [availability, tier]);
 
   // 3. Check if all nights in a range are open
-  const isRangeAvailable = useCallback((inDateStr: string, outDateStr: string, tierToCheck?: BookingTier): boolean => {
+  const isRangeAvailable = useCallback((inDateStr: string, outDateStr: string, tierToCheck?: string): boolean => {
     if (!inDateStr || !outDateStr) return true;
+    const targetTier = tierToCheck || tier;
+
+    // For 1-room, guest needs either room 1 or room 2 continuously available for the entire duration
+    if (targetTier === '1-room') {
+      const room1Ok = isRangeAvailable(inDateStr, outDateStr, 'lakefront-room-1');
+      const room2Ok = isRangeAvailable(inDateStr, outDateStr, 'lakefront-room-2');
+      return room1Ok || room2Ok;
+    }
+
     try {
       const [y1, m1, d1] = inDateStr.split('-').map(Number);
       const [y2, m2, d2] = outDateStr.split('-').map(Number);
@@ -280,16 +314,48 @@ export function BookingProvider({ children }: { children: ReactNode }) {
 
       while (curr < end) {
         const curStr = `${curr.getFullYear()}-${padDate(curr.getMonth() + 1)}-${padDate(curr.getDate())}`;
-        if (isDateBlocked(curStr, tierToCheck)) {
+        if (isDateBlocked(curStr, targetTier)) {
           return false;
         }
         curr.setDate(curr.getDate() + 1);
       }
       return true;
     } catch { return true; }
-  }, [isDateBlocked]);
+  }, [isDateBlocked, tier]);
 
-  // 4. Dynamic Pricing Calculation from RPC rates
+  // 4. Smart Auto-Assignment Logic:
+  // If user selects "1 Premium Room":
+  // - If Room 1 is available -> assign Room 1
+  // - If Room 1 is booked but Room 2 is available -> auto-assign Room 2
+  // - If both are booked -> sold out (null)
+  // If user selects "Whole Floor":
+  // - Requires whole_floor_available to be true
+  const assignedRoom = useMemo((): PhysicalRoom | null => {
+    if (tier === 'whole-floor') {
+      return isRangeAvailable(checkIn, checkOut, 'whole-floor') ? 'whole-floor' : null;
+    }
+
+    // 1 Premium Room option (or legacy room IDs)
+    if (isRangeAvailable(checkIn, checkOut, 'lakefront-room-1')) {
+      return 'lakefront-room-1';
+    }
+    if (isRangeAvailable(checkIn, checkOut, 'lakefront-room-2')) {
+      return 'lakefront-room-2';
+    }
+    return null;
+  }, [tier, checkIn, checkOut, isRangeAvailable]);
+
+  const isCurrentSelectionAvailable = assignedRoom !== null;
+
+  const is1RoomAvailable = useMemo(() => {
+    return isRangeAvailable(checkIn, checkOut, 'lakefront-room-1') || isRangeAvailable(checkIn, checkOut, 'lakefront-room-2');
+  }, [checkIn, checkOut, isRangeAvailable]);
+
+  const isWholeFloorAvailable = useMemo(() => {
+    return isRangeAvailable(checkIn, checkOut, 'whole-floor');
+  }, [checkIn, checkOut, isRangeAvailable]);
+
+  // 5. Dynamic Pricing Calculation from RPC rates
   const totalPrice = useMemo(() => {
     let total = 0;
     try {
@@ -301,42 +367,57 @@ export function BookingProvider({ children }: { children: ReactNode }) {
         const dayData = availability[curStr];
 
         if (dayData) {
-          if (tier === 'lakefront-room-1') {
-            total += Math.round(dayData.room_1_price_paise / 100);
-          } else if (tier === 'lakefront-room-2') {
+          if (tier === 'whole-floor') {
+            total += Math.round(dayData.whole_floor_price_paise / 100);
+          } else if (assignedRoom === 'lakefront-room-2') {
             total += Math.round(dayData.room_2_price_paise / 100);
           } else {
-            total += Math.round(dayData.whole_floor_price_paise / 100);
+            // Room 1 or standard 1-room rate
+            total += Math.round(dayData.room_1_price_paise / 100);
           }
         } else {
           // Fallback to tier base price
-          total += TIERS[tier].basePrice;
+          total += (TIERS[tier] || TIERS['1-room']).basePrice;
         }
         curr.setDate(curr.getDate() + 1);
       }
     } catch {
-      total = TIERS[tier].basePrice * nights;
+      total = (TIERS[tier] || TIERS['1-room']).basePrice * nights;
     }
     return total;
-  }, [checkIn, nights, tier, availability]);
+  }, [checkIn, nights, tier, assignedRoom, availability]);
 
   const nightlyRate = Math.round(totalPrice / Math.max(1, nights));
 
-  // 5. WhatsApp Booking URL formatting
+  // 6. WhatsApp Booking URL formatting
   const whatsappBookingUrl = useMemo(() => {
-    const tierInfo = TIERS[tier];
-    const text = 
-`Hi Abhijith, I would like to inquire about booking Zen Homestay:
+    const isRoom = tier !== 'whole-floor';
+    const optionName = isRoom ? '1 Bedroom (Lake View)' : '2 Bedrooms (Entire Floor)';
 
-• Tier: ${tierInfo.name} (${tierInfo.tag})
+    let text = '';
+    if (isCurrentSelectionAvailable) {
+      text = 
+`Hi Abhijith, I would like to book ${isRoom ? '1 Bedroom (Lake View)' : '2 Bedrooms (Entire Floor)'} at Zen Homestay:
+
+• Option: ${optionName}
 • Dates: ${formattedCheckIn} to ${formattedCheckOut} (${nights} ${nights === 1 ? 'night' : 'nights'})
 • Guests: ${guests} ${guests === 1 ? 'Guest' : 'Guests'}
 • Total Estimate: ₹${totalPrice.toLocaleString('en-IN')}
 
-Please let me know the availability!`;
+Please confirm availability and booking details!`;
+    } else {
+      text = 
+`Hi Abhijith, I would like to inquire about booking ${isRoom ? '1 Bedroom' : '2 Bedrooms (Entire Floor)'} at Zen Homestay:
+
+• Option: ${optionName}
+• Dates: ${formattedCheckIn} to ${formattedCheckOut} (${nights} ${nights === 1 ? 'night' : 'nights'})
+• Guests: ${guests} ${guests === 1 ? 'Guest' : 'Guests'}
+
+These dates appear unavailable online. Please let me know if there are any openings or alternative dates!`;
+    }
 
     return `https://wa.me/917012761588?text=${encodeURIComponent(text)}`;
-  }, [tier, formattedCheckIn, formattedCheckOut, nights, guests, totalPrice]);
+  }, [tier, isCurrentSelectionAvailable, formattedCheckIn, formattedCheckOut, nights, guests, totalPrice]);
 
   // Calendar Month Navigation
   const prevMonth = () => setCalendarMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
@@ -346,13 +427,14 @@ Please let me know the availability!`;
 
   // Handle Guest Count change (bounded by tier's maxGuests)
   const handleGuestChange = (delta: number) => {
-    setGuests(prev => Math.min(TIERS[tier].maxGuests, Math.max(1, prev + delta)));
+    const maxG = (TIERS[tier] || TIERS['1-room']).maxGuests;
+    setGuests(prev => Math.min(maxG, Math.max(1, prev + delta)));
   };
 
   // Compatibility room toggler
   const handleRoomChange = (delta: number) => {
     if (delta > 0) setTier('whole-floor');
-    else setTier('lakefront-room-1');
+    else setTier('1-room');
   };
 
   // Date cell click state machine
@@ -370,7 +452,7 @@ Please let me know the availability!`;
       const outD = new Date(oy, om - 1, od);
 
       // If existing checkOut is invalid or blocked in between, find next open day
-      if (outD <= selected || isNaN(outD.getTime()) || !isRangeAvailable(dateStr, checkOut)) {
+      if (outD <= selected || isNaN(outD.getTime()) || !isRangeAvailable(dateStr, checkOut, tier)) {
         const next = new Date(selected);
         next.setDate(next.getDate() + 1);
         const nextStr = `${next.getFullYear()}-${padDate(next.getMonth() + 1)}-${padDate(next.getDate())}`;
@@ -394,7 +476,7 @@ Please let me know the availability!`;
       } else {
         // Clicked after checkIn
         // Verify every night between checkIn and selected is unblocked
-        if (isRangeAvailable(checkIn, dateStr)) {
+        if (isRangeAvailable(checkIn, dateStr, tier)) {
           setCheckOut(dateStr);
           setShowCalendar(false);
         } else {
@@ -426,7 +508,7 @@ Please let me know the availability!`;
       const inStr = `${candidateIn.getFullYear()}-${padDate(candidateIn.getMonth() + 1)}-${padDate(candidateIn.getDate())}`;
       const outStr = `${candidateOut.getFullYear()}-${padDate(candidateOut.getMonth() + 1)}-${padDate(candidateOut.getDate())}`;
 
-      if (isRangeAvailable(inStr, outStr)) {
+      if (isRangeAvailable(inStr, outStr, tier)) {
         setCheckIn(inStr);
         setCheckOut(outStr);
         setShowCalendar(false);
@@ -445,7 +527,8 @@ Please let me know the availability!`;
 
   // Clamp guests when switching to a smaller tier
   useEffect(() => {
-    setGuests(prev => Math.min(TIERS[tier].maxGuests, Math.max(1, prev)));
+    const maxG = (TIERS[tier] || TIERS['1-room']).maxGuests;
+    setGuests(prev => Math.min(maxG, Math.max(1, prev)));
   }, [tier]);
 
   // Lock body scroll when calendar modal is open
@@ -457,6 +540,10 @@ Please let me know the availability!`;
   const value: BookingContextType = {
     tier,
     setTier,
+    assignedRoom,
+    isCurrentSelectionAvailable,
+    is1RoomAvailable,
+    isWholeFloorAvailable,
     rooms,
     guests,
     checkIn,

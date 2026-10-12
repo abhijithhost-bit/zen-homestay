@@ -23,7 +23,7 @@ export default function CalendarModal() {
 
   if (!showCalendar) return null;
 
-  const currentTier = TIERS[tier];
+  const currentTier = TIERS[tier] || TIERS['1-room'];
   const year = calendarMonth.getFullYear();
   const month = calendarMonth.getMonth();
 
@@ -56,44 +56,31 @@ export default function CalendarModal() {
 
         {/* Stay Option Segmented Tabs (Inside Modal) */}
         <div className="p-2.5 bg-slate-100/90 border-b border-slate-200">
-          <div className="grid grid-cols-3 gap-1 bg-slate-200/70 p-1 rounded-xl text-xs font-extrabold">
+          <div className="grid grid-cols-2 gap-1.5 bg-slate-200/70 p-1 rounded-xl text-xs font-extrabold">
             <button
               type="button"
-              onClick={() => setTier('lakefront-room-1')}
-              className={`py-1.5 px-2 rounded-lg transition-all text-center flex items-center justify-center gap-1 cursor-pointer touch-manipulation ${
-                tier === 'lakefront-room-1' 
+              onClick={() => setTier('1-room')}
+              className={`py-1.5 px-3 rounded-lg transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation ${
+                tier === '1-room' 
                   ? 'bg-white text-orange-600 shadow-sm font-black' 
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <BedDouble className="w-3.5 h-3.5 shrink-0" />
-              <span className="truncate">Room 1</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setTier('lakefront-room-2')}
-              className={`py-1.5 px-2 rounded-lg transition-all text-center flex items-center justify-center gap-1 cursor-pointer touch-manipulation ${
-                tier === 'lakefront-room-2' 
-                  ? 'bg-white text-orange-600 shadow-sm font-black' 
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              <BedDouble className="w-3.5 h-3.5 shrink-0" />
-              <span className="truncate">Room 2</span>
+              <span className="truncate">1 Bedroom</span>
             </button>
 
             <button
               type="button"
               onClick={() => setTier('whole-floor')}
-              className={`py-1.5 px-2 rounded-lg transition-all text-center flex items-center justify-center gap-1 cursor-pointer touch-manipulation ${
+              className={`py-1.5 px-3 rounded-lg transition-all text-center flex items-center justify-center gap-1.5 cursor-pointer touch-manipulation ${
                 tier === 'whole-floor' 
                   ? 'bg-white text-orange-600 shadow-sm font-black' 
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
               <Home className="w-3.5 h-3.5 shrink-0" />
-              <span className="truncate">Whole Floor</span>
+              <span className="truncate">2 Bedrooms (Floor)</span>
             </button>
           </div>
         </div>
