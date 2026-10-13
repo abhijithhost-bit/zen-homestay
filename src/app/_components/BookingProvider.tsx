@@ -71,6 +71,7 @@ export const TIERS: Record<string, TierInfo> = {
 export interface BookingContextType {
   tier: BookingTier;
   setTier: (tier: BookingTier) => void;
+  currentTier: TierInfo;
   assignedRoom: PhysicalRoom | null;
   isCurrentSelectionAvailable: boolean;
   is1RoomAvailable: boolean;
@@ -203,10 +204,21 @@ export function BookingProvider({ children }: { children: ReactNode }) {
     return new Date(d.getFullYear(), d.getMonth(), 1);
   });
 
+  // Dynamic capacity from dashboard
+  const [roomMaxGuests, setRoomMaxGuests] = useState(3);
+  const [wholeFloorMaxGuests, setWholeFloorMaxGuests] = useState(6);
+
   // Supabase Availability State
   const [availability, setAvailability] = useState<Record<string, DayAvailability>>({});
   const [availabilityLoading, setAvailabilityLoading] = useState(false);
   const [availabilityError, setAvailabilityError] = useState<string | null>(null);
+
+  // Dynamic currentTier with live maxGuests from dashboard
+  const currentTier = useMemo((): TierInfo => {
+    const base = TIERS[tier] || TIERS['1-room'];
+    const maxG = tier === 'whole-floor' ? wholeFloorMaxGuests : roomMaxGuests;
+    return { ...base, maxGuests: maxG };
+  }, [tier, roomMaxGuests, wholeFloorMaxGuests]);
 
   // Derived values
   const nights = calculateNights(checkIn, checkOut);
@@ -229,23 +241,35 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       futureDate.setDate(futureDate.getDate() + 90);
       const endDateStr = `${futureDate.getFullYear()}-${padDate(futureDate.getMonth() + 1)}-${padDate(futureDate.getDate())}`;
 
-      const { data, error } = await supabase.rpc('get_calendar_availability', {
-        p_start_date: startDateStr,
-        p_end_date: endDateStr,
-      });
+      const [rpcRes, roomsRes, settingsRes] = await Promise.all([
+        supabase.rpc('get_calendar_availability', {
+          p_start_date: startDateStr,
+          p_end_date: endDateStr,
+        }),
+        supabase.from('rooms').select('max_guests'),
+        supabase.from('property_settings').select('whole_floor_max_guests').single(),
+      ]);
 
-      if (error) {
-        console.warn('Live availability fetch notice:', error.message);
-        setAvailabilityError(error.message);
+      if (rpcRes.error) {
+        console.warn('Live availability fetch notice:', rpcRes.error.message);
+        setAvailabilityError(rpcRes.error.message);
         return;
       }
 
-      if (data && Array.isArray(data)) {
+      if (rpcRes.data && Array.isArray(rpcRes.data)) {
         const map: Record<string, DayAvailability> = {};
-        for (const row of data as DayAvailability[]) {
+        for (const row of rpcRes.data as DayAvailability[]) {
           map[row.cal_date] = row;
         }
         setAvailability(map);
+      }
+
+      if (roomsRes.data && roomsRes.data.length > 0) {
+        const maxG = Math.max(...roomsRes.data.map(r => r.max_guests || 3));
+        if (maxG > 0) setRoomMaxGuests(maxG);
+      }
+      if (settingsRes.data?.whole_floor_max_guests) {
+        setWholeFloorMaxGuests(settingsRes.data.whole_floor_max_guests);
       }
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : 'Failed to query live availability';
@@ -427,8 +451,7 @@ These dates appear unavailable online. Please let me know if there are any openi
 
   // Handle Guest Count change (bounded by tier's maxGuests)
   const handleGuestChange = (delta: number) => {
-    const maxG = (TIERS[tier] || TIERS['1-room']).maxGuests;
-    setGuests(prev => Math.min(maxG, Math.max(1, prev + delta)));
+    setGuests(prev => Math.min(currentTier.maxGuests, Math.max(1, prev + delta)));
   };
 
   // Compatibility room toggler
@@ -525,11 +548,10 @@ These dates appear unavailable online. Please let me know if there are any openi
     setShowCalendar(false);
   };
 
-  // Clamp guests when switching to a smaller tier
+  // Clamp guests when switching to a smaller tier or when dashboard capacity changes
   useEffect(() => {
-    const maxG = (TIERS[tier] || TIERS['1-room']).maxGuests;
-    setGuests(prev => Math.min(maxG, Math.max(1, prev)));
-  }, [tier]);
+    setGuests(prev => Math.min(currentTier.maxGuests, Math.max(1, prev)));
+  }, [currentTier.maxGuests]);
 
   // Lock body scroll when calendar modal is open
   useEffect(() => {
@@ -540,6 +562,7 @@ These dates appear unavailable online. Please let me know if there are any openi
   const value: BookingContextType = {
     tier,
     setTier,
+    currentTier,
     assignedRoom,
     isCurrentSelectionAvailable,
     is1RoomAvailable,

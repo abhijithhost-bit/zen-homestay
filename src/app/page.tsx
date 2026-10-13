@@ -294,6 +294,15 @@ export default function Home() {
                   <div className="p-5 rounded-2xl border border-emerald-200 bg-emerald-50/60 shadow-sm"><div className="w-8 h-8 rounded-xl bg-emerald-600 text-white font-black text-xs flex items-center justify-center mb-3">2</div><h3 className="font-bold text-slate-900 text-sm">Speedboat Drop-off</h3><p className="text-xs text-slate-700 mt-1 leading-relaxed font-medium">We drop you back across the lake by speedboat — complimentary, just like the pickup.</p></div>
                   <div className="p-5 rounded-2xl border border-slate-200 bg-white shadow-sm"><div className="w-8 h-8 rounded-xl bg-emerald-500 text-white font-black text-xs flex items-center justify-center mb-3">3</div><h3 className="font-bold text-slate-900 text-sm">Back at Finishing Point</h3><p className="text-xs text-slate-500 mt-1 leading-relaxed">You&apos;re dropped back at the iconic Nehru Trophy Finishing Point, ready to continue your journey.</p></div>
                 </div>
+                <div className="mt-5 p-3.5 rounded-2xl bg-sky-50/60 border border-sky-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-slate-700">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-sky-800">Complimentary Transfers:</span>
+                    <span>Speedboat pickup (check-in) and drop-off (checkout) are fully included with every stay.</span>
+                  </div>
+                  <span className="text-slate-500 font-medium text-[11px] sm:text-xs shrink-0">
+                    Additional town trips arranged anytime at ₹300/trip.
+                  </span>
+                </div>
               </div>
 
               {/* Where You Sleep */}
@@ -307,9 +316,9 @@ export default function Home() {
                   {[1, 2].map(n => (
                     <div key={n} className="p-6 rounded-3xl border border-slate-200 hover:border-sky-400 transition-all bg-white shadow-sm hover:shadow-md">
                       <div className="flex items-center gap-2 mb-3"><BedDouble className="w-5 h-5 text-sky-500" /><span className="font-bold text-xs text-slate-500 uppercase tracking-wider">Bedroom {n}</span></div>
-                      <div className="flex items-baseline justify-between mb-1"><h3 className="font-extrabold text-lg text-slate-900">Lake View Premium Room</h3><span className="font-black text-orange-600 text-base">₹3,000 <span className="text-xs font-normal text-slate-500">/ night</span></span></div>
+                      <h3 className="font-extrabold text-lg text-slate-900 mb-1">Lake View Premium Room</h3>
                       <p className="text-sm text-slate-600 mb-4 leading-relaxed">Modern, comfortable king bed room with direct panoramic Punnamada Lake views, split air conditioning, and private en-suite bathroom.</p>
-                      <div className="text-xs font-bold text-sky-700 bg-sky-50 border border-sky-100 px-3 py-1.5 rounded-xl inline-block">Max 3 Guests · 1 King Bed · Direct Lake View · AC</div>
+                      <div className="text-xs font-bold text-sky-700 bg-sky-50 border border-sky-100 px-3 py-1.5 rounded-xl inline-block">1 King Bed · Extra Mattress on Request · Direct Lake View · AC</div>
                     </div>
                   ))}
                 </div>
@@ -361,13 +370,13 @@ export default function Home() {
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                       {[
-                        ['Room rate (1 night, 1 room)', '₹3,000', '₹3,600–₹4,500'],
+                        ['Room rate (Direct vs OTA)', 'Direct Host Rate (Zero Commission)', '+15% to 25% Platform Markup'],
                         ['Platform service fee', '₹0', '₹400–₹800'],
                         ['Speedboat transfer', '✅ Free', '❌ Not included'],
                         ['Kerala breakfast', '✅ Included', '❌ Extra cost'],
                         ['Host response time', '< 5 mins', '24–48 hrs'],
                         ['Cancellation flexibility', '✅ Direct negotiation', '⚠️ Platform policy'],
-                        ['Total effective saving', '₹1,000–₹2,300 saved', '—'],
+                        ['Total effective saving', 'Save 20%–25% direct', '—'],
                       ].map(([feature, direct, ota], i) => (
                         <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'}>
                           <td className="px-4 py-3 font-medium text-slate-700">{feature}</td>
@@ -380,7 +389,7 @@ export default function Home() {
                 </div>
                 <div className="mt-4 flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-2xl px-4 py-3">
                   <span className="text-emerald-600 text-lg">💸</span>
-                  <p className="text-sm font-bold text-emerald-800">Most guests save <span className="text-emerald-600">₹1,000–₹2,300 per stay</span> by booking directly with Abhijith.</p>
+                  <p className="text-sm font-bold text-emerald-800">Most guests save <span className="text-emerald-600">20%–25% per stay</span> by booking directly with Abhijith.</p>
                 </div>
               </div>
 
@@ -395,8 +404,8 @@ export default function Home() {
                 <p className="text-sm sm:text-base text-slate-600 mb-8 leading-relaxed">Reserve your lakefront stay directly with host Abhijith in under 2 minutes. Enjoy 100% transparent pricing with zero middleman commissions, instant confirmation, and complimentary speedboat transfer.</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
                   <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-sky-300 transition-all flex flex-col justify-between group">
-                    <div><div className="flex items-center justify-between mb-4"><div className="w-10 h-10 rounded-2xl bg-sky-500 text-white font-black text-sm flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">01</div><div className="p-2.5 rounded-xl bg-sky-50 text-sky-600"><Calendar className="w-5 h-5" /></div></div><h3 className="font-extrabold text-slate-900 text-base mb-1.5">1. Select Dates &amp; Guests</h3><p className="text-xs sm:text-sm text-slate-600 leading-relaxed">Choose your check-in &amp; check-out dates and guest count using our interactive reservation widget. Select 1 or 2 identical lakefront rooms (accommodates up to 3 guests per room).</p></div>
-                    <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs"><span className="font-extrabold text-orange-600 bg-orange-50 px-2.5 py-1 rounded-lg border border-orange-200">₹3,000 / room / night</span><a href="#booking-section" className="text-sky-600 font-bold hover:text-sky-700 inline-flex items-center gap-1 hover:underline"><span>Select dates</span><ArrowRight className="w-3.5 h-3.5" /></a></div>
+                    <div><div className="flex items-center justify-between mb-4"><div className="w-10 h-10 rounded-2xl bg-sky-500 text-white font-black text-sm flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">01</div><div className="p-2.5 rounded-xl bg-sky-50 text-sky-600"><Calendar className="w-5 h-5" /></div></div><h3 className="font-extrabold text-slate-900 text-base mb-1.5">1. Select Dates &amp; Guests</h3><p className="text-xs sm:text-sm text-slate-600 leading-relaxed">Choose your check-in &amp; check-out dates and guest count using our interactive reservation widget. Select 1 or 2 identical lakefront rooms (flexible setup with extra mattress on request).</p></div>
+                    <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs"><span className="font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">Direct Host Rates</span><a href="#booking-section" className="text-sky-600 font-bold hover:text-sky-700 inline-flex items-center gap-1 hover:underline"><span>Select dates</span><ArrowRight className="w-3.5 h-3.5" /></a></div>
                   </div>
                   <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-orange-300 transition-all flex flex-col justify-between group">
                     <div><div className="flex items-center justify-between mb-4"><div className="w-10 h-10 rounded-2xl bg-orange-500 text-white font-black text-sm flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">02</div><div className="p-2.5 rounded-xl bg-orange-50 text-orange-600"><MessageCircle className="w-5 h-5" /></div></div><h3 className="font-extrabold text-slate-900 text-base mb-1.5">2. Connect Directly with Host</h3><p className="text-xs sm:text-sm text-slate-600 leading-relaxed">Tap <strong>Reserve via WhatsApp</strong> or call host Abhijith at <strong>+91 7012 761 588</strong>. Your requested dates, guests, and calculated direct pricing are pre-filled automatically.</p></div>

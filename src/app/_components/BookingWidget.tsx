@@ -6,6 +6,7 @@ import { useBooking, TIERS, BookingTier } from './BookingProvider';
 export default function BookingWidget() {
   const {
     tier, setTier,
+    currentTier,
     guests, nights, totalPrice, nightlyRate,
     formattedCheckIn, formattedCheckOut, whatsappBookingUrl,
     handleGuestChange, applyPreset,
@@ -16,7 +17,6 @@ export default function BookingWidget() {
     isWholeFloorAvailable,
   } = useBooking();
 
-  const currentTier = TIERS[tier] || TIERS['1-room'];
   const otaEstimatedPrice = Math.round(totalPrice * 1.33);
 
   return (
@@ -79,12 +79,8 @@ export default function BookingWidget() {
                     <span className="text-[9px] font-bold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">Sold Out</span>
                   )}
                 </div>
-                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Direct lake view · Up to 3 guests</p>
+                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Direct lake view · Extra bed on request</p>
               </div>
-            </div>
-            <div className="text-right shrink-0 pl-2">
-              <span className="text-xs font-black text-slate-900">₹3,000</span>
-              <span className="text-[10px] text-slate-500 block">/ night</span>
             </div>
           </button>
 
@@ -112,12 +108,8 @@ export default function BookingWidget() {
                     <span className="text-[9px] font-bold text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">Sold Out</span>
                   )}
                 </div>
-                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Both lakefront rooms · Up to 6 guests</p>
+                <p className="text-[10px] text-slate-500 mt-0.5 truncate">Both lakefront rooms · Private 2nd floor</p>
               </div>
-            </div>
-            <div className="text-right shrink-0 pl-2">
-              <span className="text-xs font-black text-slate-900">₹6,000</span>
-              <span className="text-[10px] text-slate-500 block">/ night</span>
             </div>
           </button>
         </div>
@@ -284,7 +276,7 @@ export default function BookingWidget() {
         </div>
         <div className="flex items-center justify-between">
           <span className="underline">Speedboat Pickup &amp; Drop-off</span>
-          <span className="font-bold text-sky-700">Free (1 time each)</span>
+          <span className="font-bold text-sky-700">Free (Arrival &amp; Departure)</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="underline">Morning Tea &amp; Kerala Breakfast</span>

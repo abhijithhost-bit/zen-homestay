@@ -12,6 +12,7 @@ export default function CalendarModal() {
     showCalendar, setShowCalendar,
     activeDateStep, setActiveDateStep,
     tier, setTier,
+    currentTier,
     checkIn, checkOut,
     formattedCheckIn, formattedCheckOut,
     nights, guests, totalPrice,
@@ -23,7 +24,6 @@ export default function CalendarModal() {
 
   if (!showCalendar) return null;
 
-  const currentTier = TIERS[tier] || TIERS['1-room'];
   const year = calendarMonth.getFullYear();
   const month = calendarMonth.getMonth();
 
