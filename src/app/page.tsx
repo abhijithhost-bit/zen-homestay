@@ -372,7 +372,7 @@ export default function Home() {
                       {[
                         ['Room rate (Direct vs OTA)', 'Direct Host Rate (Zero Commission)', '+15% to 25% Platform Markup'],
                         ['Platform service fee', '₹0', '₹400–₹800'],
-                        ['Speedboat transfer', '✅ Free', '❌ Not included'],
+                        ['Speedboat transfer', '✅ Free (Check-in & Out)', '❌ Not included'],
                         ['Kerala breakfast', '✅ Included', '❌ Extra cost'],
                         ['Host response time', '< 5 mins', '24–48 hrs'],
                         ['Cancellation flexibility', '✅ Direct negotiation', '⚠️ Platform policy'],
