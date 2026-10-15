@@ -215,9 +215,10 @@ export default function RootLayout({
     <html
       lang="en-IN"
       style={{ colorScheme: 'light' }}
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         {/* Preconnect hints — saves 200-400ms on FCP for fonts & maps */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

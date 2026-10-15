@@ -8,6 +8,7 @@ export default function BookingWidget() {
     tier, setTier,
     currentTier,
     guests, nights, totalPrice, nightlyRate,
+    extraPersonFeePerNight, extraPersonFeeTotal,
     formattedCheckIn, formattedCheckOut, whatsappBookingUrl,
     handleGuestChange, applyPreset,
     setActiveDateStep, setShowCalendar,
@@ -177,7 +178,7 @@ export default function BookingWidget() {
           </div>
         </div>
 
-        {/* Guests Counter */}
+        {/* Adults Counter — kids counter is in the date picker only */}
         <div className="p-3.5 flex items-center justify-between bg-white">
           <div>
             <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Guests</span>
@@ -210,27 +211,39 @@ export default function BookingWidget() {
         </div>
 
         {/* Live Breakdown */}
-        <div className={`p-2.5 sm:p-3 font-bold flex items-center justify-between text-xs ${
+        <div className={`font-bold text-xs ${
           isCurrentSelectionAvailable 
             ? 'bg-sky-50 text-sky-900' 
             : 'bg-rose-50 text-rose-900'
         }`}>
-          <div className="flex items-center gap-1.5 truncate pr-2">
-            {isCurrentSelectionAvailable ? (
-              <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
-            ) : (
-              <span className="text-rose-600 font-black text-xs shrink-0">✕</span>
-            )}
-            <span className="truncate">
-              {isCurrentSelectionAvailable 
-                ? `${currentTier.shortName} · ${nights} ${nights === 1 ? 'night' : 'nights'} (₹${nightlyRate.toLocaleString('en-IN')}/nt avg)`
-                : `Sold out for selected dates (${nights} ${nights === 1 ? 'night' : 'nights'})`
-              }
+          {/* Room rate line */}
+          <div className="p-2.5 sm:p-3 flex items-center justify-between">
+            <div className="flex items-center gap-1.5 truncate pr-2">
+              {isCurrentSelectionAvailable ? (
+                <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
+              ) : (
+                <span className="text-rose-600 font-black text-xs shrink-0">✕</span>
+              )}
+              <span className="truncate">
+                {isCurrentSelectionAvailable 
+                  ? `${currentTier.shortName} · ${nights} ${nights === 1 ? 'night' : 'nights'} (₹${(nightlyRate - extraPersonFeePerNight).toLocaleString('en-IN')}/nt avg)`
+                  : `Sold out for selected dates (${nights} ${nights === 1 ? 'night' : 'nights'})`
+                }
+              </span>
+            </div>
+            <span className={`font-black shrink-0 ${isCurrentSelectionAvailable ? 'text-orange-600' : 'text-rose-600'}`}>
+              {availabilityLoading ? '...' : isCurrentSelectionAvailable ? `₹${(totalPrice - extraPersonFeeTotal).toLocaleString('en-IN')}` : 'Sold Out'}
             </span>
           </div>
-          <span className={`font-black shrink-0 ${isCurrentSelectionAvailable ? 'text-orange-600' : 'text-rose-600'}`}>
-            {availabilityLoading ? '...' : isCurrentSelectionAvailable ? `₹${totalPrice.toLocaleString('en-IN')}` : 'Sold Out'}
-          </span>
+          {/* Extra person fee line — only shown when an extra adult is present */}
+          {extraPersonFeeTotal > 0 && isCurrentSelectionAvailable && (
+            <div className="px-2.5 sm:px-3 pb-2.5 flex items-center justify-between border-t border-sky-200/60 pt-2">
+              <span className="text-sky-700 font-semibold">
+                Extra guest · ₹1,000/night
+              </span>
+              <span className="font-black text-orange-600">+₹{extraPersonFeeTotal.toLocaleString('en-IN')}</span>
+            </div>
+          )}
         </div>
       </div>
 

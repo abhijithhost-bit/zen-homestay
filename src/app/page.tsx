@@ -650,7 +650,7 @@ export default function Home() {
                   <a href="https://maps.google.com/?q=9.5016131229736,76.35738157806414" target="_blank" rel="noreferrer" className="text-[11px] font-bold text-sky-400 hover:text-sky-300 transition-colors">Open Maps ↗</a>
                 </div>
                 <div className="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11687.476946382158!2d76.35789056312872!3d9.50244965339974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sde!4v1790614964115!5m2!1sen!2sde" width="100%" height="220" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="strict-origin-when-cross-origin" className="w-full brightness-90 contrast-[1.05]" title="Zen Homestay Location Map" />
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11687.476946382158!2d76.35789056312872!3d9.50244965339974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sde!4v1790614964115!5m2!1sen!2sde" width="100%" height="220" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="strict-origin-when-cross-origin" className="w-full brightness-90 contrast-[1.05]" title="Zen Homestay Location Map" suppressHydrationWarning />
                   <div className="p-3 bg-slate-900/95 border-t border-slate-800 flex items-center justify-between">
                     <div className="flex items-center gap-1.5 text-slate-300 font-medium truncate pr-2"><MapPin className="w-3 h-3 text-sky-400 shrink-0" /><span className="truncate">Finishing Point, Punnamada Lake</span></div>
                     <span className="text-orange-400 font-extrabold shrink-0">Alleppey, Kerala</span>

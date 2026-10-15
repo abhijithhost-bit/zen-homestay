@@ -66,6 +66,14 @@ export const TIERS: Record<string, TierInfo> = {
   },
 };
 
+// --- Occupancy Rules ---------------------------------------------------------
+// 4 persons total per room (adults + kids), 2 kids max per room
+const TOTAL_CAP_PER_ROOM = 4;
+const MAX_KIDS_PER_ROOM = 2;
+// Extra adult charge: 2 adults included in base rate; ₹1,000/night for each additional adult
+const BASE_ADULTS_PER_ROOM = 2;
+const EXTRA_PERSON_CHARGE = 1000; // ₹ per extra adult per night
+
 // --- Context Types -----------------------------------------------------------
 
 export interface BookingContextType {
@@ -78,11 +86,14 @@ export interface BookingContextType {
   isWholeFloorAvailable: boolean;
   rooms: number; // For compatibility (1 or 2)
   guests: number;
+  kids: number;
   checkIn: string;
   checkOut: string;
   nights: number;
   totalPrice: number;
   nightlyRate: number;
+  extraPersonFeePerNight: number; // ₹1,000 × extra adults, per night
+  extraPersonFeeTotal: number;    // extraPersonFeePerNight × nights
   formattedCheckIn: string;
   formattedCheckOut: string;
   whatsappBookingUrl: string;
@@ -96,6 +107,7 @@ export interface BookingContextType {
   isRangeAvailable: (inDateStr: string, outDateStr: string, tierToCheck?: string) => boolean;
   handleRoomChange: (delta: number) => void;
   handleGuestChange: (delta: number) => void;
+  handleKidsChange: (delta: number) => void;
   handleDateCellClick: (year: number, month: number, day: number) => void;
   applyPreset: (presetNights: number, offsetDays?: number) => void;
   setActiveDateStep: (step: 'checkIn' | 'checkOut') => void;
@@ -125,11 +137,18 @@ function getInitialDate(offsetDays = 0): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
+// Stable lookup tables — avoids toLocaleDateString() which can differ between
+// Node.js ICU data (SSR) and Chrome, causing React hydration mismatches.
+const WEEKDAY_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as const;
+const MONTH_SHORT   = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] as const;
+
 function formatDisplayDate(dateStr: string): string {
   if (!dateStr) return '';
   try {
     const [y, m, d] = dateStr.split('-').map(Number);
-    return new Date(y, m - 1, d).toLocaleDateString('en-IN', { weekday: 'short', month: 'short', day: 'numeric' });
+    const date = new Date(y, m - 1, d);
+    // e.g. "Thu, Oct 16" — identical on server and client
+    return `${WEEKDAY_SHORT[date.getDay()]}, ${MONTH_SHORT[m - 1]} ${d}`;
   } catch { return dateStr; }
 }
 
@@ -148,8 +167,8 @@ function padDate(n: number) { return String(n).padStart(2, '0'); }
 // --- MobileBottomBar Component -----------------------------------------------
 
 function MobileBottomBar() {
-  const { totalPrice, nights, tier, guests, setShowCalendar, isCurrentSelectionAvailable } = useBooking();
-  const currentTier = TIERS[tier] || TIERS['1-room'];
+  // Use currentTier from context — it carries the live dashboard maxGuests override
+  const { totalPrice, nights, currentTier, guests, setShowCalendar, isCurrentSelectionAvailable } = useBooking();
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-3.5 flex items-center justify-between shadow-2xl">
@@ -175,10 +194,12 @@ function MobileBottomBar() {
       </button>
 
       <a
-        href="#booking"
+        href="#booking-section"
         onClick={(e) => {
-          const el = document.getElementById('booking') || document.getElementById('booking-section');
-          if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+          e.preventDefault();
+          // 'booking-section' is the mobile widget; 'booking' is the desktop sidebar
+          const el = document.getElementById('booking-section') || document.getElementById('booking');
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }}
         className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-xl font-black text-xs shadow-lg shadow-orange-500/25 flex items-center gap-1.5 active:scale-95 transition-all cursor-pointer touch-manipulation"
       >
@@ -195,6 +216,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   // State: default to '1-room'
   const [tier, setTier] = useState<BookingTier>('1-room');
   const [guests, setGuests] = useState(2);
+  const [kids, setKids] = useState(0); // children under 5 years old
   const [checkIn, setCheckIn] = useState(() => getInitialDate(1));
   const [checkOut, setCheckOut] = useState(() => getInitialDate(2));
   const [showCalendar, setShowCalendar] = useState(false);
@@ -381,6 +403,10 @@ export function BookingProvider({ children }: { children: ReactNode }) {
 
   // 5. Dynamic Pricing Calculation from RPC rates
   const totalPrice = useMemo(() => {
+    // Extra person charge: ₹1,000 per night per adult above the base (2 per room)
+    const extraGuests = Math.max(0, guests - rooms * BASE_ADULTS_PER_ROOM);
+    const extraFeePerNight = extraGuests * EXTRA_PERSON_CHARGE;
+
     let total = 0;
     try {
       const [y1, m1, d1] = checkIn.split('-').map(Number);
@@ -403,15 +429,21 @@ export function BookingProvider({ children }: { children: ReactNode }) {
           // Fallback to tier base price
           total += (TIERS[tier] || TIERS['1-room']).basePrice;
         }
+        // Add extra person charge for this night
+        total += extraFeePerNight;
         curr.setDate(curr.getDate() + 1);
       }
     } catch {
       total = (TIERS[tier] || TIERS['1-room']).basePrice * nights;
     }
     return total;
-  }, [checkIn, nights, tier, assignedRoom, availability]);
+  }, [checkIn, nights, tier, assignedRoom, availability, guests, rooms]);
 
   const nightlyRate = Math.round(totalPrice / Math.max(1, nights));
+
+  // Extra person fee breakdown (for display)
+  const extraPersonFeePerNight = Math.max(0, guests - rooms * BASE_ADULTS_PER_ROOM) * EXTRA_PERSON_CHARGE;
+  const extraPersonFeeTotal = extraPersonFeePerNight * nights;
 
   // 6. WhatsApp Booking URL formatting
   const whatsappBookingUrl = useMemo(() => {
@@ -425,7 +457,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
 
 • Option: ${optionName}
 • Dates: ${formattedCheckIn} to ${formattedCheckOut} (${nights} ${nights === 1 ? 'night' : 'nights'})
-• Guests: ${guests} ${guests === 1 ? 'Guest' : 'Guests'}
+• Guests: ${guests} ${guests === 1 ? 'Guest' : 'Guests'}${kids > 0 ? ` + ${kids} ${kids === 1 ? 'Child' : 'Children'} (below 5 yrs)` : ''}${extraPersonFeeTotal > 0 ? `
+• Extra Guest Fee: ₹${extraPersonFeeTotal.toLocaleString('en-IN')} (₹${EXTRA_PERSON_CHARGE}/extra adult/night)` : ''}
 • Total Estimate: ₹${totalPrice.toLocaleString('en-IN')}
 
 Please confirm availability and booking details!`;
@@ -435,37 +468,54 @@ Please confirm availability and booking details!`;
 
 • Option: ${optionName}
 • Dates: ${formattedCheckIn} to ${formattedCheckOut} (${nights} ${nights === 1 ? 'night' : 'nights'})
-• Guests: ${guests} ${guests === 1 ? 'Guest' : 'Guests'}
+• Guests: ${guests} ${guests === 1 ? 'Guest' : 'Guests'}${kids > 0 ? ` + ${kids} ${kids === 1 ? 'Child' : 'Children'} (below 5 yrs)` : ''}
 
 These dates appear unavailable online. Please let me know if there are any openings or alternative dates!`;
     }
 
     return `https://wa.me/917012761588?text=${encodeURIComponent(text)}`;
-  }, [tier, isCurrentSelectionAvailable, formattedCheckIn, formattedCheckOut, nights, guests, totalPrice]);
+  }, [tier, isCurrentSelectionAvailable, formattedCheckIn, formattedCheckOut, nights, guests, kids, totalPrice, extraPersonFeeTotal]);
 
-  // Calendar Month Navigation
-  const prevMonth = () => setCalendarMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
-  const nextMonth = () => setCalendarMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
-  const getDaysInMonth = (y: number, m: number) => new Date(y, m + 1, 0).getDate();
-  const getFirstDayOfMonth = (y: number, m: number) => new Date(y, m, 1).getDay();
+  // Calendar Month Navigation — useCallback so context consumers don't re-render on every provider render
+  const prevMonth = useCallback(
+    () => setCalendarMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1)),
+    []
+  );
+  const nextMonth = useCallback(
+    () => setCalendarMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1)),
+    []
+  );
+  // Pure date-math helpers — stable references, no deps needed
+  const getDaysInMonth = useCallback((y: number, m: number) => new Date(y, m + 1, 0).getDate(), []);
+  const getFirstDayOfMonth = useCallback((y: number, m: number) => new Date(y, m, 1).getDay(), []);
 
-  // Handle Guest Count change (bounded by tier's maxGuests)
-  const handleGuestChange = (delta: number) => {
-    setGuests(prev => Math.min(currentTier.maxGuests, Math.max(1, prev + delta)));
-  };
+  // Handle Guest Count change
+  // Adults are capped by: tier maxGuests AND (totalCap - current kids)
+  const handleGuestChange = useCallback((delta: number) => {
+    const totalCap = rooms * TOTAL_CAP_PER_ROOM;
+    const maxGuests = Math.min(currentTier.maxGuests, totalCap - kids);
+    setGuests(prev => Math.min(maxGuests, Math.max(1, prev + delta)));
+  }, [rooms, currentTier.maxGuests, kids]);
+
+  // Handle Kids count change
+  // Kids are capped by: 2 per room AND (totalCap - current adults)
+  const handleKidsChange = useCallback((delta: number) => {
+    const totalCap = rooms * TOTAL_CAP_PER_ROOM;
+    const maxKids = Math.min(rooms * MAX_KIDS_PER_ROOM, totalCap - guests);
+    setKids(prev => Math.min(maxKids, Math.max(0, prev + delta)));
+  }, [rooms, guests]);
 
   // Compatibility room toggler
-  const handleRoomChange = (delta: number) => {
+  const handleRoomChange = useCallback((delta: number) => {
     if (delta > 0) setTier('whole-floor');
     else setTier('1-room');
-  };
+  }, []);
 
-  // Date cell click state machine
-  const handleDateCellClick = (year: number, month: number, day: number) => {
+  // Date cell click state machine — useCallback: deps are stable memoised fns + primitive state
+  const handleDateCellClick = useCallback((year: number, month: number, day: number) => {
     const dateStr = `${year}-${padDate(month + 1)}-${padDate(day)}`;
     const selected = new Date(year, month, day);
 
-    // If clicked date is blocked for this tier, do not allow as check-in
     if (activeDateStep === 'checkIn') {
       if (isDateBlocked(dateStr, tier)) return;
 
@@ -474,7 +524,6 @@ These dates appear unavailable online. Please let me know if there are any openi
       const [oy, om, od] = checkOut.split('-').map(Number);
       const outD = new Date(oy, om - 1, od);
 
-      // If existing checkOut is invalid or blocked in between, find next open day
       if (outD <= selected || isNaN(outD.getTime()) || !isRangeAvailable(dateStr, checkOut, tier)) {
         const next = new Date(selected);
         next.setDate(next.getDate() + 1);
@@ -483,12 +532,10 @@ These dates appear unavailable online. Please let me know if there are any openi
       }
       setActiveDateStep('checkOut');
     } else {
-      // Step: Checkout
       const [iy, im, id] = checkIn.split('-').map(Number);
       const inD = new Date(iy, im - 1, id);
 
       if (selected <= inD) {
-        // If clicked date is earlier than or equal to checkIn, reset checkIn
         if (!isDateBlocked(dateStr, tier)) {
           setCheckIn(dateStr);
           const next = new Date(selected);
@@ -497,13 +544,10 @@ These dates appear unavailable online. Please let me know if there are any openi
           setActiveDateStep('checkOut');
         }
       } else {
-        // Clicked after checkIn
-        // Verify every night between checkIn and selected is unblocked
         if (isRangeAvailable(checkIn, dateStr, tier)) {
           setCheckOut(dateStr);
           setShowCalendar(false);
         } else {
-          // Range has blocked dates in between, reset checkIn to this date if open
           if (!isDateBlocked(dateStr, tier)) {
             setCheckIn(dateStr);
             const next = new Date(selected);
@@ -514,10 +558,10 @@ These dates appear unavailable online. Please let me know if there are any openi
         }
       }
     }
-  };
+  }, [activeDateStep, checkIn, checkOut, tier, isDateBlocked, isRangeAvailable, setShowCalendar]);
 
   // Quick preset apply
-  const applyPreset = (presetNights: number, offsetDays = 1) => {
+  const applyPreset = useCallback((presetNights: number, offsetDays = 1) => {
     const inD = new Date();
     inD.setDate(inD.getDate() + offsetDays);
 
@@ -546,12 +590,21 @@ These dates appear unavailable online. Please let me know if there are any openi
     setCheckIn(`${fallbackIn.getFullYear()}-${padDate(fallbackIn.getMonth() + 1)}-${padDate(fallbackIn.getDate())}`);
     setCheckOut(`${fallbackOut.getFullYear()}-${padDate(fallbackOut.getMonth() + 1)}-${padDate(fallbackOut.getDate())}`);
     setShowCalendar(false);
-  };
+  }, [isRangeAvailable, tier, setShowCalendar]);
 
-  // Clamp guests when switching to a smaller tier or when dashboard capacity changes
+  // Clamp kids when the number of rooms decreases (tier switch)
   useEffect(() => {
-    setGuests(prev => Math.min(currentTier.maxGuests, Math.max(1, prev)));
-  }, [currentTier.maxGuests]);
+    const maxKids = rooms * MAX_KIDS_PER_ROOM;
+    setKids(prev => Math.min(maxKids, Math.max(0, prev)));
+  }, [rooms]);
+
+  // Clamp guests when tier capacity or kids count changes.
+  // Splitting this into its own effect avoids calling setState inside a setState
+  // updater (which is a React anti-pattern that double-fires in StrictMode).
+  useEffect(() => {
+    const totalCap = rooms * TOTAL_CAP_PER_ROOM;
+    setGuests(prev => Math.min(Math.min(currentTier.maxGuests, totalCap - kids), Math.max(1, prev)));
+  }, [currentTier.maxGuests, rooms, kids]);
 
   // Lock body scroll when calendar modal is open
   useEffect(() => {
@@ -559,7 +612,9 @@ These dates appear unavailable online. Please let me know if there are any openi
     return () => { document.body.style.overflow = 'unset'; };
   }, [showCalendar]);
 
-  const value: BookingContextType = {
+  // Memoize the context value so consumers only re-render when their specific
+  // slice of state actually changes — not on every provider render
+  const value: BookingContextType = useMemo((): BookingContextType => ({
     tier,
     setTier,
     currentTier,
@@ -569,11 +624,14 @@ These dates appear unavailable online. Please let me know if there are any openi
     isWholeFloorAvailable,
     rooms,
     guests,
+    kids,
     checkIn,
     checkOut,
     nights,
     totalPrice,
     nightlyRate,
+    extraPersonFeePerNight,
+    extraPersonFeeTotal,
     formattedCheckIn,
     formattedCheckOut,
     whatsappBookingUrl,
@@ -587,6 +645,7 @@ These dates appear unavailable online. Please let me know if there are any openi
     isRangeAvailable,
     handleRoomChange,
     handleGuestChange,
+    handleKidsChange,
     handleDateCellClick,
     applyPreset,
     setActiveDateStep,
@@ -596,7 +655,21 @@ These dates appear unavailable online. Please let me know if there are any openi
     getDaysInMonth,
     getFirstDayOfMonth,
     refetchAvailability: fetchAvailability,
-  };
+  }), [
+    tier, currentTier, assignedRoom, isCurrentSelectionAvailable,
+    is1RoomAvailable, isWholeFloorAvailable, rooms, guests, kids,
+    checkIn, checkOut, nights, totalPrice, nightlyRate,
+    extraPersonFeePerNight, extraPersonFeeTotal,
+    formattedCheckIn, formattedCheckOut, whatsappBookingUrl,
+    showCalendar, activeDateStep, calendarMonth, availability,
+    availabilityLoading, availabilityError,
+    isDateBlocked, isRangeAvailable,
+    handleRoomChange, handleGuestChange, handleKidsChange,
+    handleDateCellClick, applyPreset,
+    prevMonth, nextMonth, getDaysInMonth, getFirstDayOfMonth,
+    fetchAvailability,
+  ]);
+
 
   return (
     <BookingContext.Provider value={value}>

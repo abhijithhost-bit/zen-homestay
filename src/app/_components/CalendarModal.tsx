@@ -1,7 +1,8 @@
 'use client';
 
-import { X, ChevronLeft, ChevronRight, Minus, Plus, Users, BedDouble, Home } from 'lucide-react';
-import { useBooking, TIERS, BookingTier } from './BookingProvider';
+import { X, ChevronLeft, ChevronRight, Minus, Plus, BedDouble, Home } from 'lucide-react';
+import { useMemo } from 'react';
+import { useBooking } from './BookingProvider';
 
 function padDate(n: number) {
   return String(n).padStart(2, '0');
@@ -19,8 +20,39 @@ export default function CalendarModal() {
     calendarMonth, prevMonth, nextMonth,
     getDaysInMonth, getFirstDayOfMonth,
     handleDateCellClick, applyPreset,
-    handleGuestChange, isDateBlocked,
+    handleGuestChange, handleKidsChange, isDateBlocked,
+    availability,
+    kids,
+    extraPersonFeeTotal,
   } = useBooking();
+
+  /** Get the per-night price (in ₹) for a given date string, for the active tier. */
+  function getDayPrice(dateStr: string): number | null {
+    const dayData = availability[dateStr];
+    if (!dayData) return null;
+    if (tier === 'whole-floor') return Math.round(dayData.whole_floor_price_paise / 100);
+    // For 1-room, use room_1 price as the representative rate shown on the calendar
+    return Math.round(dayData.room_1_price_paise / 100);
+  }
+
+  /**
+   * The "normal rate" is the minimum price seen across all loaded availability days
+   * for the active tier. Memoised — only recomputed when availability map or tier changes,
+   * not on every render (avoids iterating 90 days each time).
+   */
+  const normalRate = useMemo(() => {
+    const prices: number[] = Object.values(availability).map(dayData => {
+      if (tier === 'whole-floor') return Math.round(dayData.whole_floor_price_paise / 100);
+      return Math.round(dayData.room_1_price_paise / 100);
+    }).filter(p => p > 0);
+    if (prices.length === 0) return currentTier.basePrice; // fallback if no data yet
+    return Math.min(...prices);
+  }, [availability, tier, currentTier.basePrice]);
+
+  /** Format price as ₹3,000 */
+  function formatPrice(price: number): string {
+    return '₹' + price.toLocaleString('en-IN');
+  }
 
   if (!showCalendar) return null;
 
@@ -41,7 +73,7 @@ export default function CalendarModal() {
           <div>
             <h3 className="font-extrabold text-base sm:text-lg text-slate-900">Select Dates &amp; Option</h3>
             <p className="text-xs text-slate-500 font-medium">
-              {currentTier.shortName} · {nights} {nights === 1 ? 'Night' : 'Nights'} · {guests} Guests
+              {currentTier.shortName} · {nights} {nights === 1 ? 'Night' : 'Nights'} · {guests} {guests === 1 ? 'Guest' : 'Guests'}{kids > 0 ? ` · ${kids} ${kids === 1 ? 'Child' : 'Children'}` : ''}
             </p>
           </div>
           <button
@@ -118,24 +150,24 @@ export default function CalendarModal() {
           {/* Month Navigation */}
           <div className="flex items-center justify-between">
             <h4 className="font-extrabold text-sm sm:text-base text-slate-900">
-              {calendarMonth.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}
+              {['January','February','March','April','May','June','July','August','September','October','November','December'][month]} {year}
             </h4>
             <div className="flex items-center gap-1">
               <button 
                 type="button" 
                 onClick={prevMonth} 
                 aria-label="Previous Month" 
-                className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
+                className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
               >
-                <ChevronLeft className="w-4 h-4 pointer-events-none" />
+                <ChevronLeft className="w-5 h-5 pointer-events-none" />
               </button>
               <button 
                 type="button" 
                 onClick={nextMonth} 
                 aria-label="Next Month" 
-                className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
+                className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
               >
-                <ChevronRight className="w-4 h-4 pointer-events-none" />
+                <ChevronRight className="w-5 h-5 pointer-events-none" />
               </button>
             </div>
           </div>
@@ -147,31 +179,41 @@ export default function CalendarModal() {
 
           {/* Day Cells Grid */}
           <div className="grid grid-cols-7 gap-1 text-center text-xs">
+            {/* Hoist date objects out of the per-cell loop to avoid repeated allocation */}
+            {(() => {
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              const [iy, im, id_] = checkIn.split('-').map(Number);
+              const [oy, om, od_] = checkOut.split('-').map(Number);
+              const inDate = new Date(iy, im - 1, id_);
+              const outDate = new Date(oy, om - 1, od_);
+              return (
+                <>
             {Array.from({ length: getFirstDayOfMonth(year, month) }).map((_, i) => (
-              <div key={`empty-${i}`} className="h-9" />
+              <div key={`empty-${i}`} className="h-12" />
             ))}
             {Array.from({ length: getDaysInMonth(year, month) }).map((_, i) => {
               const day = i + 1;
               const cellStr = `${year}-${padDate(month + 1)}-${padDate(day)}`;
               const cellDate = new Date(year, month, day);
-              const today = new Date(); 
-              today.setHours(0, 0, 0, 0);
 
               const isPast = cellDate < today;
               const isBlocked = isDateBlocked(cellStr, tier);
               const isCheckIn = cellStr === checkIn;
               const isCheckOut = cellStr === checkOut;
-
-              const [iy, im, id] = checkIn.split('-').map(Number);
-              const [oy, om, od] = checkOut.split('-').map(Number);
-              const inDate = new Date(iy, im - 1, id);
-              const outDate = new Date(oy, om - 1, od);
               const isInRange = cellDate > inDate && cellDate < outDate;
 
               // Disabling logic
               const isDisabled = isPast || (activeDateStep === 'checkIn' && isBlocked);
 
-              let cls = 'h-9 w-full rounded-xl flex items-center justify-center font-bold transition-all cursor-pointer touch-manipulation relative ';
+              // Pricing logic for colour-coding — compare against the minimum observed
+              // price (normalRate) so only genuine seasonal overrides appear orange
+              const dayPrice = !isPast && !isBlocked ? getDayPrice(cellStr) : null;
+              const isSeasonal = dayPrice !== null && dayPrice > normalRate;
+              const isNormalRate = dayPrice !== null && dayPrice <= normalRate;
+
+              // Build class string — taller cell to fit price label
+              let cls = 'h-12 w-full rounded-xl flex flex-col items-center justify-center font-bold transition-all cursor-pointer touch-manipulation relative gap-0 ';
               
               if (isPast) {
                 cls += 'text-slate-300 cursor-not-allowed opacity-40';
@@ -182,6 +224,12 @@ export default function CalendarModal() {
               } else if (isBlocked) {
                 // Live blocked / booked date styling
                 cls += 'bg-slate-100 text-slate-400 line-through decoration-slate-400 opacity-60 cursor-not-allowed';
+              } else if (isSeasonal) {
+                // Peak / seasonal rate — light orange background
+                cls += 'bg-orange-50 text-orange-900 hover:bg-orange-200 hover:text-orange-950';
+              } else if (isNormalRate) {
+                // Normal base rate — light green background
+                cls += 'bg-emerald-50 text-emerald-900 hover:bg-emerald-100 hover:text-emerald-950';
               } else {
                 cls += 'text-slate-800 hover:bg-sky-100 hover:text-sky-900';
               }
@@ -193,24 +241,49 @@ export default function CalendarModal() {
                   disabled={isDisabled} 
                   onClick={() => handleDateCellClick(year, month, day)} 
                   className={cls}
-                  title={isBlocked ? `Unavailable for ${currentTier.shortName}` : undefined}
+                  title={
+                    isBlocked
+                      ? `Unavailable for ${currentTier.shortName}`
+                      : dayPrice !== null
+                      ? `${formatPrice(dayPrice)}/night${isSeasonal ? ' · Peak rate' : ' · Normal rate'}`
+                      : undefined
+                  }
                 >
-                  {day}
+                  <span className="leading-none text-xs font-extrabold">{day}</span>
+                  {dayPrice !== null && !isPast && !isBlocked && (
+                    <span className={`leading-none font-semibold mt-0.5 ${
+                      (isCheckIn || isCheckOut)
+                        ? 'text-white/90 text-[8px]'
+                        : isSeasonal
+                        ? 'text-orange-600 text-[8px]'
+                        : 'text-emerald-600 text-[8px]'
+                    }`}>
+                      {formatPrice(dayPrice)}
+                    </span>
+                  )}
                 </button>
               );
             })}
+                </>
+              );
+            })()}
           </div>
 
           {/* Calendar Legend */}
-          <div className="flex items-center justify-center gap-4 pt-1 text-[10px] text-slate-500 font-bold border-t border-slate-100">
+          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 pt-2 text-[10px] text-slate-500 font-bold border-t border-slate-100">
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" /> Available
+              <span className="w-2.5 h-2.5 rounded-sm bg-emerald-100 border border-emerald-300" />
+              <span className="text-emerald-700">Normal Rate</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-sm bg-orange-100 border border-orange-300" />
+              <span className="text-orange-700">Peak / Season</span>
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-orange-500" /> Selected
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-slate-300 relative line-through" /> Booked / Unavailable
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-300" /> Booked
             </span>
           </div>
 
@@ -244,32 +317,44 @@ export default function CalendarModal() {
             </div>
           </div>
 
+          {/* Occupancy Counters */}
+          {/* Rules: 4 total per room (adults+kids), max 2 kids per room */}
+          {(() => {
+            const roomCount = tier === 'whole-floor' ? 2 : 1;
+            const totalCap = roomCount * 4; // 4 total per room
+            const maxKidsAllowed = roomCount * 2; // 2 kids per room
+            const effectiveMaxGuests = Math.min(currentTier.maxGuests, totalCap - kids);
+            const effectiveMaxKids = Math.min(maxKidsAllowed, totalCap - guests);
+            return (
+              <>
           {/* Guest Count Adjuster */}
           <div className="pt-3 border-t border-slate-100">
             <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
               <div>
-                <span className="font-bold text-[10px] uppercase text-slate-500 block">Total Guests</span>
+                <span className="font-bold text-[10px] uppercase text-slate-500 block">Adults</span>
                 <span className="text-slate-900 font-extrabold text-xs">
-                  {guests} {guests === 1 ? 'Guest' : 'Guests'}{' '}
-                  <span className="text-slate-400 font-normal text-[11px]">(Max {currentTier.maxGuests} for {currentTier.shortName})</span>
+                  {guests} {guests === 1 ? 'Adult' : 'Adults'}{' '}
+                  <span className="text-slate-400 font-normal text-[11px]">
+                    (Max {effectiveMaxGuests}{kids > 0 ? ` · ${totalCap - guests} slot${totalCap - guests === 1 ? '' : 's'} used` : ''})
+                  </span>
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <button 
-                  type="button" 
-                  onClick={() => handleGuestChange(-1)} 
-                  disabled={guests <= 1} 
-                  aria-label="Decrease guests" 
+                <button
+                  type="button"
+                  onClick={() => handleGuestChange(-1)}
+                  disabled={guests <= 1}
+                  aria-label="Decrease guests"
                   className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 disabled:opacity-25 bg-white active:scale-90 cursor-pointer touch-manipulation"
                 >
                   <Minus className="w-3.5 h-3.5 pointer-events-none" />
                 </button>
                 <span className="font-black text-sm w-5 text-center text-slate-900">{guests}</span>
-                <button 
-                  type="button" 
-                  onClick={() => handleGuestChange(1)} 
-                  disabled={guests >= currentTier.maxGuests} 
-                  aria-label="Increase guests" 
+                <button
+                  type="button"
+                  onClick={() => handleGuestChange(1)}
+                  disabled={guests >= effectiveMaxGuests}
+                  aria-label="Increase guests"
                   className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 disabled:opacity-25 bg-white active:scale-90 cursor-pointer touch-manipulation"
                 >
                   <Plus className="w-3.5 h-3.5 pointer-events-none" />
@@ -277,6 +362,44 @@ export default function CalendarModal() {
               </div>
             </div>
           </div>
+
+          {/* Kids Counter */}
+          <div className="pt-2">
+            <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+              <div>
+                <span className="font-bold text-[10px] uppercase text-slate-500 block">Children</span>
+                <span className="text-slate-900 font-extrabold text-xs">
+                  {kids} {kids === 1 ? 'Child' : 'Children'}{' '}
+                  <span className="text-emerald-600 font-semibold text-[11px]">· Below 5 yrs · Free</span>
+                  {' '}<span className="text-slate-400 font-normal text-[11px]">(Max {effectiveMaxKids})</span>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleKidsChange(-1)}
+                  disabled={kids <= 0}
+                  aria-label="Decrease children"
+                  className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 disabled:opacity-25 bg-white active:scale-90 cursor-pointer touch-manipulation"
+                >
+                  <Minus className="w-3.5 h-3.5 pointer-events-none" />
+                </button>
+                <span className="font-black text-sm w-5 text-center text-slate-900">{kids}</span>
+                <button
+                  type="button"
+                  onClick={() => handleKidsChange(1)}
+                  disabled={kids >= effectiveMaxKids}
+                  aria-label="Increase children"
+                  className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center text-slate-700 disabled:opacity-25 bg-white active:scale-90 cursor-pointer touch-manipulation"
+                >
+                  <Plus className="w-3.5 h-3.5 pointer-events-none" />
+                </button>
+              </div>
+            </div>
+          </div>
+              </>
+            );
+          })()}
         </div>
 
         {/* Footer */}
@@ -288,6 +411,11 @@ export default function CalendarModal() {
             <span className="text-base font-black text-slate-900">
               ₹{totalPrice.toLocaleString('en-IN')}
             </span>
+            {extraPersonFeeTotal > 0 && (
+              <span className="text-[10px] text-amber-600 font-semibold block mt-0.5">
+                incl. ₹{extraPersonFeeTotal.toLocaleString('en-IN')} extra guest fee
+              </span>
+            )}
           </div>
           <button
             type="button"
