@@ -563,33 +563,6 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="bg-slate-950 text-slate-400 text-xs">
-          <div className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border-t border-slate-800/80 py-14 sm:py-16 px-4">
-            <div className="absolute -top-24 left-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-24 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="relative max-w-4xl mx-auto text-center space-y-4 sm:space-y-5">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/25 text-amber-300 text-[11px] font-bold uppercase tracking-widest backdrop-blur-sm shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" /><span>Direct Host · Zero Commission · Best Rates</span>
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                Ready to wake up on{' '}<span className="bg-gradient-to-r from-sky-300 via-teal-200 to-amber-200 bg-clip-text text-transparent">Punnamada Lake?</span>
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">Message Abhijith directly for personalized lakeside hospitality, live room availability, and instant confirmation — with zero middlemen or booking fees.</p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-                <a href="https://wa.me/917012761588" target="_blank" rel="noreferrer" className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-extrabold px-7 py-3.5 rounded-2xl shadow-xl text-sm transition-all hover:-translate-y-0.5 active:scale-95 group">
-                  <MessageCircle className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" /><span>Book on WhatsApp</span>
-                </a>
-                <a href="tel:+917012761588" className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-slate-700/80 px-7 py-3.5 rounded-2xl font-bold text-sm transition-all hover:-translate-y-0.5 active:scale-95">
-                  <Phone className="w-4 h-4 text-sky-400" /><span>+91 7012 761 588</span>
-                </a>
-              </div>
-              <div className="pt-2 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] font-semibold text-slate-400">
-                <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />Instant response &lt; 5 mins</span>
-                <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-sky-400" />Free Speedboat Pickup</span>
-                <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-amber-400" />Complimentary Breakfast</span>
-              </div>
-            </div>
-          </div>
-
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-800/70">
               <div className="lg:col-span-4 space-y-5">
