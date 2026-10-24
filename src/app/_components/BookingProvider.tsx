@@ -170,8 +170,18 @@ function MobileBottomBar() {
   // Use currentTier from context — it carries the live dashboard maxGuests override
   const { totalPrice, nights, currentTier, guests, setShowCalendar, isCurrentSelectionAvailable } = useBooking();
 
+  // Hide for 5 seconds on mobile, then slide up into view
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-3.5 flex items-center justify-between shadow-2xl">
+    <div
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-3.5 flex items-center justify-between shadow-2xl transition-transform duration-500 ease-out"
+      style={{ transform: visible ? 'translateY(0)' : 'translateY(100%)' }}
+    >
       <button
         type="button"
         onClick={() => setShowCalendar(true)}
