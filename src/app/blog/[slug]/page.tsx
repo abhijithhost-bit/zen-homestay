@@ -85,6 +85,16 @@ export default async function BlogPostPage(
     keywords: post.keywords.join(', '),
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://zenhomestay.in' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': 'https://zenhomestay.in/blog' },
+      { '@type': 'ListItem', 'position': 3, 'name': post.title, 'item': `https://zenhomestay.in/blog/${post.slug}` },
+    ],
+  };
+
   // Related posts (up to 3, excluding current)
   const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
@@ -101,6 +111,10 @@ export default async function BlogPostPage(
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       {/* Header */}

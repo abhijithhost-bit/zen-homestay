@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Honeymoon Homestay Alleppey | Zen Homestay on Punnamada Lake",
     description: "Kerala's most romantic lakefront honeymoon stay — directly on Punnamada Lake. Speedboat arrival, sunrise views & authentic Kerala breakfast. Book direct.",
     url: "https://zenhomestay.in/honeymoon-homestay-alleppey",
-    images: [{ url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630 }],
+    images: [{ url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630, alt: "Zen Homestay – Romantic Honeymoon Homestay on Punnamada Lake, Alleppey" }],
   },
 };
 
@@ -44,6 +44,13 @@ const jsonLd = [
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 9.502023969622542, "longitude": 76.35757685613443 },
     "sameAs": "https://zenhomestay.in",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": 48,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
   },
   {
     "@context": "https://schema.org",
@@ -112,7 +119,7 @@ export default function HoneymoonHomestayPage() {
             />
           </div>
           {/* Romantic gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-rose-900/30 via-transparent to-slate-900/60" />
+          <div className="absolute inset-0 bg-linear-to-b from-rose-900/30 via-transparent to-slate-900/60" />
           <div className="relative max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-rose-500/20 border border-rose-400/30 text-rose-200 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-wider">
               <Heart className="w-3.5 h-3.5 fill-current" /> Honeymoon Homestay · Alleppey
@@ -176,10 +183,10 @@ export default function HoneymoonHomestayPage() {
         {/* Gallery hero image */}
         <section className="max-w-5xl mx-auto px-4 pb-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-3xl overflow-hidden">
-            <div className="relative aspect-[4/3]">
+            <div className="relative aspect-4/3">
               <Image src="/kerala_heritage_room_1786702263227.jpg" alt="Romantic lake-view bedroom at Zen Homestay Alleppey honeymoon" fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
             </div>
-            <div className="relative aspect-[4/3]">
+            <div className="relative aspect-4/3">
               <Image src="/kerala_balcony_view_1786702364116.jpg" alt="Lakefront balcony view sunset Punnamada Lake honeymoon" fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover" />
             </div>
           </div>

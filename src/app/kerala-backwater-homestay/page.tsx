@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Kerala Backwater Homestay | Zen Homestay Alleppey",
     description: "The most secluded Kerala backwater homestay on Punnamada Lake. Speedboat access, authentic Kerala cuisine & 4.9★ rating. Book direct.",
     url: "https://zenhomestay.in/kerala-backwater-homestay",
-    images: [{ url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630 }],
+    images: [{ url: "https://zenhomestay.in/kerala_backwaters_hero_1786702183985.jpg", width: 1200, height: 630, alt: "Zen Homestay – Kerala Backwater Homestay on Punnamada Lake, Alleppey" }],
   },
 };
 
@@ -55,6 +55,13 @@ const jsonLd = [
     },
     "geo": { "@type": "GeoCoordinates", "latitude": 9.502023969622542, "longitude": 76.35757685613443 },
     "sameAs": "https://zenhomestay.in",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": 48,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
   },
   {
     "@context": "https://schema.org",

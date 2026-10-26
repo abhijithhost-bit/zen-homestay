@@ -18,6 +18,29 @@ export const metadata: Metadata = {
   },
 };
 
+const blogPageJsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': 'https://zenhomestay.in/blog#page',
+    'url': 'https://zenhomestay.in/blog',
+    'name': 'Alleppey Travel Blog | Zen Homestay',
+    'description': 'Backwater tips, seasonal guides, honeymoon advice, and local insights from a homestay directly on Punnamada Lake.',
+    'isPartOf': { '@id': 'https://zenhomestay.in/#website' },
+    'inLanguage': 'en-IN',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://zenhomestay.in' },
+      { '@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': 'https://zenhomestay.in/blog' },
+    ],
+  },
+];
+
+
+
 const categoryColors: Record<string, string> = {
   'Travel Guide': 'bg-sky-50 text-sky-700 border-sky-200',
   'Things To Do': 'bg-orange-50 text-orange-700 border-orange-200',
@@ -30,6 +53,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPageJsonLd) }} />
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
@@ -75,7 +99,7 @@ export default function BlogPage() {
           className="group block rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300 mb-10"
         >
           <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[340px]">
+            <div className="relative aspect-4/3 md:aspect-auto md:min-h-85">
               <Image
                 src={featured.heroImage}
                 alt={featured.heroImageAlt}
@@ -84,7 +108,7 @@ export default function BlogPage() {
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-900/40 to-transparent" />
               <div className="absolute top-4 left-4">
                 <span className={`text-[11px] font-bold px-3 py-1 rounded-full border ${categoryColors[featured.category] ?? 'bg-slate-100 text-slate-600 border-slate-200'}`}>
                   {featured.category}
@@ -120,7 +144,7 @@ export default function BlogPage() {
               className="group flex flex-col rounded-3xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-xl transition-all duration-300"
             >
               {/* Card image */}
-              <div className="relative aspect-[16/9] overflow-hidden">
+              <div className="relative aspect-video overflow-hidden">
                 <Image
                   src={post.heroImage}
                   alt={post.heroImageAlt}
@@ -128,7 +152,7 @@ export default function BlogPage() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-900/30 to-transparent" />
                 <div className="absolute top-3 left-3">
                   <span className={`text-[11px] font-bold px-2.5 py-1 rounded-full border ${categoryColors[post.category] ?? 'bg-slate-100 text-slate-600 border-slate-200'}`}>
                     {post.category}
@@ -157,7 +181,7 @@ export default function BlogPage() {
         </div>
 
         {/* Bottom CTA banner */}
-        <div className="mt-16 bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950 rounded-3xl p-8 sm:p-10 text-white text-center relative overflow-hidden">
+        <div className="mt-16 bg-linear-to-br from-slate-900 via-slate-900 to-sky-950 rounded-3xl p-8 sm:p-10 text-white text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10">
