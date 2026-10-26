@@ -7,10 +7,10 @@ export default function BookingWidget() {
   const {
     tier, setTier,
     currentTier,
-    guests, nights, totalPrice, nightlyRate,
+    guests, kids, nights, totalPrice, nightlyRate,
     extraPersonFeePerNight, extraPersonFeeTotal,
     formattedCheckIn, formattedCheckOut, whatsappBookingUrl,
-    handleGuestChange, applyPreset,
+    handleGuestChange, handleKidsChange, applyPreset,
     setActiveDateStep, setShowCalendar,
     availabilityLoading,
     isCurrentSelectionAvailable,
@@ -24,7 +24,7 @@ export default function BookingWidget() {
     <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-xl space-y-4 sm:space-y-5">
 
       {/* Special Offer Header Pill */}
-      <div className="w-fit mx-auto bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[9.5px] sm:text-[10px] font-bold py-1 px-2.5 sm:px-3 rounded-full text-center tracking-wide uppercase shadow-sm">
+      <div className="w-fit mx-auto bg-linear-to-r from-orange-500 to-amber-500 text-white text-[9.5px] sm:text-[10px] font-bold py-1 px-2.5 sm:px-3 rounded-full text-center tracking-wide uppercase shadow-sm">
         Direct Host Guaranteed Rate · Zero Commission
       </div>
 
@@ -195,7 +195,7 @@ export default function BookingWidget() {
               aria-label="Decrease guests"
               className="w-10 h-10 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
             >
-              <Minus className="w-4 h-4 pointer-events-none stroke-[3]" />
+              <Minus className="w-4 h-4 pointer-events-none stroke-3" />
             </button>
             <span className="font-black text-base sm:text-sm w-5 text-center text-slate-900 select-none">{guests}</span>
             <button
@@ -205,7 +205,39 @@ export default function BookingWidget() {
               aria-label="Increase guests"
               className="w-10 h-10 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
             >
-              <Plus className="w-4 h-4 pointer-events-none stroke-[3]" />
+              <Plus className="w-4 h-4 pointer-events-none stroke-3" />
+            </button>
+          </div>
+        </div>
+
+        {/* Kids Counter */}
+        <div className="px-3.5 pb-3.5 flex items-center justify-between bg-white border-t border-slate-100">
+          <div>
+            <span className="font-extrabold uppercase text-[10px] text-slate-500 block">Children</span>
+            <span className="text-slate-900 font-bold text-xs sm:text-sm">
+              {kids} {kids === 1 ? 'Child' : 'Children'}{' '}
+              <span className="text-slate-400 font-normal text-xs">(below 5 yrs · free)</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-2.5 touch-manipulation">
+            <button
+              type="button"
+              onClick={() => handleKidsChange(-1)}
+              disabled={kids <= 0}
+              aria-label="Decrease children"
+              className="w-10 h-10 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
+            >
+              <Minus className="w-4 h-4 pointer-events-none stroke-3" />
+            </button>
+            <span className="font-black text-base sm:text-sm w-5 text-center text-slate-900 select-none">{kids}</span>
+            <button
+              type="button"
+              onClick={() => handleKidsChange(1)}
+              disabled={kids >= 4}
+              aria-label="Increase children"
+              className="w-10 h-10 sm:w-9 sm:h-9 rounded-full border border-slate-300 flex items-center justify-center text-slate-800 hover:border-slate-400 disabled:opacity-25 disabled:cursor-not-allowed text-base font-black bg-slate-50 hover:bg-white transition-all active:scale-90 cursor-pointer touch-manipulation select-none shadow-sm"
+            >
+              <Plus className="w-4 h-4 pointer-events-none stroke-3" />
             </button>
           </div>
         </div>
@@ -226,7 +258,7 @@ export default function BookingWidget() {
               )}
               <span className="truncate">
                 {isCurrentSelectionAvailable 
-                  ? `${currentTier.shortName} · ${nights} ${nights === 1 ? 'night' : 'nights'} (₹${(nightlyRate - extraPersonFeePerNight).toLocaleString('en-IN')}/nt avg)`
+                  ? `${currentTier.shortName} · ${nights} ${nights === 1 ? 'night' : 'nights'} · ₹${(nightlyRate - extraPersonFeePerNight).toLocaleString('en-IN')}/night`
                   : `Sold out for selected dates (${nights} ${nights === 1 ? 'night' : 'nights'})`
                 }
               </span>
@@ -239,7 +271,7 @@ export default function BookingWidget() {
           {extraPersonFeeTotal > 0 && isCurrentSelectionAvailable && (
             <div className="px-2.5 sm:px-3 pb-2.5 flex items-center justify-between border-t border-sky-200/60 pt-2">
               <span className="text-sky-700 font-semibold">
-                Extra guest · ₹1,000/night
+                Extra guest · ₹500/night <span className="text-[10px] font-normal text-sky-500">(above 5 yrs)</span>
               </span>
               <span className="font-black text-orange-600">+₹{extraPersonFeeTotal.toLocaleString('en-IN')}</span>
             </div>
@@ -265,9 +297,9 @@ export default function BookingWidget() {
 
         <a
           href="tel:+917012761588"
-          className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white py-2.5 rounded-xl font-bold text-xs tracking-wide transition-all shadow-md shadow-emerald-500/25 hover:shadow-emerald-500/40 active:scale-[0.98] relative overflow-hidden group"
+          className="w-full flex items-center justify-center gap-2 bg-linear-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white py-2.5 rounded-xl font-bold text-xs tracking-wide transition-all shadow-md shadow-emerald-500/25 hover:shadow-emerald-500/40 active:scale-[0.98] relative overflow-hidden group"
         >
-          <span className="absolute inset-0 bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
+          <span className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-500 skew-x-12" />
           <span className="relative flex items-center gap-2">
             <span className="flex items-center justify-center w-5 h-5 bg-white/20 rounded-full ring-1 ring-white/30">
               <Phone className="w-3 h-3 fill-current" />
@@ -301,7 +333,7 @@ export default function BookingWidget() {
       <div className="border-t border-slate-100 pt-3.5">
         <div className="flex items-center gap-3">
           <div className="relative shrink-0">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-sky-400 via-sky-500 to-orange-500 flex items-center justify-center text-white font-black text-base shadow-md">
+            <div className="w-12 h-12 rounded-full bg-linear-to-tr from-sky-400 via-sky-500 to-orange-500 flex items-center justify-center text-white font-black text-base shadow-md">
               A
             </div>
             <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 border-2 border-white rounded-full" />

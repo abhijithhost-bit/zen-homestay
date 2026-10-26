@@ -70,9 +70,9 @@ export const TIERS: Record<string, TierInfo> = {
 // 4 persons total per room (adults + kids), 2 kids max per room
 const TOTAL_CAP_PER_ROOM = 4;
 const MAX_KIDS_PER_ROOM = 2;
-// Extra adult charge: 2 adults included in base rate; ₹1,000/night for each additional adult
+// Extra adult charge: 2 adults included in base rate; ₹500/night for each additional adult (above 5 yrs)
 const BASE_ADULTS_PER_ROOM = 2;
-const EXTRA_PERSON_CHARGE = 1000; // ₹ per extra adult per night
+const EXTRA_PERSON_CHARGE = 500; // ₹ per extra adult per night
 
 // --- Context Types -----------------------------------------------------------
 
@@ -468,7 +468,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
 • Option: ${optionName}
 • Dates: ${formattedCheckIn} to ${formattedCheckOut} (${nights} ${nights === 1 ? 'night' : 'nights'})
 • Guests: ${guests} ${guests === 1 ? 'Guest' : 'Guests'}${kids > 0 ? ` + ${kids} ${kids === 1 ? 'Child' : 'Children'} (below 5 yrs)` : ''}${extraPersonFeeTotal > 0 ? `
-• Extra Guest Fee: ₹${extraPersonFeeTotal.toLocaleString('en-IN')} (₹${EXTRA_PERSON_CHARGE}/extra adult/night)` : ''}
+• Extra Guest Fee: ₹${extraPersonFeeTotal.toLocaleString('en-IN')} (₹${EXTRA_PERSON_CHARGE}/extra adult above 5 yrs/night)` : ''}
 • Total Estimate: ₹${totalPrice.toLocaleString('en-IN')}
 
 Please confirm availability and booking details!`;
