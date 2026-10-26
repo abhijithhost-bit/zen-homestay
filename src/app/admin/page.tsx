@@ -526,7 +526,7 @@ export default function AdminPage() {
       <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-sky-600 to-orange-500 text-white font-black flex items-center justify-center text-sm shadow-md shadow-orange-500/10">
+            <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-sky-500 via-sky-600 to-orange-500 text-white font-black flex items-center justify-center text-sm shadow-md shadow-orange-500/10">
               ZH
             </div>
             <div>
@@ -558,7 +558,7 @@ export default function AdminPage() {
             ) : sessionUser && isAdmin ? (
               <div className="flex items-center gap-3">
                 <div className="hidden sm:block text-right">
-                  <span className="text-xs font-bold text-slate-200 block truncate max-w-[180px]">{sessionUser}</span>
+                  <span className="text-xs font-bold text-slate-200 block truncate max-w-45">{sessionUser}</span>
                   <span className="text-[10px] text-emerald-400 font-medium flex items-center justify-end gap-1">
                     <UserCheck className="w-3 h-3" /> Verified Admin
                   </span>
@@ -628,7 +628,7 @@ export default function AdminPage() {
                 <button
                   type="button"
                   onClick={() => setShowLoginModal(true)}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-extrabold py-3.5 px-6 rounded-2xl text-sm transition-all shadow-xl shadow-orange-500/20 active:scale-95 cursor-pointer"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-linear-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-extrabold py-3.5 px-6 rounded-2xl text-sm transition-all shadow-xl shadow-orange-500/20 active:scale-95 cursor-pointer"
                 >
                   <KeyRound className="w-4 h-4" />
                   <span>Sign In as Admin</span>
@@ -988,7 +988,7 @@ export default function AdminPage() {
                 </div>
 
                 {dateBlocks.length > 0 ? (
-                  <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1">
+                  <div className="space-y-3 max-h-95 overflow-y-auto pr-1">
                     {dateBlocks.map((block) => {
                       const targetRoom = rooms.find((r) => r.id === block.room_id);
                       const isDeleting = deletingBlockId === block.id;
@@ -1187,7 +1187,7 @@ export default function AdminPage() {
                 </div>
 
                 {pricingRules.length > 0 ? (
-                  <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1">
+                  <div className="space-y-3 max-h-95 overflow-y-auto pr-1">
                     {pricingRules.map((rule) => {
                       const targetRoom = rooms.find((r) => r.id === rule.room_id);
                       const isDeleting = deletingRuleId === rule.id;
@@ -1501,7 +1501,7 @@ export default function AdminPage() {
               <X className="w-5 h-5" />
             </button>
             <div className="text-center space-y-2">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-500 to-orange-500 flex items-center justify-center text-white mx-auto shadow-md">
+              <div className="w-12 h-12 rounded-2xl bg-linear-to-tr from-sky-500 to-orange-500 flex items-center justify-center text-white mx-auto shadow-md">
                 <Lock className="w-6 h-6" />
               </div>
               <h2 className="text-xl font-black text-white">Host Admin Sign In</h2>
