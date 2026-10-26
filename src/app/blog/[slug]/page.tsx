@@ -165,7 +165,7 @@ export default async function BlogPostPage(
             </p>
 
             {/* Hero image */}
-            <div className="relative aspect-[16/9] rounded-3xl overflow-hidden mb-10 shadow-lg">
+            <div className="relative aspect-video rounded-3xl overflow-hidden mb-10 shadow-lg">
               <Image
                 src={post.heroImage}
                 alt={post.heroImageAlt}
@@ -191,7 +191,7 @@ export default async function BlogPostPage(
             </div>
 
             {/* CTA Card */}
-            <div className="mt-12 bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950 rounded-3xl p-7 sm:p-8 text-white relative overflow-hidden">
+            <div className="mt-12 bg-linear-to-br from-slate-900 via-slate-900 to-sky-950 rounded-3xl p-7 sm:p-8 text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 w-56 h-56 bg-orange-500/10 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-56 h-56 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
               <div className="relative z-10">
