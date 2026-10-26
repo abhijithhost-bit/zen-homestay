@@ -217,7 +217,7 @@ export default function Home() {
                     <span>·</span><span>Attached bathrooms</span>
                   </p>
                 </div>
-                <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-tr from-sky-400 to-sky-600 text-white font-extrabold flex items-center justify-center text-lg shrink-0 shadow-md">
+                <div className="relative w-14 h-14 rounded-2xl bg-linear-to-tr from-sky-400 to-sky-600 text-white font-extrabold flex items-center justify-center text-lg shrink-0 shadow-md">
                   <span>ZH</span>
                   <span className="absolute -bottom-1 -right-1 bg-orange-500 text-white p-1 rounded-full text-[10px] shadow">
                     <ShieldCheck className="w-3.5 h-3.5" />
@@ -226,7 +226,7 @@ export default function Home() {
               </div>
 
               {/* Trophy Card */}
-              <div className="p-6 rounded-3xl border border-orange-200/80 bg-gradient-to-r from-orange-50/80 via-orange-50/30 to-sky-50/50 flex items-center justify-between gap-4 shadow-sm">
+              <div className="p-6 rounded-3xl border border-orange-200/80 bg-linear-to-r from-orange-50/80 via-orange-50/30 to-sky-50/50 flex items-center justify-between gap-4 shadow-sm">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-2xl bg-orange-500 text-white flex items-center justify-center shrink-0 shadow-md shadow-orange-500/20">
                     <Award className="w-6 h-6" />
@@ -519,7 +519,7 @@ export default function Home() {
                       href={`/blog/${post.slug}`}
                       className="group flex flex-col rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-sky-300 transition-all"
                     >
-                      <div className="relative aspect-[16/9] overflow-hidden">
+                      <div className="relative aspect-video overflow-hidden">
                         <Image
                           src={post.heroImage}
                           alt={post.heroImageAlt}

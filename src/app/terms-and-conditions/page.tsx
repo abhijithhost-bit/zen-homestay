@@ -1,25 +1,22 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  Sparkles, 
-  ShieldCheck, 
-  Clock, 
-  Anchor, 
-  Users, 
-  Waves, 
+import {
+  ShieldCheck,
+  Clock,
+  Anchor,
+  Waves,
   FileText,
-  Award
 } from 'lucide-react';
 
 export const metadata = {
   title: "Terms & Conditions | Zen Homestay Alleppey",
-  description: "Terms and conditions, house guidelines, check-in policies, and speedboat transfer details for Zen Homestay on Punnamada Lake, Alleppey.",
+  description: "Terms and conditions, guest eligibility, property rules, cancellation & refund policy, and speedboat transfer details for Zen Homestay on Punnamada Lake, Alleppey.",
 };
 
 export default function Terms() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased selection:bg-orange-100 selection:text-orange-900">
-      
+
       {/* Modern Luxury Glassmorphic Navigation Header */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/70 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.05)] transition-all w-full">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-4">
@@ -37,9 +34,6 @@ export default function Terms() {
                 <span className="font-extrabold text-sm sm:text-xl tracking-tight text-slate-900 leading-none group-hover:text-sky-600 transition-colors truncate">
                   Zen Homestay
                 </span>
-                <span className="hidden sm:inline-flex items-center gap-1 bg-orange-50 text-orange-700 text-[10px] font-black px-2 py-0.5 rounded-full border border-orange-200/80 shrink-0">
-                  <Award className="w-3 h-3 text-orange-500" /> Superhost
-                </span>
               </div>
               <span className="text-[9px] sm:text-[11px] font-bold text-sky-600 tracking-wider uppercase mt-0.5 sm:mt-1 flex items-center gap-1 sm:gap-1.5 truncate">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
@@ -49,8 +43,8 @@ export default function Terms() {
           </Link>
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="text-xs font-extrabold text-slate-700 hover:text-orange-600 hover:bg-orange-50 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full transition-all border border-slate-200 shadow-sm active:scale-95 flex items-center gap-1.5"
             >
               ← Back to Listing
@@ -60,7 +54,7 @@ export default function Terms() {
       </header>
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
-        
+
         {/* Header Title */}
         <div className="mb-10 text-center sm:text-left border-b border-slate-200 pb-8">
           <div className="inline-flex items-center gap-1.5 bg-sky-50 text-sky-700 text-xs font-extrabold px-3 py-1 rounded-full border border-sky-100 mb-3">
@@ -76,7 +70,7 @@ export default function Terms() {
 
         {/* Policy Sections */}
         <div className="space-y-8 text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
-          
+
           {/* Section 1: Check-in & Checkout */}
           <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-3">
             <div className="flex items-center gap-3 text-slate-900 font-bold text-lg mb-1">
@@ -106,72 +100,120 @@ export default function Terms() {
                 <strong>Complimentary 1-Time Transfer:</strong> Free speed boat pickup upon check-in (from Nehru Trophy Finishing Point to the homestay) and free drop-off upon checkout (from homestay back to the Finishing Point) is included with your stay.
               </li>
               <li>
-                <strong>Additional Town / Sightseeing Trips:</strong> Any additional speed boat trips requested during your stay (such as going to town for shopping, sightseeing, or night dining and returning) are charged at a nominal rate of <strong>₹300 per boat transfer</strong>.
+                <strong>Additional Town Trips:</strong> If you need extra speedboat trips to town during your stay — for shopping or dining — these are available at <strong>₹300 per trip</strong>. Please note this covers town transfers only and does not include sightseeing or leisure cruises.
               </li>
               <li>
                 <strong>Notice for Coordination:</strong> Please inform our on-site team or host at least 30 minutes in advance if you require boat transfers to town so the boat and pilot can be prepared.
               </li>
-              <li>
-                <strong>Luggage Assistance:</strong> Complimentary luggage handling is provided during arrival and departure.
-              </li>
             </ul>
           </div>
 
-          {/* Section 3: Room Occupancy & Capacity */}
+          {/* Section 3: Guest Eligibility */}
           <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-3">
             <div className="flex items-center gap-3 text-slate-900 font-bold text-lg mb-1">
               <div className="p-2 rounded-xl bg-orange-50 text-orange-600">
-                <Users className="w-5 h-5" />
+                <FileText className="w-5 h-5" />
               </div>
-              <h2>3. Room Capacity & Pricing</h2>
+              <h2>3. Guest Eligibility</h2>
             </div>
-            <ul className="list-disc list-inside space-y-2 text-slate-600 ml-2">
-              <li>The property features <strong>2 private Lake View Premium Rooms</strong> only.</li>
-              <li><strong>Maximum Occupancy:</strong> Strictly 3 persons per room (up to 6 guests if booking the entire property).</li>
-              <li><strong>Room Rate:</strong> ₹3,000 per room / night (includes complimentary check-in/checkout speed boat pickup and authentic Kerala breakfast).</li>
-              <li>Additional extra bedding is provided for the 3rd guest in each room.</li>
-            </ul>
+            <p className="text-slate-600 ml-2">
+              Zen Homestay welcomes <strong>couples</strong>, <strong>small families</strong>, and <strong>solo travellers</strong>. We are a peaceful family-oriented retreat and do not accommodate bachelor groups or unmarried all-male groups.
+            </p>
+            <div className="flex items-start gap-2.5 bg-amber-50 border border-amber-100 rounded-xl p-3 mt-2">
+              <span className="text-amber-500 mt-0.5 shrink-0 text-base">⚠</span>
+              <p className="text-slate-600 text-sm">
+                Bookings that do not meet our guest eligibility criteria will not be confirmed. If a booking is found to be non-compliant upon arrival, the host reserves the right to decline check-in.
+              </p>
+            </div>
           </div>
 
-          {/* Section 4: Backwater Sanctuary & Peaceful Environment */}
+          {/* Section 4: Property Rules & Guidelines */}
           <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-3">
             <div className="flex items-center gap-3 text-slate-900 font-bold text-lg mb-1">
               <div className="p-2 rounded-xl bg-sky-50 text-sky-600">
                 <Waves className="w-5 h-5" />
               </div>
-              <h2>4. Quiet Hours & Environmental Care</h2>
+              <h2>4. Property Rules &amp; Guidelines</h2>
             </div>
             <ul className="list-disc list-inside space-y-2 text-slate-600 ml-2">
-              <li>Zen Homestay is dedicated to nature, serenity, and relaxation. Loud outdoor music, noisy speakers, and disruptive activities are strictly prohibited after 10:00 PM.</li>
-              <li><strong>Eco-Protection:</strong> Disposing of plastic, bottles, or litter into Punnamada Lake is strictly prohibited. We practice eco-conscious waste segregation.</li>
-              <li>Smoking is restricted to designated open outdoor areas only. All indoor rooms are 100% non-smoking.</li>
+              <li><strong>Peaceful Atmosphere:</strong> Guests are expected to maintain a calm, peaceful, and respectful atmosphere at all times, considerate of fellow guests and neighbouring households.</li>
+              <li><strong>No Parties or Loud Music:</strong> Loud music, group parties, and disruptive gatherings are strictly not permitted at any time of day.</li>
+              <li><strong>Property Damage:</strong> Guests are responsible for any damage caused to the property, rooms, or furnishings during their stay. Any damages will be charged at actual repair or replacement cost.</li>
+              <li><strong>Eco-Protection:</strong> Disposing of plastic, bottles, or any litter into Punnamada Lake or its surroundings is strictly prohibited. We follow eco-conscious waste practices.</li>
+              <li><strong>Smoking Policy:</strong> Smoking is permitted only in designated open outdoor areas. All indoor rooms and common indoor spaces are strictly non-smoking.</li>
             </ul>
           </div>
 
-          {/* Section 5: Cancellations & Direct Booking Support */}
-          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-3">
+          {/* Section 5: Bookings, Cancellation & Refund Policy */}
+          <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm space-y-5">
             <div className="flex items-center gap-3 text-slate-900 font-bold text-lg mb-1">
               <div className="p-2 rounded-xl bg-orange-50 text-orange-600">
                 <ShieldCheck className="w-5 h-5" />
               </div>
-              <h2>5. Cancellations & Host Assistance</h2>
+              <h2>5. Bookings, Cancellation &amp; Refund Policy</h2>
             </div>
-            <ul className="list-disc list-inside space-y-2 text-slate-600 ml-2">
-              <li>Because bookings are handled directly with host Abhijith, we offer flexible rescheduling options in case of unexpected travel changes.</li>
-              <li>Please inform us at least 48 hours in advance for cancellations or date changes.</li>
-              <li>For any emergency assistance, room extensions, or custom Kerala food requests, host Abhijith is available 24/7 on site and on phone.</li>
-            </ul>
+
+            {/* Booking */}
+            <div>
+              <h3 className="font-bold text-slate-800 text-sm uppercase tracking-wide mb-2">Booking &amp; Advance Payment</h3>
+              <ul className="list-disc list-inside space-y-2 text-slate-600 ml-2">
+                <li>A <strong>25% advance payment</strong> is required to confirm your reservation.</li>
+                <li>Payment can be made via UPI, bank transfer, or Razorpay payment link — details will be shared at the time of booking.</li>
+                <li>Your booking is confirmed only after the advance payment is received and acknowledged by the host.</li>
+              </ul>
+            </div>
+
+            {/* Cancellation & Refund */}
+            <div>
+              <h3 className="font-bold text-slate-800 text-sm uppercase tracking-wide mb-3">Cancellation &amp; Refund</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div className="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 text-center">
+                  <p className="text-emerald-700 font-extrabold text-lg">100% Refund</p>
+                  <p className="text-slate-600 text-xs mt-1 font-medium">Cancelled <strong>15+ days</strong> before check-in</p>
+                </div>
+                <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 text-center">
+                  <p className="text-amber-600 font-extrabold text-lg">50% Refund</p>
+                  <p className="text-slate-600 text-xs mt-1 font-medium">Cancelled <strong>7–14 days</strong> before check-in</p>
+                </div>
+                <div className="bg-red-50 border border-red-100 rounded-2xl p-4 text-center">
+                  <p className="text-red-600 font-extrabold text-lg">No Refund</p>
+                  <p className="text-slate-600 text-xs mt-1 font-medium">Cancelled <strong>within 7 days</strong> of check-in</p>
+                </div>
+              </div>
+              <p className="text-slate-500 text-xs mt-3 ml-1">All refunds are processed within 5–7 business days to the original payment method. To initiate a cancellation, please contact host Abhijith directly via WhatsApp.</p>
+            </div>
+
+            {/* Host-Initiated Cancellation */}
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
+              <h3 className="font-bold text-slate-800 text-sm uppercase tracking-wide mb-2">Host-Initiated Cancellation</h3>
+              <p className="text-slate-600 text-sm mb-3">
+                In rare and exceptional circumstances, we may need to cancel a confirmed booking from our side. This may occur due to:
+              </p>
+              <ul className="list-disc list-inside space-y-1.5 text-slate-600 text-sm ml-2 mb-3">
+                <li>Unforeseen property maintenance or damage</li>
+                <li>Natural disaster or extreme weather (e.g. floods, storms)</li>
+                <li>Family emergency</li>
+                <li>Double booking or system error</li>
+                <li>Government or authority restrictions</li>
+              </ul>
+              <div className="flex items-start gap-2.5 bg-white border border-emerald-100 rounded-xl p-3">
+                <span className="text-emerald-500 mt-0.5 shrink-0">✓</span>
+                <p className="text-slate-600 text-sm">
+                  In any such case, <strong>you will receive a full 100% refund</strong> of all amounts paid. We will notify you <strong>immediately</strong> via WhatsApp or phone as soon as we are aware of the situation.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Need Help Card */}
-          <div className="bg-gradient-to-r from-sky-50 to-orange-50 rounded-3xl p-8 border border-slate-200 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="bg-linear-to-r from-sky-50 to-orange-50 rounded-3xl p-8 border border-slate-200 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="font-extrabold text-lg text-slate-900">Have questions about our policies?</h3>
               <p className="text-slate-600 text-sm mt-1">Chat directly with host Abhijith on WhatsApp for prompt clarification.</p>
             </div>
-            <a 
-              href="https://wa.me/917012761588" 
-              target="_blank" 
+            <a
+              href="https://wa.me/917012761588"
+              target="_blank"
               rel="noreferrer"
               className="bg-orange-500 hover:bg-orange-600 text-white font-extrabold text-sm px-6 py-3.5 rounded-2xl transition-all shadow-md shadow-orange-500/20 active:scale-95 shrink-0"
             >
