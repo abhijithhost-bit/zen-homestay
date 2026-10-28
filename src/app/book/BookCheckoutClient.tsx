@@ -50,7 +50,7 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
     rawTier === 'whole-floor' || rawTier === '2-rooms' ? 'whole-floor' : '1-room';
 
   const defaultCheckIn = getDefaultDate(1); // tomorrow
-  const defaultCheckOut = getDefaultDate(3); // 2 nights
+  const defaultCheckOut = getDefaultDate(2); // 1 night
 
   const rawCheckIn = getParam('checkIn') || defaultCheckIn;
   const rawCheckOut = getParam('checkOut') || defaultCheckOut;
@@ -83,6 +83,7 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
 
   const [errors, setErrors] = useState<Partial<Record<keyof GuestInfo, string>>>({});
   const [paymentOption, setPaymentOption] = useState<PaymentOption>('25-percent');
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [submission, setSubmission] = useState<BookingSubmission | null>(null);
@@ -90,6 +91,10 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
   // 3. Form Validation
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<keyof GuestInfo, string>> = {};
+
+    if (!termsAccepted) {
+      newErrors.name = newErrors.name || 'Please accept the terms and conditions to proceed';
+    }
 
     if (!guestInfo.name.trim() || guestInfo.name.trim().length < 2) {
       newErrors.name = 'Please enter your full name (minimum 2 characters)';
@@ -312,24 +317,79 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
             <PaymentMethodBadge />
 
             {/* Submit Action Area */}
-            <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm space-y-3">
-              <button
-                type="button"
-                onClick={handleSubmit}
-                disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-3 py-4 sm:py-4.5 px-6 rounded-2xl bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-black text-base sm:text-lg tracking-wide transition-all shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-[0.98] cursor-pointer"
+            <div className="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm space-y-4">
+              {/* Terms & Conditions Checkbox */}
+              <div
+                className={`p-4 rounded-2xl border transition-all ${
+                  termsAccepted
+                    ? 'bg-orange-50/40 border-orange-200'
+                    : 'bg-slate-50 border-slate-200/80 hover:bg-slate-100/60'
+                }`}
               >
-                {isSubmitting ? (
-                  <span>Formatting Booking Ticket...</span>
-                ) : (
-                  <>
-                    <MessageCircle className="w-5 h-5 fill-current" />
-                    <span>Request Booking &amp; Send to WhatsApp →</span>
-                  </>
-                )}
-              </button>
+                <label className="flex items-start gap-3 cursor-pointer select-none">
+                  <div className="relative flex items-center pt-0.5">
+                    <input
+                      type="checkbox"
+                      checked={termsAccepted}
+                      onChange={(e) => setTermsAccepted(e.target.checked)}
+                      className="w-5 h-5 rounded-md border-2 border-slate-300 text-orange-500 focus:ring-orange-400 focus:ring-offset-0 cursor-pointer accent-orange-500 transition-all"
+                    />
+                  </div>
+                  <span className="text-xs text-slate-700 font-medium leading-relaxed">
+                    I agree to the{' '}
+                    <a
+                      href="/terms-and-conditions"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-extrabold text-orange-600 hover:text-orange-700 underline underline-offset-2"
+                    >
+                      Terms &amp; Conditions
+                    </a>
+                    ,{' '}
+                    <a
+                      href="/terms-and-conditions"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-extrabold text-orange-600 hover:text-orange-700 underline underline-offset-2"
+                    >
+                      Cancellation Policy
+                    </a>
+                    , and Homestay Rules (Speedboat transfer, check-in from 2:00 PM).
+                  </span>
+                </label>
+              </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-2 text-[11px] text-slate-500 font-medium text-center sm:text-left">
+              {/* Submit Button */}
+              <div className="relative group">
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={!termsAccepted || isSubmitting}
+                  className={`w-full flex items-center justify-center gap-3 py-4 sm:py-4.5 px-6 rounded-2xl font-black text-base sm:text-lg tracking-wide transition-all ${
+                    termsAccepted && !isSubmitting
+                      ? 'bg-orange-500 hover:bg-orange-600 text-white shadow-xl shadow-orange-500/25 hover:shadow-orange-500/40 active:scale-[0.98] cursor-pointer'
+                      : 'bg-slate-200 text-slate-400 cursor-not-allowed shadow-none'
+                  }`}
+                >
+                  {isSubmitting ? (
+                    <span>Formatting Booking Ticket...</span>
+                  ) : (
+                    <>
+                      <MessageCircle className="w-5 h-5 fill-current" />
+                      <span>Request Booking &amp; Send to WhatsApp →</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Unchecked hint notice */}
+              {!termsAccepted && (
+                <p className="text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200/80 px-3 py-1.5 rounded-xl text-center">
+                  ⚠️ Please tick the agreement checkbox above to enable WhatsApp reservation
+                </p>
+              )}
+
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-1 text-[11px] text-slate-500 font-medium text-center sm:text-left">
                 <span className="flex items-center gap-1.5 justify-center">
                   <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   <span>No payment deducted now · Host shares UPI QR on chat</span>
