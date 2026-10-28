@@ -1547,8 +1547,8 @@ export const blogPosts: BlogPost[] = [
       'marari beach resorts vs homestay',
     ],
     excerpt: 'Torn between the golden sands of Marari Beach and the tranquil waters of Alleppey? Here is why staying at a serene lakefront homestay gives you the best of both worlds — without the ₹20,000 resort price tag.',
-    heroImage: '/kerala_sunset_panorama.jpg',
-    heroImageAlt: 'Tranquil sunset over Kerala backwaters and coastline near Marari Beach and Alleppey',
+    heroImage: '/marari_vs_backwaters_lakefront_veranda.jpg',
+    heroImageAlt: 'View from teakwood veranda at Zen Homestay with chai and tender coconut overlooking Punnamada Lake Alleppey at sunset',
     sections: [
       {
         heading: 'The Great Kerala Dilemma: Golden Sands or Mirrored Waters?',
