@@ -92,31 +92,45 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
   const [availability, setAvailability] = useState<Record<string, DayAvailability>>({});
   const [submission, setSubmission] = useState<BookingSubmission | null>(null);
 
-  // Fetch live Supabase availability (6 months through end of 6th month)
+  // Fetch live Supabase availability (6 months in parallel batches)
   useEffect(() => {
     if (!isSupabaseConfigured) return;
 
     async function fetchAvailability() {
       try {
         const today = new Date();
-        const startDateStr = `${today.getFullYear()}-${padZero(today.getMonth() + 1)}-${padZero(today.getDate())}`;
+        const finalEnd = new Date(today.getFullYear(), today.getMonth() + 7, 1);
+        const CHUNK_DAYS = 85;
 
-        // Fetch availability through the end of the 6th month ahead
-        const futureDate = new Date(today.getFullYear(), today.getMonth() + 7, 0);
-        const endDateStr = `${futureDate.getFullYear()}-${padZero(futureDate.getMonth() + 1)}-${padZero(futureDate.getDate())}`;
+        const rpcPromises = [];
+        let curr = new Date(today);
+        while (curr < finalEnd) {
+          const chunkEnd = new Date(curr);
+          chunkEnd.setDate(chunkEnd.getDate() + CHUNK_DAYS);
+          const effectiveEnd = chunkEnd > finalEnd ? finalEnd : chunkEnd;
 
-        const rpcRes = await supabase.rpc('get_calendar_availability', {
-          p_start_date: startDateStr,
-          p_end_date: endDateStr,
-        });
+          const pStartStr = `${curr.getFullYear()}-${padZero(curr.getMonth() + 1)}-${padZero(curr.getDate())}`;
+          const pEndStr = `${effectiveEnd.getFullYear()}-${padZero(effectiveEnd.getMonth() + 1)}-${padZero(effectiveEnd.getDate())}`;
 
-        if (rpcRes.data && Array.isArray(rpcRes.data)) {
-          const map: Record<string, DayAvailability> = {};
-          for (const row of rpcRes.data as DayAvailability[]) {
-            map[row.cal_date] = row;
-          }
-          setAvailability(map);
+          rpcPromises.push(
+            supabase.rpc('get_calendar_availability', {
+              p_start_date: pStartStr,
+              p_end_date: pEndStr,
+            })
+          );
+          curr = new Date(effectiveEnd);
         }
+
+        const rpcResults = await Promise.all(rpcPromises);
+        const map: Record<string, DayAvailability> = {};
+        for (const res of rpcResults) {
+          if (res.data && Array.isArray(res.data)) {
+            for (const row of res.data as DayAvailability[]) {
+              map[row.cal_date] = row;
+            }
+          }
+        }
+        setAvailability(map);
       } catch (err) {
         console.warn('Live availability fetch notice on /book:', err);
       }

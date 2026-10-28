@@ -267,34 +267,48 @@ export function BookingProvider({ children }: { children: ReactNode }) {
 
     try {
       const today = new Date();
-      const startDateStr = `${today.getFullYear()}-${padDate(today.getMonth() + 1)}-${padDate(today.getDate())}`;
-      
-      // Fetch availability through the end of the 6th month ahead
-      const futureDate = new Date(today.getFullYear(), today.getMonth() + 7, 0);
-      const endDateStr = `${futureDate.getFullYear()}-${padDate(futureDate.getMonth() + 1)}-${padDate(futureDate.getDate())}`;
+      // Supabase's get_calendar_availability RPC has an exclusive upper bound (cal_date < p_end_date)
+      // and enforces a maximum query window of 90 days.
+      // We chunk our 6-month window into parallel batches of 85 days.
+      const finalEnd = new Date(today.getFullYear(), today.getMonth() + 7, 1);
+      const CHUNK_DAYS = 85;
 
-      const [rpcRes, roomsRes, settingsRes] = await Promise.all([
-        supabase.rpc('get_calendar_availability', {
-          p_start_date: startDateStr,
-          p_end_date: endDateStr,
-        }),
+      const rpcPromises = [];
+      let curr = new Date(today);
+      while (curr < finalEnd) {
+        const chunkEnd = new Date(curr);
+        chunkEnd.setDate(chunkEnd.getDate() + CHUNK_DAYS);
+        const effectiveEnd = chunkEnd > finalEnd ? finalEnd : chunkEnd;
+
+        const pStartStr = `${curr.getFullYear()}-${padDate(curr.getMonth() + 1)}-${padDate(curr.getDate())}`;
+        const pEndStr = `${effectiveEnd.getFullYear()}-${padDate(effectiveEnd.getMonth() + 1)}-${padDate(effectiveEnd.getDate())}`;
+
+        rpcPromises.push(
+          supabase.rpc('get_calendar_availability', {
+            p_start_date: pStartStr,
+            p_end_date: pEndStr,
+          })
+        );
+        curr = new Date(effectiveEnd);
+      }
+
+      const [rpcResults, roomsRes, settingsRes] = await Promise.all([
+        Promise.all(rpcPromises),
         supabase.from('rooms').select('max_guests'),
         supabase.from('property_settings').select('whole_floor_max_guests').single(),
       ]);
 
-      if (rpcRes.error) {
-        console.warn('Live availability fetch notice:', rpcRes.error.message);
-        setAvailabilityError(rpcRes.error.message);
-        return;
-      }
-
-      if (rpcRes.data && Array.isArray(rpcRes.data)) {
-        const map: Record<string, DayAvailability> = {};
-        for (const row of rpcRes.data as DayAvailability[]) {
-          map[row.cal_date] = row;
+      const map: Record<string, DayAvailability> = {};
+      for (const res of rpcResults) {
+        if (res.error) {
+          console.warn('Live availability fetch chunk notice:', res.error.message);
+        } else if (res.data && Array.isArray(res.data)) {
+          for (const row of res.data as DayAvailability[]) {
+            map[row.cal_date] = row;
+          }
         }
-        setAvailability(map);
       }
+      setAvailability(map);
 
       if (roomsRes.data && roomsRes.data.length > 0) {
         const maxG = Math.max(...roomsRes.data.map(r => r.max_guests || 3));
