@@ -1,4 +1,5 @@
 import type { BookingParams, BookingTierKey, TierConfig } from './bookingTypes';
+import type { DayAvailability } from '@/lib/supabase';
 
 export const TIERS_CONFIG: Record<BookingTierKey, TierConfig> = {
   '1-room': {
@@ -81,6 +82,65 @@ export function formatShortDate(dateStr: string): string {
   }
 }
 
+/**
+ * Check if a single date is blocked in Supabase availability
+ */
+export function isDateBlocked(
+  dateStr: string,
+  tier: BookingTierKey,
+  availability?: Record<string, DayAvailability>
+): boolean {
+  if (!dateStr) return false;
+  try {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const cellDate = new Date(y, m - 1, d);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (cellDate < today) return true;
+
+    if (availability && availability[dateStr]) {
+      const dayData = availability[dateStr];
+      if (tier === 'whole-floor') {
+        return !dayData.whole_floor_available;
+      }
+      return !dayData.room_1_available && !dayData.room_2_available;
+    }
+  } catch {
+    return false;
+  }
+  return false;
+}
+
+/**
+ * Check if every night in range [inDate, outDate) is available
+ */
+export function isRangeAvailable(
+  inDateStr: string,
+  outDateStr: string,
+  tier: BookingTierKey,
+  availability?: Record<string, DayAvailability>
+): boolean {
+  if (!inDateStr || !outDateStr) return true;
+  try {
+    const [y1, m1, d1] = inDateStr.split('-').map(Number);
+    const [y2, m2, d2] = outDateStr.split('-').map(Number);
+    const curr = new Date(y1, m1 - 1, d1);
+    const end = new Date(y2, m2 - 1, d2);
+
+    while (curr < end) {
+      const curStr = `${curr.getFullYear()}-${padZero(curr.getMonth() + 1)}-${padZero(curr.getDate())}`;
+      if (isDateBlocked(curStr, tier, availability)) {
+        return false;
+      }
+      curr.setDate(curr.getDate() + 1);
+    }
+    return true;
+  } catch {
+    return true;
+  }
+}
+
 export interface PriceBreakdown {
   nights: number;
   baseRatePerNight: number;
@@ -97,11 +157,39 @@ export interface PriceBreakdown {
   savingsVsOta: number;
 }
 
-export function computePriceBreakdown(params: BookingParams): PriceBreakdown {
+export function computePriceBreakdown(
+  params: BookingParams,
+  availability?: Record<string, DayAvailability>
+): PriceBreakdown {
   const tierConfig = TIERS_CONFIG[params.tier] || TIERS_CONFIG['1-room'];
   const nights = calculateNights(params.checkIn, params.checkOut);
-  const baseRatePerNight = tierConfig.basePrice;
-  const baseTotal = baseRatePerNight * nights;
+
+  // Dynamic sum across nights from live Supabase RPC rates
+  let baseTotal = 0;
+  try {
+    const [y1, m1, d1] = params.checkIn.split('-').map(Number);
+    const curr = new Date(y1, m1 - 1, d1);
+
+    for (let i = 0; i < nights; i++) {
+      const curStr = `${curr.getFullYear()}-${padZero(curr.getMonth() + 1)}-${padZero(curr.getDate())}`;
+      const dayData = availability ? availability[curStr] : undefined;
+
+      if (dayData) {
+        if (params.tier === 'whole-floor') {
+          baseTotal += Math.round(dayData.whole_floor_price_paise / 100);
+        } else {
+          baseTotal += Math.round(dayData.room_1_price_paise / 100);
+        }
+      } else {
+        baseTotal += tierConfig.basePrice;
+      }
+      curr.setDate(curr.getDate() + 1);
+    }
+  } catch {
+    baseTotal = tierConfig.basePrice * nights;
+  }
+
+  const baseRatePerNight = Math.round(baseTotal / Math.max(1, nights));
 
   const extraGuests = Math.max(0, params.guests - tierConfig.rooms * BASE_ADULTS_PER_ROOM);
   const extraFeePerNight = extraGuests * EXTRA_PERSON_CHARGE;
@@ -142,4 +230,3 @@ export function generateBookingRef(): string {
   const random6 = Math.floor(100000 + Math.random() * 900000);
   return `ZEN-${random6}`;
 }
-

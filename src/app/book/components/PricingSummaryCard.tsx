@@ -4,15 +4,21 @@ import Image from 'next/image';
 import { Star, Anchor, Coffee, ShieldCheck, Waves } from 'lucide-react';
 import type { BookingParams, PaymentOption } from '../lib/bookingTypes';
 import { TIERS_CONFIG, computePriceBreakdown, formatINR } from '../lib/pricingUtils';
+import type { DayAvailability } from '@/lib/supabase';
 
 interface PricingSummaryCardProps {
   params: BookingParams;
   paymentOption: PaymentOption;
+  availability?: Record<string, DayAvailability>;
 }
 
-export default function PricingSummaryCard({ params, paymentOption }: PricingSummaryCardProps) {
+export default function PricingSummaryCard({
+  params,
+  paymentOption,
+  availability,
+}: PricingSummaryCardProps) {
   const tierConfig = TIERS_CONFIG[params.tier] || TIERS_CONFIG['1-room'];
-  const breakdown = computePriceBreakdown(params);
+  const breakdown = computePriceBreakdown(params, availability);
 
   const isAdvance25 = paymentOption === '25-percent';
   const payToday = isAdvance25 ? breakdown.advance25 : breakdown.advance100;

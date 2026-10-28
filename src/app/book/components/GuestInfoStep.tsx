@@ -9,26 +9,6 @@ interface GuestInfoStepProps {
   onChange: (field: keyof GuestInfo, value: string) => void;
 }
 
-const ARRIVAL_TIME_OPTIONS = [
-  '12:00 PM (Early Arrival Request)',
-  '12:30 PM (Early Arrival Request)',
-  '01:00 PM (Early Arrival Request)',
-  '01:30 PM (Early Arrival Request)',
-  '02:00 PM (Standard Check-in)',
-  '02:30 PM (Speedboat pickup)',
-  '03:00 PM (Speedboat pickup)',
-  '03:30 PM (Speedboat pickup)',
-  '04:00 PM (Speedboat pickup)',
-  '04:30 PM (Speedboat pickup)',
-  '05:00 PM (Sunset arrival)',
-  '05:30 PM (Sunset arrival)',
-  '06:00 PM (Evening arrival)',
-  '06:30 PM (Evening arrival)',
-  '07:00 PM (Evening arrival)',
-  '07:30 PM (Evening arrival)',
-  '08:00 PM or later (Late arrival)',
-];
-
 export default function GuestInfoStep({ data, errors, onChange }: GuestInfoStepProps) {
   return (
     <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 shadow-sm space-y-5">
@@ -149,25 +129,17 @@ export default function GuestInfoStep({ data, errors, onChange }: GuestInfoStepP
             <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
               <Clock className="w-4 h-4" />
             </div>
-            <select
+            <input
+              type="text"
               value={data.arrivalTime}
               onChange={(e) => onChange('arrivalTime', e.target.value)}
-              className={`w-full pl-10 pr-8 py-3 rounded-2xl border text-sm font-semibold transition-all outline-none bg-slate-50/50 appearance-none cursor-pointer ${
+              placeholder="e.g. 02:30 PM, around 3 PM, train arrives 1:45 PM"
+              className={`w-full pl-10 pr-4 py-3 rounded-2xl border text-sm font-semibold transition-all outline-none ${
                 errors.arrivalTime
                   ? 'border-rose-400 bg-rose-50/30 text-rose-900 focus:ring-2 focus:ring-rose-200'
-                  : 'border-slate-200 text-slate-900 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-100'
+                  : 'border-slate-200 bg-slate-50/50 text-slate-900 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-100'
               }`}
-            >
-              <option value="" disabled>Select your expected time in Alleppey...</option>
-              {ARRIVAL_TIME_OPTIONS.map((slot) => (
-                <option key={slot} value={slot}>
-                  {slot}
-                </option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400 text-xs">
-              ▼
-            </div>
+            />
           </div>
           {errors.arrivalTime ? (
             <p className="text-[11px] font-bold text-rose-600 mt-1 pl-1">{errors.arrivalTime}</p>
@@ -194,7 +166,7 @@ export default function GuestInfoStep({ data, errors, onChange }: GuestInfoStepP
               rows={3}
               value={data.specialRequests}
               onChange={(e) => onChange('specialRequests', e.target.value)}
-              placeholder="e.g. Authentic Appam &amp; stew breakfast preference, extra pillows, celebrating anniversary, reaching via train..."
+              placeholder="e.g. arrange extra bed, breakfast preferences..."
               className="w-full pl-10 pr-4 py-3 rounded-2xl border border-slate-200 bg-slate-50/50 text-slate-900 text-sm font-medium transition-all outline-none focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-100 placeholder:text-slate-400 resize-none"
             />
           </div>

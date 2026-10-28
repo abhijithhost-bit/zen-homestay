@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NextLink from 'next/link';
 import {
   MessageCircle,
@@ -22,9 +22,11 @@ import {
   computePriceBreakdown,
   generateBookingRef,
   getDefaultDate,
+  padZero,
 } from './lib/pricingUtils';
 import { activePaymentHandler } from './lib/paymentHandler';
 import { buildWhatsAppUrl, HOST_PHONE_DISPLAY } from './lib/whatsappTicket';
+import { supabase, isSupabaseConfigured, type DayAvailability } from '@/lib/supabase';
 import StayOverviewBar from './components/StayOverviewBar';
 import GuestInfoStep from './components/GuestInfoStep';
 import PaymentPreferenceStep from './components/PaymentPreferenceStep';
@@ -86,14 +88,54 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [calendarActiveStep, setCalendarActiveStep] = useState<'checkIn' | 'checkOut'>('checkIn');
+  const [availability, setAvailability] = useState<Record<string, DayAvailability>>({});
   const [submission, setSubmission] = useState<BookingSubmission | null>(null);
+
+  // Fetch live Supabase availability (90 days)
+  useEffect(() => {
+    if (!isSupabaseConfigured) return;
+
+    async function fetchAvailability() {
+      try {
+        const today = new Date();
+        const startDateStr = `${today.getFullYear()}-${padZero(today.getMonth() + 1)}-${padZero(today.getDate())}`;
+
+        const futureDate = new Date();
+        futureDate.setDate(futureDate.getDate() + 90);
+        const endDateStr = `${futureDate.getFullYear()}-${padZero(futureDate.getMonth() + 1)}-${padZero(futureDate.getDate())}`;
+
+        const rpcRes = await supabase.rpc('get_calendar_availability', {
+          p_start_date: startDateStr,
+          p_end_date: endDateStr,
+        });
+
+        if (rpcRes.data && Array.isArray(rpcRes.data)) {
+          const map: Record<string, DayAvailability> = {};
+          for (const row of rpcRes.data as DayAvailability[]) {
+            map[row.cal_date] = row;
+          }
+          setAvailability(map);
+        }
+      } catch (err) {
+        console.warn('Live availability fetch notice on /book:', err);
+      }
+    }
+
+    fetchAvailability();
+  }, []);
+
+  const handleOpenCalendar = (step: 'checkIn' | 'checkOut' = 'checkIn') => {
+    setCalendarActiveStep(step);
+    setIsEditModalOpen(true);
+  };
 
   // 3. Form Validation
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<keyof GuestInfo, string>> = {};
 
     if (!termsAccepted) {
-      newErrors.name = newErrors.name || 'Please accept the terms and conditions to proceed';
+      newErrors.name = newErrors.name || 'Please accept the Terms & Refund Policy to proceed';
     }
 
     if (!guestInfo.name.trim() || guestInfo.name.trim().length < 2) {
@@ -137,7 +179,7 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
     setIsSubmitting(true);
 
     try {
-      const breakdown = computePriceBreakdown(params);
+      const breakdown = computePriceBreakdown(params, availability);
       const bookingRef = generateBookingRef();
       const advanceAmount =
         paymentOption === '25-percent' ? breakdown.advance25 : breakdown.advance100;
@@ -213,7 +255,7 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
     );
   }
 
-  const breakdown = computePriceBreakdown(params);
+  const breakdown = computePriceBreakdown(params, availability);
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 selection:bg-orange-100 selection:text-orange-900">
@@ -294,8 +336,8 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column (60% on desktop) */}
           <div className="lg:col-span-7 space-y-6">
-            {/* Stay Overview Bar with Edit Modal trigger */}
-            <StayOverviewBar params={params} onEdit={() => setIsEditModalOpen(true)} />
+            {/* Stay Overview Bar with Interactive Calendar triggers */}
+            <StayOverviewBar params={params} onOpenCalendar={handleOpenCalendar} />
 
             {/* Step 1: Guest Information */}
             <GuestInfoStep
@@ -343,18 +385,8 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
                       rel="noopener noreferrer"
                       className="font-extrabold text-orange-600 hover:text-orange-700 underline underline-offset-2"
                     >
-                      Terms &amp; Conditions
+                      Terms &amp; Refund Policy
                     </a>
-                    ,{' '}
-                    <a
-                      href="/terms-and-conditions"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-extrabold text-orange-600 hover:text-orange-700 underline underline-offset-2"
-                    >
-                      Cancellation Policy
-                    </a>
-                    , and Homestay Rules (Speedboat transfer, check-in from 2:00 PM).
                   </span>
                 </label>
               </div>
@@ -385,36 +417,41 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
               {/* Unchecked hint notice */}
               {!termsAccepted && (
                 <p className="text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200/80 px-3 py-1.5 rounded-xl text-center">
-                  ⚠️ Please tick the agreement checkbox above to enable WhatsApp reservation
+                  ⚠️ Please accept the Terms &amp; Refund Policy to enable WhatsApp reservation
                 </p>
               )}
 
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-1 text-[11px] text-slate-500 font-medium text-center sm:text-left">
-                <span className="flex items-center gap-1.5 justify-center">
-                  <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <span>No payment deducted now · Host shares UPI QR on chat</span>
-                </span>
-                <span className="font-extrabold text-orange-600">
-                  Instant Host Response (&lt; 5 mins)
-                </span>
+              {/* Bottom Security Notice (without response time) */}
+              <div className="flex items-center justify-center gap-1.5 pt-1 text-[11px] text-slate-500 font-medium text-center">
+                <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>No payment deducted now · Host shares UPI QR on chat</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column (40% on desktop) */}
+          {/* Right Column (40% on desktop) with Live Availability Sync */}
           <div className="lg:col-span-5">
-            <PricingSummaryCard params={params} paymentOption={paymentOption} />
+            <PricingSummaryCard
+              params={params}
+              paymentOption={paymentOption}
+              availability={availability}
+            />
           </div>
         </div>
       </main>
 
-      {/* Edit Stay Modal */}
-      <EditStayModal
-        params={params}
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        onSave={(updated) => setParams(updated)}
-      />
+      {/* Interactive Calendar & Stay Modal */}
+      {isEditModalOpen && (
+        <EditStayModal
+          key={`${params.checkIn}-${params.checkOut}-${params.tier}-${calendarActiveStep}`}
+          params={params}
+          isOpen={isEditModalOpen}
+          initialStep={calendarActiveStep}
+          availability={availability}
+          onClose={() => setIsEditModalOpen(false)}
+          onSave={(updated) => setParams(updated)}
+        />
+      )}
     </div>
   );
 }
