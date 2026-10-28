@@ -106,9 +106,9 @@ export default function BookingConfirmation({ submission }: BookingConfirmationP
             <Anchor className="w-5 h-5" />
           </div>
           <div className="space-y-1">
-            <h4 className="font-extrabold text-xs sm:text-sm text-sky-950">
+            <h2 className="font-extrabold text-xs sm:text-sm text-sky-950">
               Complimentary Speedboat Transfer Confirmed
-            </h4>
+            </h2>
             <p className="text-xs text-sky-900/80 leading-relaxed font-medium">
               Host Abhijith will meet you at the <strong>Nehru Trophy Boat Race Finishing Point</strong> around <strong>{guest.arrivalTime}</strong> with our private speedboat for your scenic 5-minute lake transfer.
             </p>
