@@ -59,6 +59,13 @@ export default function CalendarModal() {
   const year = calendarMonth.getFullYear();
   const month = calendarMonth.getMonth();
 
+  const today = new Date();
+  const isCurrentMonth =
+    year === today.getFullYear() && month === today.getMonth();
+  const maxMonthDate = new Date(today.getFullYear(), today.getMonth() + 6, 1);
+  const isMaxMonth =
+    year === maxMonthDate.getFullYear() && month === maxMonthDate.getMonth();
+
   return (
     <div
       onClick={() => setShowCalendar(false)}
@@ -156,16 +163,26 @@ export default function CalendarModal() {
               <button 
                 type="button" 
                 onClick={prevMonth} 
+                disabled={isCurrentMonth}
                 aria-label="Previous Month" 
-                className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
+                className={`w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center transition-colors touch-manipulation ${
+                  isCurrentMonth
+                    ? 'opacity-30 cursor-not-allowed text-slate-300'
+                    : 'hover:bg-slate-100 text-slate-700 active:scale-95 cursor-pointer'
+                }`}
               >
                 <ChevronLeft className="w-5 h-5 pointer-events-none" />
               </button>
               <button 
                 type="button" 
                 onClick={nextMonth} 
+                disabled={isMaxMonth}
                 aria-label="Next Month" 
-                className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
+                className={`w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center transition-colors touch-manipulation ${
+                  isMaxMonth
+                    ? 'opacity-30 cursor-not-allowed text-slate-300'
+                    : 'hover:bg-slate-100 text-slate-700 active:scale-95 cursor-pointer'
+                }`}
               >
                 <ChevronRight className="w-5 h-5 pointer-events-none" />
               </button>

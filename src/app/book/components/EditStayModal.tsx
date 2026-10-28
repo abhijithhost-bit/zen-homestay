@@ -73,11 +73,30 @@ export default function EditStayModal({
   const getFirstDayOfMonth = (y: number, m: number) => new Date(y, m, 1).getDay();
 
   const prevMonth = () => {
-    setCalendarMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+    setCalendarMonth((prev) => {
+      const now = new Date();
+      if (
+        prev.getFullYear() < now.getFullYear() ||
+        (prev.getFullYear() === now.getFullYear() && prev.getMonth() <= now.getMonth())
+      ) {
+        return prev;
+      }
+      return new Date(prev.getFullYear(), prev.getMonth() - 1, 1);
+    });
   };
 
   const nextMonth = () => {
-    setCalendarMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+    setCalendarMonth((prev) => {
+      const now = new Date();
+      const maxDate = new Date(now.getFullYear(), now.getMonth() + 6, 1);
+      if (
+        prev.getFullYear() > maxDate.getFullYear() ||
+        (prev.getFullYear() === maxDate.getFullYear() && prev.getMonth() >= maxDate.getMonth())
+      ) {
+        return prev;
+      }
+      return new Date(prev.getFullYear(), prev.getMonth() + 1, 1);
+    });
   };
 
   /** Get day rate in ₹ */
@@ -92,7 +111,7 @@ export default function EditStayModal({
     return Math.round(dayData.room_1_price_paise / 100);
   };
 
-  /** Minimum observed price across 90 days to determine seasonal rate */
+  /** Minimum observed price across 6 months to determine seasonal rate */
   const normalRate = useMemo(() => {
     if (!availability) return currentTierConfig.basePrice;
     const prices = Object.values(availability)
@@ -318,29 +337,49 @@ export default function EditStayModal({
         {/* Scrollable Calendar Body */}
         <div className="p-4 sm:p-5 overflow-y-auto space-y-4 flex-1">
           {/* Month Navigation */}
-          <div className="flex items-center justify-between">
-            <h4 className="font-extrabold text-sm sm:text-base text-slate-900">
-              {MONTH_NAMES[month]} {year}
-            </h4>
-            <div className="flex items-center gap-1">
-              <button
-                type="button"
-                onClick={prevMonth}
-                aria-label="Previous Month"
-                className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
-              >
-                <ChevronLeft className="w-5 h-5 pointer-events-none" />
-              </button>
-              <button
-                type="button"
-                onClick={nextMonth}
-                aria-label="Next Month"
-                className="w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-100 text-slate-700 transition-colors active:scale-95 cursor-pointer touch-manipulation"
-              >
-                <ChevronRight className="w-5 h-5 pointer-events-none" />
-              </button>
-            </div>
-          </div>
+          {(() => {
+            const isCurrentMonth =
+              year === today.getFullYear() && month === today.getMonth();
+            const maxMonthDate = new Date(today.getFullYear(), today.getMonth() + 6, 1);
+            const isMaxMonth =
+              year === maxMonthDate.getFullYear() && month === maxMonthDate.getMonth();
+
+            return (
+              <div className="flex items-center justify-between">
+                <h4 className="font-extrabold text-sm sm:text-base text-slate-900">
+                  {MONTH_NAMES[month]} {year}
+                </h4>
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={prevMonth}
+                    disabled={isCurrentMonth}
+                    aria-label="Previous Month"
+                    className={`w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center transition-colors touch-manipulation ${
+                      isCurrentMonth
+                        ? 'opacity-30 cursor-not-allowed text-slate-300'
+                        : 'hover:bg-slate-100 text-slate-700 active:scale-95 cursor-pointer'
+                    }`}
+                  >
+                    <ChevronLeft className="w-5 h-5 pointer-events-none" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={nextMonth}
+                    disabled={isMaxMonth}
+                    aria-label="Next Month"
+                    className={`w-9 h-9 rounded-full border border-slate-200 flex items-center justify-center transition-colors touch-manipulation ${
+                      isMaxMonth
+                        ? 'opacity-30 cursor-not-allowed text-slate-300'
+                        : 'hover:bg-slate-100 text-slate-700 active:scale-95 cursor-pointer'
+                    }`}
+                  >
+                    <ChevronRight className="w-5 h-5 pointer-events-none" />
+                  </button>
+                </div>
+              </div>
+            );
+          })()}
 
           {/* Weekday Headers */}
           <div className="grid grid-cols-7 gap-1 text-center font-bold text-[11px] text-slate-400">

@@ -92,7 +92,7 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
   const [availability, setAvailability] = useState<Record<string, DayAvailability>>({});
   const [submission, setSubmission] = useState<BookingSubmission | null>(null);
 
-  // Fetch live Supabase availability (90 days)
+  // Fetch live Supabase availability (6 months through end of 6th month)
   useEffect(() => {
     if (!isSupabaseConfigured) return;
 
@@ -101,8 +101,8 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
         const today = new Date();
         const startDateStr = `${today.getFullYear()}-${padZero(today.getMonth() + 1)}-${padZero(today.getDate())}`;
 
-        const futureDate = new Date();
-        futureDate.setDate(futureDate.getDate() + 90);
+        // Fetch availability through the end of the 6th month ahead
+        const futureDate = new Date(today.getFullYear(), today.getMonth() + 7, 0);
         const endDateStr = `${futureDate.getFullYear()}-${padZero(futureDate.getMonth() + 1)}-${padZero(futureDate.getDate())}`;
 
         const rpcRes = await supabase.rpc('get_calendar_availability', {

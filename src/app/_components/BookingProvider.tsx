@@ -269,8 +269,8 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       const today = new Date();
       const startDateStr = `${today.getFullYear()}-${padDate(today.getMonth() + 1)}-${padDate(today.getDate())}`;
       
-      const futureDate = new Date();
-      futureDate.setDate(futureDate.getDate() + 90);
+      // Fetch availability through the end of the 6th month ahead
+      const futureDate = new Date(today.getFullYear(), today.getMonth() + 7, 0);
       const endDateStr = `${futureDate.getFullYear()}-${padDate(futureDate.getMonth() + 1)}-${padDate(futureDate.getDate())}`;
 
       const [rpcRes, roomsRes, settingsRes] = await Promise.all([
@@ -346,7 +346,7 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       }
     }
 
-    // Fallback: If outside 90-day window or offline, treat future as open
+    // Fallback: If outside 6-month window or offline, treat future as open
     return false;
   }, [availability, tier]);
 
@@ -486,15 +486,33 @@ These dates appear unavailable online. Please let me know if there are any openi
     return `https://wa.me/917012761588?text=${encodeURIComponent(text)}`;
   }, [tier, isCurrentSelectionAvailable, formattedCheckIn, formattedCheckOut, nights, guests, kids, totalPrice, extraPersonFeeTotal]);
 
-  // Calendar Month Navigation — useCallback so context consumers don't re-render on every provider render
-  const prevMonth = useCallback(
-    () => setCalendarMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1)),
-    []
-  );
-  const nextMonth = useCallback(
-    () => setCalendarMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1)),
-    []
-  );
+  // Calendar Month Navigation — bounded between current month and 6 months ahead
+  const prevMonth = useCallback(() => {
+    setCalendarMonth((prev) => {
+      const today = new Date();
+      if (
+        prev.getFullYear() < today.getFullYear() ||
+        (prev.getFullYear() === today.getFullYear() && prev.getMonth() <= today.getMonth())
+      ) {
+        return prev;
+      }
+      return new Date(prev.getFullYear(), prev.getMonth() - 1, 1);
+    });
+  }, []);
+
+  const nextMonth = useCallback(() => {
+    setCalendarMonth((prev) => {
+      const today = new Date();
+      const maxDate = new Date(today.getFullYear(), today.getMonth() + 6, 1);
+      if (
+        prev.getFullYear() > maxDate.getFullYear() ||
+        (prev.getFullYear() === maxDate.getFullYear() && prev.getMonth() >= maxDate.getMonth())
+      ) {
+        return prev;
+      }
+      return new Date(prev.getFullYear(), prev.getMonth() + 1, 1);
+    });
+  }, []);
   // Pure date-math helpers — stable references, no deps needed
   const getDaysInMonth = useCallback((y: number, m: number) => new Date(y, m + 1, 0).getDate(), []);
   const getFirstDayOfMonth = useCallback((y: number, m: number) => new Date(y, m, 1).getDay(), []);
