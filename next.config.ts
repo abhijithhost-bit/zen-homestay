@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     // Serve AVIF first (30-50% smaller than WebP), fallback to WebP
     formats: ['image/avif', 'image/webp'],
+    // Allowed image quality levels (Next.js 16 requires all requested qualities to be declared)
+    qualities: [70, 75, 90],
     // Cache optimized images for 31 days — critical for repeat visitor speed
     minimumCacheTTL: 2678400,
     // Responsive breakpoints for all devices: mobile → tablet → desktop → wide

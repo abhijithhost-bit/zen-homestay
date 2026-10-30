@@ -283,7 +283,7 @@ export default function Contact() {
 
       {/* Footer */}
       <footer className="bg-slate-900 border-t border-slate-800 py-8 text-xs text-slate-400 text-center space-y-2">
-        <p>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
+        <p suppressHydrationWarning>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
         <div className="flex justify-center items-center gap-4 text-slate-500 font-medium">
           <Link href="/" className="hover:underline hover:text-slate-400">Home</Link>
           <span>·</span>

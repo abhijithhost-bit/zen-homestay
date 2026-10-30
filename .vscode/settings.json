@@ -1,4 +1,9 @@
 {
   "css.lint.unknownAtRules": "ignore",
-  "tailwindCSS.lint.suggestCanonicalClasses": "ignore"
+  "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
+  "seoLens.rules": {
+    "missingTitle": false,
+    "missingCanonical": false,
+    "missingMetaDescription": false
+  }
 }

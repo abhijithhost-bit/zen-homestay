@@ -683,7 +683,7 @@ export default function Home() {
             </div>
             <div className="pt-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px] font-medium">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-center sm:text-left">
-                <p className="text-slate-500">© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
+                <p suppressHydrationWarning className="text-slate-500">© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
                 <span className="hidden sm:inline text-slate-700">·</span>
                 <span className="text-slate-600">Direct Host · 0% Commission · Best Rate Guaranteed</span>
               </div>

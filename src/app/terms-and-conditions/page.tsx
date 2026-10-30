@@ -228,7 +228,7 @@ export default function Terms() {
       {/* Footer */}
       <footer className="bg-slate-900 border-t border-slate-800 py-8 text-xs text-slate-400 text-center">
         <div className="max-w-4xl mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
-          <p>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
+          <p suppressHydrationWarning>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
           <div className="flex items-center gap-4 text-slate-400">
             <Link href="/" className="hover:underline hover:text-white transition-colors">
               Home

@@ -210,7 +210,7 @@ export default function BlogPage() {
 
       {/* Footer */}
       <footer className="bg-slate-950 text-slate-500 text-xs py-6 text-center">
-        <p>© {new Date().getFullYear()} Zen Homestay · Punnamada Lake, Alleppey, Kerala</p>
+        <p suppressHydrationWarning>© {new Date().getFullYear()} Zen Homestay · Punnamada Lake, Alleppey, Kerala</p>
         <div className="flex items-center justify-center gap-4 mt-2">
           <Link href="/" className="hover:text-slate-300 transition-colors">Homestay Home</Link>
           <Link href="/contact" className="hover:text-slate-300 transition-colors">Contact</Link>

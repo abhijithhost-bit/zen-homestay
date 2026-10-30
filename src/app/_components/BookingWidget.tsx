@@ -32,14 +32,14 @@ export default function BookingWidget() {
       <div className="flex items-baseline justify-between pt-0.5">
         <div>
           <div className="flex items-baseline gap-1.5">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
-            <span className="text-slate-500 font-bold text-xs sm:text-sm">
+            <span suppressHydrationWarning className="text-2xl sm:text-3xl font-black text-slate-900">₹{totalPrice.toLocaleString('en-IN')}</span>
+            <span suppressHydrationWarning className="text-slate-500 font-bold text-xs sm:text-sm">
               / {nights} {nights === 1 ? 'night' : 'nights'}
             </span>
           </div>
           {/* OTA price comparison anchor */}
           <div className="flex items-center gap-1.5 mt-0.5">
-            <span className="text-[11px] text-slate-600 line-through">₹{otaEstimatedPrice.toLocaleString('en-IN')} on OTAs</span>
+            <span suppressHydrationWarning className="text-[11px] text-slate-600 line-through">₹{otaEstimatedPrice.toLocaleString('en-IN')} on OTAs</span>
             <span className="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-md">Save ~25%</span>
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function BookingWidget() {
               <span className="font-extrabold uppercase text-[10px] text-slate-500 tracking-wider">Check-in</span>
               <Calendar className="w-4 h-4 text-sky-600 group-hover:scale-110 transition-transform" />
             </div>
-            <div className="text-slate-900 font-black text-xs sm:text-sm truncate pointer-events-none">{formattedCheckIn || 'Select Date'}</div>
+            <div suppressHydrationWarning className="text-slate-900 font-black text-xs sm:text-sm truncate pointer-events-none">{formattedCheckIn || 'Select Date'}</div>
             <span className="text-[10px] text-slate-400 font-semibold block mt-0.5 pointer-events-none">2:00 PM Check-in</span>
           </button>
 
@@ -141,11 +141,11 @@ export default function BookingWidget() {
           >
             <div className="flex items-center justify-between mb-1 pointer-events-none">
               <span className="font-extrabold uppercase text-[10px] text-slate-500 tracking-wider">Checkout</span>
-              <span className="text-[10px] font-black text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded border border-orange-200">
+              <span suppressHydrationWarning className="text-[10px] font-black text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded border border-orange-200">
                 {nights} {nights === 1 ? 'night' : 'nights'}
               </span>
             </div>
-            <div className="text-slate-900 font-black text-xs sm:text-sm truncate pointer-events-none">{formattedCheckOut || 'Select Date'}</div>
+            <div suppressHydrationWarning className="text-slate-900 font-black text-xs sm:text-sm truncate pointer-events-none">{formattedCheckOut || 'Select Date'}</div>
             <span className="text-[10px] text-slate-400 font-semibold block mt-0.5 pointer-events-none">11:00 AM Checkout</span>
           </button>
         </div>

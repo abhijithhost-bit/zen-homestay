@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { preconnect } from "react-dom";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -20,6 +21,7 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -62,9 +64,12 @@ export const metadata: Metadata = {
     canonical: "https://zenhomestay.in",
   },
   icons: {
-    icon: "/zen-homestay-logo.jpg",
-    shortcut: "/zen-homestay-logo.jpg",
-    apple: "/zen-homestay-logo.jpg",
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/zen-homestay-logo.jpg' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/zen-homestay-logo.jpg',
   },
   verification: {
     google: "WujqYXq12BW06BfB0dpJMO2R1KppwB3JzYDMKk4FXEA",
@@ -77,6 +82,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // React 19 resource preconnect hints
+  preconnect('https://fonts.googleapis.com');
+  preconnect('https://fonts.gstatic.com', { crossOrigin: 'anonymous' });
+  preconnect('https://maps.googleapis.com');
+
   return (
     <html
       lang="en-IN"
@@ -85,18 +95,16 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        {/* Preconnect hints — saves 200-400ms on FCP for fonts & maps */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://maps.googleapis.com" />
         {children}
         <SpeedInsights />
         <Analytics />
-        <Script
-          src="https://cloud.umami.is/script.js"
-          data-website-id="c98fb9a1-4e7b-41fe-941d-19fd921c6b1e"
-          strategy="afterInteractive"
-        />
+        {process.env.NODE_ENV === 'production' && (
+          <Script
+            src="https://cloud.umami.is/script.js"
+            data-website-id="c98fb9a1-4e7b-41fe-941d-19fd921c6b1e"
+            strategy="afterInteractive"
+          />
+        )}
       </body>
     </html>
   );

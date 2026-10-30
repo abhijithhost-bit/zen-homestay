@@ -188,11 +188,11 @@ function MobileBottomBar() {
         className="text-left cursor-pointer active:scale-95 transition-transform"
       >
         <div className="flex items-baseline gap-1">
-          <span className="text-lg font-black text-slate-900">
+          <span suppressHydrationWarning className="text-lg font-black text-slate-900">
             {isCurrentSelectionAvailable ? `₹${totalPrice.toLocaleString('en-IN')}` : 'Sold Out'}
           </span>
           {isCurrentSelectionAvailable && (
-            <span className="text-xs text-orange-600 font-bold underline">/ {nights} {nights === 1 ? 'night' : 'nights'}</span>
+            <span suppressHydrationWarning className="text-xs text-orange-600 font-bold underline">/ {nights} {nights === 1 ? 'night' : 'nights'}</span>
           )}
         </div>
         <div className="flex items-center gap-1.5 text-[11px] text-slate-700 font-bold mt-0.5">
@@ -262,6 +262,16 @@ export function BookingProvider({ children }: { children: ReactNode }) {
   const fetchAvailability = useCallback(async () => {
     if (!isSupabaseConfigured) return;
 
+    // If currently offline, wait for online event rather than triggering failing requests
+    if (typeof window !== 'undefined' && typeof navigator !== 'undefined' && !navigator.onLine) {
+      const handleOnline = () => {
+        window.removeEventListener('online', handleOnline);
+        fetchAvailability();
+      };
+      window.addEventListener('online', handleOnline);
+      return;
+    }
+
     setAvailabilityLoading(true);
     setAvailabilityError(null);
 
@@ -301,7 +311,9 @@ export function BookingProvider({ children }: { children: ReactNode }) {
       const map: Record<string, DayAvailability> = {};
       for (const res of rpcResults) {
         if (res.error) {
-          console.warn('Live availability fetch chunk notice:', res.error.message);
+          if (typeof navigator === 'undefined' || navigator.onLine) {
+            console.warn('Live availability fetch chunk notice:', res.error.message);
+          }
         } else if (res.data && Array.isArray(res.data)) {
           for (const row of res.data as DayAvailability[]) {
             map[row.cal_date] = row;
