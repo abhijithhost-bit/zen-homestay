@@ -79,7 +79,7 @@ export default function SiteFooter() {
                 { href: '/', label: 'Home Overview' },
                 { href: '/#stay', label: 'Lake View Rooms' },
                 { href: '/#arrival', label: 'Speedboat Arrival' },
-                { href: '/honeymoon-homestay-alleppey', label: 'Honeymoon Stay' },
+                { href: '/#amenities', label: 'Amenities' },
                 { href: '/blog', label: 'Travel Blog' },
               ].map(({ href, label }) => (
                 <li key={href}>

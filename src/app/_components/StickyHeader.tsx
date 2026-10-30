@@ -107,7 +107,6 @@ export default function StickyHeader() {
             {[
               { href: '/#stay', label: 'Rooms' },
               { href: '/#arrival', label: 'Speedboat' },
-              { href: '/honeymoon-homestay-alleppey', label: 'Honeymoon' },
               { href: '/blog', label: 'Blog' },
               { href: '/contact', label: 'Contact' },
               { href: '/#faq', label: 'FAQs' },

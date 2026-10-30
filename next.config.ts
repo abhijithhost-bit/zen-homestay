@@ -33,6 +33,11 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/honeymoon-homestay-alleppey',
+        destination: '/',
+        permanent: true,
+      },
     ];
   },
 };
