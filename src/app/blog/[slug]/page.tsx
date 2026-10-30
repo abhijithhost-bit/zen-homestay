@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { blogPosts, getPostBySlug, getAllSlugs } from '../_data/posts';
 import { Clock, ArrowRight, MessageCircle, Phone, ChevronLeft, BookOpen } from 'lucide-react';
 import HomestayPromoCard from '../../_components/HomestayPromoCard';
+import SiteFooter from '../../_components/SiteFooter';
 
 // ─── Static Generation ────────────────────────────────────────────────────────
 
@@ -308,14 +309,7 @@ export default async function BlogPostPage(
       </div>
 
       {/* Footer */}
-      <footer className="bg-slate-950 text-slate-500 text-xs py-6 text-center">
-        <p>© {new Date().getFullYear()} Zen Homestay · Punnamada Lake, Alleppey, Kerala</p>
-        <div className="flex items-center justify-center gap-4 mt-2">
-          <Link href="/" className="hover:text-slate-300 transition-colors">Homestay Home</Link>
-          <Link href="/blog" className="hover:text-slate-300 transition-colors">Blog</Link>
-          <Link href="/contact" className="hover:text-slate-300 transition-colors">Contact</Link>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

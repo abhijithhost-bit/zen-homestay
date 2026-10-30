@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import HomestayPromoCard from '../_components/HomestayPromoCard';
+import SiteFooter from '../_components/SiteFooter';
 import { 
   Sparkles, 
   MessageCircle, 
@@ -282,16 +283,8 @@ export default function Contact() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-800 py-8 text-xs text-slate-400 text-center space-y-2">
-        <p suppressHydrationWarning>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
-        <div className="flex justify-center items-center gap-4 text-slate-500 font-medium">
-          <Link href="/" className="hover:underline hover:text-slate-400">Home</Link>
-          <span>·</span>
-          <Link href="/terms-and-conditions" className="hover:underline hover:text-slate-400">Terms & Conditions</Link>
-          <span>·</span>
-          <Link href="/privacy-policy" className="hover:underline hover:text-slate-400">Privacy Policy</Link>
-        </div>
-      </footer>
+      <SiteFooter />
+      
 
     </div>
   );

@@ -53,8 +53,8 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'October to February — The Golden Season',
         body: [
-          'This is when Alleppey is at its absolute finest. Post-monsoon, the backwater channels are full and fresh, the vegetation is lush and green, and the skies are brilliantly clear. Sunsets over <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a> during these months are simply unreal — the water turns a deep amber-gold that you\'ll be photographing non-stop.',
-          'December and January are the most popular months, with domestic and international tourists arriving in large numbers. Accommodation books out quickly, especially waterfront properties directly on the lake. If you plan to visit in this window, book your <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">Alleppey homestay</a> at least 3–4 weeks in advance.',
+          'This is when Alleppey is at its absolute finest. Post-monsoon, the backwater channels are full and fresh, the vegetation is lush and green, and the skies are brilliantly clear. Sunsets over <a href="/#stay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a> during these months are simply unreal — the water turns a deep amber-gold that you\'ll be photographing non-stop.',
+          'December and January are the most popular months, with domestic and international tourists arriving in large numbers. Accommodation books out quickly, especially waterfront properties directly on the lake. If you plan to visit in this window, book your <a href="/" class="text-sky-600 font-bold hover:underline">Alleppey homestay</a> at least 3–4 weeks in advance.',
           'November is a sleeper hit — crowds are lighter than December, weather is ideal, and prices are still reasonable. Many experienced backwater travellers consider it the true sweet spot of the year.',
         ],
       },
@@ -146,9 +146,9 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'Which Should You Choose?',
         body: [
-          'Choose <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">Alleppey homestays</a> if you want variety, authentic local experiences, access to the famous Nehru Trophy Boat Race, a real town to explore, and better value for money. It is the better choice for most first-time Kerala travellers.',
+          'Choose <a href="/" class="text-sky-600 font-bold hover:underline">Alleppey homestays</a> if you want variety, authentic local experiences, access to the famous Nehru Trophy Boat Race, a real town to explore, and better value for money. It is the better choice for most first-time Kerala travellers.',
           'Choose Kumarakom if you are specifically after a luxury resort-only experience and prioritise birdwatching in the sanctuary. It is a smaller, quieter destination better suited to those who have already done Alleppey.',
-          'Our honest recommendation: start with Alleppey. The backwater scale, the variety of experiences, and the authentic homestay culture make it the superior first introduction to <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Kerala backwater homestays</a>.',
+          'Our honest recommendation: start with Alleppey. The backwater scale, the variety of experiences, and the authentic homestay culture make it the superior first introduction to <a href="/" class="text-sky-600 font-bold hover:underline">Kerala backwater homestays</a>.',
         ],
       },
     ],
@@ -472,7 +472,7 @@ export const blogPosts: BlogPost[] = [
         body: [
           'Alleppey (Alappuzha) sits at the heart of Kerala\'s backwater network — a labyrinth of lakes, lagoons, canals, and palm-fringed channels stretching across the lowlands of southern Kerala. While most tourists experience this world from the deck of a houseboat, kayaking lets you go somewhere no houseboat ever can: deep into the narrow village canals, inches above the water, surrounded by the sounds of the backwater ecosystem in full voice.',
           'A kayak is quiet. That silence changes everything. You hear the kingfishers before you see them. You glide past villagers washing clothes at the canal\'s edge without disturbing them. You slip under low-hanging coconut palms and through tunnels of water hyacinth that a motorised boat could never navigate. It is, without question, one of the most immersive travel experiences in India.',
-          'At <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">Zen Homestay</a>, we are based directly on Punnamada Lake — the same lake that hosts the famous Nehru Trophy Boat Race — which means your kayaking adventure starts right at our front door, across some of Alleppey\'s most spectacular open water.',
+          'At <a href="/" class="text-sky-600 font-bold hover:underline">Zen Homestay</a>, we are based directly on Punnamada Lake — the same lake that hosts the famous Nehru Trophy Boat Race — which means your kayaking adventure starts right at our front door, across some of Alleppey\'s most spectacular open water.',
         ],
       },
       {
@@ -563,7 +563,7 @@ export const blogPosts: BlogPost[] = [
         heading: 'Speedboats in Alleppey — More Than Just Transport',
         body: [
           'Most visitors to Alleppey only experience a speedboat as a transfer vehicle — a quick crossing from a jetty to a houseboat or homestay. But at Zen Homestay, we believe the speedboat is one of the great experiences of the Alleppey backwaters in its own right.',
-          'Our private speedboat operates out of <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a> — the famous lake that hosts the Nehru Trophy Boat Race every August — giving guests access to some of the widest, most spectacular open water in the entire Kerala backwater system. Whether you want a quick adrenaline hit or an immersive full-hour safari through village canals and coconut-lined lagoons, we have a ride for you.',
+          'Our private speedboat operates out of <a href="/#stay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a> — the famous lake that hosts the Nehru Trophy Boat Race every August — giving guests access to some of the widest, most spectacular open water in the entire Kerala backwater system. Whether you want a quick adrenaline hit or an immersive full-hour safari through village canals and coconut-lined lagoons, we have a ride for you.',
         ],
       },
       {
@@ -590,7 +590,7 @@ export const blogPosts: BlogPost[] = [
         body: [
           'Houseboats are iconic and they deserve their reputation — an overnight on a Kerala houseboat is a genuinely memorable experience. But for seeing the backwaters efficiently, covering distance, and experiencing the contrast between open lake and narrow village canal, a speedboat safari makes more practical sense for most travellers.',
           'Houseboats are slow (they travel at about 8–10 km/h), cannot enter the narrow canals of backwater villages, and are typically booked in advance for full-day or overnight blocks. A speedboat can cover 30 km in an hour, reach places no houseboat can access, and be arranged on short notice through Abhijith.',
-          'For travellers staying 1–2 nights who want to experience both the intimacy of a <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> and the breadth of the lake system, the combination of a morning kayak session and a late-afternoon speedboat safari is simply unbeatable.',
+          'For travellers staying 1–2 nights who want to experience both the intimacy of a <a href="/" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> and the breadth of the lake system, the combination of a morning kayak session and a late-afternoon speedboat safari is simply unbeatable.',
         ],
       },
       {
@@ -856,7 +856,7 @@ export const blogPosts: BlogPost[] = [
         body: [
           'If karimeen pollichathu is Alleppey\'s great dinner, <strong>appam with coconut stew</strong> is its perfect morning. Appam is a lacy, bowl-shaped rice flour pancake with crisp, golden edges and a soft, spongy centre — somewhere between a crêpe and a soufflé in texture. It is cooked in a small curved pan (appachatti) over high heat and takes skill and practice to get right.',
           'The coconut stew that accompanies it is made from freshly extracted coconut milk, gently simmered with thin slices of potato, onion, green chilli, ginger, and whole spices — cardamom, cloves, cinnamon. It is white, aromatic, and deceptively light. The contrast between the crisp appam edges and the silky stew is one of the great textural pleasures in Indian food.',
-          'At a family <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">homestay in Alleppey</a>, this breakfast is cooked from scratch every morning using fresh ingredients. No powders, no shortcuts. Eaten on a veranda overlooking <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a>, it is one of the best meals you will have in India.',
+          'At a family <a href="/" class="text-sky-600 font-bold hover:underline">homestay in Alleppey</a>, this breakfast is cooked from scratch every morning using fresh ingredients. No powders, no shortcuts. Eaten on a veranda overlooking <a href="/#stay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a>, it is one of the best meals you will have in India.',
         ],
       },
       {
@@ -909,7 +909,7 @@ export const blogPosts: BlogPost[] = [
         heading: 'Where to Eat in Alleppey — The Honest Hierarchy',
         body: [
           'The best food in Alleppey is found in order of decreasing price and increasing authenticity: <strong>family homestays</strong> serve the most personal and freshly cooked meals, prepared by people who have been making these dishes their entire lives. <strong>Local toddy shops</strong> offer the best seafood for the lowest prices. <strong>Mid-range restaurants</strong> near the town centre are reliable but less distinctive. <strong>Hotel restaurants</strong> and <strong>houseboat kitchens</strong> serve tourist-adapted versions of Kerala food that are fine but rarely exceptional.',
-          'If you are staying at a lakefront <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> like Zen Homestay, your breakfast is already sorted — and your host will know every good toddy shop, local restaurant, and evening food stall in the area. Use them as your food guide. This is the most valuable tourism resource in Alleppey and it costs nothing.',
+          'If you are staying at a lakefront <a href="/" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> like Zen Homestay, your breakfast is already sorted — and your host will know every good toddy shop, local restaurant, and evening food stall in the area. Use them as your food guide. This is the most valuable tourism resource in Alleppey and it costs nothing.',
         ],
       },
     ],
@@ -948,7 +948,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'Why Alleppey Deserves More Than a Day Trip',
         body: [
-          'Most travellers squeeze Alleppey into a single overnight houseboat ride and move on. They see the canals from a floating living room, eat a packaged lunch, sleep, and leave. They miss almost everything — the lake at sunrise, the paddy fields below sea level, the temple festivals, the toddy shops, and the quiet magic of waking up on the shore of <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a> with nothing but birdsong and the gentle lap of water.',
+          'Most travellers squeeze Alleppey into a single overnight houseboat ride and move on. They see the canals from a floating living room, eat a packaged lunch, sleep, and leave. They miss almost everything — the lake at sunrise, the paddy fields below sea level, the temple festivals, the toddy shops, and the quiet magic of waking up on the shore of <a href="/#stay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a> with nothing but birdsong and the gentle lap of water.',
           'Two days in Alleppey lets you breathe. Three days lets you truly soak it in. This itinerary covers both — a complete 2-day Alleppey trip plan and a bonus Day 3 for those who have the time. Whether you are a couple looking for a peaceful lakeside escape or a family with young kids who need a slower pace, this plan has you covered.',
         ],
       },
@@ -956,7 +956,7 @@ export const blogPosts: BlogPost[] = [
         heading: 'Day 1 — Arrival, Speedboat, and Sunset on Punnamada Lake',
         body: [
           '<strong>Morning / Early Afternoon — Arrive in Alleppey.</strong> If you are coming from Kochi, the drive takes about 1.5 hours via NH66. From Kottayam, it is about 1 hour. Head to the <strong>Nehru Trophy Boat Race Finishing Point</strong> — a well-known landmark in Alleppey and the starting point of your backwater experience.',
-          '<strong>2:00 PM — Speedboat Transfer to Your Lakefront Homestay.</strong> This is where most Alleppey trips feel generic — but yours won\'t. Instead of checking into a roadside hotel, you board a private speedboat at the finishing point. In under 5 minutes, you glide across Punnamada Lake and arrive at your waterfront <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">Alleppey homestay</a> — directly on the lake, with the finishing point visible across the water. Check in, settle into your lake-view room, and take a moment to absorb the view.',
+          '<strong>2:00 PM — Speedboat Transfer to Your Lakefront Homestay.</strong> This is where most Alleppey trips feel generic — but yours won\'t. Instead of checking into a roadside hotel, you board a private speedboat at the finishing point. In under 5 minutes, you glide across Punnamada Lake and arrive at your waterfront <a href="/" class="text-sky-600 font-bold hover:underline">Alleppey homestay</a> — directly on the lake, with the finishing point visible across the water. Check in, settle into your lake-view room, and take a moment to absorb the view.',
           '<strong>3:00 PM — Explore the Homestay Surroundings.</strong> Walk along the lakefront, sit on the wooden veranda, and watch the local life unfold — fishermen casting nets, cormorants diving, and coconut palms swaying. This is the side of Alleppey most tourists never see because they\'re stuck in traffic on the town side.',
           '<strong>4:30 PM — Shikara Ride Through the Backwater Canals.</strong> Board a traditional shikara (available at extra charge) for a 1–2 hour glide through the narrow backwater canals branching off Punnamada Lake. The late afternoon light is perfect — golden, warm, and utterly photogenic. You will pass through village canals, see local homes with boats parked at their doorsteps, and spot kingfishers, egrets, and herons along the way.',
           '<strong>6:00 PM — Sunset from Punnamada Lake.</strong> This is the highlight of Day 1. Alleppey sunsets from the lakefront are legendary — the sky turns from gold to deep orange to violet, all reflected perfectly on the calm lake surface. Watch it from the veranda or from the water if your shikara ride is still going.',
@@ -1010,7 +1010,7 @@ export const blogPosts: BlogPost[] = [
         heading: 'Why a Lakefront Homestay Makes This Itinerary Work',
         body: [
           'This itinerary is designed around staying directly on Punnamada Lake — and that changes everything. Instead of commuting from a hotel in town to the backwaters, you wake up on the lake. Instead of booking a separate houseboat experience, you live the backwater life from your room. The speedboat transfer, the shikara rides, the kayaking, the sunsets — they all happen right from where you sleep.',
-          'A <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> on Punnamada Lake also gives you something no houseboat or hotel can — a real connection with the local community. Your host lives here, cooks for you, and knows every canal, every temple, and every toddy shop in the area. That local knowledge is what turns a good trip into an unforgettable one.',
+          'A <a href="/" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> on Punnamada Lake also gives you something no houseboat or hotel can — a real connection with the local community. Your host lives here, cooks for you, and knows every canal, every temple, and every toddy shop in the area. That local knowledge is what turns a good trip into an unforgettable one.',
         ],
       },
     ],
@@ -1053,7 +1053,7 @@ export const blogPosts: BlogPost[] = [
         heading: 'Freedom and Evening Restrictions',
         body: [
           'This is the detail most houseboat brochures leave out: by government regulation, all houseboats in Alleppey must dock and turn off their engines by 5:30 PM. From sunset until the next morning, you are parked by the side of a canal, often sandwiched next to several other houseboats, completely stationary.',
-          'When you stay at a <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">homestay in Alleppey</a>, your evenings belong to you. You can take a sunset walk through the village, cycle along the paddy fields, visit Alleppey beach, or simply sit on your private veranda and watch the lake under the stars. You aren\'t trapped on a docked boat for 14 hours.',
+          'When you stay at a <a href="/" class="text-sky-600 font-bold hover:underline">homestay in Alleppey</a>, your evenings belong to you. You can take a sunset walk through the village, cycle along the paddy fields, visit Alleppey beach, or simply sit on your private veranda and watch the lake under the stars. You aren\'t trapped on a docked boat for 14 hours.',
         ],
       },
       {
@@ -1101,7 +1101,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'The Non-Negotiable: Fast and Reliable Wi-Fi',
         body: [
-          'For any remote worker or digital nomad, internet speed is the single most critical factor. While Alleppey is a relaxed backwater town, its digital infrastructure has improved significantly. At premium homestays like <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">Zen Homestay</a>, we provide high-speed, stable Wi-Fi specifically designed to support uninterrupted video conferencing, large file uploads, and seamless remote desktop access.',
+          'For any remote worker or digital nomad, internet speed is the single most critical factor. While Alleppey is a relaxed backwater town, its digital infrastructure has improved significantly. At premium homestays like <a href="/" class="text-sky-600 font-bold hover:underline">Zen Homestay</a>, we provide high-speed, stable Wi-Fi specifically designed to support uninterrupted video conferencing, large file uploads, and seamless remote desktop access.',
           'When booking a stay, always verify the internet setup. A dedicated broadband connection is essential, as mobile data coverage on the backwaters can sometimes be inconsistent depending on your exact location.',
         ],
       },
@@ -1121,7 +1121,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'Healthy, Home-Cooked Kerala Meals',
         body: [
-          'When you are working full-time on a workation, you do not want to waste hours cooking or relying on unhealthy restaurant takeaways. Staying at a <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> means you get access to fresh, home-cooked local meals.',
+          'When you are working full-time on a workation, you do not want to waste hours cooking or relying on unhealthy restaurant takeaways. Staying at a <a href="/" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> means you get access to fresh, home-cooked local meals.',
           'Start your day with a traditional breakfast of Appam or Puttu, and enjoy balanced, healthy Kerala lunches that keep you energized without the post-meal slump. Your host handles the food, leaving you free to focus entirely on your work and relaxation.',
         ],
       },
@@ -1181,7 +1181,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'The Best Routes: Narrow Canals Where Houseboats Cannot Enter',
         body: [
-          'The greatest advantage of booking a shikara ride from <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a> is the diversity of routes accessible directly from the open lake into Kuttanad\'s quietest backwaters.',
+          'The greatest advantage of booking a shikara ride from <a href="/#stay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a> is the diversity of routes accessible directly from the open lake into Kuttanad\'s quietest backwaters.',
           '<strong>The Kainakary & Meenappally Canal Loop:</strong> Branching south-east from Punnamada Lake, these narrow channels meander past heritage tiled homes, quaint village jetties, and lush paddy embankments located below sea level. You will see children paddling wooden canoes to school, women harvesting water chestnuts, and ducks swimming in tidy formations.',
           '<strong>The Vembanad Lake Fringe & Island Channels:</strong> For those who love wide horizons, your boatman can cruise along the fringes of Vembanad Lake towards the mangroves surrounding Pathiramanal Island. The contrast between expansive open water and intimate green channels makes this 2-to-3-hour route an absolute marvel.',
           'Unlike large commercial houseboats that are restricted to broad, often congested arterial channels, a skilled local boatman can pivot down quiet side alleys whenever another boat approaches, leaving you enveloped in serene green silence.',
@@ -1203,7 +1203,7 @@ export const blogPosts: BlogPost[] = [
           'Here is the genuine market reality for shikara boat pricing in Alleppey for 2026:',
           '<strong>Standard Hourly Rates:</strong> Honest local boatmen charge between <strong>₹600 and ₹1,000 per hour</strong> for the entire boat (not per person), depending on the boat size (4-seater up to 10-seater) and the season. Peak holiday weeks (Christmas to New Year) may see slight surges, while off-season and monsoon months offer room for negotiation.',
           '<strong>Recommended Duration:</strong> A <strong>2-hour to 3-hour ride</strong> is the perfect sweet spot. A single hour barely allows you to venture past the initial open channels into the serene interior canals, while 4 hours on a low wooden craft can become tiring for small children or elderly travelers.',
-          'To ensure you receive fair rates and an experienced, respectful boatman who respects local ecology, always book directly through your verified <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">homestay in Alleppey</a> rather than roadside touts.',
+          'To ensure you receive fair rates and an experienced, respectful boatman who respects local ecology, always book directly through your verified <a href="/" class="text-sky-600 font-bold hover:underline">homestay in Alleppey</a> rather than roadside touts.',
         ],
       },
       {
@@ -1211,14 +1211,14 @@ export const blogPosts: BlogPost[] = [
         body: [
           'Many visitors debate whether they should spend their budget on an overnight houseboat or choose a lakeside stay. As we detailed in our <a href="/blog/alleppey-houseboat-vs-homestay" class="text-sky-600 font-bold hover:underline">houseboat vs homestay comparison</a>, booking a private houseboat typically costs anywhere from ₹12,000 to ₹22,000 per night — and government regulations legally require every houseboat to anchor and switch off engines by 5:30 PM, leaving you stationary in a crowded parking canal for the night.',
           'Consider the vastly superior alternative adopted by experienced Kerala travellers:',
-          'Book a premium waterfront room at a authentic <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> for ₹3,000 to ₹4,500 per night. Then, hire a private shikara for 2 hours during sunrise or golden hour for approximately ₹1,500–₹2,000.',
+          'Book a premium waterfront room at a authentic <a href="/" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> for ₹3,000 to ₹4,500 per night. Then, hire a private shikara for 2 hours during sunrise or golden hour for approximately ₹1,500–₹2,000.',
           'You spend less than half the total cost of a houseboat, enjoy deep comfort on land without engine noise or exhaust fumes, eat authentic home-cooked meals prepared with love, and retain complete freedom to explore Alleppey\'s beaches, cafes, and village footpaths all evening.',
         ],
       },
       {
         heading: 'How to Arrange Your Shikara Ride Directly from Zen Homestay',
         body: [
-          'Because Zen Homestay is situated directly along the waterfront on <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a>, our guests enjoy an effortless advantage: the shikara pulls directly up to our private wooden dock. There is no need to hire an auto-rickshaw, navigate crowded commercial jetties, or negotiate with aggressive street brokers.',
+          'Because Zen Homestay is situated directly along the waterfront on <a href="/#stay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a>, our guests enjoy an effortless advantage: the shikara pulls directly up to our private wooden dock. There is no need to hire an auto-rickshaw, navigate crowded commercial jetties, or negotiate with aggressive street brokers.',
           'You can wake up at 5:45 AM, sip a cup of fresh Kerala filter coffee or spiced tea on your lakefront balcony, and step straight down into your waiting shikara while the water is still blanketed in morning mist.',
           'For adventure lovers, we also offer early morning <a href="/blog/kayaking-in-alleppey-backwaters-complete-guide" class="text-sky-600 font-bold hover:underline">kayaking in Alleppey</a> at ₹500/person, creating the ultimate combination of self-paddled sport and effortless shikara drifting. Host Abhijith coordinates all bookings directly with trusted neighborhood boatmen to guarantee the cleanest boats, the best routes, and genuine local hospitality.',
         ],
@@ -1266,14 +1266,14 @@ export const blogPosts: BlogPost[] = [
         body: [
           'Before spending half your entire holiday budget on a houseboat, it helps to understand how they operate. Beyond the hefty price tag (typically ₹12,000 to ₹22,000 per night for an entry-level 1-bedroom boat), strict Kerala State inland navigation regulations mandate that all commercial houseboats must drop anchor and completely shut off engines by 5:30 PM to preserve night fishing nets.',
           'This means that from late afternoon until the following morning, you remain stationary in a canal mooring slot alongside dozens of other houseboats, with running generators humming in the background. As we highlighted in our <a href="/blog/alleppey-houseboat-vs-homestay" class="text-sky-600 font-bold hover:underline">houseboat vs homestay comparison</a>, you are paying a massive premium for what amounts to a locked-in floating hotel room.',
-          'By contrast, choosing a lakefront base like <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Punnamada Lake homestay</a> gives you 24/7 unhindered views of the open waters for just ₹3,000 per night. You get total evening freedom to stroll village bunds, cycle past paddy fields, visit Alleppey Beach, or relax on an open-air veranda under starry backwater skies.',
+          'By contrast, choosing a lakefront base like <a href="/#stay" class="text-sky-600 font-bold hover:underline">Punnamada Lake homestay</a> gives you 24/7 unhindered views of the open waters for just ₹3,000 per night. You get total evening freedom to stroll village bunds, cycle past paddy fields, visit Alleppey Beach, or relax on an open-air veranda under starry backwater skies.',
         ],
       },
       {
         heading: 'Realistic Alleppey Trip Cost Breakdown (Budget vs Splurge)',
         body: [
           'Here is an honest, itemized comparison for two people spending 2 nights and 3 days in Alleppey, contrasting a traditional agency package against the smart, budget-conscious approach:',
-          '<strong>1. Accommodation (2 Nights):</strong><br/>• Agency/Resort Package: ₹22,000 – ₹35,000 (Houseboat + 4-star resort)<br/>• Smart Budget Strategy: ₹6,000 (Clean, scenic room at <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">Zen Homestay Alleppey</a> at ₹3,000/night with lake views & breakfast included)',
+          '<strong>1. Accommodation (2 Nights):</strong><br/>• Agency/Resort Package: ₹22,000 – ₹35,000 (Houseboat + 4-star resort)<br/>• Smart Budget Strategy: ₹6,000 (Clean, scenic room at <a href="/" class="text-sky-600 font-bold hover:underline">Zen Homestay Alleppey</a> at ₹3,000/night with lake views & breakfast included)',
           '<strong>2. Backwater Boating & Activities:</strong><br/>• Agency/Resort Package: ₹12,000 – ₹18,000 (Packaged cruise markups)<br/>• Smart Budget Strategy: ₹2,000 (1x 2-hour private shikara cruise at ₹1,500 + ₹500 for morning kayaking or SWTD government ferry)',
           '<strong>3. Food & Dining (3 Days):</strong><br/>• Agency/Resort Package: ₹6,000 – ₹9,000 (Hotel buffet dining and tourist cafes)<br/>• Smart Budget Strategy: ₹1,500 – ₹2,200 (Complimentary home-cooked breakfast + banana leaf sadya lunches and fresh local fish curry meals)',
           '<strong>4. Local Transfers:</strong><br/>• Agency/Resort Package: ₹3,500 – ₹5,000 (Dedicated tourist cabs)<br/>• Smart Budget Strategy: ₹300 – ₹600 (Train from Kochi, local autorickshaws, and free speedboat check-in transfer from host)',
@@ -1314,7 +1314,7 @@ export const blogPosts: BlogPost[] = [
         heading: 'Where to Stay: Authentic Lakefront Living on a Sensible Budget',
         body: [
           'The biggest mistake budget travellers make in Alleppey is booking a windowless room in the noisy, crowded town centre just to save ₹500, only to spend double that amount on daily auto-rickshaws travelling back and forth to the water.',
-          'The smarter decision is staying directly on the lake at <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Zen Homestay on Punnamada Lake</a>. For ₹3,000 per night, you step out of bed directly onto the shores of the backwaters. Your stay includes complimentary private speedboat transfer on check-in, spotless air-conditioned rooms, blazing-fast Wi-Fi, and delicious home-cooked Kerala breakfasts.',
+          'The smarter decision is staying directly on the lake at <a href="/" class="text-sky-600 font-bold hover:underline">Zen Homestay on Punnamada Lake</a>. For ₹3,000 per night, you step out of bed directly onto the shores of the backwaters. Your stay includes complimentary private speedboat transfer on check-in, spotless air-conditioned rooms, blazing-fast Wi-Fi, and delicious home-cooked Kerala breakfasts.',
           'You get the breathtaking lake views of a luxury resort with the genuine warmth, safety, and local insider guidance of an authentic family homestay.',
         ],
       },
@@ -1379,7 +1379,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'The Speedboat Crossing on Punnamada Lake — A Highlight for Older Kids',
         body: [
-          'If your family is staying at a waterfront property like <a href="/" class="text-sky-600 font-bold hover:underline">Zen Homestay</a> on <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a>, your arrival itself becomes an activity. The homestay offers a complimentary private speedboat pickup from the Nehru Trophy Boat Race Finishing Point — a 5-minute crossing that absolutely thrills children aged 5 and up.',
+          'If your family is staying at a waterfront property like <a href="/" class="text-sky-600 font-bold hover:underline">Zen Homestay</a> on <a href="/#stay" class="text-sky-600 font-bold hover:underline">Punnamada Lake</a>, your arrival itself becomes an activity. The homestay offers a complimentary private speedboat pickup from the Nehru Trophy Boat Race Finishing Point — a 5-minute crossing that absolutely thrills children aged 5 and up.',
           'There is something wonderful about arriving at your accommodation by speedboat. Children who might have been travel-weary after a long journey from Kochi or Trivandrum are suddenly wide awake, gripping the boat\'s rail as it cuts across the open water of Punnamada Lake. Parents tend to look pretty delighted too.',
           'Once settled in, older kids (8+) who want more can arrange additional lake speedboat rides through the host at ₹300 per trip. These rides give families a different perspective of the lake — moving fast enough to feel exciting, but on calm inland water rather than open sea. Life jackets are available for all passengers.',
         ],
@@ -1473,7 +1473,7 @@ export const blogPosts: BlogPost[] = [
         heading: 'Where to Stay — Why a Homestay Works Best for Solo Travellers',
         body: [
           'For solo female travellers, a well-run homestay beats a hotel or houseboat almost every time. Here is why: you get a host — a real person who knows the area, is available if you need help, and has a genuine stake in your wellbeing because their reputation depends on it. Anonymous large hotels and impersonal houseboat operators cannot offer this.',
-          'When choosing an <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">Alleppey homestay</a> as a solo female traveller, look for a few things: a family-run property with consistent reviews from other women who have stayed solo, a lakefront or canal-front location (these tend to be quieter neighbourhoods), and a host who is responsive and communicative before you arrive.',
+          'When choosing an <a href="/" class="text-sky-600 font-bold hover:underline">Alleppey homestay</a> as a solo female traveller, look for a few things: a family-run property with consistent reviews from other women who have stayed solo, a lakefront or canal-front location (these tend to be quieter neighbourhoods), and a host who is responsive and communicative before you arrive.',
           'Zen Homestay on Punnamada Lake is a private upper-floor space hosted by Abhijith — a local host whose guests consistently note how safe and comfortable they felt. The property is surrounded by water on multiple sides, which means the neighbourhood is naturally quiet and the immediate environment is controlled.',
         ],
       },
@@ -1516,7 +1516,7 @@ export const blogPosts: BlogPost[] = [
         heading: 'What Solo Female Travellers Say About Alleppey',
         body: [
           'The consistent theme from solo female travellers who have been to Alleppey is one of pleasant surprise. Expectations of discomfort are not met. The backwater environment filters out a certain kind of tourist — Alleppey attracts people who are there for the landscape and the calm, not for nightlife or parties.',
-          'Homestay hosts in the lakefront zone tend to be genuinely hospitable in the traditional Kerala sense — chai at the right moment, local meal recommendations, an auto number on standby. The relationship between host and guest in a well-run <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> is one of the best safety nets a solo female traveller can have.',
+          'Homestay hosts in the lakefront zone tend to be genuinely hospitable in the traditional Kerala sense — chai at the right moment, local meal recommendations, an auto number on standby. The relationship between host and guest in a well-run <a href="/" class="text-sky-600 font-bold hover:underline">Kerala backwater homestay</a> is one of the best safety nets a solo female traveller can have.',
           'If you have been hesitating about Alleppey because you are going alone — do not. It is genuinely one of the easier solo destinations in South India, and the backwaters are the kind of place that rewards the slowness and self-directed curiosity that solo travel makes possible.',
         ],
       },
@@ -1570,8 +1570,8 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'The Lakefront Homestay Advantage: Living on the Water for a Fraction of the Cost',
         body: [
-          'Now consider the alternative: basing yourself directly on the water at an authentic lakefront <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">homestay in Alleppey</a>.',
-          'At <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Zen Homestay on Punnamada Lake</a>, your entire stay is centered around the timeless rhythm of the backwaters. For approximately <strong>₹3,000 to ₹4,500 per night</strong> — over 70% less than a Marari beach resort — you wake up in an air-conditioned, private upper-floor room with panoramic, unobstructed views of Punnamada Lake. You can watch early-morning mist lift off the water, hear kingfishers call across the reeds, and enjoy a complimentary hot Kerala breakfast of fresh appam and stew served on an open-air veranda.',
+          'Now consider the alternative: basing yourself directly on the water at an authentic lakefront <a href="/" class="text-sky-600 font-bold hover:underline">homestay in Alleppey</a>.',
+          'At <a href="/#stay" class="text-sky-600 font-bold hover:underline">Zen Homestay on Punnamada Lake</a>, your entire stay is centered around the timeless rhythm of the backwaters. For approximately <strong>₹3,000 to ₹4,500 per night</strong> — over 70% less than a Marari beach resort — you wake up in an air-conditioned, private upper-floor room with panoramic, unobstructed views of Punnamada Lake. You can watch early-morning mist lift off the water, hear kingfishers call across the reeds, and enjoy a complimentary hot Kerala breakfast of fresh appam and stew served on an open-air veranda.',
           'Unlike isolated beach resorts, staying on the lake gives you total freedom and immersion. You can step directly onto a wooden dock for a dawn <a href="/blog/shikara-boat-ride-alleppey-guide" class="text-sky-600 font-bold hover:underline">shikara boat ride in Alleppey</a>, paddle a kayak through narrow village canals, or explore Alleppey\'s bustling local markets and famous seafood toddy shops (as highlighted in our <a href="/blog/what-to-eat-in-alleppey-kerala-food-guide" class="text-sky-600 font-bold hover:underline">Kerala food guide</a>).',
         ],
       },
@@ -1580,7 +1580,7 @@ export const blogPosts: BlogPost[] = [
         body: [
           'To see why a lakefront base makes far more financial and logistical sense, compare the typical numbers for a 2-night stay for a couple:',
           '<strong>Option A: Luxury Resort Directly on Marari Beach</strong><br/>• Accommodation (2 Nights): ₹28,000 – ₹45,000<br/>• Resort Meals & Drinks: ₹8,000 – ₹12,000<br/>• Day Excursion to Alleppey Backwaters: ₹3,000 – ₹5,000<br/>• Total Estimate: <strong>₹39,000 – ₹62,000</strong> (High price tag, limited evening mobility, separate commute needed to see the backwaters)',
-          '<strong>Option B: Lakefront Base at Zen Homestay + Marari Beach Day Excursion</strong><br/>• Accommodation (2 Nights with Lake Views): ₹6,000 – ₹7,000 at <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Zen Homestay on Punnamada Lake</a><br/>• Home-Cooked Kerala Breakfasts: Included free<br/>• Round-Trip Auto/Cab Excursion to Marari Beach: ₹700 – ₹1,200<br/>• Sunset Beach Snacks & Fresh Seafood Dinner: ₹1,500 – ₹2,200<br/>• Morning Private Shikara / Kayak on Lake: ₹1,500 – ₹2,000<br/>• Total Estimate: <strong>₹9,700 – ₹12,400</strong> (Over 75% savings, zero compromise on scenic beauty, and you experience both ecosystems to the fullest!)',
+          '<strong>Option B: Lakefront Base at Zen Homestay + Marari Beach Day Excursion</strong><br/>• Accommodation (2 Nights with Lake Views): ₹6,000 – ₹7,000 at <a href="/" class="text-sky-600 font-bold hover:underline">Zen Homestay on Punnamada Lake</a><br/>• Home-Cooked Kerala Breakfasts: Included free<br/>• Round-Trip Auto/Cab Excursion to Marari Beach: ₹700 – ₹1,200<br/>• Sunset Beach Snacks & Fresh Seafood Dinner: ₹1,500 – ₹2,200<br/>• Morning Private Shikara / Kayak on Lake: ₹1,500 – ₹2,000<br/>• Total Estimate: <strong>₹9,700 – ₹12,400</strong> (Over 75% savings, zero compromise on scenic beauty, and you experience both ecosystems to the fullest!)',
           'As detailed in our <a href="/blog/alleppey-budget-trip-guide-backwaters" class="text-sky-600 font-bold hover:underline">Alleppey budget trip guide</a>, redirecting your accommodation savings into authentic local activities delivers an infinitely richer trip.',
         ],
       },
@@ -1643,7 +1643,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: 'The Accommodation Dilemma: Corporate Resort Luxury vs Authentic Backwater Living',
         body: [
-          'When planning a holiday to Kerala\'s backwater capital, one of the biggest decisions you will face is where to unpack your bags. Browse any travel portal and you will encounter two vastly different options: sprawling, high-end luxury resorts commanding ₹12,000 to ₹25,000 per night, and intimate, family-run <a href="/alleppey-homestay" class="text-sky-600 font-bold hover:underline">homestays in Alleppey</a> starting at just ₹3,000 to ₹4,500 per night.',
+          'When planning a holiday to Kerala\'s backwater capital, one of the biggest decisions you will face is where to unpack your bags. Browse any travel portal and you will encounter two vastly different options: sprawling, high-end luxury resorts commanding ₹12,000 to ₹25,000 per night, and intimate, family-run <a href="/" class="text-sky-600 font-bold hover:underline">homestays in Alleppey</a> starting at just ₹3,000 to ₹4,500 per night.',
           'At first glance, glossy brochures from luxury resorts make an alluring case: manicured swimming pools, expansive lawns, multi-cuisine restaurants, and branded spa pavilions. However, many travellers who book these resorts return with a common lament: they felt completely insulated from the genuine pulse of Kerala. Behind high perimeter walls and security gates, you could just as easily be staying in a hotel in Goa, Bangalore, or suburban Kochi.',
           'If your goal is to truly experience the magic of the backwaters — waking up to the gentle ripple of the lake, smelling fresh cardamoms in morning tea, and stepping straight from your veranda onto a wooden boat — choosing an authentic lakefront homestay over a commercial resort isn\'t just a budget-friendly decision; it is a vastly superior travel experience.',
         ],
@@ -1653,7 +1653,7 @@ export const blogPosts: BlogPost[] = [
         body: [
           'The first and most critical distinction between resorts and homestays in Alleppey is their relationship with the water.',
           'Many large resorts in the region are situated on vast tracts of land inland or along highway access roads. While they may advertise a "backwater view" or have a small canal border, the guest rooms are often set hundreds of metres back across landscaped lawns, parking lots, and conference buildings. You look at the backwaters from behind a barrier, like an exhibit in a museum.',
-          'By contrast, authentic lakefront properties like <a href="/punnamada-lake-homestay" class="text-sky-600 font-bold hover:underline">Zen Homestay on Punnamada Lake</a> are built right on the water\'s edge. There are no concrete barriers or corporate buffer zones separating you from the lake. From your room balcony or ground-floor teak veranda, the mirrored expanse of Punnamada Lake is right at your feet.',
+          'By contrast, authentic lakefront properties like <a href="/#stay" class="text-sky-600 font-bold hover:underline">Zen Homestay on Punnamada Lake</a> are built right on the water\'s edge. There are no concrete barriers or corporate buffer zones separating you from the lake. From your room balcony or ground-floor teak veranda, the mirrored expanse of Punnamada Lake is right at your feet.',
           'You can sit with a hot cup of chai and watch local fishermen cast cast-nets in the morning mist, see children taking country boats to village schools, and watch traditional snake boats practicing their stroke rhythms during racing season. It is 24/7 living immersion rather than a scheduled hotel sightseeing slot.',
         ],
       },
@@ -1680,7 +1680,7 @@ export const blogPosts: BlogPost[] = [
         body: [
           'Experiencing the waterways is the cornerstone of any Alleppey holiday. How your accommodation handles boating logistics can make or break your trip.',
           'In large resorts, arranging a boat cruise often requires navigating through a concierge desk. Resorts frequently partner with third-party agents, adding a 50% to 100% markup to standard rates. Furthermore, if the resort does not have deep water access, you may have to take a taxi to the main Alleppey boat jetty just to board.',
-          'At <a href="/kerala-backwater-homestay" class="text-sky-600 font-bold hover:underline">Zen Homestay</a>, we have our own private water jetty directly on Punnamada Lake. You do not need to negotiate with touts or sit in traffic to reach the boarding point:',
+          'At <a href="/" class="text-sky-600 font-bold hover:underline">Zen Homestay</a>, we have our own private water jetty directly on Punnamada Lake. You do not need to negotiate with touts or sit in traffic to reach the boarding point:',
           '• <strong>Sunrise Shikara Rides:</strong> Step straight from your room onto a cushioned <a href="/blog/shikara-boat-ride-alleppey-guide" class="text-sky-600 font-bold hover:underline">shikara boat</a> at 6:00 AM while the lake is still glassy calm.<br/>• <strong>Canal Kayaking:</strong> Launch a kayak right from our dock into tranquil village waterways where motorboats cannot go (see our <a href="/blog/kayaking-in-alleppey-backwaters-complete-guide" class="text-sky-600 font-bold hover:underline">complete Alleppey kayaking guide</a>).<br/>• <strong>Lake Speedboat Excursions:</strong> For high-octane fun across Vembanad Lake, private <a href="/blog/speedboat-rides-alleppey-punnamada-lake-guide" class="text-sky-600 font-bold hover:underline">speedboat rides</a> pick you up right at our jetty.',
           'If you are also considering spending a night on a traditional Kettuvallam, make sure to read our honest breakdown on <a href="/blog/alleppey-houseboat-vs-homestay" class="text-sky-600 font-bold hover:underline">Alleppey Houseboat vs Homestay</a> before committing your budget.',
         ],

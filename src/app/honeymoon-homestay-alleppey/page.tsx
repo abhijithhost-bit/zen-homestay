@@ -3,10 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { MessageCircle, Phone, Heart, Anchor, Coffee, Waves, Star, CheckCircle2, MapPin, Sparkles } from "lucide-react";
 import HomestayPromoCard from "../_components/HomestayPromoCard";
+import SiteFooter from "../_components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Honeymoon Homestay Alleppey | Zen Homestay on Punnamada Lake",
-  description: "Plan your Kerala honeymoon at Zen Homestay Alleppey — a romantic lakefront retreat on Punnamada Lake. Private rooms, speedboat arrival, sunrise lake views & authentic Kerala breakfast. Book direct with host Abhijith. +91 7012 761 588.",
+  description: "Romantic lakefront honeymoon homestay on Punnamada Lake, Alleppey. Private rooms, speedboat arrival, lake views & Kerala breakfast. Book direct with host.",
   keywords: ["honeymoon homestay alleppey", "romantic homestay alleppey", "couples homestay kerala", "honeymoon stay punnamada lake", "alleppey honeymoon package"],
   alternates: { canonical: "https://zenhomestay.in/honeymoon-homestay-alleppey" },
   openGraph: {
@@ -295,6 +296,7 @@ export default function HoneymoonHomestayPage() {
           <HomestayPromoCard />
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

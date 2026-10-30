@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { blogPosts } from './_data/posts';
 import { Clock, ArrowRight, BookOpen } from 'lucide-react';
 import HomestayPromoCard from '../_components/HomestayPromoCard';
+import SiteFooter from '../_components/SiteFooter';
 
 export const metadata: Metadata = {
   title: 'Alleppey Travel Blog — Backwater Tips, Guides & Local Insights | Zen Homestay',
@@ -209,14 +210,7 @@ export default function BlogPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-950 text-slate-500 text-xs py-6 text-center">
-        <p suppressHydrationWarning>© {new Date().getFullYear()} Zen Homestay · Punnamada Lake, Alleppey, Kerala</p>
-        <div className="flex items-center justify-center gap-4 mt-2">
-          <Link href="/" className="hover:text-slate-300 transition-colors">Homestay Home</Link>
-          <Link href="/contact" className="hover:text-slate-300 transition-colors">Contact</Link>
-          <Link href="/blog" className="hover:text-slate-300 transition-colors">Blog</Link>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

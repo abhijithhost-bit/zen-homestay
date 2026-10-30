@@ -1,4 +1,6 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import SiteFooter from '../_components/SiteFooter';
 import Image from 'next/image';
 import { 
   Sparkles, 
@@ -12,9 +14,18 @@ import {
   CheckCircle2
 } from 'lucide-react';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Privacy Policy | Zen Homestay Alleppey",
   description: "Privacy policy, data protection, and guest confidentiality guidelines for Zen Homestay on Punnamada Lake, Alleppey.",
+  alternates: {
+    canonical: "https://zenhomestay.in/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Zen Homestay Alleppey",
+    description: "Privacy policy, data protection, and guest confidentiality guidelines for Zen Homestay Alleppey.",
+    url: "https://zenhomestay.in/privacy-policy",
+    siteName: "Zen Homestay Alleppey",
+  },
 };
 
 export default function PrivacyPolicy() {
@@ -181,24 +192,7 @@ export default function PrivacyPolicy() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-800 py-8 text-xs text-slate-400 text-center">
-        <div className="max-w-4xl mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
-          <p suppressHydrationWarning>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
-          <div className="flex items-center gap-4 text-slate-400">
-            <Link href="/terms-and-conditions" className="hover:underline hover:text-white transition-colors">
-              Terms & Conditions
-            </Link>
-            <span>·</span>
-            <Link href="/privacy-policy" className="hover:underline hover:text-white transition-colors text-slate-200 font-bold">
-              Privacy Policy
-            </Link>
-            <span>·</span>
-            <Link href="/contact" className="hover:underline hover:text-white transition-colors">
-              Contact Host
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
     </div>
   );

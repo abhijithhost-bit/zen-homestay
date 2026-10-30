@@ -16,6 +16,25 @@ const nextConfig: NextConfig = {
     // Serve at 1x for standard displays, 2x for retina
     dangerouslyAllowSVG: false,
   },
+  async redirects() {
+    return [
+      {
+        source: '/alleppey-homestay',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/punnamada-lake-homestay',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/kerala-backwater-homestay',
+        destination: '/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

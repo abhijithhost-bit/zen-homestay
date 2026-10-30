@@ -105,13 +105,14 @@ export default function StickyHeader() {
             }
           >
             {[
-              { href: '#arrival', label: 'Arrival Route' },
-              { href: '#stay', label: 'Lakefront Rooms' },
-              { href: '#amenities', label: 'Amenities' },
-              { href: '#how-to-book', label: 'How to Book' },
-              { href: '#faq', label: 'FAQs' },
+              { href: '/#stay', label: 'Rooms' },
+              { href: '/#arrival', label: 'Speedboat' },
+              { href: '/honeymoon-homestay-alleppey', label: 'Honeymoon' },
+              { href: '/blog', label: 'Blog' },
+              { href: '/contact', label: 'Contact' },
+              { href: '/#faq', label: 'FAQs' },
             ].map(({ href, label }) => (
-              <a
+              <Link
                 key={href}
                 href={href}
                 className="px-3.5 py-1.5 rounded-full transition-all duration-200 relative group whitespace-nowrap"
@@ -127,7 +128,7 @@ export default function StickyHeader() {
               >
                 {label}
                 <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-0 group-hover:w-4 h-[2px] bg-orange-400 rounded-full transition-all duration-200" />
-              </a>
+              </Link>
             ))}
             <div
               className="h-3.5 w-px mx-1"

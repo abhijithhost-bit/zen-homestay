@@ -1,4 +1,6 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
+import SiteFooter from '../_components/SiteFooter';
 import Image from 'next/image';
 import {
   ShieldCheck,
@@ -8,9 +10,18 @@ import {
   FileText,
 } from 'lucide-react';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Terms & Conditions | Zen Homestay Alleppey",
   description: "Terms and conditions, guest eligibility, property rules, cancellation & refund policy, and speedboat transfer details for Zen Homestay on Punnamada Lake, Alleppey.",
+  alternates: {
+    canonical: "https://zenhomestay.in/terms-and-conditions",
+  },
+  openGraph: {
+    title: "Terms & Conditions | Zen Homestay Alleppey",
+    description: "Terms and conditions, guest rules, cancellation policy, and speedboat transfer details for Zen Homestay Alleppey.",
+    url: "https://zenhomestay.in/terms-and-conditions",
+    siteName: "Zen Homestay Alleppey",
+  },
 };
 
 export default function Terms() {
@@ -226,28 +237,7 @@ export default function Terms() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-800 py-8 text-xs text-slate-400 text-center">
-        <div className="max-w-4xl mx-auto px-4 flex flex-wrap items-center justify-between gap-4">
-          <p suppressHydrationWarning>© {new Date().getFullYear()} Zen Homestay Alleppey. All rights reserved.</p>
-          <div className="flex items-center gap-4 text-slate-400">
-            <Link href="/" className="hover:underline hover:text-white transition-colors">
-              Home
-            </Link>
-            <span>·</span>
-            <Link href="/terms-and-conditions" className="hover:underline hover:text-white transition-colors text-slate-200 font-bold">
-              Terms & Conditions
-            </Link>
-            <span>·</span>
-            <Link href="/privacy-policy" className="hover:underline hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <span>·</span>
-            <Link href="/contact" className="hover:underline hover:text-white transition-colors">
-              Contact Host
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
     </div>
   );
