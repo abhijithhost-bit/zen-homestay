@@ -17,7 +17,7 @@ export default function SiteFooter() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-800/70">
           {/* Brand & Overview */}
           <div className="lg:col-span-4 space-y-5">
-            <Link href="/" className="flex items-center gap-3 group inline-block">
+            <Link href="/" className="inline-flex items-center gap-3 group">
               <Image
                 src="/zen-homestay-logo.jpg"
                 alt="Zen Homestay Logo"
@@ -39,7 +39,7 @@ export default function SiteFooter() {
               href="https://maps.google.com/?q=9.5016131229736,76.35738157806414"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 rounded-xl px-4 py-3 border border-slate-800 transition-colors block group"
+              className="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 rounded-xl px-4 py-3 border border-slate-800 transition-colors group"
               title="View on Google Maps"
             >
               <div className="flex items-center gap-0.5">
