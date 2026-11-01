@@ -171,16 +171,40 @@ function MobileBottomBar() {
   const { totalPrice, nights, currentTier, guests, setShowCalendar, isCurrentSelectionAvailable } = useBooking();
 
   // Hide for 5 seconds on mobile, then slide up into view
-  const [visible, setVisible] = useState(false);
+  const [initialDelayPassed, setInitialDelayPassed] = useState(false);
+  const [isWidgetInView, setIsWidgetInView] = useState(false);
+
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 5000);
+    const timer = setTimeout(() => setInitialDelayPassed(true), 5000);
     return () => clearTimeout(timer);
   }, []);
 
+  // Hide the sticky footer when the mobile booking widget is in view (>= 25% visible)
+  useEffect(() => {
+    const target = document.getElementById('booking-section');
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsWidgetInView(entry.isIntersecting && entry.intersectionRatio >= 0.25);
+      },
+      {
+        threshold: [0, 0.25],
+      }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  const isVisible = initialDelayPassed && !isWidgetInView;
+
   return (
     <div
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-3.5 flex items-center justify-between shadow-2xl transition-transform duration-500 ease-out"
-      style={{ transform: visible ? 'translateY(0)' : 'translateY(100%)' }}
+      className={`md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-slate-200 p-3.5 flex items-center justify-between shadow-2xl transition-transform duration-500 ease-out ${
+        isVisible ? 'pointer-events-auto' : 'pointer-events-none'
+      }`}
+      style={{ transform: isVisible ? 'translateY(0)' : 'translateY(100%)' }}
     >
       <button
         type="button"
