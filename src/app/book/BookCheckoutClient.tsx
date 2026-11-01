@@ -76,9 +76,11 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
     guests: clampedGuests,
     kids: clampedKids,
     addons: {
+      speedboatPackage: null,
       speedboatPersons: 0,
-      shikaraHours: 0,
+      kayakPackage: null,
       kayakPersons: 0,
+      shikaraHours: 0,
     },
   });
 
@@ -368,7 +370,7 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
 
             {/* Optional Backwater Experiences */}
             <StayAddonsStep
-              addons={params.addons || { speedboatPersons: 0, shikaraHours: 0, kayakPersons: 0 }}
+              addons={params.addons || { speedboatPackage: null, speedboatPersons: 0, kayakPackage: null, kayakPersons: 0, shikaraHours: 0 }}
               maxPartySize={params.guests}
               onChange={handleAddonsChange}
             />

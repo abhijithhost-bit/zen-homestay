@@ -1,9 +1,14 @@
 export type BookingTierKey = '1-room' | 'whole-floor';
 
+export type SpeedboatPackageKey = '10-min' | '30-min' | '1-hour';
+export type KayakPackageKey = '1-hour' | '2-hour';
+
 export interface BookingAddOns {
-  speedboatPersons: number; // ₹400 / person (10 min ride)
+  speedboatPackage?: SpeedboatPackageKey | null;
+  speedboatPersons?: number; // Auto adult count for 10-min fun ride
+  kayakPackage?: KayakPackageKey | null;
+  kayakPersons?: number;     // Auto adult count for kayaking
   shikaraHours: number;     // ₹1,000 / hour
-  kayakPersons: number;     // ₹500 / person
 }
 
 export interface BookingParams {

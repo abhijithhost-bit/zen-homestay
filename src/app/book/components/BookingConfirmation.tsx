@@ -16,6 +16,9 @@ import type { BookingSubmission } from '../lib/bookingTypes';
 import {
   TIERS_CONFIG,
   calculateNights,
+  calculateSpeedboatPrice,
+  calculateKayakPrice,
+  KAYAK_PACKAGES,
   formatFullDate,
   formatINR,
 } from '../lib/pricingUtils';
@@ -151,50 +154,82 @@ export default function BookingConfirmation({ submission }: BookingConfirmationP
           </div>
 
           {/* Optional Activities (if selected) */}
-          {((submission.addons?.speedboatPersons ?? 0) > 0 ||
-            (submission.addons?.shikaraHours ?? 0) > 0 ||
-            (submission.addons?.kayakPersons ?? 0) > 0) && (
-            <div className="py-3.5 space-y-1.5">
-              <span className="text-slate-400 font-semibold block uppercase tracking-wider text-[10px]">
-                Reserved Backwater Activities
-              </span>
-              <div className="space-y-1 text-slate-800 font-medium">
-                {(submission.addons?.speedboatPersons ?? 0) > 0 && (
-                  <div className="flex items-center justify-between">
-                    <span>
-                      Speed Boat Ride ({submission.addons?.speedboatPersons}{' '}
-                      {submission.addons?.speedboatPersons === 1 ? 'person' : 'persons'} · 10 mins)
-                    </span>
-                    <span className="font-bold">
-                      {formatINR((submission.addons?.speedboatPersons ?? 0) * 400)}
-                    </span>
-                  </div>
-                )}
-                {(submission.addons?.kayakPersons ?? 0) > 0 && (
-                  <div className="flex items-center justify-between">
-                    <span>
-                      Kayaking ({submission.addons?.kayakPersons}{' '}
-                      {submission.addons?.kayakPersons === 1 ? 'person' : 'persons'})
-                    </span>
-                    <span className="font-bold">
-                      {formatINR((submission.addons?.kayakPersons ?? 0) * 500)}
-                    </span>
-                  </div>
-                )}
-                {(submission.addons?.shikaraHours ?? 0) > 0 && (
-                  <div className="flex items-center justify-between">
-                    <span>
-                      Shikara Boating ({submission.addons?.shikaraHours}{' '}
-                      {submission.addons?.shikaraHours === 1 ? 'hour' : 'hours'})
-                    </span>
-                    <span className="font-bold">
-                      {formatINR((submission.addons?.shikaraHours ?? 0) * 1000)}
-                    </span>
-                  </div>
-                )}
+          {(() => {
+            const addons = submission.addons || params.addons;
+            const sbPkg =
+              addons?.speedboatPackage !== undefined
+                ? addons.speedboatPackage
+                : addons?.speedboatPersons && addons.speedboatPersons > 0
+                ? '10-min'
+                : null;
+            const adultGuests = Math.min(7, Math.max(1, params.guests || 1));
+            const sbPrice = calculateSpeedboatPrice(sbPkg, adultGuests);
+
+            const kayakPkg =
+              addons?.kayakPackage !== undefined
+                ? addons.kayakPackage
+                : addons?.kayakPersons && addons.kayakPersons > 0
+                ? '1-hour'
+                : null;
+            const kayakGuests = Math.max(1, params.guests || 1);
+            const kayakPrice = calculateKayakPrice(kayakPkg, kayakGuests);
+            const kayakPkgName = kayakPkg ? KAYAK_PACKAGES[kayakPkg].name : '';
+
+            const hasAnyAddon =
+              !!sbPkg ||
+              !!kayakPkg ||
+              (addons?.shikaraHours ?? 0) > 0;
+
+            if (!hasAnyAddon) return null;
+
+            return (
+              <div className="py-3.5 space-y-1.5">
+                <span className="text-slate-400 font-semibold block uppercase tracking-wider text-[10px]">
+                  Reserved Backwater Activities
+                </span>
+                <div className="space-y-1 text-slate-800 font-medium">
+                  {sbPkg === '10-min' && (
+                    <div className="flex items-center justify-between">
+                      <span>Speed Boat (10-Min Fun Ride · {adultGuests} {adultGuests === 1 ? 'guest' : 'guests'})</span>
+                      <span className="font-bold">{formatINR(sbPrice)}</span>
+                    </div>
+                  )}
+                  {sbPkg === '30-min' && (
+                    <div className="flex items-center justify-between">
+                      <span>Speed Boat (30-Min Lake Ride)</span>
+                      <span className="font-bold">{formatINR(sbPrice)}</span>
+                    </div>
+                  )}
+                  {sbPkg === '1-hour' && (
+                    <div className="flex items-center justify-between">
+                      <span>Speed Boat (1-Hour Village Cruise)</span>
+                      <span className="font-bold">{formatINR(sbPrice)}</span>
+                    </div>
+                  )}
+                  {kayakPkg && (
+                    <div className="flex items-center justify-between">
+                      <span>
+                        Kayaking ({kayakPkgName} · {kayakGuests}{' '}
+                        {kayakGuests === 1 ? 'guest' : 'guests'})
+                      </span>
+                      <span className="font-bold">{formatINR(kayakPrice)}</span>
+                    </div>
+                  )}
+                  {(addons?.shikaraHours ?? 0) > 0 && (
+                    <div className="flex items-center justify-between">
+                      <span>
+                        Shikara Boating ({addons?.shikaraHours}{' '}
+                        {addons?.shikaraHours === 1 ? 'hour' : 'hours'})
+                      </span>
+                      <span className="font-bold">
+                        {formatINR((addons?.shikaraHours ?? 0) * 1000)}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
 
           {/* Payment Breakdown */}
           <div className="py-3.5 space-y-2">

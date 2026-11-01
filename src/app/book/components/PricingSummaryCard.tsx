@@ -110,11 +110,19 @@ export default function PricingSummaryCard({
                 Optional Activities
               </span>
               <div className="text-[10px] text-slate-500 font-medium space-y-0.5 mt-0.5">
-                {breakdown.addonsBreakdown.speedboat.count > 0 && (
-                  <div>• Speed Boat Ride ({breakdown.addonsBreakdown.speedboat.count} {breakdown.addonsBreakdown.speedboat.count === 1 ? 'person' : 'persons'} × ₹400)</div>
+                {breakdown.addonsBreakdown.speedboat.total > 0 && (
+                  <div>
+                    • Speed Boat ({breakdown.addonsBreakdown.speedboat.packageName}
+                    {breakdown.addonsBreakdown.speedboat.rateLabel
+                      ? ` · ${breakdown.addonsBreakdown.speedboat.rateLabel}`
+                      : ''})
+                  </div>
                 )}
-                {breakdown.addonsBreakdown.kayak.count > 0 && (
-                  <div>• Kayaking ({breakdown.addonsBreakdown.kayak.count} {breakdown.addonsBreakdown.kayak.count === 1 ? 'person' : 'persons'} × ₹500)</div>
+                {breakdown.addonsBreakdown.kayak.total > 0 && (
+                  <div>
+                    • Kayaking ({breakdown.addonsBreakdown.kayak.packageName || 'Kayaking'} · {breakdown.addonsBreakdown.kayak.count}{' '}
+                    {breakdown.addonsBreakdown.kayak.count === 1 ? 'guest' : 'guests'})
+                  </div>
                 )}
                 {breakdown.addonsBreakdown.shikara.count > 0 && (
                   <div>• Shikara Boating ({breakdown.addonsBreakdown.shikara.count} {breakdown.addonsBreakdown.shikara.count === 1 ? 'hour' : 'hours'} × ₹1,000)</div>

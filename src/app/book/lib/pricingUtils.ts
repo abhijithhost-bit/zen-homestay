@@ -1,4 +1,4 @@
-import type { BookingParams, BookingTierKey, TierConfig } from './bookingTypes';
+import type { BookingParams, BookingTierKey, TierConfig, SpeedboatPackageKey, KayakPackageKey } from './bookingTypes';
 import type { DayAvailability } from '@/lib/supabase';
 
 export const TIERS_CONFIG: Record<BookingTierKey, TierConfig> = {
@@ -29,8 +29,94 @@ export const TIERS_CONFIG: Record<BookingTierKey, TierConfig> = {
 export const BASE_ADULTS_PER_ROOM = 2;
 export const EXTRA_PERSON_CHARGE = 500; // ₹ per extra adult per night
 
+export interface SpeedboatPackageInfo {
+  id: SpeedboatPackageKey;
+  name: string;
+  shortName: string;
+  duration: string;
+  maxCapacity: number;
+  description: string;
+}
+
+export const SPEEDBOAT_PACKAGES: Record<SpeedboatPackageKey, SpeedboatPackageInfo> = {
+  '10-min': {
+    id: '10-min',
+    name: '10-Minute Fun Ride',
+    shortName: '10-Min Fun Ride',
+    duration: '10 mins',
+    maxCapacity: 7,
+    description: 'High-speed thrill ride on Punnamada Lake',
+  },
+  '30-min': {
+    id: '30-min',
+    name: '30-Minute Lake Ride',
+    shortName: '30-Min Lake Ride',
+    duration: '30 mins',
+    maxCapacity: 7,
+    description: 'Scenic cruise across the expansive waters of Punnamada Lake',
+  },
+  '1-hour': {
+    id: '1-hour',
+    name: '1-Hour Village Cruise',
+    shortName: '1-Hour Village Cruise',
+    duration: '1 hour',
+    maxCapacity: 7,
+    description: 'Scenic cruise through Alleppey backwaters & local village canals',
+  },
+};
+
+export function calculateSpeedboatPrice(
+  packageKey: SpeedboatPackageKey | null | undefined,
+  adultGuests: number
+): number {
+  if (!packageKey) return 0;
+  if (packageKey === '30-min') return 3000;
+  if (packageKey === '1-hour') return 6000;
+  if (packageKey === '10-min') {
+    const count = Math.min(7, Math.max(1, adultGuests || 1));
+    if (count <= 3) return 1300;
+    return count * 400; // 4=1600, 5=2000, 6=2400, 7=2800
+  }
+  return 0;
+}
+
+export interface KayakPackageInfo {
+  id: KayakPackageKey;
+  name: string;
+  duration: string;
+  ratePerPerson: number;
+  description: string;
+}
+
+export const KAYAK_PACKAGES: Record<KayakPackageKey, KayakPackageInfo> = {
+  '1-hour': {
+    id: '1-hour',
+    name: '1-Hour Kayaking',
+    duration: '1 hour',
+    ratePerPerson: 500,
+    description: 'Serene self-paddle kayak exploration right from our dock',
+  },
+  '2-hour': {
+    id: '2-hour',
+    name: '2-Hour Narrow Canal Exploration',
+    duration: '2 hours',
+    ratePerPerson: 650,
+    description: 'Scenic exploration through narrow backwater canals and village waterways',
+  },
+};
+
+export function calculateKayakPrice(
+  packageKey: KayakPackageKey | null | undefined,
+  adultGuests: number
+): number {
+  if (!packageKey) return 0;
+  const count = Math.max(1, adultGuests || 1);
+  const rate = packageKey === '2-hour' ? 650 : 500;
+  return count * rate;
+}
+
 export const ADDON_RATES = {
-  SPEEDBOAT_PER_PERSON: 400, // Speed Boat Ride (10 mins)
+  SPEEDBOAT_PER_PERSON: 400, // Legacy fallback
   KAYAK_PER_PERSON: 500,     // Kayaking (per person)
   SHIKARA_PER_HOUR: 1000,    // Shikara Boating (per hour)
 } as const;
@@ -147,16 +233,32 @@ export function isRangeAvailable(
   }
 }
 
+export interface SpeedboatBreakdownItem {
+  packageKey: SpeedboatPackageKey | null;
+  packageName: string;
+  count: number;
+  rateLabel: string;
+  total: number;
+}
+
 export interface AddonsBreakdownItem {
   count: number;
   rate: number;
   total: number;
 }
 
+export interface KayakBreakdownItem {
+  packageKey: KayakPackageKey | null;
+  packageName: string;
+  count: number;
+  rate: number;
+  total: number;
+}
+
 export interface AddonsBreakdown {
-  speedboat: AddonsBreakdownItem;
+  speedboat: SpeedboatBreakdownItem;
   shikara: AddonsBreakdownItem;
-  kayak: AddonsBreakdownItem;
+  kayak: KayakBreakdownItem;
   total: number;
 }
 
@@ -217,20 +319,52 @@ export function computePriceBreakdown(
   const extraFeeTotal = extraFeePerNight * nights;
 
   // Optional Add-ons calculations
-  const addons = params.addons || { speedboatPersons: 0, shikaraHours: 0, kayakPersons: 0 };
-  const speedboatCount = Math.max(0, addons.speedboatPersons || 0);
-  const shikaraCount = Math.max(0, addons.shikaraHours || 0);
-  const kayakCount = Math.max(0, addons.kayakPersons || 0);
+  const addons = params.addons || {
+    speedboatPackage: null,
+    speedboatPersons: params.guests,
+    kayakPackage: null,
+    kayakPersons: params.guests,
+    shikaraHours: 0,
+  };
 
-  const speedboatTotal = speedboatCount * ADDON_RATES.SPEEDBOAT_PER_PERSON;
+  // Determine active speedboat package
+  let sbPkg: SpeedboatPackageKey | null = null;
+  if (addons.speedboatPackage !== undefined) {
+    sbPkg = addons.speedboatPackage;
+  } else if (addons.speedboatPersons && addons.speedboatPersons > 0) {
+    sbPkg = '10-min';
+  }
+
+  // Determine active kayak package
+  let kayakPkg: KayakPackageKey | null = null;
+  if (addons.kayakPackage !== undefined) {
+    kayakPkg = addons.kayakPackage;
+  } else if (addons.kayakPersons && addons.kayakPersons > 0) {
+    kayakPkg = '1-hour';
+  }
+
+  const adultGuests = Math.min(7, Math.max(1, params.guests || 1));
+  const speedboatTotal = calculateSpeedboatPrice(sbPkg, adultGuests);
+
+  const kayakCount = kayakPkg ? Math.max(1, params.guests || 1) : 0;
+  const kayakTotal = calculateKayakPrice(kayakPkg, params.guests);
+  const kayakRate = kayakPkg === '2-hour' ? 650 : 500;
+
+  const shikaraCount = Math.max(0, addons.shikaraHours || 0);
   const shikaraTotal = shikaraCount * ADDON_RATES.SHIKARA_PER_HOUR;
-  const kayakTotal = kayakCount * ADDON_RATES.KAYAK_PER_PERSON;
-  const addonsTotal = speedboatTotal + shikaraTotal + kayakTotal;
+  const addonsTotal = speedboatTotal + kayakTotal + shikaraTotal;
+
+  let sbRateLabel = '';
+  if (sbPkg === '10-min') {
+    sbRateLabel = `${adultGuests} ${adultGuests === 1 ? 'guest' : 'guests'}`;
+  }
 
   const addonsBreakdown: AddonsBreakdown = {
     speedboat: {
-      count: speedboatCount,
-      rate: ADDON_RATES.SPEEDBOAT_PER_PERSON,
+      packageKey: sbPkg,
+      packageName: sbPkg ? SPEEDBOAT_PACKAGES[sbPkg].name : '',
+      count: sbPkg === '10-min' ? adultGuests : (sbPkg ? 1 : 0),
+      rateLabel: sbRateLabel,
       total: speedboatTotal,
     },
     shikara: {
@@ -239,8 +373,10 @@ export function computePriceBreakdown(
       total: shikaraTotal,
     },
     kayak: {
+      packageKey: kayakPkg,
+      packageName: kayakPkg ? KAYAK_PACKAGES[kayakPkg].name : '',
       count: kayakCount,
-      rate: ADDON_RATES.KAYAK_PER_PERSON,
+      rate: kayakRate,
       total: kayakTotal,
     },
     total: addonsTotal,
