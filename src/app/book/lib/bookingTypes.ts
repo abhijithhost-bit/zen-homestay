@@ -1,11 +1,18 @@
 export type BookingTierKey = '1-room' | 'whole-floor';
 
+export interface BookingAddOns {
+  speedboatPersons: number; // ₹400 / person (10 min ride)
+  shikaraHours: number;     // ₹1,000 / hour
+  kayakPersons: number;     // ₹500 / person
+}
+
 export interface BookingParams {
   tier: BookingTierKey;
   checkIn: string; // YYYY-MM-DD
   checkOut: string; // YYYY-MM-DD
   guests: number;
   kids: number;
+  addons?: BookingAddOns;
 }
 
 export type PaymentOption = '25-percent' | '100-percent';
@@ -26,6 +33,8 @@ export interface BookingSubmission {
   totalPrice: number;
   advanceAmount: number;
   balanceAmount: number;
+  addons?: BookingAddOns;
+  addonsTotal?: number;
 }
 
 export interface TierConfig {

@@ -16,6 +16,35 @@ export function buildWhatsAppTicketMessage(submission: BookingSubmission): strin
   const isAdvance25 = paymentOption === '25-percent';
   const optionLabel = isAdvance25 ? '25% Advance Deposit' : '100% Full Payment Upfront';
 
+  const addons = submission.addons || params.addons;
+  const addonLines: string[] = [];
+  if (addons) {
+    if (addons.speedboatPersons > 0) {
+      addonLines.push(
+        `• Speed Boat Ride (10 min): ${addons.speedboatPersons} ${
+          addons.speedboatPersons === 1 ? 'person' : 'persons'
+        } (${formatINR(addons.speedboatPersons * 400)})`
+      );
+    }
+    if (addons.kayakPersons > 0) {
+      addonLines.push(
+        `• Kayaking: ${addons.kayakPersons} ${
+          addons.kayakPersons === 1 ? 'person' : 'persons'
+        } (${formatINR(addons.kayakPersons * 500)})`
+      );
+    }
+    if (addons.shikaraHours > 0) {
+      addonLines.push(
+        `• Shikara Boating: ${addons.shikaraHours} ${
+          addons.shikaraHours === 1 ? 'hour' : 'hours'
+        } (${formatINR(addons.shikaraHours * 1000)})`
+      );
+    }
+  }
+
+  const addonsSection =
+    addonLines.length > 0 ? `🛶 OPTIONAL ACTIVITIES:\n${addonLines.join('\n')}\n` : '';
+
   return `🛎️ NEW BOOKING REQUEST — Zen Homestay
 Reference: ${ref}
 👤 GUEST DETAILS:
@@ -30,7 +59,7 @@ Reference: ${ref}
 • Checkout: ${formatFullDate(params.checkOut)} (by 11:00 AM)
 • Duration: ${nights} ${nights === 1 ? 'Night' : 'Nights'}
 • Guests: ${guestSummary}
-💰 PAYMENT PREFERENCE:
+${addonsSection}💰 PAYMENT PREFERENCE:
 • Option: ${optionLabel}
 • Advance Due Now: ${formatINR(advanceAmount)}${!isAdvance25 ? ' (Full Payment)' : ''}
 • Balance on Arrival: ${formatINR(balanceAmount)}

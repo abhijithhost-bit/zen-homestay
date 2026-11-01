@@ -11,6 +11,7 @@ import {
   Waves,
 } from 'lucide-react';
 import type {
+  BookingAddOns,
   BookingParams,
   BookingSubmission,
   BookingTierKey,
@@ -28,6 +29,7 @@ import { activePaymentHandler } from './lib/paymentHandler';
 import { buildWhatsAppUrl, HOST_PHONE_DISPLAY } from './lib/whatsappTicket';
 import { supabase, isSupabaseConfigured, type DayAvailability } from '@/lib/supabase';
 import StayOverviewBar from './components/StayOverviewBar';
+import StayAddonsStep from './components/StayAddonsStep';
 import GuestInfoStep from './components/GuestInfoStep';
 import PaymentPreferenceStep from './components/PaymentPreferenceStep';
 import PaymentMethodBadge from './components/PaymentMethodBadge';
@@ -73,6 +75,11 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
     checkOut: rawCheckOut,
     guests: clampedGuests,
     kids: clampedKids,
+    addons: {
+      speedboatPersons: 0,
+      shikaraHours: 0,
+      kayakPersons: 0,
+    },
   });
 
   const [guestInfo, setGuestInfo] = useState<GuestInfo>({
@@ -142,6 +149,10 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
   const handleOpenCalendar = (step: 'checkIn' | 'checkOut' = 'checkIn') => {
     setCalendarActiveStep(step);
     setIsEditModalOpen(true);
+  };
+
+  const handleAddonsChange = (newAddons: BookingAddOns) => {
+    setParams((prev) => ({ ...prev, addons: newAddons }));
   };
 
   // 3. Form Validation
@@ -223,6 +234,8 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
         totalPrice: breakdown.totalPrice,
         advanceAmount,
         balanceAmount,
+        addons: params.addons,
+        addonsTotal: breakdown.addonsTotal,
       };
 
       setSubmission(newSubmission);
@@ -352,6 +365,13 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
           <div className="lg:col-span-7 space-y-6">
             {/* Stay Overview Bar with Interactive Calendar triggers */}
             <StayOverviewBar params={params} onOpenCalendar={handleOpenCalendar} />
+
+            {/* Optional Backwater Experiences */}
+            <StayAddonsStep
+              addons={params.addons || { speedboatPersons: 0, shikaraHours: 0, kayakPersons: 0 }}
+              maxPartySize={params.guests}
+              onChange={handleAddonsChange}
+            />
 
             {/* Step 1: Guest Information */}
             <GuestInfoStep

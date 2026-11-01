@@ -102,6 +102,31 @@ export default function PricingSummaryCard({
           </div>
         )}
 
+        {/* Selected Add-ons (if any) */}
+        {breakdown.addonsTotal > 0 && (
+          <div className="flex items-start justify-between text-slate-600 font-semibold pt-1 border-t border-slate-100">
+            <div>
+              <span className="text-slate-900 font-bold block">
+                Optional Activities
+              </span>
+              <div className="text-[10px] text-slate-500 font-medium space-y-0.5 mt-0.5">
+                {breakdown.addonsBreakdown.speedboat.count > 0 && (
+                  <div>• Speed Boat Ride ({breakdown.addonsBreakdown.speedboat.count} {breakdown.addonsBreakdown.speedboat.count === 1 ? 'person' : 'persons'} × ₹400)</div>
+                )}
+                {breakdown.addonsBreakdown.kayak.count > 0 && (
+                  <div>• Kayaking ({breakdown.addonsBreakdown.kayak.count} {breakdown.addonsBreakdown.kayak.count === 1 ? 'person' : 'persons'} × ₹500)</div>
+                )}
+                {breakdown.addonsBreakdown.shikara.count > 0 && (
+                  <div>• Shikara Boating ({breakdown.addonsBreakdown.shikara.count} {breakdown.addonsBreakdown.shikara.count === 1 ? 'hour' : 'hours'} × ₹1,000)</div>
+                )}
+              </div>
+            </div>
+            <span className="font-extrabold text-orange-600">
+              +{formatINR(breakdown.addonsTotal)}
+            </span>
+          </div>
+        )}
+
         {/* OTA Comparison Pill */}
         <div className="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-between text-[11px]">
           <div>

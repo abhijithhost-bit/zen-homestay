@@ -29,6 +29,12 @@ export const TIERS_CONFIG: Record<BookingTierKey, TierConfig> = {
 export const BASE_ADULTS_PER_ROOM = 2;
 export const EXTRA_PERSON_CHARGE = 500; // ₹ per extra adult per night
 
+export const ADDON_RATES = {
+  SPEEDBOAT_PER_PERSON: 400, // Speed Boat Ride (10 mins)
+  KAYAK_PER_PERSON: 500,     // Kayaking (per person)
+  SHIKARA_PER_HOUR: 1000,    // Shikara Boating (per hour)
+} as const;
+
 const WEEKDAY_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'] as const;
 const MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] as const;
 
@@ -141,6 +147,19 @@ export function isRangeAvailable(
   }
 }
 
+export interface AddonsBreakdownItem {
+  count: number;
+  rate: number;
+  total: number;
+}
+
+export interface AddonsBreakdown {
+  speedboat: AddonsBreakdownItem;
+  shikara: AddonsBreakdownItem;
+  kayak: AddonsBreakdownItem;
+  total: number;
+}
+
 export interface PriceBreakdown {
   nights: number;
   baseRatePerNight: number;
@@ -148,6 +167,8 @@ export interface PriceBreakdown {
   extraGuests: number;
   extraFeePerNight: number;
   extraFeeTotal: number;
+  addonsTotal: number;
+  addonsBreakdown: AddonsBreakdown;
   totalPrice: number;
   advance25: number;
   balance25: number;
@@ -195,15 +216,45 @@ export function computePriceBreakdown(
   const extraFeePerNight = extraGuests * EXTRA_PERSON_CHARGE;
   const extraFeeTotal = extraFeePerNight * nights;
 
-  const totalPrice = baseTotal + extraFeeTotal;
+  // Optional Add-ons calculations
+  const addons = params.addons || { speedboatPersons: 0, shikaraHours: 0, kayakPersons: 0 };
+  const speedboatCount = Math.max(0, addons.speedboatPersons || 0);
+  const shikaraCount = Math.max(0, addons.shikaraHours || 0);
+  const kayakCount = Math.max(0, addons.kayakPersons || 0);
+
+  const speedboatTotal = speedboatCount * ADDON_RATES.SPEEDBOAT_PER_PERSON;
+  const shikaraTotal = shikaraCount * ADDON_RATES.SHIKARA_PER_HOUR;
+  const kayakTotal = kayakCount * ADDON_RATES.KAYAK_PER_PERSON;
+  const addonsTotal = speedboatTotal + shikaraTotal + kayakTotal;
+
+  const addonsBreakdown: AddonsBreakdown = {
+    speedboat: {
+      count: speedboatCount,
+      rate: ADDON_RATES.SPEEDBOAT_PER_PERSON,
+      total: speedboatTotal,
+    },
+    shikara: {
+      count: shikaraCount,
+      rate: ADDON_RATES.SHIKARA_PER_HOUR,
+      total: shikaraTotal,
+    },
+    kayak: {
+      count: kayakCount,
+      rate: ADDON_RATES.KAYAK_PER_PERSON,
+      total: kayakTotal,
+    },
+    total: addonsTotal,
+  };
+
+  const totalPrice = baseTotal + extraFeeTotal + addonsTotal;
   const advance25 = Math.round(totalPrice * 0.25);
   const balance25 = totalPrice - advance25;
 
   const advance100 = totalPrice;
   const balance100 = 0;
 
-  const otaEstimatedPrice = Math.round(totalPrice * 1.33);
-  const savingsVsOta = otaEstimatedPrice - totalPrice;
+  const otaEstimatedPrice = Math.round((baseTotal + extraFeeTotal) * 1.33) + addonsTotal;
+  const savingsVsOta = Math.max(0, otaEstimatedPrice - totalPrice);
 
   return {
     nights,
@@ -212,6 +263,8 @@ export function computePriceBreakdown(
     extraGuests,
     extraFeePerNight,
     extraFeeTotal,
+    addonsTotal,
+    addonsBreakdown,
     totalPrice,
     advance25,
     balance25,

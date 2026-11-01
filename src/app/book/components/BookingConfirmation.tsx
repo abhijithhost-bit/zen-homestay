@@ -150,6 +150,52 @@ export default function BookingConfirmation({ submission }: BookingConfirmationP
             </div>
           </div>
 
+          {/* Optional Activities (if selected) */}
+          {((submission.addons?.speedboatPersons ?? 0) > 0 ||
+            (submission.addons?.shikaraHours ?? 0) > 0 ||
+            (submission.addons?.kayakPersons ?? 0) > 0) && (
+            <div className="py-3.5 space-y-1.5">
+              <span className="text-slate-400 font-semibold block uppercase tracking-wider text-[10px]">
+                Reserved Backwater Activities
+              </span>
+              <div className="space-y-1 text-slate-800 font-medium">
+                {(submission.addons?.speedboatPersons ?? 0) > 0 && (
+                  <div className="flex items-center justify-between">
+                    <span>
+                      Speed Boat Ride ({submission.addons?.speedboatPersons}{' '}
+                      {submission.addons?.speedboatPersons === 1 ? 'person' : 'persons'} · 10 mins)
+                    </span>
+                    <span className="font-bold">
+                      {formatINR((submission.addons?.speedboatPersons ?? 0) * 400)}
+                    </span>
+                  </div>
+                )}
+                {(submission.addons?.kayakPersons ?? 0) > 0 && (
+                  <div className="flex items-center justify-between">
+                    <span>
+                      Kayaking ({submission.addons?.kayakPersons}{' '}
+                      {submission.addons?.kayakPersons === 1 ? 'person' : 'persons'})
+                    </span>
+                    <span className="font-bold">
+                      {formatINR((submission.addons?.kayakPersons ?? 0) * 500)}
+                    </span>
+                  </div>
+                )}
+                {(submission.addons?.shikaraHours ?? 0) > 0 && (
+                  <div className="flex items-center justify-between">
+                    <span>
+                      Shikara Boating ({submission.addons?.shikaraHours}{' '}
+                      {submission.addons?.shikaraHours === 1 ? 'hour' : 'hours'})
+                    </span>
+                    <span className="font-bold">
+                      {formatINR((submission.addons?.shikaraHours ?? 0) * 1000)}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* Payment Breakdown */}
           <div className="py-3.5 space-y-2">
             <span className="text-slate-400 font-semibold block uppercase tracking-wider text-[10px]">
