@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import {
   ShieldCheck, Wifi, Wind, Utensils, Waves, Coffee,
   Anchor, MessageCircle, Phone, Sparkles,
-  Clock, BedDouble, Award, Compass, Sun, ArrowRight, MapPin, Calendar, BookOpen
+  Clock, BedDouble, Compass, Sun, ArrowRight, MapPin, Calendar, BookOpen
 } from 'lucide-react';
 import { BookingProvider } from './_components/BookingProvider';
 import BookingWidget from './_components/BookingWidget';
@@ -251,69 +251,31 @@ export default function Home() {
             {/* LEFT COLUMN */}
             <div className="lg:col-span-2 space-y-8">
 
-              {/* Host Details */}
-              <div className="flex items-center justify-between pb-6 border-b border-slate-200 bg-white p-4 rounded-3xl border shadow-sm">
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900">
-                    Alleppey Homestay hosted by Abhijith — private 2nd-floor lakefront retreat
-                  </h2>
-                  <p className="text-sm text-slate-600 font-semibold mt-1 flex items-center gap-2 flex-wrap">
-                    <span className="bg-sky-50 text-sky-800 px-2.5 py-0.5 rounded-md font-bold">2 Lake View Bedrooms</span>
-                    <span>·</span><span>Max 3 guests per room</span>
-                    <span>·</span><span>2 King beds</span>
-                    <span>·</span><span>Attached bathrooms</span>
-                  </p>
-                </div>
-                <div className="relative w-14 h-14 rounded-2xl bg-linear-to-tr from-sky-400 to-sky-600 text-white font-extrabold flex items-center justify-center text-lg shrink-0 shadow-md">
-                  <span>ZH</span>
-                  <span className="absolute -bottom-1 -right-1 bg-orange-500 text-white p-1 rounded-full text-[10px] shadow">
-                    <ShieldCheck className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </div>
-
-              {/* Trophy Card */}
-              <div className="p-6 rounded-3xl border border-orange-200/80 bg-linear-to-r from-orange-50/80 via-orange-50/30 to-sky-50/50 flex items-center justify-between gap-4 shadow-sm">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-orange-500 text-white flex items-center justify-center shrink-0 shadow-md shadow-orange-500/20">
-                    <Award className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-extrabold text-slate-900 text-base">One of the most loved homes in Alleppey</h3>
-                    <p className="text-xs sm:text-sm text-slate-600 mt-0.5 font-medium">Rated 4.9 stars with 100% 5-star check-in and private waterfront location scores.</p>
-                  </div>
-                </div>
-                <div className="hidden sm:block text-right shrink-0">
-                  <div className="font-black text-2xl text-slate-900">4.9</div>
-                  <div className="flex text-orange-500 text-xs">★★★★★</div>
-                </div>
-              </div>
-
               {/* Core Highlights */}
               <div className="space-y-6 pb-8 border-b border-slate-200 bg-white p-8 rounded-3xl border shadow-sm">
                 <div className="flex items-start gap-4">
                   <div className="p-2.5 rounded-xl bg-sky-50 text-sky-600 shrink-0"><Anchor className="w-6 h-6" /></div>
-                  <div><h4 className="font-bold text-slate-900 text-base">Complimentary Speedboat — Both Pickup &amp; Drop-off</h4><p className="text-sm text-slate-600 mt-0.5 leading-relaxed">We pick you up from the Nehru Trophy Finishing Point by speedboat when you arrive, and drop you back the same way when you leave — all complimentary.</p></div>
+                  <div><p className="font-bold text-slate-900 text-base">Complimentary Speedboat — Both Pickup &amp; Drop-off</p><p className="text-sm text-slate-600 mt-0.5 leading-relaxed">We pick you up from the Nehru Trophy Finishing Point by speedboat when you arrive, and drop you back the same way when you leave — all complimentary.</p></div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="p-2.5 rounded-xl bg-orange-50 text-orange-600 shrink-0"><Waves className="w-6 h-6" /></div>
-                  <div><h4 className="font-bold text-slate-900 text-base">Direct Punnamada Lake Frontage</h4><p className="text-sm text-slate-700 mt-0.5 leading-relaxed font-semibold">Wake up to beautiful, direct views of Punnamada Lake right from the room.</p></div>
+                  <div><p className="font-bold text-slate-900 text-base">Direct Punnamada Lake Frontage</p><p className="text-sm text-slate-700 mt-0.5 leading-relaxed font-semibold">Wake up to beautiful, direct views of Punnamada Lake right from the room.</p></div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="p-2.5 rounded-xl bg-sky-50 text-sky-600 shrink-0"><Compass className="w-6 h-6" /></div>
-                  <div><h4 className="font-bold text-slate-900 text-base">Opposite the Famous Nehru Trophy Finishing Point</h4><p className="text-sm text-slate-600 mt-0.5 leading-relaxed">Located directly across Punnamada Lake from the Nehru Trophy Boat Race finishing point — you can see it from the homestay!</p></div>
+                  <div><p className="font-bold text-slate-900 text-base">Opposite the Famous Nehru Trophy Finishing Point</p><p className="text-sm text-slate-600 mt-0.5 leading-relaxed">Located directly across Punnamada Lake from the Nehru Trophy Boat Race finishing point — you can see it from the homestay!</p></div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="p-2.5 rounded-xl bg-orange-50 text-orange-600 shrink-0"><Clock className="w-6 h-6" /></div>
-                  <div><h4 className="font-bold text-slate-900 text-base">Fast Host Communication</h4><p className="text-sm text-slate-600 mt-0.5 leading-relaxed">Abhijith responds directly on WhatsApp and phone within 5 minutes.</p></div>
+                  <div><p className="font-bold text-slate-900 text-base">Fast Host Communication</p><p className="text-sm text-slate-600 mt-0.5 leading-relaxed">Abhijith responds directly on WhatsApp and phone within 5 minutes.</p></div>
                 </div>
                 <div className="flex items-start gap-4 pt-2 mt-2 border-t border-slate-100">
                   <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600 shrink-0"><ShieldCheck className="w-6 h-6" /></div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-base flex items-center gap-2">
+                    <p className="font-bold text-slate-900 text-base flex items-center gap-2">
                       Modern Home — Entire Private 2nd Floor for Guests
                       <span className="text-[10px] bg-emerald-100 text-emerald-700 font-black px-2 py-0.5 rounded-full uppercase tracking-wide">Safe Stay</span>
-                    </h4>
+                    </p>
                     <p className="text-sm text-slate-600 mt-0.5 leading-relaxed">Abhijith and his family live on the ground floor — guests enjoy the entire 2nd floor privately, with 2 AC rooms and attached bathrooms. You get home warmth without sacrificing privacy.</p>
                   </div>
                 </div>
