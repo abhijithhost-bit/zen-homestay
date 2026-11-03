@@ -22,7 +22,7 @@ import {
   formatFullDate,
   formatINR,
 } from '../lib/pricingUtils';
-import { buildWhatsAppUrl, HOST_PHONE_DISPLAY } from '../lib/whatsappTicket';
+import { buildWhatsAppTicketMessage, buildWhatsAppUrl, HOST_PHONE_DISPLAY } from '../lib/whatsappTicket';
 
 interface BookingConfirmationProps {
   submission: BookingSubmission;
@@ -35,13 +35,16 @@ export default function BookingConfirmation({ submission }: BookingConfirmationP
   const nights = calculateNights(params.checkIn, params.checkOut);
   const waUrl = buildWhatsAppUrl(submission);
 
-  const handleCopyRef = async () => {
+  const handleCopyTicket = async () => {
     try {
+      const ticketMessage = buildWhatsAppTicketMessage(submission);
+      await navigator.clipboard.writeText(ticketMessage);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
       await navigator.clipboard.writeText(ref);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // ignore
+      setTimeout(() => setCopied(false), 2500);
     }
   };
 
@@ -79,13 +82,18 @@ export default function BookingConfirmation({ submission }: BookingConfirmationP
           </div>
           <button
             type="button"
-            onClick={handleCopyRef}
-            className="self-start sm:self-center flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-orange-300 text-orange-700 font-extrabold text-xs shadow-xs hover:bg-orange-50 transition-colors cursor-pointer"
+            onClick={handleCopyTicket}
+            className="self-start sm:self-center flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-orange-300 text-orange-800 font-extrabold text-xs shadow-xs hover:bg-orange-50 transition-colors cursor-pointer"
           >
             {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copied ? 'Copied!' : 'Copy Code'}</span>
+            <span>{copied ? 'Ticket Copied!' : 'Copy Full Ticket'}</span>
           </button>
         </div>
+
+        {/* Clear instruction tip for guest */}
+        <p className="text-xs text-amber-900 bg-amber-50 p-3.5 rounded-2xl border border-amber-200/80 leading-relaxed font-medium">
+          💬 <strong>Important:</strong> Please ensure the full ticket message is sent to Host Abhijith on WhatsApp so your check-in dates, selected room, and arrival time are immediately confirmed.
+        </p>
 
         {/* Primary Action Button: Re-open WhatsApp */}
         <div className="space-y-2">

@@ -415,7 +415,26 @@ export function formatINR(amount: number): string {
   return `₹${amount.toLocaleString('en-IN')}`;
 }
 
-export function generateBookingRef(): string {
+export function generateBookingRef(checkInDate?: string, tier?: string): string {
+  let datePart = '';
+  if (checkInDate) {
+    const parts = checkInDate.split('-');
+    if (parts.length === 3) {
+      const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+      const monthIdx = parseInt(parts[1], 10) - 1;
+      const monthStr = months[monthIdx] || 'STAY';
+      const dayStr = parts[2].padStart(2, '0');
+      datePart = `${dayStr}${monthStr}`;
+    }
+  }
+
+  const roomPart = tier === 'whole-floor' ? 'WF' : '1R';
+  const random4 = Math.floor(1000 + Math.random() * 9000);
+
+  if (datePart) {
+    return `ZEN-${datePart}-${roomPart}-${random4}`;
+  }
+
   const random6 = Math.floor(100000 + Math.random() * 900000);
   return `ZEN-${random6}`;
 }

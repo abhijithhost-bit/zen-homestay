@@ -207,7 +207,7 @@ export default function BookCheckoutClient({ initialSearchParams }: BookCheckout
 
     try {
       const breakdown = computePriceBreakdown(params, availability);
-      const bookingRef = generateBookingRef();
+      const bookingRef = generateBookingRef(params.checkIn, params.tier);
       const advanceAmount =
         paymentOption === '25-percent' ? breakdown.advance25 : breakdown.advance100;
       const balanceAmount =
