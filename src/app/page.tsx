@@ -343,7 +343,7 @@ export default function Home() {
                   <div className="flex items-center gap-3.5 py-1"><Waves className="w-5 h-5 text-sky-500 shrink-0" /><span className="font-medium">Direct Punnamada Lake views &amp; stunning sunsets</span></div>
                   <div className="flex items-center gap-3.5 py-1"><Anchor className="w-5 h-5 text-orange-500 shrink-0" /><span className="font-medium">Speedboat pickup &amp; drop-off — complimentary</span></div>
                   <div className="flex items-center gap-3.5 py-1"><Wifi className="w-5 h-5 text-sky-500 shrink-0" /><span className="font-medium">High-speed Wi-Fi throughout property</span></div>
-                  <div className="flex items-center gap-3.5 py-1"><Wind className="w-5 h-5 text-sky-500 shrink-0" /><span className="font-medium">Full split Air Conditioning in both rooms</span></div>
+                  <div className="flex items-center gap-3.5 py-1"><Wind className="w-5 h-5 text-sky-500 shrink-0" /><span className="font-medium">24/7 Air Conditioning in both rooms</span></div>
                   <div className="flex items-center gap-3.5 py-1"><Coffee className="w-5 h-5 text-orange-500 shrink-0" /><span className="font-medium">Morning tea &amp; authentic Kerala breakfast</span></div>
                   <div className="flex items-center gap-3.5 py-1"><Clock className="w-5 h-5 text-sky-500 shrink-0" /><span className="font-medium">24/7 dedicated on-site host assistance</span></div>
                   <div className="flex items-center gap-3.5 py-1"><ShieldCheck className="w-5 h-5 text-emerald-500 shrink-0" /><span className="font-medium">Private 2-bedroom 2nd floor — attached bathrooms</span></div>

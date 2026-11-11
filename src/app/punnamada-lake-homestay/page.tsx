@@ -182,7 +182,7 @@ export default function PunnamadaLakeHomestayPage() {
                 "Direct Punnamada Lake view from bedroom",
                 "Complimentary 5-minute private speedboat pickup",
                 "Authentic Kerala breakfast every morning",
-                "Split air conditioning in both rooms",
+                "24/7 Air conditioning in both rooms",
                 "High-speed Wi-Fi throughout property",
                 "Private en-suite attached bathrooms",
                 "24/7 dedicated on-site host (Abhijith)",
