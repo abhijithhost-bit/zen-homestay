@@ -3,7 +3,7 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import {
   ShieldCheck, Wifi, Wind, Utensils, Waves, Coffee,
-  Anchor, MessageCircle, Phone, Sparkles,
+  Anchor, MessageCircle, Phone, Sparkles, Droplets,
   Clock, BedDouble, Compass, Sun, ArrowRight, MapPin, Calendar, BookOpen
 } from 'lucide-react';
 import { BookingProvider } from './_components/BookingProvider';
@@ -350,6 +350,7 @@ export default function Home() {
                   <div className="flex items-center gap-3.5 py-1"><Coffee className="w-5 h-5 text-orange-500 shrink-0" /><span className="font-medium">Morning tea &amp; authentic Kerala breakfast</span></div>
                   <div className="flex items-center gap-3.5 py-1"><Clock className="w-5 h-5 text-sky-500 shrink-0" /><span className="font-medium">24/7 dedicated on-site host assistance</span></div>
                   <div className="flex items-center gap-3.5 py-1"><ShieldCheck className="w-5 h-5 text-emerald-500 shrink-0" /><span className="font-medium">Private 2-bedroom 2nd floor — attached bathrooms</span></div>
+                  <div className="flex items-center gap-3.5 py-1"><Droplets className="w-5 h-5 text-sky-500 shrink-0" /><span className="font-medium">24/7 Hot water in all attached bathrooms</span></div>
                   <div className="flex items-center gap-3.5 py-1"><Compass className="w-5 h-5 text-sky-500 shrink-0" /><span className="font-medium">Views of Nehru Trophy Finishing Point across the lake</span></div>
                 </div>
                 <div className="border-t border-slate-100 pt-5">
