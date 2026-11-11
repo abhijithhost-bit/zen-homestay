@@ -50,7 +50,7 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function BlogPage() {
-  const [featured, ...rest] = blogPosts;
+  const [featured, ...rest] = [...blogPosts].reverse();
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">

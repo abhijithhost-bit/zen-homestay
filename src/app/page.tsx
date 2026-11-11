@@ -1,10 +1,8 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import type { Metadata } from 'next';
 import {
   ShieldCheck, Wifi, Wind, Utensils, Waves, Coffee,
-  Anchor, MessageCircle, Phone, Sparkles, Droplets,
-  Clock, BedDouble, Compass, Sun, ArrowRight, MapPin, Calendar, BookOpen
+  Anchor, MessageCircle, Sparkles, Droplets,
+  Clock, BedDouble, Compass, Sun, ArrowRight, Calendar
 } from 'lucide-react';
 import { BookingProvider } from './_components/BookingProvider';
 import BookingWidget from './_components/BookingWidget';
@@ -13,7 +11,6 @@ import GallerySection from './_components/GallerySection';
 import FaqAccordion from './_components/FaqAccordion';
 import PhotoCarousel from './_components/PhotoCarousel';
 import SiteFooter from './_components/SiteFooter';
-import { blogPosts } from './blog/_data/posts';
 
 export const metadata: Metadata = {
   title: 'Homestay in Alleppey | Zen Homestay – Punnamada Lake',
@@ -514,59 +511,6 @@ export default function Home() {
                 <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-slate-400 font-medium">
                   <GoogleIcon /><span>Reviews styled after Google Reviews · 48 verified guests</span>
                 </div>
-              </div>
-
-              {/* From Our Blog */}
-              <div className="pb-8 border-b border-slate-200">
-                <div className="flex items-center justify-between mb-5">
-                  <div className="flex items-center gap-2">
-                    <div className="p-2 rounded-xl bg-sky-50 text-sky-600">
-                      <BookOpen className="w-4 h-4" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-extrabold uppercase tracking-wider text-sky-700">From Our Blog</span>
-                      <p className="text-[11px] text-slate-400 font-medium">Alleppey travel guides &amp; tips</p>
-                    </div>
-                  </div>
-                  <Link
-                    href="/blog"
-                    className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-sky-600 hover:text-sky-800 transition-colors"
-                  >
-                    All articles <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {blogPosts.slice(0, 3).map((post) => (
-                    <Link
-                      key={post.slug}
-                      href={`/blog/${post.slug}`}
-                      className="group flex flex-col rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-sky-300 transition-all"
-                    >
-                      <div className="relative aspect-video overflow-hidden">
-                        <Image
-                          src={post.heroImage}
-                          alt={post.heroImageAlt}
-                          fill
-                          sizes="(max-width: 640px) 100vw, 33vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                      <div className="p-4 flex flex-col flex-1">
-                        <p className="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-1.5">{post.category}</p>
-                        <h3 className="text-xs font-extrabold text-slate-900 leading-snug group-hover:text-sky-700 transition-colors line-clamp-2 flex-1 mb-2">{post.title}</h3>
-                        <p className="text-[10px] text-slate-400 font-medium flex items-center gap-1">
-                          <Clock className="w-3 h-3" /> {post.readTime}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-                <Link
-                  href="/blog"
-                  className="sm:hidden mt-4 flex items-center gap-1.5 text-xs font-bold text-sky-600 hover:text-sky-800 transition-colors"
-                >
-                  View all articles <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
               </div>
 
               {/* FAQ (client island) */}
