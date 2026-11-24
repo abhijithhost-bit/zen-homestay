@@ -1,4 +1,4 @@
-﻿﻿// ─── Blog Post Data ──────────────────────────────────────────────────────────
+﻿// ─── Blog Post Data ──────────────────────────────────────────────────────────
 // Single source of truth for all blog articles.
 // Each post is fully typed — add new posts by appending to the array.
 
@@ -2475,6 +2475,94 @@ export const blogPosts: BlogPost[] = [
       body: "Zen Homestay warmly welcomes female friend groups — private lake-view rooms, a shared veranda right on Punnamada Lake, complimentary speedboat transfers, and fresh home-cooked Kerala breakfasts. Host Abhijith responds on WhatsApp within minutes and handles every group logistics detail directly. Book direct for the best rate with zero platform fees.",
       whatsappText:
         "Hi Abhijith, we're planning a girls trip to Alleppey and read your group travel guide. Can you check availability for our group and share room options?",
+    },
+  },
+
+  // ─── Post 27: Places to Visit in Alleppey ──────────────────────────────────
+  {
+    slug: 'places-to-visit-in-alleppey-sightseeing-guide',
+    title: '12 Best Places to Visit in Alleppey — The Complete Sightseeing & Attractions Guide (2026)',
+    metaTitle: '12 Best Places to Visit in Alleppey | Complete Sightseeing Guide (2026)',
+    description: 'Looking for the best places to visit in Alleppey? From Punnamada Lake and Alappuzha Beach to ancient palaces and Pathiramanal Island, here is your curated sightseeing guide with timings, entry fees, and travel tips.',
+    publishedDate: '2026-11-24',
+    readTime: '9 min read',
+    category: 'Travel Guide',
+    keywords: [
+      'places to visit in alleppey',
+      'alleppey tourist places',
+      'alleppey sightseeing',
+      'best places to visit in alleppey',
+      'alleppey attractions',
+      'top tourist attractions in alleppey',
+      'punnamada lake sightseeing',
+      'places to see in alleppey',
+    ],
+    excerpt: 'Planning your Alleppey sightseeing trip? From serene backwater lakes and secluded islands to historic lighthouses and 18th-century royal palaces — here are the 12 best places to visit in Alleppey.',
+    heroImage: '/places_to_visit_in_alleppey_hero.jpg',
+    heroImageAlt: 'Traveler taking in a panoramic view of Punnamada Lake and Alleppey backwaters at golden hour',
+    sections: [
+      {
+        heading: 'Why Alleppey Sightseeing Goes Far Beyond Houseboats',
+        body: [
+          'Known as the "Venice of the East", Alleppey (Alappuzha) is globally renowned for its emerald backwater canals and houseboats. But travelers who simply take a boat cruise and leave miss more than half of what makes this coastal district so extraordinary.',
+          'Alleppey is a living tapestry of maritime trade history, ancient Travancore royal heritage, Portuguese and Dutch architectural legacies, pristine Arabian Sea beaches, and the surreal below-sea-level farming landscapes of Kuttanad. Whether you are spending a weekend or a full week, having a clear roadmap of the top attractions ensures you experience the backwaters, the coast, and the culture without spending half your day crisscrossing the canals.',
+          'To help you navigate seamlessly, we have organized the 12 best places to visit in Alleppey into four logical geographic clusters, complete with opening timings, entry fees, and practical advice from local host Abhijith.',
+        ],
+      },
+      {
+        heading: 'Cluster 1: The Iconic Backwaters & Aquatic Wonders',
+        body: [
+          '<strong>1. Punnamada Lake & Canals</strong><br/>• <strong>Location:</strong> Directly accessible from <a href="/#stay" class="text-sky-600 font-bold hover:underline">Zen Homestay</a> (private dock).<br/>• <strong>Best Time:</strong> Sunrise (5:30–8:00 AM) and sunset (4:30–6:30 PM).<br/>• <strong>Entry:</strong> Free (boat hire charges apply for cruises).<br/>Punnamada Lake is the sprawling crown jewel of the Kerala backwaters. It is the majestic stage for the world-famous <a href="/blog/nehru-trophy-boat-race-alleppey-guide" class="text-sky-600 font-bold hover:underline">Nehru Trophy Boat Race</a> held every August, where 100-foot snake boats slice through the water with rhythmic ferocity. Unlike congested town canals, Punnamada offers wide-open horizons where skies reflect on glassy waters. You can explore it via gentle <a href="/blog/shikara-boat-ride-alleppey-guide" class="text-sky-600 font-bold hover:underline">shikara boat rides</a> or adventurous <a href="/blog/kayaking-in-alleppey-backwaters-complete-guide" class="text-sky-600 font-bold hover:underline">morning kayaking</a>.<br/><em>Local Host Tip:</em> Staying on the lakefront gives you front-row sunrise views right from your balcony, long before tourist day-trippers arrive.',
+          '<strong>2. Pathiramanal Island</strong><br/>• <strong>Location:</strong> Muhamma / Vembanad Lake (approx. 14 km north of Alleppey town by boat).<br/>• <strong>Best Time:</strong> Early morning (6:30–9:30 AM) during October to February.<br/>• <strong>Entry:</strong> Free (accessible exclusively by boat).<br/>The name "Pathiramanal" translates to "Sands of Midnight". This pristine, uninhabited 10-acre island in Vembanad Lake serves as a protected sanctuary for over 90 species of local and migratory birds, including pintail ducks, cormorants, darters, and kingfishers. Shaded cobblestone walking paths wind beneath dense canopies of teak, bamboo, and wild orchids, making it a dream destination for photographers and nature lovers.',
+          '<strong>3. Kuttanad Below-Sea-Level Paddy Fields</strong><br/>• <strong>Location:</strong> Southern Alleppey (15–20 km from town centre).<br/>• <strong>Best Time:</strong> 7:00–10:00 AM or 4:00–6:00 PM.<br/>• <strong>Entry:</strong> Free (explore via village walk, cycle, or canal boat).<br/>Known as the "Rice Bowl of Kerala", Kuttanad is one of the only places in the world where agriculture is successfully practiced 1.5 to 2.5 meters below sea level. Farmers engineered ingenious clay dikes (bunds) centuries ago to hold back backwater floods while cultivating vast emerald paddy fields. Gliding past these sunken fields flanked by towering coconut groves is a quintessential Kerala experience that feels timeless.',
+        ],
+      },
+      {
+        heading: 'Cluster 2: Coastal Landmarks & Golden Beaches',
+        body: [
+          '<strong>4. Alappuzha Beach & Old Sea Pier</strong><br/>• <strong>Location:</strong> Alappuzha Coastal Road (approx. 4.5 km from Punnamada Lake).<br/>• <strong>Best Time:</strong> 5:00–7:00 PM for sunset.<br/>• <strong>Entry:</strong> Free.<br/>Alappuzha Beach is steeped in maritime lore. Extending out into the Arabian Sea are the weather-beaten, skeletal wooden-and-iron pillars of the historic 160-year-old sea bridge (pier), built in 1862 by Captain Hugh Crawford to load coir and spices onto international cargo ships. Today, it forms one of the most photographed sunset backdrops in South India. The beach promenade features wide open sands, children\'s parks, and local vendors serving spicy raw mangoes (uppilitta manga) and fresh tender coconuts.',
+          '<strong>5. Alleppey Lighthouse & Museum</strong><br/>• <strong>Location:</strong> CCSB Road, near Alappuzha Beach.<br/>• <strong>Timings:</strong> 3:00 PM – 5:00 PM (Closed on Mondays).<br/>• <strong>Entry Fee:</strong> ₹20 for Indian citizens, ₹50 for foreigners, small camera fee.<br/>Towering 28 meters high with bold red-and-white spiral stripes, the Alleppey Lighthouse was first illuminated in 1862. Climbing the spiral staircase to the lantern room rewards visitors with a sweeping 360-degree panoramic vista: endless coconut canopies inland, the winding canal grid, and the vast expanse of the azure Arabian Sea. The ground-floor museum showcases vintage oil lamps, historic brass optics, and navigational equipment from centuries of coastal seafaring.',
+          '<strong>6. Marari Beach</strong><br/>• <strong>Location:</strong> Mararikulam (approx. 14 km north of Alleppey town, 25 minutes by auto/taxi).<br/>• <strong>Best Time:</strong> Morning walks or late afternoon swims.<br/>• <strong>Entry:</strong> Free.<br/>If Alappuzha Beach is lively and historic, Marari Beach is tranquil and restorative. Fringed by soft white sand and thousands of swaying coconut palms, it remains free from commercial noise and jet-skis. It is the perfect half-day getaway for couples and families who want a quiet beach dip before returning to the lake for dinner. See our detailed comparison in the <a href="/blog/marari-beach-vs-alleppey-backwaters" class="text-sky-600 font-bold hover:underline">Marari Beach vs Alleppey Backwaters guide</a>.',
+        ],
+      },
+      {
+        heading: 'Cluster 3: Royal Palaces, Temples & Heritage Monunents',
+        body: [
+          '<strong>7. Krishnapuram Palace</strong><br/>• <strong>Location:</strong> Kayamkulam (approx. 45 km south of Alleppey, reachable via NH 66 or day taxi).<br/>• <strong>Timings:</strong> 9:00 AM – 4:30 PM (Closed on Mondays).<br/>• <strong>Entry Fee:</strong> ₹25 for adults, ₹10 for children.<br/>Built in the 18th century by Maharaja Anizham Thirunal Marthanda Varma of Travancore, Krishnapuram Palace is a masterclass in traditional Kerala wooden architecture (Pathinarukettu). It features gabled red-tiled roofs, dormer windows, and narrow corridors designed for defensive cooling. The palace museum houses the celebrated 14-foot by 11-foot "Gajendra Moksham" fresco — the largest single-panel mural discovered in Kerala — along with centuries-old brass statues, double-edged Kayamkulam swords, and royal stone inscriptions.',
+          '<strong>8. Ambalapuzha Sree Krishna Temple</strong><br/>• <strong>Location:</strong> Ambalapuzha (approx. 14 km south of Alleppey town).<br/>• <strong>Timings:</strong> 3:00 AM – 12:00 PM, 5:00 PM – 8:00 PM daily.<br/>• <strong>Dress Code:</strong> Traditional attire (dhoti/mundu for men, sarees/salwars for women; shirt removal required for men inside the inner sanctum).<br/>• <strong>Entry:</strong> Free.<br/>Built in the 17th century, this historic temple is dedicated to Parthasarathi (Lord Krishna as Arjuna\'s charioteer). It is revered not only for its tranquil architecture and classical Sopana Sangeetham music but also for its legendary offering: Ambalapuzha Palpayasam. This warm, sweet milk pudding — slow-cooked for hours with rice, milk, and sugar in giant brass cauldrons — is world-renowned for its silky pink hue and unmatched flavour.',
+          '<strong>9. St. Mary\'s Forane Church, Champakulam</strong><br/>• <strong>Location:</strong> Champakulam (approx. 15 km southeast of Alleppey, accessible by road or backwater boat).<br/>• <strong>Timings:</strong> 6:00 AM – 6:00 PM daily.<br/>• <strong>Entry:</strong> Free.<br/>Standing gracefully beside the Pamba River, St. Mary\'s Forane Church is one of the oldest Christian churches in India, with roots dating back to AD 427. Rebuilt over the centuries with Syrian Catholic and Portuguese influences, the basilica features stunning high-vaulted wooden ceilings, vivid biblical murals, gold-plated altars, and an ancient rock-carved open-air cross. It is also adjacent to the boatyard where the historic Champakulam Moolam snake boat is kept.',
+          '<strong>10. Mullakkal Rajarajeswari Temple</strong><br/>• <strong>Location:</strong> Mullakkal Street, Alleppey Town Centre.<br/>• <strong>Timings:</strong> 4:30 AM – 10:30 AM, 5:00 PM – 8:00 PM.<br/>• <strong>Entry:</strong> Free.<br/>Situated in the commercial heart of town, this roofless sanctum temple is dedicated to Goddess Rajarajeswari. An ancient banyan tree shelters the courtyard, where an open pond and peaceful stone walkways create an oasis of spiritual calm amidst the market bustle. It is also the focal point of the vibrant Mullakkal Chirappu festival held every December.',
+        ],
+      },
+      {
+        heading: 'Cluster 4: Cultural Treasures & Craft Museums',
+        body: [
+          '<strong>11. Revi Karunakaran Memorial Museum (RKK Museum)</strong><br/>• <strong>Location:</strong> Near Alappuzha Power House (10 minutes from beach).<br/>• <strong>Timings:</strong> 9:00 AM – 5:00 PM (Closed on Mondays).<br/>• <strong>Entry Fee:</strong> Approx. ₹150 for adults.<br/>Often called the hidden cultural jewel of Alleppey, this privately curated Greco-Roman-style museum houses three generations of priceless collections belonging to the prominent Karunakaran coir family. Inside, you will find one of India\'s largest private collections of Swarovski crystals, fine jade sculptures, antique Tanjore paintings, Belgian porcelain, and an exquisite 200-year-old ivory chariot depicting the Bhagavad Gita.',
+          '<strong>12. International Coir Museum</strong><br/>• <strong>Location:</strong> Kalavoor (approx. 8 km north of Alleppey on NH 66).<br/>• <strong>Timings:</strong> 9:00 AM – 5:00 PM (Closed on Mondays).<br/>• <strong>Entry Fee:</strong> Approx. ₹20.<br/>Alleppey is historically celebrated as the "Coir City of the World". This engaging museum walks visitors through the revolutionary transformation of coconut husk fibers — from traditional retting, beating, and hand-spinning in village backyards to modern computerized loom textiles. You can watch master weavers create durable carpets and geonets, and pick up authentic eco-friendly coir souvenirs directly at factory prices.',
+        ],
+      },
+      {
+        heading: 'How to Organize Your Alleppey Sightseeing Route (1 & 2 Day Circuits)',
+        body: [
+          'To make the most of your trip without running in circles, follow these tried-and-tested sightseeing circuits:',
+          '<strong>Option A: The 1-Day Highlights Circuit</strong><br/>• <strong>Morning (6:30–9:30 AM):</strong> Sunrise shikara ride across Punnamada Lake, gliding into small village canals.<br/>• <strong>Mid-Morning (10:30 AM–12:30 PM):</strong> Visit the International Coir Museum or RKK Memorial Museum in town.<br/>• <strong>Lunch (1:00 PM):</strong> Authentic banana-leaf meal and Karimeen Pollichathu at a local eatery.<br/>• <strong>Afternoon (3:00–4:30 PM):</strong> Climb the Alleppey Lighthouse and explore the museum.<br/>• <strong>Evening (5:00–6:45 PM):</strong> Relax on Alappuzha Beach by the old sea pier as the sun dips into the ocean.<br/>For a detailed hour-by-hour plan, check out our <a href="/blog/one-day-in-alleppey-trip-guide" class="text-sky-600 font-bold hover:underline">One Day in Alleppey 24-hour trip guide</a>.',
+          '<strong>Option B: The 2-Day Complete Cultural & Natural Circuit</strong><br/>• <strong>Day 1:</strong> Dedicate to Lake and Coastal sights (Punnamada Lake, Pathiramanal Island boat trip, Lighthouse, and sunset on Alappuzha Beach).<br/>• <strong>Day 2:</strong> Venture inland to Heritage & Village sights (Kuttanad sunken paddy fields, Champakulam church, Ambalapuzha Temple for Palpayasam, and an afternoon at tranquil Marari Beach).<br/>Browse our full <a href="/blog/alleppey-itinerary-2-days-3-days-complete-trip-plan" class="text-sky-600 font-bold hover:underline">Alleppey 2-day & 3-day trip plan</a> for extended routes.',
+        ],
+      },
+      {
+        heading: 'Local Sightseeing Tips from Host Abhijith',
+        body: [
+          '<strong>Transport choices:</strong> Auto-rickshaws are plentiful in town and generally charge ₹30–₹50 for short hops, or ₹600–₹800 for a half-day temple and museum tour. If you are heading out to Krishnapuram Palace or Marari Beach, ask your homestay host to book a trusted private cab.',
+          '<strong>SWTD Public Water Taxi:</strong> For a budget-friendly water transit experience, take the State Water Transport Department (SWTD) passenger ferries from the Alleppey boat jetty. Tickets cost as little as ₹15–₹25 and provide authentic views of local village life.',
+          '<strong>Beat the afternoon heat:</strong> Kerala afternoons between 12:30 PM and 3:00 PM can be sunny and humid. Schedule indoor museums (RKK Museum or Coir Museum) or enjoy a leisurely lunch during these hours, saving open-air walks for the gentle morning and evening breezes.',
+          '<strong>Footwear for temples & monuments:</strong> Keep comfortable slip-on footwear handy, as shoes must be removed before entering temples and historical palace grounds.',
+        ],
+      },
+    ],
+    cta: {
+      heading: 'Stay at the Heart of Alleppey\'s Sights — Directly on Punnamada Lake',
+      body: 'Zen Homestay puts you right on the water: step onto a private shikara or kayak from our own dock to explore the lake sights, and reach the beach and town landmarks in just 10–12 minutes. Enjoy private lakefront rooms, complimentary speedboat transfers, authentic home-cooked Kerala breakfasts, and personalized sightseeing routes curated by host Abhijith. Book direct via WhatsApp for the best guaranteed rate.',
+      whatsappText: "Hi Abhijith, I read your Places to Visit in Alleppey sightseeing guide. I'd love to check availability at Zen Homestay and plan my sightseeing itinerary.",
     },
   },
 ];
