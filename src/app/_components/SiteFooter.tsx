@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Anchor, Award, ShieldCheck, Coffee, MessageCircle, MapPin } from 'lucide-react';
+import { Anchor, ShieldCheck, Coffee, MessageCircle, MapPin } from 'lucide-react';
+import GoogleIcon from './GoogleIcon';
 
 const StarRow = () => (
   <>{[1, 2, 3, 4, 5].map((s) => (
@@ -59,8 +60,11 @@ export default function SiteFooter() {
               <span className="bg-slate-900 text-sky-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
                 <Anchor className="w-3 h-3" /> 5-Min Boat Pickup
               </span>
-              <span className="bg-slate-900 text-orange-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
-                <Award className="w-3 h-3" /> Superhost 4.9★
+              <span className="bg-slate-900 text-slate-100 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
+                <GoogleIcon className="w-3 h-3 shrink-0" />
+                <span>
+                  Google Rated <span className="text-[#FBBC05]">4.9★</span>
+                </span>
               </span>
               <span className="bg-slate-900 text-emerald-400 border border-slate-800 px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5">
                 <ShieldCheck className="w-3 h-3" /> 0% Commission
